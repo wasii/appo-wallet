@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */; };
+		E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */; };
+		E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */; };
+		E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */; };
 		E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B282C6DF4E5000745F9 /* AppOApp.swift */; };
 		E25B4B2D2C6DF4E7000745F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E25B4B2C2C6DF4E7000745F9 /* Assets.xcassets */; };
 		E25B4B302C6DF4E7000745F9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E25B4B2F2C6DF4E7000745F9 /* Preview Assets.xcassets */; };
@@ -26,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPViewModel.swift; sourceTree = "<group>"; };
+		E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewModel.swift; sourceTree = "<group>"; };
+		E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINViewModel.swift; sourceTree = "<group>"; };
+		E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewModel.swift; sourceTree = "<group>"; };
 		E25B4B252C6DF4E5000745F9 /* AppO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E25B4B282C6DF4E5000745F9 /* AppOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOApp.swift; sourceTree = "<group>"; };
 		E25B4B2C2C6DF4E7000745F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -170,6 +178,7 @@
 		E25B4B3E2C6DFAE1000745F9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -227,6 +236,7 @@
 		E2C3D4682C6F802C0017E47C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -259,6 +269,7 @@
 		E2D140282C6E4A2D0064EE6E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -283,6 +294,7 @@
 		E2D1402D2C6F1D0B0064EE6E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -359,18 +371,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
+				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
 				E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */,
 				E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */,
+				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,
+				E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */,
 				E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */,
 				E25B4B442C6E17E9000745F9 /* NavigationItems.swift in Sources */,
 				E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */,
 				E2D140372C6F5D1F0064EE6E /* View+Extension.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
+				E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
