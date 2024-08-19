@@ -61,13 +61,11 @@ struct PhoneNumberVerificationView: View {
                                     Text("\(self.countryFlag)")
                                         .font(.system(size: 35))
                                         .padding(.leading, 5)
-                                        .foregroundColor(foregroundColor)
                                     Text("\(self.countryCode)")
                                         .font(.subheadline)
-                                        .foregroundColor(foregroundColor)
+                                        .foregroundStyle(Color.appBlue)
                                     Spacer()
                                     Image(systemName: "chevron.down")
-                                        .foregroundColor(foregroundColor)
                                         .padding(.trailing, 5)
                                     
                                 }
@@ -120,7 +118,7 @@ struct PhoneNumberVerificationView: View {
                     .toolbar(.hidden, for: .navigationBar)
                     .background(.appBackground)
                     .navigationDestination(isPresented: $navigateToNextScreen) {
-                        VerifyOTPView(phoneNumber: "\(self.countryCode) \(self.mobPhoneNumber)")
+                        VerifyOTPView(countryCode: "\(self.countryCode)", phoneNumber: "\(self.mobPhoneNumber)")
                     }
                 }
                 .onTapGesture {
@@ -217,20 +215,8 @@ struct PhoneNumberVerificationView: View {
         }
     }
     
-    var foregroundColor: Color {
-        if colorScheme == .dark {
-            return Color(.white)
-        } else {
-            return Color(.black)
-        }
-    }
-    
     var backgroundColor: Color {
-        if colorScheme == .dark {
-            return Color(.systemGray5)
-        } else {
-            return Color(.systemGray6)
-        }
+        return Color.black.opacity(0.05)
     }
     
     func applyPatternOnNumbers(_ stringvar: inout String, pattern: String, replacementCharacter: Character) {
