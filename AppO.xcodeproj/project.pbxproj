@@ -21,6 +21,10 @@
 		E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */; };
 		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
 		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
+		E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */; };
+		E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */; };
+		E291414B2C736D7700D054A1 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414A2C736D7700D054A1 /* TimeManager.swift */; };
+		E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414C2C736DB100D054A1 /* OTPInputView.swift */; };
 		E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */; };
 		E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140232C6E49D70064EE6E /* AppLogoView.swift */; };
 		E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140292C6E4A390064EE6E /* EnterMPINView.swift */; };
@@ -47,6 +51,10 @@
 		E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinView.swift; sourceTree = "<group>"; };
+		E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinViewModel.swift; sourceTree = "<group>"; };
+		E291414A2C736D7700D054A1 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
+		E291414C2C736DB100D054A1 /* OTPInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPInputView.swift; sourceTree = "<group>"; };
 		E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPView.swift; sourceTree = "<group>"; };
 		E2D140232C6E49D70064EE6E /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		E2D140292C6E4A390064EE6E /* EnterMPINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINView.swift; sourceTree = "<group>"; };
@@ -118,6 +126,7 @@
 		E25B4B372C6DFA51000745F9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E291414A2C736D7700D054A1 /* TimeManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -152,6 +161,7 @@
 		E25B4B3B2C6DFABC000745F9 /* Startup */ = {
 			isa = PBXGroup;
 			children = (
+				E29141412C736BF500D054A1 /* Setup Mobile Pin */,
 				E29141392C7339C600D054A1 /* Registration */,
 				E2C3D4662C6F80220017E47C /* VerifyOTP */,
 				E2D1402B2C6F1CF60064EE6E /* Phone Number  Verification */,
@@ -217,6 +227,7 @@
 			children = (
 				E25B4B412C6E171E000745F9 /* BottomNavigation.swift */,
 				E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */,
+				E291414C2C736DB100D054A1 /* OTPInputView.swift */,
 			);
 			path = "Repeated Views";
 			sourceTree = "<group>";
@@ -244,6 +255,31 @@
 				E291413C2C7339DF00D054A1 /* RegistrationView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E29141412C736BF500D054A1 /* Setup Mobile Pin */ = {
+			isa = PBXGroup;
+			children = (
+				E29141432C736C0000D054A1 /* ViewModel */,
+				E29141422C736BFC00D054A1 /* View */,
+			);
+			path = "Setup Mobile Pin";
+			sourceTree = "<group>";
+		};
+		E29141422C736BFC00D054A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E29141432C736C0000D054A1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E2C3D4662C6F80220017E47C /* VerifyOTP */ = {
@@ -406,6 +442,7 @@
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
+				E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */,
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
 				E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */,
 				E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */,
@@ -415,9 +452,12 @@
 				E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */,
 				E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */,
 				E25B4B442C6E17E9000745F9 /* NavigationItems.swift in Sources */,
+				E291414B2C736D7700D054A1 /* TimeManager.swift in Sources */,
 				E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */,
 				E2D140372C6F5D1F0064EE6E /* View+Extension.swift in Sources */,
+				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
+				E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */,
 				E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

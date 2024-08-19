@@ -228,7 +228,7 @@ struct RegistrationView: View {
                         }
                     }
                     
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: SetupMobilePinView()) {
                         Text("NEXT")
                             .font(.title3)
                             .fontWeight(.medium)
