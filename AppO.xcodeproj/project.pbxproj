@@ -19,6 +19,8 @@
 		E25B4B442C6E17E9000745F9 /* NavigationItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B432C6E17E9000745F9 /* NavigationItems.swift */; };
 		E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B482C6E1E0D000745F9 /* TermAndConditionView.swift */; };
 		E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */; };
+		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
+		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
 		E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */; };
 		E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140232C6E49D70064EE6E /* AppLogoView.swift */; };
 		E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140292C6E4A390064EE6E /* EnterMPINView.swift */; };
@@ -43,6 +45,8 @@
 		E25B4B432C6E17E9000745F9 /* NavigationItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItems.swift; sourceTree = "<group>"; };
 		E25B4B482C6E1E0D000745F9 /* TermAndConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermAndConditionView.swift; sourceTree = "<group>"; };
 		E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPView.swift; sourceTree = "<group>"; };
 		E2D140232C6E49D70064EE6E /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		E2D140292C6E4A390064EE6E /* EnterMPINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINView.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 		E25B4B3B2C6DFABC000745F9 /* Startup */ = {
 			isa = PBXGroup;
 			children = (
+				E29141392C7339C600D054A1 /* Registration */,
 				E2C3D4662C6F80220017E47C /* VerifyOTP */,
 				E2D1402B2C6F1CF60064EE6E /* Phone Number  Verification */,
 				E2D140252C6E4A140064EE6E /* Enter MPIN */,
@@ -214,6 +219,31 @@
 				E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */,
 			);
 			path = "Repeated Views";
+			sourceTree = "<group>";
+		};
+		E29141392C7339C600D054A1 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				E291413B2C7339D300D054A1 /* View */,
+				E291413A2C7339CE00D054A1 /* ViewModel */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		E291413A2C7339CE00D054A1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E291413B2C7339D300D054A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E291413C2C7339DF00D054A1 /* RegistrationView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E2C3D4662C6F80220017E47C /* VerifyOTP */ = {
@@ -373,6 +403,8 @@
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
+				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
+				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
 				E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */,
