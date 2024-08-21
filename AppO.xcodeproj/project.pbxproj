@@ -56,7 +56,7 @@
 		E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinViewModel.swift; sourceTree = "<group>"; };
 		E291414A2C736D7700D054A1 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		E291414C2C736DB100D054A1 /* OTPInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPInputView.swift; sourceTree = "<group>"; };
-		E2BD5DDE2C76239B006FB4B7 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = AppO/Environment.swift; sourceTree = SOURCE_ROOT; };
+		E2BD5DDE2C76239B006FB4B7 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = AppO/Utils/Environment.swift; sourceTree = SOURCE_ROOT; };
 		E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPView.swift; sourceTree = "<group>"; };
 		E2D140232C6E49D70064EE6E /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		E2D140292C6E4A390064EE6E /* EnterMPINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINView.swift; sourceTree = "<group>"; };
@@ -97,11 +97,11 @@
 		E25B4B272C6DF4E5000745F9 /* AppO */ = {
 			isa = PBXGroup;
 			children = (
+				E2BD5DE02C762412006FB4B7 /* Utils */,
 				E25B4B3A2C6DFA68000745F9 /* Core */,
 				E25B4B392C6DFA61000745F9 /* Extensions */,
 				E25B4B382C6DFA5B000745F9 /* Model */,
 				E25B4B372C6DFA51000745F9 /* Services */,
-				E25B4B362C6DFA42000745F9 /* Utils */,
 				E25B4B282C6DF4E5000745F9 /* AppOApp.swift */,
 				E25B4B2C2C6DF4E7000745F9 /* Assets.xcassets */,
 				E25B4B2E2C6DF4E7000745F9 /* Preview Content */,
@@ -116,14 +116,6 @@
 				E25B4B2F2C6DF4E7000745F9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		E25B4B362C6DFA42000745F9 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				E2BD5DDE2C76239B006FB4B7 /* Environment.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		E25B4B372C6DFA51000745F9 /* Services */ = {
@@ -283,6 +275,14 @@
 				E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E2BD5DE02C762412006FB4B7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E2BD5DDE2C76239B006FB4B7 /* Environment.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		E2C3D4662C6F80220017E47C /* VerifyOTP */ = {
