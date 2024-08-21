@@ -25,6 +25,7 @@
 		E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */; };
 		E291414B2C736D7700D054A1 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414A2C736D7700D054A1 /* TimeManager.swift */; };
 		E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414C2C736DB100D054A1 /* OTPInputView.swift */; };
+		E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BD5DDE2C76239B006FB4B7 /* Environment.swift */; };
 		E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */; };
 		E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140232C6E49D70064EE6E /* AppLogoView.swift */; };
 		E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140292C6E4A390064EE6E /* EnterMPINView.swift */; };
@@ -55,6 +56,7 @@
 		E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinViewModel.swift; sourceTree = "<group>"; };
 		E291414A2C736D7700D054A1 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		E291414C2C736DB100D054A1 /* OTPInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPInputView.swift; sourceTree = "<group>"; };
+		E2BD5DDE2C76239B006FB4B7 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = AppO/Environment.swift; sourceTree = SOURCE_ROOT; };
 		E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPView.swift; sourceTree = "<group>"; };
 		E2D140232C6E49D70064EE6E /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		E2D140292C6E4A390064EE6E /* EnterMPINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		E25B4B362C6DFA42000745F9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E2BD5DDE2C76239B006FB4B7 /* Environment.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
+				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
