@@ -78,6 +78,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E24B91712C77081D009091B2 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				E25B4B3B2C6DFABC000745F9 /* Startup */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		E24B91722C77082D009091B2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E24B91732C770844009091B2 /* Common Views */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E24B91732C770844009091B2 /* Common Views */ = {
+			isa = PBXGroup;
+			children = (
+				E25B4B412C6E171E000745F9 /* BottomNavigation.swift */,
+				E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */,
+				E291414C2C736DB100D054A1 /* OTPInputView.swift */,
+			);
+			path = "Common Views";
+			sourceTree = "<group>";
+		};
 		E25B4B1C2C6DF4E5000745F9 = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +123,9 @@
 		E25B4B272C6DF4E5000745F9 /* AppO */ = {
 			isa = PBXGroup;
 			children = (
+				E24B91722C77082D009091B2 /* Components */,
+				E24B91712C77081D009091B2 /* Module */,
 				E2BD5DE02C762412006FB4B7 /* Utils */,
-				E25B4B3A2C6DFA68000745F9 /* Core */,
 				E25B4B392C6DFA61000745F9 /* Extensions */,
 				E25B4B382C6DFA5B000745F9 /* Model */,
 				E25B4B372C6DFA51000745F9 /* Services */,
@@ -142,15 +169,6 @@
 				E2D140362C6F5D1F0064EE6E /* View+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		E25B4B3A2C6DFA68000745F9 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				E25B4B4A2C6E2539000745F9 /* Repeated Views */,
-				E25B4B3B2C6DFABC000745F9 /* Startup */,
-			);
-			path = Core;
 			sourceTree = "<group>";
 		};
 		E25B4B3B2C6DFABC000745F9 /* Startup */ = {
@@ -215,16 +233,6 @@
 			children = (
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		E25B4B4A2C6E2539000745F9 /* Repeated Views */ = {
-			isa = PBXGroup;
-			children = (
-				E25B4B412C6E171E000745F9 /* BottomNavigation.swift */,
-				E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */,
-				E291414C2C736DB100D054A1 /* OTPInputView.swift */,
-			);
-			path = "Repeated Views";
 			sourceTree = "<group>";
 		};
 		E29141392C7339C600D054A1 /* Registration */ = {
