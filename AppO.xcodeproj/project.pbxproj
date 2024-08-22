@@ -11,6 +11,17 @@
 		E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */; };
 		E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */; };
 		E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */; };
+		E24B91762C7718F1009091B2 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = E24B91752C7718F1009091B2 /* CombineMoya */; };
+		E24B91782C7718F1009091B2 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = E24B91772C7718F1009091B2 /* Moya */; };
+		E24B917A2C7718F1009091B2 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = E24B91792C7718F1009091B2 /* ReactiveMoya */; };
+		E24B917C2C7718F1009091B2 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = E24B917B2C7718F1009091B2 /* RxMoya */; };
+		E24B91842C771929009091B2 /* APIHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B917D2C771929009091B2 /* APIHeader.swift */; };
+		E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B917F2C771929009091B2 /* NetworkManagerProviders.swift */; };
+		E24B91872C771929009091B2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B91802C771929009091B2 /* NetworkError.swift */; };
+		E24B91892C771929009091B2 /* APIBaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B91822C771929009091B2 /* APIBaseResponse.swift */; };
+		E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B91832C771929009091B2 /* NetworkManager.swift */; };
+		E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B91932C771AE2009091B2 /* AppEnvironment.swift */; };
+		E24B91962C771AE2009091B2 /* PlistKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B91942C771AE2009091B2 /* PlistKey.swift */; };
 		E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B282C6DF4E5000745F9 /* AppOApp.swift */; };
 		E25B4B2D2C6DF4E7000745F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E25B4B2C2C6DF4E7000745F9 /* Assets.xcassets */; };
 		E25B4B302C6DF4E7000745F9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E25B4B2F2C6DF4E7000745F9 /* Preview Assets.xcassets */; };
@@ -41,6 +52,13 @@
 		E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewModel.swift; sourceTree = "<group>"; };
 		E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINViewModel.swift; sourceTree = "<group>"; };
 		E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewModel.swift; sourceTree = "<group>"; };
+		E24B917D2C771929009091B2 /* APIHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHeader.swift; sourceTree = "<group>"; };
+		E24B917F2C771929009091B2 /* NetworkManagerProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerProviders.swift; sourceTree = "<group>"; };
+		E24B91802C771929009091B2 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E24B91822C771929009091B2 /* APIBaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBaseResponse.swift; sourceTree = "<group>"; };
+		E24B91832C771929009091B2 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E24B91932C771AE2009091B2 /* AppEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		E24B91942C771AE2009091B2 /* PlistKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistKey.swift; sourceTree = "<group>"; };
 		E25B4B252C6DF4E5000745F9 /* AppO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E25B4B282C6DF4E5000745F9 /* AppOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOApp.swift; sourceTree = "<group>"; };
 		E25B4B2C2C6DF4E7000745F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,6 +90,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E24B91782C7718F1009091B2 /* Moya in Frameworks */,
+				E24B91762C7718F1009091B2 /* CombineMoya in Frameworks */,
+				E24B917C2C7718F1009091B2 /* RxMoya in Frameworks */,
+				E24B917A2C7718F1009091B2 /* ReactiveMoya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +124,29 @@
 				E291414C2C736DB100D054A1 /* OTPInputView.swift */,
 			);
 			path = "Common Views";
+			sourceTree = "<group>";
+		};
+		E24B918B2C771944009091B2 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		E24B918C2C771958009091B2 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		E24B91922C771ACD009091B2 /* App Environment */ = {
+			isa = PBXGroup;
+			children = (
+				E24B91932C771AE2009091B2 /* AppEnvironment.swift */,
+				E24B91942C771AE2009091B2 /* PlistKey.swift */,
+			);
+			path = "App Environment";
 			sourceTree = "<group>";
 		};
 		E25B4B1C2C6DF4E5000745F9 = {
@@ -148,6 +193,14 @@
 		E25B4B372C6DFA51000745F9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E24B91922C771ACD009091B2 /* App Environment */,
+				E24B918C2C771958009091B2 /* APIs */,
+				E24B918B2C771944009091B2 /* Interactor */,
+				E24B91822C771929009091B2 /* APIBaseResponse.swift */,
+				E24B917D2C771929009091B2 /* APIHeader.swift */,
+				E24B91802C771929009091B2 /* NetworkError.swift */,
+				E24B91832C771929009091B2 /* NetworkManager.swift */,
+				E24B917F2C771929009091B2 /* NetworkManagerProviders.swift */,
 				E291414A2C736D7700D054A1 /* TimeManager.swift */,
 			);
 			path = Services;
@@ -392,6 +445,12 @@
 			dependencies = (
 			);
 			name = AppO;
+			packageProductDependencies = (
+				E24B91752C7718F1009091B2 /* CombineMoya */,
+				E24B91772C7718F1009091B2 /* Moya */,
+				E24B91792C7718F1009091B2 /* ReactiveMoya */,
+				E24B917B2C7718F1009091B2 /* RxMoya */,
+			);
 			productName = AppO;
 			productReference = E25B4B252C6DF4E5000745F9 /* AppO.app */;
 			productType = "com.apple.product-type.application";
@@ -420,6 +479,9 @@
 				Base,
 			);
 			mainGroup = E25B4B1C2C6DF4E5000745F9;
+			packageReferences = (
+				E24B91742C7718F1009091B2 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = E25B4B262C6DF4E5000745F9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -447,19 +509,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
+				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
+				E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
+				E24B91842C771929009091B2 /* APIHeader.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
+				E24B91962C771AE2009091B2 /* PlistKey.swift in Sources */,
 				E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */,
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
 				E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */,
 				E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */,
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */,
+				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,
 				E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */,
 				E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */,
@@ -470,6 +538,7 @@
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
 				E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */,
+				E24B91892C771929009091B2 /* APIBaseResponse.swift in Sources */,
 				E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,8 +687,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.appopay.wallet.AppO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROD_API = "https://prodapi.appopay.com/api/sms/";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				ServerOne = "http://3.13.197.45:8081/";
+				System_API = "https://system.appopay.com:9004/";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -646,8 +718,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.appopay.wallet.AppO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROD_API = "https://prodapi.appopay.com/api/sms/";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				ServerOne = "http://3.13.197.45:8081/";
+				System_API = "https://system.appopay.com:9004/";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -674,6 +749,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E24B91742C7718F1009091B2 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E24B91752C7718F1009091B2 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E24B91742C7718F1009091B2 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		E24B91772C7718F1009091B2 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E24B91742C7718F1009091B2 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		E24B91792C7718F1009091B2 /* ReactiveMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E24B91742C7718F1009091B2 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = ReactiveMoya;
+		};
+		E24B917B2C7718F1009091B2 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E24B91742C7718F1009091B2 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E25B4B1D2C6DF4E5000745F9 /* Project object */;
 }
