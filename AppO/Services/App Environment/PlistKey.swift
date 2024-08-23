@@ -8,6 +8,9 @@ import Foundation
 
 enum PlistKey: String {
     case baseURL = "Base URL"
+    case systemURL = "System API"
+    case prodURL = "PROD API"
+    case serverOne = "Server One"
 
     private var infoDictionary: [String: Any] {
         if let dictionary = Bundle.main.infoDictionary {

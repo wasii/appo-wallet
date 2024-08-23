@@ -17,7 +17,10 @@ class APIHeader {
     func getHeader() -> [String: String] {
         return [
             "Accept": "application/json",
-            "platform": "ios"
+            "x-api-lang": "en/US",
+            "x-api-channel": "web",
+            "x-api-version": "1.0.0",
+            
         ]
     }
 }

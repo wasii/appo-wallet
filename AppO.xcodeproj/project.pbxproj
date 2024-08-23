@@ -43,6 +43,11 @@
 		E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB0C2C785C8F00B47B38 /* VerifyOTPInteractor.swift */; };
 		E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB0E2C785C9A00B47B38 /* RegistrationInteractor.swift */; };
 		E2C9CB112C785CAF00B47B38 /* SetupMobilePinInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB102C785CAF00B47B38 /* SetupMobilePinInteractor.swift */; };
+		E2C9CB132C78603B00B47B38 /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB122C78603B00B47B38 /* RegistrationModel.swift */; };
+		E2C9CB172C7860E100B47B38 /* RegistrationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB162C7860E100B47B38 /* RegistrationResponse.swift */; };
+		E2C9CB192C78616B00B47B38 /* RegistrationAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB182C78616B00B47B38 /* RegistrationAPIs.swift */; };
+		E2C9CB1B2C7863A200B47B38 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB1A2C7863A200B47B38 /* Codable+Extension.swift */; };
+		E2C9CB1D2C7863ED00B47B38 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB1C2C7863ED00B47B38 /* Scheduler.swift */; };
 		E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140232C6E49D70064EE6E /* AppLogoView.swift */; };
 		E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140292C6E4A390064EE6E /* EnterMPINView.swift */; };
 		E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1402E2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift */; };
@@ -86,6 +91,11 @@
 		E2C9CB0C2C785C8F00B47B38 /* VerifyOTPInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPInteractor.swift; sourceTree = "<group>"; };
 		E2C9CB0E2C785C9A00B47B38 /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
 		E2C9CB102C785CAF00B47B38 /* SetupMobilePinInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinInteractor.swift; sourceTree = "<group>"; };
+		E2C9CB122C78603B00B47B38 /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
+		E2C9CB162C7860E100B47B38 /* RegistrationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationResponse.swift; sourceTree = "<group>"; };
+		E2C9CB182C78616B00B47B38 /* RegistrationAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAPIs.swift; sourceTree = "<group>"; };
+		E2C9CB1A2C7863A200B47B38 /* Codable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
+		E2C9CB1C2C7863ED00B47B38 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		E2D140232C6E49D70064EE6E /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		E2D140292C6E4A390064EE6E /* EnterMPINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINView.swift; sourceTree = "<group>"; };
 		E2D1402E2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationView.swift; sourceTree = "<group>"; };
@@ -93,6 +103,7 @@
 		E2D140322C6F5C060064EE6E /* CountryNumbers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryNumbers.json; sourceTree = "<group>"; };
 		E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoder+Extension.swift"; sourceTree = "<group>"; };
 		E2D140362C6F5D1F0064EE6E /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		E2EAB8602C786C6400EACFD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +163,7 @@
 		E24B918C2C771958009091B2 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				E2C9CB182C78616B00B47B38 /* RegistrationAPIs.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -184,6 +196,7 @@
 		E25B4B272C6DF4E5000745F9 /* AppO */ = {
 			isa = PBXGroup;
 			children = (
+				E2EAB8602C786C6400EACFD7 /* Info.plist */,
 				E24B91722C77082D009091B2 /* Components */,
 				E24B91712C77081D009091B2 /* Module */,
 				E2BD5DE02C762412006FB4B7 /* Utils */,
@@ -209,6 +222,7 @@
 		E25B4B372C6DFA51000745F9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E2C9CB1C2C7863ED00B47B38 /* Scheduler.swift */,
 				E24B91922C771ACD009091B2 /* App Environment */,
 				E24B918C2C771958009091B2 /* APIs */,
 				E24B918B2C771944009091B2 /* Interactor */,
@@ -225,6 +239,8 @@
 		E25B4B382C6DFA5B000745F9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E2C9CB152C7860D700B47B38 /* Response */,
+				E2C9CB142C7860D200B47B38 /* Request */,
 				E25B4B432C6E17E9000745F9 /* NavigationItems.swift */,
 				E2D140302C6F5BCB0064EE6E /* PhoneNumberModel.swift */,
 			);
@@ -236,6 +252,7 @@
 			children = (
 				E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */,
 				E2D140362C6F5D1F0064EE6E /* View+Extension.swift */,
+				E2C9CB1A2C7863A200B47B38 /* Codable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -386,6 +403,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		E2C9CB142C7860D200B47B38 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				E2C9CB122C78603B00B47B38 /* RegistrationModel.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		E2C9CB152C7860D700B47B38 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				E2C9CB162C7860E100B47B38 /* RegistrationResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
 		E2D140252C6E4A140064EE6E /* Enter MPIN */ = {
 			isa = PBXGroup;
 			children = (
@@ -520,6 +553,7 @@
 				E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */,
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
+				E2C9CB132C78603B00B47B38 /* RegistrationModel.swift in Sources */,
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */,
@@ -528,6 +562,7 @@
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
 				E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */,
 				E24B91842C771929009091B2 /* APIHeader.swift in Sources */,
+				E2C9CB172C7860E100B47B38 /* RegistrationResponse.swift in Sources */,
 				E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
@@ -535,12 +570,14 @@
 				E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */,
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
 				E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */,
+				E2C9CB192C78616B00B47B38 /* RegistrationAPIs.swift in Sources */,
 				E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */,
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */,
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
 				E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,
+				E2C9CB1B2C7863A200B47B38 /* Codable+Extension.swift in Sources */,
 				E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */,
 				E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */,
 				E25B4B442C6E17E9000745F9 /* NavigationItems.swift in Sources */,
@@ -550,6 +587,7 @@
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
 				E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */,
+				E2C9CB1D2C7863ED00B47B38 /* Scheduler.swift in Sources */,
 				E24B91892C771929009091B2 /* APIBaseResponse.swift in Sources */,
 				E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */,
 			);
@@ -688,6 +726,7 @@
 				DEVELOPMENT_TEAM = WY6HWY8U3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppO/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -702,7 +741,7 @@
 				PROD_API = "https://prodapi.appopay.com/api/sms/";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				ServerOne = "http://3.13.197.45:8081/";
+				Server_One = "http://3.13.197.45:8081/";
 				System_API = "https://system.appopay.com:9004/";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -719,6 +758,7 @@
 				DEVELOPMENT_TEAM = WY6HWY8U3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppO/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -733,7 +773,7 @@
 				PROD_API = "https://prodapi.appopay.com/api/sms/";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				ServerOne = "http://3.13.197.45:8081/";
+				Server_One = "http://3.13.197.45:8081/";
 				System_API = "https://system.appopay.com:9004/";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
