@@ -38,6 +38,11 @@
 		E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414C2C736DB100D054A1 /* OTPInputView.swift */; };
 		E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BD5DDE2C76239B006FB4B7 /* Environment.swift */; };
 		E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */; };
+		E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */; };
+		E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB0A2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift */; };
+		E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB0C2C785C8F00B47B38 /* VerifyOTPInteractor.swift */; };
+		E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB0E2C785C9A00B47B38 /* RegistrationInteractor.swift */; };
+		E2C9CB112C785CAF00B47B38 /* SetupMobilePinInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB102C785CAF00B47B38 /* SetupMobilePinInteractor.swift */; };
 		E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140232C6E49D70064EE6E /* AppLogoView.swift */; };
 		E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140292C6E4A390064EE6E /* EnterMPINView.swift */; };
 		E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1402E2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift */; };
@@ -76,6 +81,11 @@
 		E291414C2C736DB100D054A1 /* OTPInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPInputView.swift; sourceTree = "<group>"; };
 		E2BD5DDE2C76239B006FB4B7 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = AppO/Utils/Environment.swift; sourceTree = SOURCE_ROOT; };
 		E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPView.swift; sourceTree = "<group>"; };
+		E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPinInteractor.swift; sourceTree = "<group>"; };
+		E2C9CB0A2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationInteractor.swift; sourceTree = "<group>"; };
+		E2C9CB0C2C785C8F00B47B38 /* VerifyOTPInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPInteractor.swift; sourceTree = "<group>"; };
+		E2C9CB0E2C785C9A00B47B38 /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
+		E2C9CB102C785CAF00B47B38 /* SetupMobilePinInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinInteractor.swift; sourceTree = "<group>"; };
 		E2D140232C6E49D70064EE6E /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		E2D140292C6E4A390064EE6E /* EnterMPINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINView.swift; sourceTree = "<group>"; };
 		E2D1402E2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationView.swift; sourceTree = "<group>"; };
@@ -119,6 +129,7 @@
 		E24B91732C770844009091B2 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				E2D140232C6E49D70064EE6E /* AppLogoView.swift */,
 				E25B4B412C6E171E000745F9 /* BottomNavigation.swift */,
 				E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */,
 				E291414C2C736DB100D054A1 /* OTPInputView.swift */,
@@ -129,6 +140,11 @@
 		E24B918B2C771944009091B2 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */,
+				E2C9CB0A2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift */,
+				E2C9CB0C2C785C8F00B47B38 /* VerifyOTPInteractor.swift */,
+				E2C9CB0E2C785C9A00B47B38 /* RegistrationInteractor.swift */,
+				E2C9CB102C785CAF00B47B38 /* SetupMobilePinInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -232,7 +248,6 @@
 				E2C3D4662C6F80220017E47C /* VerifyOTP */,
 				E2D1402B2C6F1CF60064EE6E /* Phone Number  Verification */,
 				E2D140252C6E4A140064EE6E /* Enter MPIN */,
-				E2D140222C6E49C70064EE6E /* Fixed Views */,
 				E25B4B452C6E1DDC000745F9 /* TermsAndConditions */,
 				E25B4B3C2C6DFACA000745F9 /* InitialScreen */,
 			);
@@ -371,14 +386,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		E2D140222C6E49C70064EE6E /* Fixed Views */ = {
-			isa = PBXGroup;
-			children = (
-				E2D140232C6E49D70064EE6E /* AppLogoView.swift */,
-			);
-			path = "Fixed Views";
-			sourceTree = "<group>";
-		};
 		E2D140252C6E4A140064EE6E /* Enter MPIN */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,14 +517,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
+				E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */,
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
+				E2C9CB112C785CAF00B47B38 /* SetupMobilePinInteractor.swift in Sources */,
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
+				E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */,
 				E24B91842C771929009091B2 /* APIHeader.swift in Sources */,
+				E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
 				E24B91962C771AE2009091B2 /* PlistKey.swift in Sources */,
@@ -528,6 +539,7 @@
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */,
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
+				E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,
 				E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */,
 				E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */,
