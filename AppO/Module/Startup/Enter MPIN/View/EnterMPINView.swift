@@ -14,6 +14,9 @@ struct EnterMPINView: View {
     
     private let otpLength = 6
     
+    @StateObject var viewModel: EnterMPINViewModel
+    @EnvironmentObject var navigator: Navigator
+    
     let rows: [[String]] = [
         ["1", "2", "3"],
         ["4", "5", "6"],
@@ -22,81 +25,88 @@ struct EnterMPINView: View {
     ]
     
     var body: some View {
-        NavigationStack {
-            VStack(alignment: .leading, spacing: 20) {
-                VStack {
-                    NavigationBarView(title: "")
-                }
-                
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        AppLogoView()
-                        
-                        Text("Sign in to Continue")
-                            .foregroundStyle(Color.appBlue)
-                            .fontWeight(.semibold)
-                            .font(.title2)
-                        
-                        HStack(alignment: .center) {
-                            Spacer()
-                            ForEach(0..<otpLength, id: \.self) { index in
-                                OTPTextField(text: self.$otp, index: index)
-                            }
-                            Spacer()
+        VStack(alignment: .leading, spacing: 20) {
+            NavigationBarView(title: "")
+            
+            ScrollView {
+                VStack(alignment: .leading) {
+                    AppLogoView()
+                    
+                    Text("Sign in to Continue")
+                        .foregroundStyle(Color.appBlue)
+                        .fontWeight(.semibold)
+                        .font(.title2)
+                    
+                    HStack(alignment: .center) {
+                        Spacer()
+                        ForEach(0..<otpLength, id: \.self) { index in
+                            OTPTextField(text: self.$otp, index: index)
                         }
-                        .padding()
-                        
-                        VStack {
-                            ForEach(rows, id: \.self) { row in
-                                HStack(spacing: 20) {
-                                    ForEach(row, id: \.self) { item in
-                                        Button(action: {
-                                            self.handleAction(for: item)
-                                        }) {
-                                            Text(item)
-                                                .font(.title2)
-                                                .fontWeight(.semibold)
-                                                .foregroundStyle(Color.appBlue)
-                                                .frame(width: 90, height: 90)
-                                                .background(Color.backButton.opacity(0.5))
-                                                .cornerRadius(45)
-                                                .foregroundColor(.black)
-                                        }
+                        Spacer()
+                    }
+                    .padding()
+                    
+                    VStack {
+                        ForEach(rows, id: \.self) { row in
+                            HStack(spacing: 20) {
+                                ForEach(row, id: \.self) { item in
+                                    Button(action: {
+                                        self.handleAction(for: item)
+                                    }) {
+                                        Text(item)
+                                            .font(.title2)
+                                            .fontWeight(.semibold)
+                                            .foregroundStyle(Color.appBlue)
+                                            .frame(width: 90, height: 90)
+                                            .background(Color.backButton.opacity(0.5))
+                                            .cornerRadius(45)
+                                            .foregroundColor(.black)
                                     }
                                 }
                             }
                         }
-                        .frame(maxWidth: .infinity)
-                        Spacer()
                     }
-                    VStack(alignment: .center, spacing: 5) {
-                        NavigationLink {
-                            PhoneNumberVerificationView()
-                        } label: {
-                            Text("Create new account?")
-                                .foregroundStyle(Color.gray)
-                                .font(Font.system(size: 20))
-                            Text("**Signup**")
-                                .foregroundStyle(Color.appYellow)
-                                .font(Font.system(size: 20))
-                        }
-                    }
-                    .padding(.top, 30)
-                    
-                    VStack(alignment: .center, spacing: 5) {
-                        NavigationLink {} label: {
-                            Text("Forgot MPIN")
-                                .foregroundStyle(Color.red)
-                                .fontWeight(.semibold)
-                                .font(Font.system(size: 18))
-                        }
-                    }
-                    .padding(.top, 8)
+                    .frame(maxWidth: .infinity)
+                    Spacer()
                 }
+                VStack(alignment: .center, spacing: 5) {
+                    Button {
+                        viewModel.coordinatorStatePublisher.send(.with(.createNewAccount))
+                    } label: {
+                        Text("Create new account?")
+                            .foregroundStyle(Color.gray)
+                            .font(Font.system(size: 20))
+                        Text("**Signup**")
+                            .foregroundStyle(Color.appYellow)
+                            .font(Font.system(size: 20))
+                    }
+                }
+                .padding(.top, 30)
+                
+                VStack(alignment: .center, spacing: 5) {
+                    NavigationLink {} label: {
+                        Text("Forgot MPIN")
+                            .foregroundStyle(Color.red)
+                            .fontWeight(.semibold)
+                            .font(Font.system(size: 18))
+                    }
+                }
+                .padding(.top, 8)
             }
-            .padding()
-            .toolbar(.hidden, for: .navigationBar)
-            .background(.appBackground)
+        }
+        .padding()
+        .toolbar(.hidden, for: .navigationBar)
+        .background(.appBackground)
+        .onReceive(viewModel.coordinatorState) { state in
+            switch (state.state, state.transferable) {
+            case (.confirm, _):
+                break
+            case (.createNewAccount, _):
+                navigator.navigate(to: .phoneNumberVerification(viewModel: .init()))
+                break
+            case (.forgetPin, _):
+                break
+            }
         }
     }
     
@@ -143,6 +153,6 @@ struct OTPTextField: View {
 
 struct EnterMPINView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterMPINView(text: .constant(""))
+        EnterMPINView(text: .constant(""), viewModel: EnterMPINViewModel())
     }
 }

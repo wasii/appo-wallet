@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct InitialView: View {
+    @StateObject var navigator: Navigator
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigator.navPath) {
             
             VStack {
                 ScrollView {
@@ -29,16 +30,17 @@ struct InitialView: View {
                             .resizable()
                             .frame(width: 120, height: 120)
                         
-                        NavigationLink(destination: TermAndConditionView()) {
-                            Text("Get Started")
-                                .font(.title3)
-                                .fontWeight(.medium)
-                                .frame(width: UIScreen.main.bounds.width / 1.7)
-                                .frame(height: 60)
-                                .background(Color(.appBlue))
-                                .clipShape(Capsule())
-                                .foregroundStyle(Color.white)
-                        }
+                        Text("Get Started")
+                            .font(.title3)
+                            .fontWeight(.medium)
+                            .frame(width: UIScreen.main.bounds.width / 1.7)
+                            .frame(height: 60)
+                            .background(Color(.appBlue))
+                            .clipShape(Capsule())
+                            .foregroundStyle(Color.white)
+                            .onTapGesture {
+                                navigator.navigate(to: .termsAndConditionView)
+                            }
                         
                     }
                     .padding(.bottom)
@@ -47,10 +49,15 @@ struct InitialView: View {
                 BottomNavigation()
             }
             .background(.appBackground)
+            .navigationDestination(for: Navigator.Destination.self) { destination in
+                navigator.view(for: destination)
+            }
+            
         }
+        .environmentObject(navigator)
     }
 }
 
 #Preview {
-    InitialView()
+    InitialView(navigator: .init())
 }

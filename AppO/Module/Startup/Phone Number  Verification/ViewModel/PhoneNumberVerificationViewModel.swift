@@ -7,4 +7,4 @@
 
 import Foundation
 
-class PhoneNumberVerificationViewModel: NSObject {}
+class PhoneNumberVerificationViewModel: ObservableObject {}

@@ -11,6 +11,11 @@
 		E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */; };
 		E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */; };
 		E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */; };
+		E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640A2C78C57D00AD4E6F /* Navigator.swift */; };
+		E239640D2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */; };
+		E23964102C78CEED00AD4E6F /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640E2C78CEED00AD4E6F /* testView.swift */; };
+		E23964112C78CEED00AD4E6F /* testViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640F2C78CEED00AD4E6F /* testViewModel.swift */; };
+		E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23964122C78CF8A00AD4E6F /* Coordinator.swift */; };
 		E24B91762C7718F1009091B2 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = E24B91752C7718F1009091B2 /* CombineMoya */; };
 		E24B91782C7718F1009091B2 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = E24B91772C7718F1009091B2 /* Moya */; };
 		E24B917A2C7718F1009091B2 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = E24B91792C7718F1009091B2 /* ReactiveMoya */; };
@@ -62,6 +67,11 @@
 		E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewModel.swift; sourceTree = "<group>"; };
 		E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINViewModel.swift; sourceTree = "<group>"; };
 		E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewModel.swift; sourceTree = "<group>"; };
+		E239640A2C78C57D00AD4E6F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewModel.swift; sourceTree = "<group>"; };
+		E239640E2C78CEED00AD4E6F /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
+		E239640F2C78CEED00AD4E6F /* testViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testViewModel.swift; sourceTree = "<group>"; };
+		E23964122C78CF8A00AD4E6F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E24B917D2C771929009091B2 /* APIHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHeader.swift; sourceTree = "<group>"; };
 		E24B917F2C771929009091B2 /* NetworkManagerProviders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManagerProviders.swift; sourceTree = "<group>"; };
 		E24B91802C771929009091B2 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -207,6 +217,8 @@
 				E25B4B2C2C6DF4E7000745F9 /* Assets.xcassets */,
 				E25B4B2E2C6DF4E7000745F9 /* Preview Content */,
 				E2D140322C6F5C060064EE6E /* CountryNumbers.json */,
+				E239640E2C78CEED00AD4E6F /* testView.swift */,
+				E239640F2C78CEED00AD4E6F /* testViewModel.swift */,
 			);
 			path = AppO;
 			sourceTree = "<group>";
@@ -316,6 +328,7 @@
 		E25B4B472C6E1DF2000745F9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -374,6 +387,8 @@
 			isa = PBXGroup;
 			children = (
 				E2BD5DDE2C76239B006FB4B7 /* Environment.swift */,
+				E239640A2C78C57D00AD4E6F /* Navigator.swift */,
+				E23964122C78CF8A00AD4E6F /* Coordinator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -553,10 +568,12 @@
 				E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */,
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
+				E23964102C78CEED00AD4E6F /* testView.swift in Sources */,
 				E2C9CB132C78603B00B47B38 /* RegistrationModel.swift in Sources */,
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */,
+				E239640D2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
 				E2C9CB112C785CAF00B47B38 /* SetupMobilePinInteractor.swift in Sources */,
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
@@ -584,7 +601,10 @@
 				E291414B2C736D7700D054A1 /* TimeManager.swift in Sources */,
 				E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */,
 				E2D140372C6F5D1F0064EE6E /* View+Extension.swift in Sources */,
+				E23964112C78CEED00AD4E6F /* testViewModel.swift in Sources */,
+				E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */,
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
+				E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
 				E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */,
 				E2C9CB1D2C7863ED00B47B38 /* Scheduler.swift in Sources */,

@@ -10,6 +10,8 @@ import Combine
 
 struct PhoneNumberVerificationView: View {
     
+    @StateObject var viewModel: PhoneNumberVerificationViewModel
+    
     @State private var navigateToNextScreen = false
     @State var showPopup = false
     @State var presentSheet = false
@@ -27,99 +29,97 @@ struct PhoneNumberVerificationView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                NavigationStack {
-                    VStack(spacing: 20) {
-                        // Aapka existing content yahan rahega
-                        NavigationBarView(title: "")
-                        
-                        Image("appopay_new_logo")
-                            .resizable()
-                            .frame(height: 200)
-                            .frame(width: 250)
-                        
-                        VStack(spacing: 10) {
-                            Text("Verify Code")
-                                .font(.title3)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.appBlue)
-                            Text("Phone Number Verification")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundStyle(Color.black)
-                            Text("We will Send you a OTP")
-                                .font(.headline)
-                                .fontWeight(.regular)
-                                .foregroundStyle(Color.appBlue)
-                        }
-                        
-                        HStack {
-                            Button {
-                                presentSheet = true
-                                keyIsFocused = false
-                            } label: {
-                                HStack {
-                                    Text("\(self.countryFlag)")
-                                        .font(.system(size: 35))
-                                        .padding(.leading, 5)
-                                    Text("\(self.countryCode)")
-                                        .font(.subheadline)
-                                        .foregroundStyle(Color.appBlue)
-                                    Spacer()
-                                    Image(systemName: "chevron.down")
-                                        .padding(.trailing, 5)
-                                    
-                                }
-                            }
-                            .frame(width: 100, height: 57)
-                            .background(backgroundColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            
-                            TextField("", text: $mobPhoneNumber)
-                                .placeholder(when: mobPhoneNumber.isEmpty) {
-                                    Text("Phone number")
-                                        .foregroundColor(.appBlue)
-                                }
-                                .focused($keyIsFocused)
-                                .keyboardType(.numberPad)
-                                .onReceive(Just(mobPhoneNumber)) { _ in
-                                    applyPatternOnNumbers(&mobPhoneNumber, pattern: countryPattern, replacementCharacter: "#")
-                                }
-                                .onChange(of: mobPhoneNumber) {
-                                    if mobPhoneNumber.count >= countryLimit {
-                                        keyIsFocused = false
-                                    }
-                                }
-                                .padding(10)
-                                .frame(height: 57)
-                                .background(backgroundColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        }
-                        
+                VStack(spacing: 20) {
+                    // Aapka existing content yahan rahega
+                    NavigationBarView(title: "")
+                    
+                    Image("appopay_new_logo")
+                        .resizable()
+                        .frame(height: 200)
+                        .frame(width: 250)
+                    
+                    VStack(spacing: 10) {
+                        Text("Verify Code")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.appBlue)
+                        Text("Phone Number Verification")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundStyle(Color.black)
+                        Text("We will Send you a OTP")
+                            .font(.headline)
+                            .fontWeight(.regular)
+                            .foregroundStyle(Color.appBlue)
+                    }
+                    
+                    HStack {
                         Button {
-                            withAnimation {
-                                hideKeyboard()
-                                showPopup = true
-                            }
+                            presentSheet = true
+                            keyIsFocused = false
                         } label: {
-                            Text("NEXT")
-                                .font(.title3)
-                                .fontWeight(.medium)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 60)
-                                .background(Color.appBlue)
-                                .clipShape(Capsule())
-                                .foregroundColor(.white)
+                            HStack {
+                                Text("\(self.countryFlag)")
+                                    .font(.system(size: 35))
+                                    .padding(.leading, 5)
+                                Text("\(self.countryCode)")
+                                    .font(.subheadline)
+                                    .foregroundStyle(Color.appBlue)
+                                Spacer()
+                                Image(systemName: "chevron.down")
+                                    .padding(.trailing, 5)
+                                
+                            }
                         }
+                        .frame(width: 100, height: 57)
+                        .background(backgroundColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         
-                        Spacer()
-                        
-                        BottomNavigation()
+                        TextField("", text: $mobPhoneNumber)
+                            .placeholder(when: mobPhoneNumber.isEmpty) {
+                                Text("Phone number")
+                                    .foregroundColor(.appBlue)
+                            }
+                            .focused($keyIsFocused)
+                            .keyboardType(.numberPad)
+                            .onReceive(Just(mobPhoneNumber)) { _ in
+                                applyPatternOnNumbers(&mobPhoneNumber, pattern: countryPattern, replacementCharacter: "#")
+                            }
+                            .onChange(of: mobPhoneNumber) {
+                                if mobPhoneNumber.count >= countryLimit {
+                                    keyIsFocused = false
+                                }
+                            }
+                            .padding(10)
+                            .frame(height: 57)
+                            .background(backgroundColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
-                    .animation(.easeInOut(duration: 0.6), value: keyIsFocused)
-                    .padding()
-                    .toolbar(.hidden, for: .navigationBar)
-                    .background(.appBackground)
-                    .navigationDestination(isPresented: $navigateToNextScreen) {
-                        VerifyOTPView(countryCode: "\(self.countryCode)", phoneNumber: "\(self.mobPhoneNumber)")
+                    
+                    Button {
+                        withAnimation {
+                            hideKeyboard()
+                            showPopup = true
+                        }
+                    } label: {
+                        Text("NEXT")
+                            .font(.title3)
+                            .fontWeight(.medium)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 60)
+                            .background(Color.appBlue)
+                            .clipShape(Capsule())
+                            .foregroundColor(.white)
                     }
+                    
+                    Spacer()
+                    
+                    BottomNavigation()
+                }
+                .animation(.easeInOut(duration: 0.6), value: keyIsFocused)
+                .padding()
+                .toolbar(.hidden, for: .navigationBar)
+                .background(.appBackground)
+                .navigationDestination(isPresented: $navigateToNextScreen) {
+                    VerifyOTPView(countryCode: "\(self.countryCode)", phoneNumber: "\(self.mobPhoneNumber)")
                 }
                 .onTapGesture {
                     hideKeyboard()
@@ -236,5 +236,5 @@ struct PhoneNumberVerificationView: View {
 }
 
 #Preview {
-    PhoneNumberVerificationView()
+    PhoneNumberVerificationView(viewModel: .init())
 }

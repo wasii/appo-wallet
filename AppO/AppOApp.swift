@@ -11,7 +11,7 @@ import SwiftUI
 struct AppOApp: App {
     var body: some Scene {
         WindowGroup {
-            InitialView()
+            InitialView(navigator: .init())
         }
     }
 }

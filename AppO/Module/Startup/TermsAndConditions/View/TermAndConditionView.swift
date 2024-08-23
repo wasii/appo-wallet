@@ -9,12 +9,12 @@ import SwiftUI
 
 struct TermAndConditionView: View {
     
-    @Environment(\.dismiss) var dismiss
+//    @Environment(\.dismiss) var dismiss
     @State private var isChecked: Bool = false
-    
+    @EnvironmentObject var navigator: Navigator
     
     var body: some View {
-        NavigationStack {
+//        NavigationStack {
             
             VStack(alignment: .leading, spacing: 20) {
                 NavigationBarView(title: "Terms and Conditions")
@@ -37,18 +37,21 @@ struct TermAndConditionView: View {
                         .foregroundColor(.primary)
                     Spacer()
                 }
-                NavigationLink(destination: EnterMPINView(text: .constant(""))) {
-                    Text("NEXT")
-                        .font(.title3)
-                        .fontWeight(.medium)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 60)
-                        .background(isChecked ? Color.appBlue : Color.appBlue.opacity(0.4))
-                        .clipShape(Capsule())
-                        .foregroundColor(.white)
-                }
-                .disabled(!isChecked)
-                
+//                NavigationLink(destination: EnterMPINView(text: .constant(""))) {
+//                    
+//                }
+                Text("NEXT")
+                    .font(.title3)
+                    .fontWeight(.medium)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .background(isChecked ? Color.appBlue : Color.appBlue.opacity(0.4))
+                    .clipShape(Capsule())
+                    .foregroundColor(.white)
+                    .disabled(!isChecked)
+                    .onTapGesture {
+                        navigator.navigate(to: .enterMPINView(viewModel: .init()))
+                    }
                 
                 
             }
@@ -56,7 +59,7 @@ struct TermAndConditionView: View {
             .toolbar(.hidden, for: .navigationBar)
             .background(.appBackground)
         }
-    }
+//    }
 }
 
 #Preview {
