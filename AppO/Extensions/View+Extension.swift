@@ -30,4 +30,8 @@ extension View {
             .disabled(condition)
             .opacity(condition ? 0.6 : 1)
     }
+    
+    func cardStyle(backgroundColor: Color = .white, cornerRadius: CGFloat = 10, height: CGFloat = 90) -> some View {
+        self.modifier(CardStyle(backgroundColor: backgroundColor, cornerRadius: cornerRadius, height: height))
+    }
 }

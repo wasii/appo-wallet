@@ -12,7 +12,8 @@ struct AppOApp: App {
     var body: some Scene {
         WindowGroup {
 //            InitialView(navigator: .init())
-            HomeScreenView(homeNavigator: .init(), presentSideMenu: .constant(false ))
+//            HomeScreenView(homeNavigator: .init(), presentSideMenu: .constant(false ))
+            MainTabbedView()
         }
     }
 }

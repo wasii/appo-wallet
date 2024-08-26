@@ -15,14 +15,15 @@ struct SideMenuView: View {
     var body: some View {
         HStack {
             ZStack{
-                Rectangle()
-                    .fill(.white)
-                    .frame(width: 270)
-                    .shadow(color: .purple.opacity(0.1), radius: 5, x: 0, y: 3)
-                
                 VStack(alignment: .leading, spacing: 0) {
                     ProfileImageView()
-                        .frame(height: 140)
+                        .frame(height: 30)
+                        .padding(.leading, 10)
+                        .padding(.bottom, 50)
+                        .padding(.top, 60)
+                    
+                    TopHeaderNavigation()
+                        .padding(.leading, 10)
                         .padding(.bottom, 30)
                     
                     ForEach(SideMenuRowType.allCases, id: \.self){ row in
@@ -31,77 +32,96 @@ struct SideMenuView: View {
                             presentSideMenu.toggle()
                         }
                     }
+                    .padding(.leading, 10)
+                    
+                    
+                    Text("App Version: 1.0.0")
+                        .padding(.leading, 10)
+                        .padding(.top, 50)
                     
                     Spacer()
                 }
-                .padding(.top, 100)
-                .frame(width: 270)
+                .padding(.top, 20)
+                .frame(width: 290)
                 .background(
                     Color.white
                 )
             }
-            
-            
             Spacer()
         }
         .background(.clear)
     }
     
-    func ProfileImageView() -> some View{
-        VStack(alignment: .center){
-            HStack{
+    func ProfileImageView() -> some View {
+        HStack {
+            Image("user_profile")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 60, height: 60)
+            VStack(alignment: .leading) {
+                Text("username")
                 Spacer()
-                Image("profile-image")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 50)
-                            .stroke(.purple.opacity(0.5), lineWidth: 10)
-                    )
-                    .cornerRadius(50)
-                Spacer()
+                Text("user mobile number")
             }
-            
-            Text("Muhammad Abbas")
-                .font(.system(size: 18, weight: .bold))
-                .foregroundColor(.black)
-            
-            Text("IOS Developer")
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(.black.opacity(0.5))
+            .fontWeight(.semibold)
         }
     }
+    
+    func TopHeaderNavigation() -> some View {
+        HStack {
+            ForEach(sideMenuTopNavigator, id: \.self) { item in
+                Button {} label: {
+                    VStack {
+                        ZStack {
+                            Circle()
+                                .fill(Color.appYellow)
+                                .frame(width: 60, height: 60)
+                            
+                            Image(systemName: item.icon)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.white)
+                        }
+                        Text(item.title)
+                            .font(.caption)
+                            .foregroundColor(.black)
+                    }
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+
+    }
+    
+    
     
     func RowView(isSelected: Bool, imageName: String, title: String, hideDivider: Bool = false, action: @escaping (()->())) -> some View{
         Button{
             action()
         } label: {
             VStack(alignment: .leading){
-                HStack(spacing: 20){
-                    Rectangle()
-                        .fill(isSelected ? .purple : .white)
-                        .frame(width: 5)
-                    
+                HStack(spacing: 10){
                     ZStack{
-                        Image(imageName)
+                        Circle()
+                            .fill(Color.appYellow)
+                            .frame(width: 40, height: 40)
+                        Image(systemName: imageName)
                             .resizable()
-                            .renderingMode(.template)
-                            .foregroundColor(isSelected ? .black : .gray)
-                            .frame(width: 26, height: 26)
+                            .scaledToFit()
+                            .frame(width: 20, height: 17)
+                            .foregroundColor(.white)
                     }
-                    .frame(width: 30, height: 30)
+                    .frame(width: 40, height: 40)
                     Text(title)
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundColor(isSelected ? .black : .gray)
+                        .font(.system(size: 18, weight: .regular))
+                        .foregroundColor(.black)
                     Spacer()
                 }
+                Divider()
             }
         }
-        .frame(height: 50)
-        .background(
-            LinearGradient(colors: [isSelected ? .purple.opacity(0.5) : .white, .white], startPoint: .leading, endPoint: .trailing)
-        )
+        .frame(height: 60)
     }
 }
 

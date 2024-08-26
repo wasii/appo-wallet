@@ -46,6 +46,16 @@
 		E25B4B442C6E17E9000745F9 /* NavigationItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B432C6E17E9000745F9 /* NavigationItems.swift */; };
 		E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B482C6E1E0D000745F9 /* TermAndConditionView.swift */; };
 		E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */; };
+		E25B90382C7CCC8A00A6F871 /* MainTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90372C7CCC8A00A6F871 /* MainTabbedView.swift */; };
+		E25B903A2C7CD16200A6F871 /* SideMenuTopNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90392C7CD16200A6F871 /* SideMenuTopNavigator.swift */; };
+		E25B903D2C7CE16000A6F871 /* CardToCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B903C2C7CE16000A6F871 /* CardToCardViewModel.swift */; };
+		E25B903F2C7CE17500A6F871 /* CardToCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B903E2C7CE17500A6F871 /* CardToCardView.swift */; };
+		E25B90422C7CEAAD00A6F871 /* CardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90412C7CEAAD00A6F871 /* CardStyle.swift */; };
+		E25B90442C7CEC7900A6F871 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90432C7CEC7900A6F871 /* SettingsView.swift */; };
+		E25B90462C7CEC8200A6F871 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90452C7CEC8200A6F871 /* SettingsViewModel.swift */; };
+		E25B90492C7CF25E00A6F871 /* CardStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90482C7CF25E00A6F871 /* CardStatusViewModel.swift */; };
+		E25B904B2C7CF26F00A6F871 /* CardStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B904A2C7CF26F00A6F871 /* CardStatusView.swift */; };
+		E25B904D2C7CF3CB00A6F871 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B904C2C7CF3CB00A6F871 /* RadioButtonView.swift */; };
 		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
 		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
 		E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */; };
@@ -110,6 +120,16 @@
 		E25B4B432C6E17E9000745F9 /* NavigationItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItems.swift; sourceTree = "<group>"; };
 		E25B4B482C6E1E0D000745F9 /* TermAndConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermAndConditionView.swift; sourceTree = "<group>"; };
 		E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
+		E25B90372C7CCC8A00A6F871 /* MainTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbedView.swift; sourceTree = "<group>"; };
+		E25B90392C7CD16200A6F871 /* SideMenuTopNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTopNavigator.swift; sourceTree = "<group>"; };
+		E25B903C2C7CE16000A6F871 /* CardToCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToCardViewModel.swift; sourceTree = "<group>"; };
+		E25B903E2C7CE17500A6F871 /* CardToCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToCardView.swift; sourceTree = "<group>"; };
+		E25B90412C7CEAAD00A6F871 /* CardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStyle.swift; sourceTree = "<group>"; };
+		E25B90432C7CEC7900A6F871 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E25B90452C7CEC8200A6F871 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		E25B90482C7CF25E00A6F871 /* CardStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStatusViewModel.swift; sourceTree = "<group>"; };
+		E25B904A2C7CF26F00A6F871 /* CardStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStatusView.swift; sourceTree = "<group>"; };
+		E25B904C2C7CF3CB00A6F871 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
 		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinView.swift; sourceTree = "<group>"; };
@@ -174,10 +194,13 @@
 		E226587D2C7C9AA200DF8506 /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				E25B90402C7CE9E100A6F871 /* Settings */,
+				E25B903B2C7CE15100A6F871 /* Card to Card */,
 				E22658902C7CB5A600DF8506 /* MyQRCode */,
 				E22658822C7CAA1400DF8506 /* Manage Account */,
 				E226587E2C7C9AB900DF8506 /* SideMenu.swift */,
 				E22658802C7C9B8B00DF8506 /* SideMenuView.swift */,
+				E25B90372C7CCC8A00A6F871 /* MainTabbedView.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -223,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				E24B91732C770844009091B2 /* Common Views */,
+				E25B90412C7CEAAD00A6F871 /* CardStyle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -235,6 +259,7 @@
 				E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */,
 				E291414C2C736DB100D054A1 /* OTPInputView.swift */,
 				E22658872C7CABD200DF8506 /* CardButtonView.swift */,
+				E25B904C2C7CF3CB00A6F871 /* RadioButtonView.swift */,
 			);
 			path = "Common Views";
 			sourceTree = "<group>";
@@ -335,6 +360,7 @@
 				E25B4B432C6E17E9000745F9 /* NavigationItems.swift */,
 				E2D140302C6F5BCB0064EE6E /* PhoneNumberModel.swift */,
 				E226588E2C7CADB600DF8506 /* TransactionDetailsItems.swift */,
+				E25B90392C7CD16200A6F871 /* SideMenuTopNavigator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +437,34 @@
 				E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E25B903B2C7CE15100A6F871 /* Card to Card */ = {
+			isa = PBXGroup;
+			children = (
+				E25B903C2C7CE16000A6F871 /* CardToCardViewModel.swift */,
+				E25B903E2C7CE17500A6F871 /* CardToCardView.swift */,
+			);
+			path = "Card to Card";
+			sourceTree = "<group>";
+		};
+		E25B90402C7CE9E100A6F871 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E25B90472C7CF25000A6F871 /* Card Status */,
+				E25B90432C7CEC7900A6F871 /* SettingsView.swift */,
+				E25B90452C7CEC8200A6F871 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E25B90472C7CF25000A6F871 /* Card Status */ = {
+			isa = PBXGroup;
+			children = (
+				E25B90482C7CF25E00A6F871 /* CardStatusViewModel.swift */,
+				E25B904A2C7CF26F00A6F871 /* CardStatusView.swift */,
+			);
+			path = "Card Status";
 			sourceTree = "<group>";
 		};
 		E29141392C7339C600D054A1 /* Registration */ = {
@@ -648,9 +702,11 @@
 				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
 				E22658812C7C9B8B00DF8506 /* SideMenuView.swift in Sources */,
 				E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */,
+				E25B90382C7CCC8A00A6F871 /* MainTabbedView.swift in Sources */,
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
 				E226587F2C7C9AB900DF8506 /* SideMenu.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
+				E25B903A2C7CD16200A6F871 /* SideMenuTopNavigator.swift in Sources */,
 				E2C9CB132C78603B00B47B38 /* RegistrationModel.swift in Sources */,
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
@@ -658,14 +714,19 @@
 				E239640D2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
 				E226588B2C7CACAB00DF8506 /* CardTransactionDetailsView.swift in Sources */,
+				E25B90462C7CEC8200A6F871 /* SettingsViewModel.swift in Sources */,
 				E2C9CB112C785CAF00B47B38 /* SetupMobilePinInteractor.swift in Sources */,
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
 				E22658782C7C703500DF8506 /* HomeScreenView.swift in Sources */,
 				E22658942C7CB5DF00DF8506 /* MyQRCodeView.swift in Sources */,
 				E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */,
 				E24B91842C771929009091B2 /* APIHeader.swift in Sources */,
+				E25B90442C7CEC7900A6F871 /* SettingsView.swift in Sources */,
+				E25B90422C7CEAAD00A6F871 /* CardStyle.swift in Sources */,
+				E25B904D2C7CF3CB00A6F871 /* RadioButtonView.swift in Sources */,
 				E22658922C7CB5CE00DF8506 /* MyQRCodeViewModel.swift in Sources */,
 				E2C9CB172C7860E100B47B38 /* RegistrationResponse.swift in Sources */,
+				E25B903F2C7CE17500A6F871 /* CardToCardView.swift in Sources */,
 				E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
@@ -681,6 +742,7 @@
 				E226588F2C7CADB600DF8506 /* TransactionDetailsItems.swift in Sources */,
 				E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,
+				E25B904B2C7CF26F00A6F871 /* CardStatusView.swift in Sources */,
 				E2C9CB1B2C7863A200B47B38 /* Codable+Extension.swift in Sources */,
 				E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */,
 				E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */,
@@ -690,10 +752,12 @@
 				E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */,
 				E2D140372C6F5D1F0064EE6E /* View+Extension.swift in Sources */,
 				E226587C2C7C716B00DF8506 /* HomeNavigator.swift in Sources */,
+				E25B90492C7CF25E00A6F871 /* CardStatusViewModel.swift in Sources */,
 				E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */,
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
 				E22658862C7CAA3600DF8506 /* ManageAccountViewModel.swift in Sources */,
 				E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */,
+				E25B903D2C7CE16000A6F871 /* CardToCardViewModel.swift in Sources */,
 				E226588D2C7CACB900DF8506 /* CardTransactionDetailsViewModel.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
 				E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */,
