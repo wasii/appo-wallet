@@ -60,6 +60,8 @@
 		E25B90522C7D006900A6F871 /* ChangeTransactionPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90512C7D006900A6F871 /* ChangeTransactionPinViewModel.swift */; };
 		E25B90552C7D04F700A6F871 /* ReplaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90542C7D04F700A6F871 /* ReplaceCardView.swift */; };
 		E25B90572C7D04FF00A6F871 /* ReplaceCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90562C7D04FF00A6F871 /* ReplaceCardViewModel.swift */; };
+		E25B905A2C7D05C900A6F871 /* RenewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90592C7D05C900A6F871 /* RenewCardViewModel.swift */; };
+		E25B905C2C7D05D800A6F871 /* RenewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B905B2C7D05D800A6F871 /* RenewCardView.swift */; };
 		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
 		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
 		E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */; };
@@ -138,6 +140,8 @@
 		E25B90512C7D006900A6F871 /* ChangeTransactionPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTransactionPinViewModel.swift; sourceTree = "<group>"; };
 		E25B90542C7D04F700A6F871 /* ReplaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceCardView.swift; sourceTree = "<group>"; };
 		E25B90562C7D04FF00A6F871 /* ReplaceCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceCardViewModel.swift; sourceTree = "<group>"; };
+		E25B90592C7D05C900A6F871 /* RenewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewCardViewModel.swift; sourceTree = "<group>"; };
+		E25B905B2C7D05D800A6F871 /* RenewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewCardView.swift; sourceTree = "<group>"; };
 		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinView.swift; sourceTree = "<group>"; };
@@ -459,6 +463,7 @@
 		E25B90402C7CE9E100A6F871 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				E25B90582C7D05BB00A6F871 /* Renew Card */,
 				E25B90532C7D04EA00A6F871 /* Replace Card */,
 				E25B904E2C7D004F00A6F871 /* Change Transaction Pin */,
 				E25B90472C7CF25000A6F871 /* Card Status */,
@@ -493,6 +498,15 @@
 				E25B90562C7D04FF00A6F871 /* ReplaceCardViewModel.swift */,
 			);
 			path = "Replace Card";
+			sourceTree = "<group>";
+		};
+		E25B90582C7D05BB00A6F871 /* Renew Card */ = {
+			isa = PBXGroup;
+			children = (
+				E25B90592C7D05C900A6F871 /* RenewCardViewModel.swift */,
+				E25B905B2C7D05D800A6F871 /* RenewCardView.swift */,
+			);
+			path = "Renew Card";
 			sourceTree = "<group>";
 		};
 		E29141392C7339C600D054A1 /* Registration */ = {
@@ -753,6 +767,7 @@
 				E25B90502C7D006000A6F871 /* ChangeTransactionPinView.swift in Sources */,
 				E25B90522C7D006900A6F871 /* ChangeTransactionPinViewModel.swift in Sources */,
 				E25B90422C7CEAAD00A6F871 /* CardStyle.swift in Sources */,
+				E25B905A2C7D05C900A6F871 /* RenewCardViewModel.swift in Sources */,
 				E25B904D2C7CF3CB00A6F871 /* RadioButtonView.swift in Sources */,
 				E22658922C7CB5CE00DF8506 /* MyQRCodeViewModel.swift in Sources */,
 				E2C9CB172C7860E100B47B38 /* RegistrationResponse.swift in Sources */,
@@ -761,6 +776,7 @@
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
 				E24B91962C771AE2009091B2 /* PlistKey.swift in Sources */,
+				E25B905C2C7D05D800A6F871 /* RenewCardView.swift in Sources */,
 				E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */,
 				E25B90572C7D04FF00A6F871 /* ReplaceCardViewModel.swift in Sources */,
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
