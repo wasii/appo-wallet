@@ -34,4 +34,12 @@ extension View {
     func cardStyle(backgroundColor: Color = .white, cornerRadius: CGFloat = 10, height: CGFloat = 90) -> some View {
         self.modifier(CardStyle(backgroundColor: backgroundColor, cornerRadius: cornerRadius, height: height))
     }
+    
+    func customTextfieldStyle() -> some View {
+        self.modifier(CustomTextfieldStyle())
+    }
+    
+    func customButtonStyle() -> some View {
+        self.modifier(CustomButtonStyle())
+    }
 }

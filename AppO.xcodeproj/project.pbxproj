@@ -64,6 +64,10 @@
 		E25B905C2C7D05D800A6F871 /* RenewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B905B2C7D05D800A6F871 /* RenewCardView.swift */; };
 		E25B905F2C7D063E00A6F871 /* TransactionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B905E2C7D063E00A6F871 /* TransactionSettingsView.swift */; };
 		E25B90612C7D064800A6F871 /* TransactionSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90602C7D064800A6F871 /* TransactionSettingsViewModel.swift */; };
+		E25B90642C7D0A4400A6F871 /* AddOnCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90632C7D0A4400A6F871 /* AddOnCardViewModel.swift */; };
+		E25B90662C7D0A5300A6F871 /* AddOnCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90652C7D0A5300A6F871 /* AddOnCardView.swift */; };
+		E25B90682C7D0CBB00A6F871 /* CustomTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90672C7D0CBB00A6F871 /* CustomTextfieldStyle.swift */; };
+		E25B906A2C7D0D5B00A6F871 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90692C7D0D5B00A6F871 /* CustomButtonStyle.swift */; };
 		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
 		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
 		E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */; };
@@ -146,6 +150,10 @@
 		E25B905B2C7D05D800A6F871 /* RenewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewCardView.swift; sourceTree = "<group>"; };
 		E25B905E2C7D063E00A6F871 /* TransactionSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSettingsView.swift; sourceTree = "<group>"; };
 		E25B90602C7D064800A6F871 /* TransactionSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSettingsViewModel.swift; sourceTree = "<group>"; };
+		E25B90632C7D0A4400A6F871 /* AddOnCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnCardViewModel.swift; sourceTree = "<group>"; };
+		E25B90652C7D0A5300A6F871 /* AddOnCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnCardView.swift; sourceTree = "<group>"; };
+		E25B90672C7D0CBB00A6F871 /* CustomTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextfieldStyle.swift; sourceTree = "<group>"; };
+		E25B90692C7D0D5B00A6F871 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinView.swift; sourceTree = "<group>"; };
@@ -263,6 +271,8 @@
 			children = (
 				E24B91732C770844009091B2 /* Common Views */,
 				E25B90412C7CEAAD00A6F871 /* CardStyle.swift */,
+				E25B90672C7D0CBB00A6F871 /* CustomTextfieldStyle.swift */,
+				E25B90692C7D0D5B00A6F871 /* CustomButtonStyle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -467,6 +477,7 @@
 		E25B90402C7CE9E100A6F871 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				E25B90622C7D0A3300A6F871 /* Add on Card */,
 				E25B905D2C7D062A00A6F871 /* Transaction Settings */,
 				E25B90582C7D05BB00A6F871 /* Renew Card */,
 				E25B90532C7D04EA00A6F871 /* Replace Card */,
@@ -521,6 +532,15 @@
 				E25B90602C7D064800A6F871 /* TransactionSettingsViewModel.swift */,
 			);
 			path = "Transaction Settings";
+			sourceTree = "<group>";
+		};
+		E25B90622C7D0A3300A6F871 /* Add on Card */ = {
+			isa = PBXGroup;
+			children = (
+				E25B90632C7D0A4400A6F871 /* AddOnCardViewModel.swift */,
+				E25B90652C7D0A5300A6F871 /* AddOnCardView.swift */,
+			);
+			path = "Add on Card";
 			sourceTree = "<group>";
 		};
 		E29141392C7339C600D054A1 /* Registration */ = {
@@ -757,11 +777,14 @@
 			files = (
 				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
 				E22658812C7C9B8B00DF8506 /* SideMenuView.swift in Sources */,
+				E25B90662C7D0A5300A6F871 /* AddOnCardView.swift in Sources */,
+				E25B906A2C7D0D5B00A6F871 /* CustomButtonStyle.swift in Sources */,
 				E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */,
 				E25B90382C7CCC8A00A6F871 /* MainTabbedView.swift in Sources */,
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
 				E226587F2C7C9AB900DF8506 /* SideMenu.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
+				E25B90682C7D0CBB00A6F871 /* CustomTextfieldStyle.swift in Sources */,
 				E25B903A2C7CD16200A6F871 /* SideMenuTopNavigator.swift in Sources */,
 				E2C9CB132C78603B00B47B38 /* RegistrationModel.swift in Sources */,
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
@@ -802,6 +825,7 @@
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */,
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
+				E25B90642C7D0A4400A6F871 /* AddOnCardViewModel.swift in Sources */,
 				E226588F2C7CADB600DF8506 /* TransactionDetailsItems.swift in Sources */,
 				E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,
