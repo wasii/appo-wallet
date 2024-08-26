@@ -56,6 +56,8 @@
 		E25B90492C7CF25E00A6F871 /* CardStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90482C7CF25E00A6F871 /* CardStatusViewModel.swift */; };
 		E25B904B2C7CF26F00A6F871 /* CardStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B904A2C7CF26F00A6F871 /* CardStatusView.swift */; };
 		E25B904D2C7CF3CB00A6F871 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B904C2C7CF3CB00A6F871 /* RadioButtonView.swift */; };
+		E25B90502C7D006000A6F871 /* ChangeTransactionPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B904F2C7D006000A6F871 /* ChangeTransactionPinView.swift */; };
+		E25B90522C7D006900A6F871 /* ChangeTransactionPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90512C7D006900A6F871 /* ChangeTransactionPinViewModel.swift */; };
 		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
 		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
 		E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */; };
@@ -130,6 +132,8 @@
 		E25B90482C7CF25E00A6F871 /* CardStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStatusViewModel.swift; sourceTree = "<group>"; };
 		E25B904A2C7CF26F00A6F871 /* CardStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStatusView.swift; sourceTree = "<group>"; };
 		E25B904C2C7CF3CB00A6F871 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
+		E25B904F2C7D006000A6F871 /* ChangeTransactionPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTransactionPinView.swift; sourceTree = "<group>"; };
+		E25B90512C7D006900A6F871 /* ChangeTransactionPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTransactionPinViewModel.swift; sourceTree = "<group>"; };
 		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinView.swift; sourceTree = "<group>"; };
@@ -451,6 +455,7 @@
 		E25B90402C7CE9E100A6F871 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				E25B904E2C7D004F00A6F871 /* Change Transaction Pin */,
 				E25B90472C7CF25000A6F871 /* Card Status */,
 				E25B90432C7CEC7900A6F871 /* SettingsView.swift */,
 				E25B90452C7CEC8200A6F871 /* SettingsViewModel.swift */,
@@ -465,6 +470,15 @@
 				E25B904A2C7CF26F00A6F871 /* CardStatusView.swift */,
 			);
 			path = "Card Status";
+			sourceTree = "<group>";
+		};
+		E25B904E2C7D004F00A6F871 /* Change Transaction Pin */ = {
+			isa = PBXGroup;
+			children = (
+				E25B904F2C7D006000A6F871 /* ChangeTransactionPinView.swift */,
+				E25B90512C7D006900A6F871 /* ChangeTransactionPinViewModel.swift */,
+			);
+			path = "Change Transaction Pin";
 			sourceTree = "<group>";
 		};
 		E29141392C7339C600D054A1 /* Registration */ = {
@@ -722,6 +736,8 @@
 				E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */,
 				E24B91842C771929009091B2 /* APIHeader.swift in Sources */,
 				E25B90442C7CEC7900A6F871 /* SettingsView.swift in Sources */,
+				E25B90502C7D006000A6F871 /* ChangeTransactionPinView.swift in Sources */,
+				E25B90522C7D006900A6F871 /* ChangeTransactionPinViewModel.swift in Sources */,
 				E25B90422C7CEAAD00A6F871 /* CardStyle.swift in Sources */,
 				E25B904D2C7CF3CB00A6F871 /* RadioButtonView.swift in Sources */,
 				E22658922C7CB5CE00DF8506 /* MyQRCodeViewModel.swift in Sources */,

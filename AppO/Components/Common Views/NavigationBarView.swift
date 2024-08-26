@@ -28,7 +28,7 @@ struct NavigationBarView: View {
             }
             Text(title)
                 .font(.title2)
-            
+                .foregroundStyle(Color.black)
             Spacer()
             
 //            HStack(spacing: 18) {

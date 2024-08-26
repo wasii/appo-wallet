@@ -15,5 +15,6 @@ struct AppOApp: App {
 //            HomeScreenView(homeNavigator: .init(), presentSideMenu: .constant(false ))
             MainTabbedView()
         }
+        .environment(\.colorScheme, .light)
     }
 }
