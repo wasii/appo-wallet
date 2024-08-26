@@ -41,14 +41,7 @@ struct TransactionSettingsView: View {
                     )
                     
                     TextField("Enter your phone number", text: $phoneNumber)
-                        .padding(10)
-                        .frame(height: 57)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                        )
+                        .customTextfieldStyle()
                 }
             }
             
@@ -64,14 +57,7 @@ struct TransactionSettingsView: View {
                     domesticWithdrawal = "off"
                 }
             }
-            .padding(10)
-            .frame(height: 57)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-            .overlay(
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-            )
+            .customTextfieldStyle()
             
             HStack {
                 Text("Domestic Purchase")
@@ -85,26 +71,13 @@ struct TransactionSettingsView: View {
                     domesticPurchase = "off"
                 }
             }
-            .padding(10)
-            .frame(height: 57)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-            .overlay(
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-            )
+            .customTextfieldStyle()
             
             Spacer()
             
             Button {} label: {
                 Text("Submit")
-                    .font(.title3)
-                    .fontWeight(.medium)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(Color(.appBlue))
-                    .clipShape(Capsule())
-                    .foregroundStyle(Color.white)
+                    .customButtonStyle()
             }
         }
         .padding()

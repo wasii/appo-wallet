@@ -50,13 +50,7 @@ struct CardToCardView: View {
             
             Button{} label: {
                 Text("Submit")
-                    .font(.title3)
-                    .fontWeight(.medium)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(Color(.appBlue))
-                    .clipShape(Capsule())
-                    .foregroundStyle(Color.white)
+                    .customButtonStyle()
             }
             
             Spacer()

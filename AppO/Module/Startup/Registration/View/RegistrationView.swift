@@ -56,14 +56,7 @@ struct RegistrationView: View {
                             )
                             
                             Text(phoneNumber)
-                                .padding(10)
-                                .frame(height: 57)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                                )
+                                .customTextfieldStyle()
                         }
                     }
                     VStack(alignment: .leading, spacing: 8) {
@@ -73,15 +66,7 @@ struct RegistrationView: View {
                             .foregroundStyle(Color.gray)
                         HStack {
                             TextField("Enter first name", text: $firstName)
-                                .padding(10)
-                                .frame(height: 57)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                                )
-                            
+                                .customTextfieldStyle()
                         }
                     }
                     
@@ -92,15 +77,7 @@ struct RegistrationView: View {
                             .foregroundStyle(Color.gray)
                         HStack {
                             TextField("Enter middle name (optional)", text: $middleName)
-                                .padding(10)
-                                .frame(height: 57)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                                )
-                            
+                                .customTextfieldStyle()
                         }
                     }
                     
@@ -111,15 +88,7 @@ struct RegistrationView: View {
                             .foregroundStyle(Color.gray)
                         HStack {
                             TextField("Enter last name", text: $lastName)
-                                .padding(10)
-                                .frame(height: 57)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                                )
-                            
+                                .customTextfieldStyle()
                         }
                     }
                     
@@ -130,15 +99,7 @@ struct RegistrationView: View {
                             .foregroundStyle(Color.gray)
                         HStack {
                             TextField("Enter name on card", text: $nameOnCard)
-                                .padding(10)
-                                .frame(height: 57)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                                )
-                            
+                                .customTextfieldStyle()
                         }
                     }
                     
@@ -165,14 +126,7 @@ struct RegistrationView: View {
                             .foregroundStyle(Color.gray)
                         
                         TextField("Select date of birth", text: $dateOfBirth)
-                            .padding(10)
-                            .frame(height: 57)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                            )
+                            .customTextfieldStyle()
                             .disabled(true)
                             .onTapGesture {
                                 // Action to open the date picker
@@ -197,16 +151,7 @@ struct RegistrationView: View {
                             .foregroundStyle(Color.gray)
                         HStack {
                             TextField("Enter email address", text: $email)
-                                .padding(10)
-                                .frame(height: 57)
-                                .keyboardType(.emailAddress)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.black.opacity(0.05), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                                )
-                            
+                                .customTextfieldStyle()
                         }
                     }
                     .padding(.top, 10)
@@ -230,13 +175,7 @@ struct RegistrationView: View {
                     
                     NavigationLink(destination: SetupMobilePinView()) {
                         Text("NEXT")
-                            .font(.title3)
-                            .fontWeight(.medium)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60)
-                            .background(Color.appBlue)
-                            .clipShape(Capsule())
-                            .foregroundColor(.white)
+                            .customButtonStyle()
                     }
                     .padding(.top, 20)
                     

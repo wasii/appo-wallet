@@ -19,9 +19,9 @@ struct AddOnCardView: View {
         VStack(alignment: .leading, spacing: 20) {
             
             NavigationBarView(title: "Transaction Settings")
-            CardButtonView(cardType: "Visa Gold Card", cardNumber: "423671******0129" ,cardExpiry: "01/30")
-            
             ScrollView {
+                CardButtonView(cardType: "Visa Gold Card", cardNumber: "423671******0129" ,cardExpiry: "01/30")
+            
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Mobile Number")
                         .font(.title3)

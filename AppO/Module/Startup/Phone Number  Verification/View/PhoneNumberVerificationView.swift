@@ -101,13 +101,7 @@ struct PhoneNumberVerificationView: View {
                         }
                     } label: {
                         Text("NEXT")
-                            .font(.title3)
-                            .fontWeight(.medium)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60)
-                            .background(Color.appBlue)
-                            .clipShape(Capsule())
-                            .foregroundColor(.white)
+                            .customButtonStyle()
                     }
                     
                     Spacer()

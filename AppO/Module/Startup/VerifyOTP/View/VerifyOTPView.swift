@@ -47,13 +47,7 @@ struct VerifyOTPView: View {
                     
                     NavigationLink(destination: RegistrationView(countryFlag: "🇮🇳", countryDialingCode: self.countryCode, phoneNumber: self.phoneNumber)) {
                         Text("Verify")
-                            .font(.title3)
-                            .fontWeight(.medium)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 60)
-                            .background(Color.appBlue)
-                            .clipShape(Capsule())
-                            .foregroundColor(.white)
+                            .customButtonStyle()
                     }
                     .padding(.top, 20)
                     
