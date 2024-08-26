@@ -11,6 +11,7 @@ import Combine
 struct PhoneNumberVerificationView: View {
     
     @StateObject var viewModel: PhoneNumberVerificationViewModel
+    @EnvironmentObject var navigator: Navigator
     
     @State private var navigateToNextScreen = false
     @State var showPopup = false
@@ -115,6 +116,12 @@ struct PhoneNumberVerificationView: View {
                 .navigationDestination(isPresented: $navigateToNextScreen) {
                     VerifyOTPView(countryCode: "\(self.countryCode)", phoneNumber: "\(self.mobPhoneNumber)")
                 }
+                .onReceive(viewModel.coordinatorState) { state in
+                    switch (state.state, state.transferable) {
+                    case (.confirm, _):
+                        navigator.navigate(to: .verifyOTP(viewModel: .init()))
+                    }
+                }
                 .onTapGesture {
                     hideKeyboard()
                 }
@@ -179,7 +186,9 @@ struct PhoneNumberVerificationView: View {
                             Button {
                                 withAnimation {
                                     showPopup = false
-                                    navigateToNextScreen = true
+                                    viewModel.countryCode = self.countryCode
+                                    viewModel.phoneNumber = self.mobPhoneNumber
+                                    viewModel.coordinatorStatePublisher.send(.with(.confirm))
                                 }
                             } label: {
                                 Text("Ok")

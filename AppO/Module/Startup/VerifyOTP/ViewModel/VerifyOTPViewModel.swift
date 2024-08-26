@@ -7,4 +7,9 @@
 
 import Foundation
 
-class VerifyOTPViewModel: NSObject {}
+class VerifyOTPViewModel: ObservableObject {
+    var countryCode: String = ""
+    var phoneNumber: String = ""
+    
+    
+}

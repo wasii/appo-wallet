@@ -11,9 +11,9 @@ import SwiftUI
 struct AppOApp: App {
     var body: some Scene {
         WindowGroup {
-//            InitialView(navigator: .init())
+            InitialView(navigator: .init())
 //            HomeScreenView(homeNavigator: .init(), presentSideMenu: .constant(false ))
-            MainTabbedView()
+//            MainTabbedView()
         }
         .environment(\.colorScheme, .light)
     }
