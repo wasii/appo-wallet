@@ -62,6 +62,8 @@
 		E25B90572C7D04FF00A6F871 /* ReplaceCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90562C7D04FF00A6F871 /* ReplaceCardViewModel.swift */; };
 		E25B905A2C7D05C900A6F871 /* RenewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90592C7D05C900A6F871 /* RenewCardViewModel.swift */; };
 		E25B905C2C7D05D800A6F871 /* RenewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B905B2C7D05D800A6F871 /* RenewCardView.swift */; };
+		E25B905F2C7D063E00A6F871 /* TransactionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B905E2C7D063E00A6F871 /* TransactionSettingsView.swift */; };
+		E25B90612C7D064800A6F871 /* TransactionSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90602C7D064800A6F871 /* TransactionSettingsViewModel.swift */; };
 		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
 		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
 		E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */; };
@@ -142,6 +144,8 @@
 		E25B90562C7D04FF00A6F871 /* ReplaceCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceCardViewModel.swift; sourceTree = "<group>"; };
 		E25B90592C7D05C900A6F871 /* RenewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewCardViewModel.swift; sourceTree = "<group>"; };
 		E25B905B2C7D05D800A6F871 /* RenewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenewCardView.swift; sourceTree = "<group>"; };
+		E25B905E2C7D063E00A6F871 /* TransactionSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSettingsView.swift; sourceTree = "<group>"; };
+		E25B90602C7D064800A6F871 /* TransactionSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSettingsViewModel.swift; sourceTree = "<group>"; };
 		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinView.swift; sourceTree = "<group>"; };
@@ -463,6 +467,7 @@
 		E25B90402C7CE9E100A6F871 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				E25B905D2C7D062A00A6F871 /* Transaction Settings */,
 				E25B90582C7D05BB00A6F871 /* Renew Card */,
 				E25B90532C7D04EA00A6F871 /* Replace Card */,
 				E25B904E2C7D004F00A6F871 /* Change Transaction Pin */,
@@ -507,6 +512,15 @@
 				E25B905B2C7D05D800A6F871 /* RenewCardView.swift */,
 			);
 			path = "Renew Card";
+			sourceTree = "<group>";
+		};
+		E25B905D2C7D062A00A6F871 /* Transaction Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E25B905E2C7D063E00A6F871 /* TransactionSettingsView.swift */,
+				E25B90602C7D064800A6F871 /* TransactionSettingsViewModel.swift */,
+			);
+			path = "Transaction Settings";
 			sourceTree = "<group>";
 		};
 		E29141392C7339C600D054A1 /* Registration */ = {
@@ -781,8 +795,10 @@
 				E25B90572C7D04FF00A6F871 /* ReplaceCardViewModel.swift in Sources */,
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
 				E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */,
+				E25B905F2C7D063E00A6F871 /* TransactionSettingsView.swift in Sources */,
 				E2C9CB192C78616B00B47B38 /* RegistrationAPIs.swift in Sources */,
 				E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */,
+				E25B90612C7D064800A6F871 /* TransactionSettingsViewModel.swift in Sources */,
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */,
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
