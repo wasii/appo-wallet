@@ -116,7 +116,7 @@ struct PhoneNumberVerificationView: View {
                 .onReceive(viewModel.coordinatorState) { state in
                     switch (state.state, state.transferable) {
                     case (.confirm, _):
-                        navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: "\(self.mobPhoneNumber)")))
+                        navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: "\(self.mobPhoneNumber)", countryFlag: "\(self.countryFlag)")))
                     }
                 }
                 .onTapGesture {
@@ -183,8 +183,6 @@ struct PhoneNumberVerificationView: View {
                             Button {
                                 withAnimation {
                                     showPopup = false
-                                    viewModel.countryCode = self.countryCode
-                                    viewModel.phoneNumber = self.mobPhoneNumber
                                     viewModel.coordinatorStatePublisher.send(.with(.confirm))
                                 }
                             } label: {

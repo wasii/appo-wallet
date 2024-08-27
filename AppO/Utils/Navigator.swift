@@ -24,6 +24,7 @@ final class Navigator: ObservableObject {
         case enterMPINView(viewModel: EnterMPINViewModel)
         case phoneNumberVerification(viewModel: PhoneNumberVerificationViewModel)
         case verifyOTP(viewModel: VerifyOTPViewModel)
+        case registration(viewModel: RegistrationViewModel)
     }
     
     @Published var navPath = NavigationPath()
@@ -72,6 +73,8 @@ extension Navigator {
             PhoneNumberVerificationView(viewModel: viewModel)
         case .verifyOTP(let viewModel):
             VerifyOTPView(viewModel: viewModel)
+        case .registration(let viewModel):
+            RegistrationView(viewModel: viewModel)
         }
     }
 }

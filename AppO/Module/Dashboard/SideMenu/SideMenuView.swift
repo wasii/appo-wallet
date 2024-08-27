@@ -137,4 +137,5 @@ struct SideMenuView: View {
 
 #Preview {
     SideMenuView(selectedSideMenuTab: .constant(0), presentSideMenu: .constant(true))
+        .environmentObject(HomeNavigator())
 }

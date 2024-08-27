@@ -13,6 +13,8 @@ struct VerifyOTPView: View {
     @StateObject private var timerManager = TimerManager()
     
     @StateObject var viewModel: VerifyOTPViewModel
+    @EnvironmentObject var navigator: Navigator
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title:"")
@@ -42,7 +44,13 @@ struct VerifyOTPView: View {
                 .disabled(!timerManager.isTimerComplete)
                 .opacity(timerManager.isTimerComplete ? 1 : 0.5)
                 
-                NavigationLink(destination: RegistrationView(countryFlag: "🇮🇳", countryDialingCode: viewModel.countryCode, phoneNumber: viewModel.phoneNumber)) {
+//                NavigationLink(destination: RegistrationView(countryFlag: "🇮🇳", countryDialingCode: viewModel.countryCode, phoneNumber: viewModel.phoneNumber)) {
+//                    Text("Verify")
+//                        .customButtonStyle()
+//                }
+                Button {
+                    viewModel.coordinatorStatePublisher.send(.with(.verify))
+                } label: {
                     Text("Verify")
                         .customButtonStyle()
                 }
@@ -58,6 +66,20 @@ struct VerifyOTPView: View {
         .padding()
         .toolbar(.hidden, for: .navigationBar)
         .background(.appBackground)
+        .onReceive(viewModel.coordinatorState) { state in
+            switch (state.state, state.transferable) {
+            case (.verify, _):
+                navigator.navigate(
+                    to: .registration(
+                        viewModel: .init(
+                            countryFlag: viewModel.countryFlag,
+                            countryCode: viewModel.countryCode,
+                            phoneNumber: viewModel.phoneNumber
+                        )
+                    )
+                )
+            }
+        }
         
         .onAppear {
             timerManager.startTimer()
@@ -77,5 +99,5 @@ struct VerifyOTPView: View {
 }
 
 #Preview {
-    VerifyOTPView(viewModel: .init(countryCode: "+91", phoneNumber: "1234123412"))
+    VerifyOTPView(viewModel: .init(countryCode: "+91", phoneNumber: "1234123412", countryFlag: "🇮🇳"))
 }
