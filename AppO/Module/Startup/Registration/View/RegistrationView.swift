@@ -171,12 +171,13 @@ struct RegistrationView: View {
                     }
                 }
                 
-                NavigationLink(destination: SetupMobilePinView()) {
+                Button {
+                    navigator.navigate(to: .setupMobilePin(viewModel: .init()))
+                } label: {
                     Text("NEXT")
                         .customButtonStyle()
+                        .padding(.top, 20)
                 }
-                .padding(.top, 20)
-                
                 Spacer()
             }
             BottomNavigation()

@@ -30,18 +30,18 @@ struct InitialView: View {
                             .resizable()
                             .frame(width: 120, height: 120)
                         
-                        Text("Get Started")
-                            .font(.title3)
-                            .fontWeight(.medium)
-                            .frame(width: UIScreen.main.bounds.width / 1.7)
-                            .frame(height: 60)
-                            .background(Color(.appBlue))
-                            .clipShape(Capsule())
-                            .foregroundStyle(Color.white)
-                            .onTapGesture {
-                                navigator.navigate(to: .termsAndConditionView)
-                            }
-                        
+                        Button {
+                            navigator.navigate(to: .termsAndConditionView)
+                        } label: {
+                            Text("Get Started")
+                                .font(.title3)
+                                .fontWeight(.medium)
+                                .frame(width: UIScreen.main.bounds.width / 1.7)
+                                .frame(height: 60)
+                                .background(Color(.appBlue))
+                                .clipShape(Capsule())
+                                .foregroundStyle(Color.white)
+                        }
                     }
                     .padding(.bottom)
                 }

@@ -6,6 +6,19 @@
 //
 
 import Foundation
+import Combine
 
+enum SetupMonbilePinViewModelState {
+    case none
+}
 
-class SetupMobilePinViewModel: NSObject {}
+class SetupMobilePinViewModel: ObservableObject {
+    let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<SetupMonbilePinViewModelState>, Never>()
+    var coordinatorState: AnyPublisher<CoordinatorState<SetupMonbilePinViewModelState>, Never> {
+        coordinatorStatePublisher.eraseToAnyPublisher()
+    }
+    
+    private var cancellables: [AnyCancellable] = []
+    
+    init() {}
+}
