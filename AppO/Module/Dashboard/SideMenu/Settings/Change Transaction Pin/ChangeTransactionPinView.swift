@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ChangeTransactionPinView: View {
+    
+    @StateObject var viewModel: ChangeTransactionPinViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
+    
     @State private var oldPIN: [String] = Array(repeating: "", count: 6)
     @State private var newPIN: [String] = Array(repeating: "", count: 6)
     @State private var confirmPIN: [String] = Array(repeating: "", count: 6)
@@ -96,5 +100,5 @@ struct ChangeTransactionPinView: View {
 }
 
 #Preview {
-    ChangeTransactionPinView()
+    ChangeTransactionPinView(viewModel: .init())
 }

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ReplaceCardView: View {
+    
+    @StateObject var viewModel: ReplaceCardViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title: "Replace Card")
@@ -28,5 +32,5 @@ struct ReplaceCardView: View {
 }
 
 #Preview {
-    ReplaceCardView()
+    ReplaceCardView(viewModel: .init())
 }

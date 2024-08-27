@@ -6,5 +6,18 @@
 //
 
 import Foundation
+import Combine
 
-class ChangeTransactionPinViewModel: ObservableObject {}
+enum ChangeTransactionViewModelState {
+    case none
+}
+class ChangeTransactionPinViewModel: ObservableObject {
+    let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<ChangeTransactionViewModelState>, Never>()
+    var coordinatorState: AnyPublisher<CoordinatorState<ChangeTransactionViewModelState>, Never> {
+        coordinatorStatePublisher.eraseToAnyPublisher()
+    }
+    
+    private var cancellables: [AnyCancellable] = []
+    
+    init() {}
+}

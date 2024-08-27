@@ -17,7 +17,9 @@ struct SettingsView: View {
                 .padding(.bottom, 20)
             
             ForEach(SettingsRowType.allCases, id: \.self){ row in
-                Button {} label: {
+                Button {
+                    self.navigate(index: row.rawValue)
+                } label: {
                     VStack(alignment: .leading){
                         HStack(spacing: 20){
                             ZStack{
@@ -47,6 +49,25 @@ struct SettingsView: View {
         .padding()
         .background(Color.appBackground)
         .toolbar(.hidden, for: .navigationBar)
+    }
+    
+    private func navigate(index: Int) {
+        switch index {
+        case 0:
+            homeNavigator.navigate(to: .cardStatus(viewModel: .init()))
+        case 1:
+            homeNavigator.navigate(to: .changeTransactionPin(viewModel: .init()))
+        case 2:
+            homeNavigator.navigate(to: .replaceCard(viewModel: .init()))
+        case 3:
+            homeNavigator.navigate(to: .replaceCard(viewModel: .init()))
+        case 4:
+            homeNavigator.navigate(to: .cardSettings(viewModel: .init()))
+        case 5:
+            homeNavigator.navigate(to: .addOnCard(viewModel: .init()))
+            
+        default: break
+        }
     }
 }
 

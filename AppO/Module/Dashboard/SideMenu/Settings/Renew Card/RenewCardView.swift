@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RenewCardView: View {
+    @StateObject var viewModel: RenewCardViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title: "Renew Card")
@@ -28,5 +30,5 @@ struct RenewCardView: View {
 }
 
 #Preview {
-    RenewCardView()
+    RenewCardView(viewModel: .init())
 }

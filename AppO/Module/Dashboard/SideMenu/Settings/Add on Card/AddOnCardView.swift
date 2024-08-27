@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct AddOnCardView: View {
+    
+    @StateObject var viewModel: AddOnCardViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
+    
     @State private var phoneNumber: String = ""
     @State private var nameOnCard: String = ""
     @State private var emailId: String = ""
@@ -96,5 +100,5 @@ struct AddOnCardView: View {
 }
 
 #Preview {
-    AddOnCardView()
+    AddOnCardView(viewModel: .init())
 }

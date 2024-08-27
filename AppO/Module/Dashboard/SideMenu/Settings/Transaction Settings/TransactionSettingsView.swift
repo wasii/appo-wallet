@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct TransactionSettingsView: View {
+    
+    @StateObject var viewModel: TransactionSettingsViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
+    
     @State private var phoneNumber: String = ""
     @State private var domesticWithdrawal: String = ""
     @State private var domesticPurchase: String = ""
@@ -87,5 +91,5 @@ struct TransactionSettingsView: View {
 }
 
 #Preview {
-    TransactionSettingsView()
+    TransactionSettingsView(viewModel: .init())
 }

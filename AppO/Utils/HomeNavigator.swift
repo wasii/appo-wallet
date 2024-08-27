@@ -25,6 +25,18 @@ final class HomeNavigator: ObservableObject {
         case cardToCard(viewModel: CardToCardViewModel)
 //        case payments
         case settings(viewModel: SettingsViewModel)
+        
+        //Manage Accounts
+        case transactionsDetails(viewModel: CardTransactionDetailsViewModel)
+        
+        
+        //Settings
+        case cardStatus(viewModel: CardStatusViewModel)
+        case changeTransactionPin(viewModel: ChangeTransactionPinViewModel)
+        case replaceCard(viewModel: ReplaceCardViewModel)
+        case renewCard(viewModel: RenewCardViewModel)
+        case cardSettings(viewModel: TransactionSettingsViewModel)
+        case addOnCard(viewModel: AddOnCardViewModel)
     }
     
     @Published var navPath = NavigationPath()
@@ -74,6 +86,25 @@ extension HomeNavigator {
 //        case .payments: break
         case .settings(let viewModel):
             SettingsView(viewModel: viewModel)
+            
+        //Manage Accounts -> Card Transactions
+        case .transactionsDetails(let viewModel):
+            CardTransactionDetailsView(viewModel: viewModel)
+            
+        
+        //Settings -> Sub Views
+        case .cardStatus(let viewModel):
+            CardStatusView(viewModel: viewModel)
+        case .changeTransactionPin(let viewModel):
+            ChangeTransactionPinView(viewModel: viewModel)
+        case .replaceCard(let viewModel):
+            ReplaceCardView(viewModel: viewModel)
+        case .renewCard(let viewModel):
+            RenewCardView(viewModel: viewModel)
+        case .cardSettings(let viewModel):
+            TransactionSettingsView(viewModel: viewModel)
+        case .addOnCard(let viewModel):
+            AddOnCardView(viewModel: viewModel)
         }
     }
 }

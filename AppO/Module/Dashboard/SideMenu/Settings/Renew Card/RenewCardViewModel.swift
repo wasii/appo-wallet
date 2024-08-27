@@ -6,5 +6,19 @@
 //
 
 import Foundation
+import Combine
 
-class RenewCardViewModel: ObservableObject {}
+enum RenewCardViewModelState {
+    case none
+}
+
+class RenewCardViewModel: ObservableObject {
+    let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<RenewCardViewModelState>, Never>()
+    var coordinatorState: AnyPublisher<CoordinatorState<RenewCardViewModelState>, Never> {
+        coordinatorStatePublisher.eraseToAnyPublisher()
+    }
+    
+    private var cancellables: [AnyCancellable] = []
+    
+    init() {}
+}

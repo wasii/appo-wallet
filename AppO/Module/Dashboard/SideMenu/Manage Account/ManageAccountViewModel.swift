@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 enum ManageAccountViewModelState {
-    case none
+    case showTransactions
 }
 class ManageAccountViewModel: ObservableObject {
     let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<ManageAccountViewModelState>, Never>()

@@ -21,7 +21,9 @@ struct ManageAccountView: View {
                 .multilineTextAlignment(.center)
                 .padding(.top, 20)
             
-            Button {} label: {
+            Button {
+                homeNavigator.navigate(to: .transactionsDetails(viewModel: .init()))
+            } label: {
                 CardButtonView(cardType: "Visa Gold Card", cardNumber: "423671******0129" ,cardExpiry: "01/30")
             }
             Spacer()

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct CardTransactionDetailsView: View {
+    
+    @StateObject var viewModel: CardTransactionDetailsViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title: "Transaction Details")
@@ -47,5 +51,5 @@ struct CardTransactionDetailsView: View {
 }
 
 #Preview {
-    CardTransactionDetailsView()
+    CardTransactionDetailsView(viewModel: .init())
 }

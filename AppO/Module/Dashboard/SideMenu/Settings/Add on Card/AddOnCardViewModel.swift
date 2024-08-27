@@ -6,5 +6,19 @@
 //
 
 import Foundation
+import Combine
 
-class AddOnCardViewModel: ObservableObject {}
+enum AddOnCardViewModelState {
+    case none
+}
+
+class AddOnCardViewModel: ObservableObject {
+    let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<AddOnCardViewModelState>, Never>()
+    var coordinatorState: AnyPublisher<CoordinatorState<AddOnCardViewModelState>, Never> {
+        coordinatorStatePublisher.eraseToAnyPublisher()
+    }
+    
+    private var cancellables: [AnyCancellable] = []
+    
+    init() {}
+}

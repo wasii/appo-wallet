@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CardStatusView: View {
     @State private var cardStatus: String = ""
+    @StateObject var viewModel: CardStatusViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -65,5 +67,5 @@ struct CardStatusView: View {
 }
 
 #Preview {
-    CardStatusView()
+    CardStatusView(viewModel: .init())
 }
