@@ -37,9 +37,6 @@ struct TermAndConditionView: View {
                         .foregroundColor(.primary)
                     Spacer()
                 }
-//                NavigationLink(destination: EnterMPINView(text: .constant(""))) {
-//                    
-//                }
                 Text("NEXT")
                     .font(.title3)
                     .fontWeight(.medium)
@@ -50,7 +47,8 @@ struct TermAndConditionView: View {
                     .foregroundColor(.white)
                     .disabled(!isChecked)
                     .onTapGesture {
-                        navigator.navigate(to: .enterMPINView(viewModel: .init()))
+                        AppEnvironment.shared.isLoggedIn = true
+//                        navigator.navigate(to: .enterMPINView(viewModel: .init()))
                     }
                 
                 

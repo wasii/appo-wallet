@@ -6,5 +6,19 @@
 //
 
 import Foundation
+import Combine
 
-class SettingsViewModel: ObservableObject {}
+enum SettingsViewModelState {
+    case none
+}
+
+class SettingsViewModel: ObservableObject {
+    let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<SettingsViewModelState>, Never>()
+    var coordinatorState: AnyPublisher<CoordinatorState<SettingsViewModelState>, Never> {
+        coordinatorStatePublisher.eraseToAnyPublisher()
+    }
+    
+    private var cancellables: [AnyCancellable] = []
+    
+    init() {}
+}

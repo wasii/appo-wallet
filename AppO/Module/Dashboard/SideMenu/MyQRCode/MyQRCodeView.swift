@@ -7,6 +7,8 @@
 import SwiftUI
 
 struct MyQRCodeView: View {
+    @StateObject var viewModel: MyQRCodeViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
     var body: some View {
         VStack(spacing: 20) {
             NavigationBarView(title: "")
@@ -25,11 +27,12 @@ struct MyQRCodeView: View {
         }
         .padding()
         .background(Color.appBackground)
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
 #Preview {
-    MyQRCodeView()
+    MyQRCodeView(viewModel: .init())
 }
 
 

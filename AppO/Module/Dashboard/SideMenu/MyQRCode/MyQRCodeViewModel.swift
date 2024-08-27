@@ -6,5 +6,19 @@
 //
 
 import Foundation
+import SwiftUI
+import Combine
 
-class MyQRCodeViewModel: ObservableObject {}
+enum MyQRCodeViewModelState {
+    case none
+}
+class MyQRCodeViewModel: ObservableObject {
+    let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<MyQRCodeViewModelState>, Never>()
+    var coordinatorState: AnyPublisher<CoordinatorState<MyQRCodeViewModelState>, Never> {
+        coordinatorStatePublisher.eraseToAnyPublisher()
+    }
+    
+    private var cancellables: [AnyCancellable] = []
+    
+    init() {}
+}

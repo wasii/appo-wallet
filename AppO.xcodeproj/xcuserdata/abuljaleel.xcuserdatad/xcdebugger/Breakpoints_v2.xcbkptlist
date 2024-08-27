@@ -7,23 +7,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8C77B8BC-6298-46DC-ACCC-F30951184855"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AppO/Module/Dashboard/SideMenu/SideMenuView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "navigateToView(index:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "709E9335-2032-462B-B476-7E40E1676B35"
+            uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -34,6 +18,38 @@
             endingLineNumber = "67"
             landmarkName = "view(for:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF - b0b521980bef7585"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AppO.HomeNavigator.view(for: AppO.HomeNavigator.Destination) -&gt; some"
+                  moduleName = "AppO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Utils/HomeNavigator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "301">
+               </Location>
+               <Location
+                  uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF - b0b521980bef7585"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AppO.HomeNavigator.view(for: AppO.HomeNavigator.Destination) -&gt; some"
+                  moduleName = "AppO"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Utils/HomeNavigator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "463">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

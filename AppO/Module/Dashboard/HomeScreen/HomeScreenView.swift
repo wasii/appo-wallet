@@ -11,6 +11,8 @@ struct HomeScreenView: View {
     @StateObject var homeNavigator: HomeNavigator
     @Binding var presentSideMenu: Bool
     
+    @StateObject var viewModel: HomeScreenViewModel
+    
     var body: some View {
         NavigationStack(path: $homeNavigator.navPath) {
             VStack(alignment: .leading, spacing: 20) {
@@ -69,6 +71,28 @@ struct HomeScreenView: View {
             }
             .padding()
             .background(Color.appBackground)
+            .onReceive(viewModel.coordinatorState) { state in
+                switch (state.state, state.transferable) {
+                case (.navigateToManageAccounts, _):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        homeNavigator.navigate(to: .manageAccounts(viewModel: .init()))
+                    }
+                case (.navigateToMyQRCode, _):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        homeNavigator.navigate(to: .myQR(viewModel: .init()))
+                    }
+                case (.navigateToCardtoCard, _):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        homeNavigator.navigate(to: .cardToCard(viewModel: .init()))
+                    }
+                case (.navigateToPayments, _):
+                    break
+                case (.navigateToSettings, _):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        homeNavigator.navigate(to: .settings(viewModel: .init()))
+                    }
+                }
+            }
             .navigationDestination(for: HomeNavigator.Destination.self) { destination in
                 homeNavigator.view(for: destination)
             }
@@ -78,5 +102,5 @@ struct HomeScreenView: View {
 }
 
 #Preview {
-    HomeScreenView(homeNavigator: .init(), presentSideMenu: .constant(true))
+    HomeScreenView(homeNavigator: .init(), presentSideMenu: .constant(true), viewModel: .init())
 }

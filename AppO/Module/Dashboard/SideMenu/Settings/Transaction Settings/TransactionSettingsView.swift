@@ -82,6 +82,7 @@ struct TransactionSettingsView: View {
         }
         .padding()
         .background(Color.appBackground)
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 

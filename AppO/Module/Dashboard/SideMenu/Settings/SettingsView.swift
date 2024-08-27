@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    let items = ["Item 1", "Item 2", "Item 3"]
+    @StateObject var viewModel: SettingsViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -45,11 +46,12 @@ struct SettingsView: View {
         }
         .padding()
         .background(Color.appBackground)
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
 #Preview {
-    SettingsView()
+    SettingsView(viewModel: .init())
 }
 
 

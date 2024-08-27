@@ -7,6 +7,18 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
-
-class ManageAccountViewModel: ObservableObject {}
+enum ManageAccountViewModelState {
+    case none
+}
+class ManageAccountViewModel: ObservableObject {
+    let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<ManageAccountViewModelState>, Never>()
+    var coordinatorState: AnyPublisher<CoordinatorState<ManageAccountViewModelState>, Never> {
+        coordinatorStatePublisher.eraseToAnyPublisher()
+    }
+    
+    private var cancellables: [AnyCancellable] = []
+    
+    init() {}
+}

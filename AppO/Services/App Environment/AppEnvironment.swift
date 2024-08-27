@@ -5,11 +5,13 @@
 //
 
 import Foundation
+import Combine
 
-struct AppEnvironment {
+class AppEnvironment: ObservableObject {
 
     static let shared = AppEnvironment()
     
+    @Published var isLoggedIn: Bool = false
     var usesLocalAPIMocks = false
     private init() {}
 

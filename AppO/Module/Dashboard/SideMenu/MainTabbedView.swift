@@ -10,16 +10,31 @@ import SwiftUI
 struct MainTabbedView: View {
     @State var presentSideMenu = false
     @State var selectedSideMenuTab = 0
+    @StateObject var viewModel: HomeScreenViewModel = HomeScreenViewModel()
     
     var body: some View {
         ZStack{
             
             TabView(selection: $selectedSideMenuTab) {
-                HomeScreenView(homeNavigator: .init(), presentSideMenu: $presentSideMenu)
+                HomeScreenView(homeNavigator: .init(), presentSideMenu: $presentSideMenu, viewModel: viewModel)
                     .tag(0)
             }
             
-            SideMenu(isShowing: $presentSideMenu, content: AnyView(SideMenuView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu)))
+            SideMenu(isShowing: $presentSideMenu, content: AnyView(SideMenuView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu) { state in
+                switch state {
+                case .manageAccount:
+                    viewModel.coordinatorStatePublisher.send(.with(.navigateToManageAccounts))
+                case .myQrCode:
+                    viewModel.coordinatorStatePublisher.send(.with(.navigateToMyQRCode))
+                case .cardToCard:
+                    viewModel.coordinatorStatePublisher.send(.with(.navigateToCardtoCard))
+                case .settings:
+                    viewModel.coordinatorStatePublisher.send(.with(.navigateToSettings))
+                case .payments:
+                    break
+                }
+                
+            }))
         }
     }
 }

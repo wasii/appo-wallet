@@ -12,6 +12,9 @@ struct CardToCardView: View {
 
     @State private var cardUID: String = ""
     @State private var amount: String = ""
+    
+    @StateObject var viewModel: CardToCardViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -57,9 +60,10 @@ struct CardToCardView: View {
         }
         .padding()
         .background(Color.appBackground)
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
 #Preview {
-    CardToCardView()
+    CardToCardView(viewModel: .init())
 }

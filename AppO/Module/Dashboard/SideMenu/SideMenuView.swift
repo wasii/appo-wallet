@@ -7,10 +7,20 @@
 
 import SwiftUI
 
+enum SidemenuNavigation {
+    case manageAccount
+    case myQrCode
+    case cardToCard
+    case payments
+    case settings
+}
+
 struct SideMenuView: View {
     @EnvironmentObject var homeNavigator: HomeNavigator
     @Binding var selectedSideMenuTab: Int
     @Binding var presentSideMenu: Bool
+    
+    var closure: ((SidemenuNavigation)->())
     
     var body: some View {
         HStack {
@@ -128,14 +138,21 @@ struct SideMenuView: View {
     fileprivate func navigateToView(index: Int) {
         switch index {
         case 0:
-            homeNavigator.navigate(to: .termsAndConditionView)
-            break
+            closure(.manageAccount)
+        case 1:
+            closure(.myQrCode)
+        case 2:
+            closure(.cardToCard)
+        case 3:
+            closure(.payments)
+        case 4:
+            closure(.settings)
         default: break
         }
     }
 }
 
 #Preview {
-    SideMenuView(selectedSideMenuTab: .constant(0), presentSideMenu: .constant(true))
+    SideMenuView(selectedSideMenuTab: .constant(0), presentSideMenu: .constant(true), closure: { _ in })
         .environmentObject(HomeNavigator())
 }

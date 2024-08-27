@@ -20,9 +20,11 @@ final class HomeNavigator: ObservableObject {
             return lhs.hashValue == rhs.hashValue
         }
         
-        case termsAndConditionView
-        case enterMPINView(viewModel: EnterMPINViewModel)
-        case phoneNumberVerification(viewModel: PhoneNumberVerificationViewModel)
+        case manageAccounts(viewModel: ManageAccountViewModel)
+        case myQR(viewModel: MyQRCodeViewModel)
+        case cardToCard(viewModel: CardToCardViewModel)
+//        case payments
+        case settings(viewModel: SettingsViewModel)
     }
     
     @Published var navPath = NavigationPath()
@@ -63,12 +65,15 @@ final class HomeNavigator: ObservableObject {
 extension HomeNavigator {
     @ViewBuilder func view(for destination: HomeNavigator.Destination) -> some View {
         switch destination {
-        case .termsAndConditionView:
-            TermAndConditionView()
-        case .enterMPINView(let viewModel):
-            EnterMPINView(text: .constant(""), viewModel: viewModel)
-        case .phoneNumberVerification(let viewModel):
-            PhoneNumberVerificationView(viewModel: viewModel)
+        case .manageAccounts(let viewModel):
+            ManageAccountView(viewModel: viewModel)
+        case .myQR(let viewModel):
+            MyQRCodeView(viewModel: viewModel)
+        case .cardToCard(let viewModel):
+            CardToCardView(viewModel: viewModel)
+//        case .payments: break
+        case .settings(let viewModel):
+            SettingsView(viewModel: viewModel)
         }
     }
 }

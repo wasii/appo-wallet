@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ManageAccountView: View {
+    @StateObject var viewModel: ManageAccountViewModel
+    @EnvironmentObject var homeNavigator: HomeNavigator
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title: "Manage Account")
@@ -25,10 +28,10 @@ struct ManageAccountView: View {
         }
         .padding()
         .background(Color.appBackground)
-        
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
 #Preview {
-    ManageAccountView()
+    ManageAccountView(viewModel: .init())
 }
