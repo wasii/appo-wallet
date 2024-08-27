@@ -71,7 +71,7 @@ extension Navigator {
         case .phoneNumberVerification(let viewModel):
             PhoneNumberVerificationView(viewModel: viewModel)
         case .verifyOTP(let viewModel):
-            VerifyOTPView(countryCode: viewModel.countryCode, phoneNumber: viewModel.phoneNumber)
+            VerifyOTPView(viewModel: viewModel)
         }
     }
 }

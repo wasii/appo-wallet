@@ -113,13 +113,10 @@ struct PhoneNumberVerificationView: View {
                 .padding()
                 .toolbar(.hidden, for: .navigationBar)
                 .background(.appBackground)
-                .navigationDestination(isPresented: $navigateToNextScreen) {
-                    VerifyOTPView(countryCode: "\(self.countryCode)", phoneNumber: "\(self.mobPhoneNumber)")
-                }
                 .onReceive(viewModel.coordinatorState) { state in
                     switch (state.state, state.transferable) {
                     case (.confirm, _):
-                        navigator.navigate(to: .verifyOTP(viewModel: .init()))
+                        navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: "\(self.mobPhoneNumber)")))
                     }
                 }
                 .onTapGesture {

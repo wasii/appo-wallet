@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SideMenuView: View {
-    
+    @EnvironmentObject var homeNavigator: HomeNavigator
     @Binding var selectedSideMenuTab: Int
     @Binding var presentSideMenu: Bool
     
@@ -30,6 +30,7 @@ struct SideMenuView: View {
                         RowView(isSelected: selectedSideMenuTab == row.rawValue, imageName: row.iconName, title: row.title) {
                             selectedSideMenuTab = row.rawValue
                             presentSideMenu.toggle()
+                            self.navigateToView(index: row.rawValue)
                         }
                     }
                     .padding(.leading, 10)
@@ -122,6 +123,15 @@ struct SideMenuView: View {
             }
         }
         .frame(height: 60)
+    }
+    
+    fileprivate func navigateToView(index: Int) {
+        switch index {
+        case 0:
+            homeNavigator.navigate(to: .termsAndConditionView)
+            break
+        default: break
+        }
     }
 }
 

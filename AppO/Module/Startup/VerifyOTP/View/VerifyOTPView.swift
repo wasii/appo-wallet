@@ -12,14 +12,12 @@ struct VerifyOTPView: View {
     @State private var otpText: String = ""
     @StateObject private var timerManager = TimerManager()
     
-    var countryCode: String
-    var phoneNumber: String
-    
+    @StateObject var viewModel: VerifyOTPViewModel
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title:"")
             
-            Text("Verify your phone number, we have sent an OTP to this \(countryCode) \(phoneNumber) number.")
+            Text("Verify your phone number, we have sent an OTP to this \(viewModel.countryCode) \(viewModel.phoneNumber) number.")
                 .font(.headline)
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
@@ -44,7 +42,7 @@ struct VerifyOTPView: View {
                 .disabled(!timerManager.isTimerComplete)
                 .opacity(timerManager.isTimerComplete ? 1 : 0.5)
                 
-                NavigationLink(destination: RegistrationView(countryFlag: "🇮🇳", countryDialingCode: self.countryCode, phoneNumber: self.phoneNumber)) {
+                NavigationLink(destination: RegistrationView(countryFlag: "🇮🇳", countryDialingCode: viewModel.countryCode, phoneNumber: viewModel.phoneNumber)) {
                     Text("Verify")
                         .customButtonStyle()
                 }
@@ -79,5 +77,5 @@ struct VerifyOTPView: View {
 }
 
 #Preview {
-    VerifyOTPView(countryCode: "+91", phoneNumber: "1234123412")
+    VerifyOTPView(viewModel: .init(countryCode: "+91", phoneNumber: "1234123412"))
 }

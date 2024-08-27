@@ -13,7 +13,7 @@ struct AppOApp: App {
         WindowGroup {
             InitialView(navigator: .init())
 //            HomeScreenView(homeNavigator: .init(), presentSideMenu: .constant(false ))
-//            MainTabbedView()
+            MainTabbedView()
         }
         .environment(\.colorScheme, .light)
     }
