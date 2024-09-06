@@ -228,7 +228,7 @@ struct DatePickerView: View {
             )
             .datePickerStyle(WheelDatePickerStyle())
             .labelsHidden()
-            .onChange(of: dateOfBirth) {_, newDate in
+            .onChange(of: dateOfBirth) { newDate in
                 selectedDateText = formattedDate(newDate)
             }
             

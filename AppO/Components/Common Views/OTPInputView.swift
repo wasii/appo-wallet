@@ -16,7 +16,7 @@ struct OTPInputView: View {
             ForEach(0..<6, id: \.self) { index in
                 OTPDigitField(digit: $otpDigits[index])
                     .focused($focusedField, equals: index)
-                    .onChange(of: otpDigits[index]) { _, newValue in
+                    .onChange(of: otpDigits[index]) { newValue in
                         if newValue.count > 1 {
                             otpDigits[index] = String(newValue.last ?? " ")
                         }
@@ -61,7 +61,7 @@ struct OTPDigitField: View {
             .keyboardType(.numberPad)
             .textInputAutocapitalization(.never) // Prevents autocapitalization
             .disableAutocorrection(true) // Disables autocorrection
-            .onChange(of: digit) { _, newValue in
+            .onChange(of: digit) { newValue in
                 if newValue.count > 1 {
                     digit = String(newValue.last ?? " ")
                 }

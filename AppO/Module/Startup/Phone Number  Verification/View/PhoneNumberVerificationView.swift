@@ -85,7 +85,7 @@ struct PhoneNumberVerificationView: View {
                             .onReceive(Just(mobPhoneNumber)) { _ in
                                 applyPatternOnNumbers(&mobPhoneNumber, pattern: countryPattern, replacementCharacter: "#")
                             }
-                            .onChange(of: mobPhoneNumber) {
+                            .onChange(of: mobPhoneNumber) { _ in
                                 if mobPhoneNumber.count >= countryLimit {
                                     keyIsFocused = false
                                 }

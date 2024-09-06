@@ -8,5 +8,10 @@
 	<string>${Server_One}</string>
 	<key>System API</key>
 	<string>${System_API}</string>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>AppBackground</string>
+	</dict>
 </dict>
 </plist>
