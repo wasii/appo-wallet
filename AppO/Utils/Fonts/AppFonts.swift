@@ -20,8 +20,8 @@ enum AppFonts {
     static var XTenRegular: Font { .customFont(style: .regular, size: 10.0) }
 //    static var XSmallM: Font { .customFont(style: .medium, size: 10.0) }
 //    static var datePicker: Font { .customFont(style: .regular, size: 18.0) }
-    
-    static var headline1: Font { .customFont(style: .bold, size: 64.0) }
+    static var headline0: Font { .customFont(style: .bold, size: 64.0) }
+    static var headline1: Font { .customFont(style: .bold, size: 48.0) }
     static var headline2: Font { .customFont(style: .bold, size: 40.0) }
     static var headline3: Font { .customFont(style: .bold, size: 32.0) }
     static var headline4: Font { .customFont(style: .bold, size: 24.0) }
