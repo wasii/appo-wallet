@@ -68,6 +68,12 @@
 		E25B90662C7D0A5300A6F871 /* AddOnCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90652C7D0A5300A6F871 /* AddOnCardView.swift */; };
 		E25B90682C7D0CBB00A6F871 /* CustomTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90672C7D0CBB00A6F871 /* CustomTextfieldStyle.swift */; };
 		E25B906A2C7D0D5B00A6F871 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90692C7D0D5B00A6F871 /* CustomButtonStyle.swift */; };
+		E27298272C8B2A4E00B41FF8 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27298262C8B2A4E00B41FF8 /* AppFonts.swift */; };
+		E27298292C8B2A6100B41FF8 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27298282C8B2A6100B41FF8 /* CustomFonts.swift */; };
+		E272982B2C8B2A9800B41FF8 /* Fonts+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E272982A2C8B2A9800B41FF8 /* Fonts+Extension.swift */; };
+		E272982F2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E272982C2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf */; };
+		E27298302C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E272982D2C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf */; };
+		E27298352C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E27298342C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf */; };
 		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
 		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
 		E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */; };
@@ -154,6 +160,12 @@
 		E25B90652C7D0A5300A6F871 /* AddOnCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnCardView.swift; sourceTree = "<group>"; };
 		E25B90672C7D0CBB00A6F871 /* CustomTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextfieldStyle.swift; sourceTree = "<group>"; };
 		E25B90692C7D0D5B00A6F871 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
+		E27298262C8B2A4E00B41FF8 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		E27298282C8B2A6100B41FF8 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
+		E272982A2C8B2A9800B41FF8 /* Fonts+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fonts+Extension.swift"; sourceTree = "<group>"; };
+		E272982C2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Bold.otf"; sourceTree = "<group>"; };
+		E272982D2C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Italic.otf"; sourceTree = "<group>"; };
+		E27298342C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Regular.otf"; sourceTree = "<group>"; };
 		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinView.swift; sourceTree = "<group>"; };
@@ -397,6 +409,7 @@
 				E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */,
 				E2D140362C6F5D1F0064EE6E /* View+Extension.swift */,
 				E2C9CB1A2C7863A200B47B38 /* Codable+Extension.swift */,
+				E272982A2C8B2A9800B41FF8 /* Fonts+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -543,6 +556,18 @@
 			path = "Add on Card";
 			sourceTree = "<group>";
 		};
+		E27298252C8B2A3B00B41FF8 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E272982C2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf */,
+				E27298342C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf */,
+				E272982D2C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf */,
+				E27298262C8B2A4E00B41FF8 /* AppFonts.swift */,
+				E27298282C8B2A6100B41FF8 /* CustomFonts.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		E29141392C7339C600D054A1 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
@@ -596,6 +621,7 @@
 		E2BD5DE02C762412006FB4B7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E27298252C8B2A3B00B41FF8 /* Fonts */,
 				E2BD5DDE2C76239B006FB4B7 /* Environment.swift */,
 				E239640A2C78C57D00AD4E6F /* Navigator.swift */,
 				E23964122C78CF8A00AD4E6F /* Coordinator.swift */,
@@ -762,8 +788,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E272982F2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf in Resources */,
 				E2D140332C6F5C060064EE6E /* CountryNumbers.json in Resources */,
+				E27298302C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf in Resources */,
 				E25B4B302C6DF4E7000745F9 /* Preview Assets.xcassets in Resources */,
+				E27298352C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf in Resources */,
 				E25B4B2D2C6DF4E7000745F9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -805,12 +834,14 @@
 				E25B90522C7D006900A6F871 /* ChangeTransactionPinViewModel.swift in Sources */,
 				E25B90422C7CEAAD00A6F871 /* CardStyle.swift in Sources */,
 				E25B905A2C7D05C900A6F871 /* RenewCardViewModel.swift in Sources */,
+				E27298292C8B2A6100B41FF8 /* CustomFonts.swift in Sources */,
 				E25B904D2C7CF3CB00A6F871 /* RadioButtonView.swift in Sources */,
 				E22658922C7CB5CE00DF8506 /* MyQRCodeViewModel.swift in Sources */,
 				E2C9CB172C7860E100B47B38 /* RegistrationResponse.swift in Sources */,
 				E25B903F2C7CE17500A6F871 /* CardToCardView.swift in Sources */,
 				E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
+				E27298272C8B2A4E00B41FF8 /* AppFonts.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
 				E24B91962C771AE2009091B2 /* PlistKey.swift in Sources */,
 				E25B905C2C7D05D800A6F871 /* RenewCardView.swift in Sources */,
@@ -821,6 +852,7 @@
 				E25B905F2C7D063E00A6F871 /* TransactionSettingsView.swift in Sources */,
 				E2C9CB192C78616B00B47B38 /* RegistrationAPIs.swift in Sources */,
 				E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */,
+				E272982B2C8B2A9800B41FF8 /* Fonts+Extension.swift in Sources */,
 				E25B90612C7D064800A6F871 /* TransactionSettingsViewModel.swift in Sources */,
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */,

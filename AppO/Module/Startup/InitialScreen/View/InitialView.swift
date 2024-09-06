@@ -20,7 +20,9 @@ struct InitialView: View {
                         
                         Text("WELCOME")
                             .foregroundStyle(Color(.appBlue))
-                            .font(.largeTitle)
+//                            .font(.system(size: 75))
+                            .font(AppFonts.headline1)
+                        
                         
                         Image("image_splash")
                             .resizable()

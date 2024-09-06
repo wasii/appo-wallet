@@ -8,6 +8,12 @@
 	<string>${Server_One}</string>
 	<key>System API</key>
 	<string>${System_API}</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>GlacialIndifference-Bold.otf</string>
+		<string>GlacialIndifference-Regular.otf</string>
+		<string>GlacialIndifference-Italic.otf</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
