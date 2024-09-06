@@ -11,50 +11,26 @@ struct InitialView: View {
     @StateObject var navigator: Navigator
     var body: some View {
         NavigationStack(path: $navigator.navPath) {
-            
             VStack {
-                ScrollView {
-                    VStack(spacing: 25) {
-                        Spacer()
-                        AppLogoView()
-                        
-                        Text("WELCOME")
-                            .foregroundStyle(Color(.appBlue))
-//                            .font(.system(size: 75))
-                            .font(AppFonts.headline1)
-                        
-                        
-                        Image("image_splash")
-                            .resizable()
-                            .frame(width: 250, height: 220)
-                        
-                        Image("appopay_qr")
-                            .resizable()
-                            .frame(width: 120, height: 120)
-                        
-                        Button {
-                            navigator.navigate(to: .termsAndConditionView)
-                        } label: {
-                            Text("Get Started")
-                                .font(.title3)
-                                .fontWeight(.medium)
-                                .frame(width: UIScreen.main.bounds.width / 1.7)
-                                .frame(height: 60)
-                                .background(Color(.appBlue))
-                                .clipShape(Capsule())
-                                .foregroundStyle(Color.white)
-                        }
-                    }
-                    .padding(.bottom)
+                VStack(alignment: .center) {
+                    Image("appopay-new")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 250)
+                    
+                    Image("welcome-screen-person")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 320)
+                        .padding(.bottom, 30)
                 }
-                .padding(.top)
-                BottomNavigation()
+                .frame(maxWidth: .infinity)
+                .background(Color.appBlue)
+                Spacer()
             }
-            .background(.appBackground)
             .navigationDestination(for: Navigator.Destination.self) { destination in
                 navigator.view(for: destination)
             }
-            
         }
         .environmentObject(navigator)
     }
