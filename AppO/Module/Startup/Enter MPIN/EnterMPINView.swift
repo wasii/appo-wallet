@@ -27,7 +27,7 @@ struct EnterMPINView: View {
                         .font(AppFonts.headline4)
                     
                     OTPndNumPad()
-                        .padding()
+//                        .padding()
                     
                     VStack(spacing: 16) {
                         createNewAccountView()

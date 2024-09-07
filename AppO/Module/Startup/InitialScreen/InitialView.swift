@@ -52,7 +52,7 @@ struct InitialView: View {
                 }
                 .ignoresSafeArea(.all)
                 Spacer()
-                Text("Bottom View")
+                BottomNavigation()
             }
             
             .navigationDestination(for: Navigator.Destination.self) { destination in

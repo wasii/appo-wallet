@@ -16,8 +16,8 @@ struct PhoneNumberVerificationView: View {
     @State private var navigateToNextScreen = false
     @State var showPopup = false
     @State var presentSheet = false
-    @State var countryCode : String = "+91"
-    @State var countryFlag : String = "🇮🇳"
+    @State var countryCode : String = ""
+    @State var countryFlag : String = ""
     @State var countryPattern : String = "#### #### ##"
     @State var countryLimit : Int = 17
     @State var mobPhoneNumber = ""
@@ -28,58 +28,73 @@ struct PhoneNumberVerificationView: View {
     let counrties: [PhoneNumberModel] = Bundle.main.decode("CountryNumbers.json")
     
     var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                VStack(spacing: 20) {
-                    // Aapka existing content yahan rahega
-                    NavigationBarView(title: "")
+        ZStack(alignment: .top) {
+            NavigationBarView(title: "Phone no Verification")
+                .zIndex(1)
+            Rectangle()
+                .fill(Color.appBlue)
+                .frame(height: 450)
+            VStack(spacing: 20) {
+                Image("appo-cardlogo")
+                    .resizable()
+                    .frame(width: 120, height: 100)
+                
+                VStack(spacing: 5) {
+                    Text("Verify Code")
+                        .foregroundStyle(Color.appBlueForeground)
+                        .font(AppFonts.regularTwenty)
                     
-                    Image("appopay_new_logo")
-                        .resizable()
-                        .frame(height: 200)
-                        .frame(width: 250)
+                    Text("Phone No Verification")
+                        .foregroundStyle(Color.white)
+                        .font(AppFonts.regular3)
                     
-                    VStack(spacing: 10) {
-                        Text("Verify Code")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .foregroundStyle(Color.appBlue)
-                        Text("Phone Number Verification")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundStyle(Color.black)
-                        Text("We will Send you a OTP")
-                            .font(.headline)
-                            .fontWeight(.regular)
-                            .foregroundStyle(Color.appBlue)
-                    }
-                    
+                    Text("We will send you the OTP")
+                        .foregroundStyle(Color.white)
+                        .font(AppFonts.regularTwentyTwo)
+                }
+                
+                ZStack {
+                    Rectangle()
+                        .fill(Color.appBlueForeground)
                     HStack {
                         Button {
                             presentSheet = true
                             keyIsFocused = false
                         } label: {
                             HStack {
-                                Text("\(self.countryFlag)")
-                                    .font(.system(size: 35))
-                                    .padding(.leading, 5)
-                                Text("\(self.countryCode)")
-                                    .font(.subheadline)
-                                    .foregroundStyle(Color.appBlue)
-                                Spacer()
-                                Image(systemName: "chevron.down")
-                                    .padding(.trailing, 5)
-                                
+                                if self.countryCode.isEmpty {
+                                    Spacer()
+                                    Text("Select Country")
+                                        .font(AppFonts.bodyFourteenBold)
+                                        .foregroundStyle(.black)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    Spacer()
+                                    Image(systemName: "chevron.down")
+                                        .padding(.trailing, 5)
+                                        .foregroundStyle(.black)
+                                } else {
+                                    Text("\(self.countryFlag)")
+                                        .font(AppFonts.headline4)
+                                        .padding(.leading, 5)
+                                    Text("\(self.countryCode)")
+                                        .font(AppFonts.bodyEighteenBold)
+                                        .foregroundStyle(Color.black)
+                                    Spacer()
+                                    Image(systemName: "chevron.down")
+                                        .padding(.trailing, 5)
+                                        .foregroundStyle(Color.black)
+                                }
                             }
                         }
-                        .frame(width: 100, height: 57)
-                        .background(backgroundColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .frame(width: 100, height: 60)
                         
                         TextField("", text: $mobPhoneNumber)
                             .placeholder(when: mobPhoneNumber.isEmpty) {
-                                Text("Phone number")
+                                Text("Enter Phone Number")
+                                    .font(AppFonts.bodyEighteenBold)
                                     .foregroundColor(.appBlue)
                             }
+                            .font(AppFonts.bodyEighteenBold)
                             .focused($keyIsFocused)
                             .keyboardType(.numberPad)
                             .onReceive(Just(mobPhoneNumber)) { _ in
@@ -91,118 +106,130 @@ struct PhoneNumberVerificationView: View {
                                 }
                             }
                             .padding(10)
-                            .frame(height: 57)
-                            .background(backgroundColor, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                     }
-                    
+                }
+                .cornerRadius(10, corners: .allCorners)
+                .frame(height: 60)
+                .padding()
+            }
+            .zIndex(1)
+            .offset(y: 100)
+        }
+        .ignoresSafeArea(.keyboard)
+        .onTapGesture {
+            hideKeyboard()
+        }
+        .edgesIgnoringSafeArea(.top)
+        .animation(.easeInOut(duration: 0.6), value: keyIsFocused)
+        .sheet(isPresented: $presentSheet) {
+            NavigationView {
+                List(filteredResorts) { country in
+                    HStack {
+                        Text(country.flag)
+                        Text(country.name)
+                            .font(.headline)
+                        Spacer()
+                        Text(country.dial_code)
+                            .foregroundColor(.secondary)
+                    }
+                    .onTapGesture {
+                        self.countryFlag = country.flag
+                        self.countryCode = country.dial_code
+                        self.countryPattern = country.pattern
+                        self.countryLimit = country.limit
+                        presentSheet = false
+                        searchCountry = ""
+                    }
+                }
+                .listStyle(.plain)
+                .searchable(text: $searchCountry, prompt: "Your country")
+            }
+            .presentationDetents([.medium, .large])
+        }
+        .presentationDetents([.medium, .large])
+        if showPopup {
+            Color.black.opacity(0.67)
+                .edgesIgnoringSafeArea(.all) // Dimming background
+            
+            VStack(alignment: .leading, spacing: 20) {
+                Text("You enter a phone number")
+                    .font(.title2)
+                HStack {
+                    Image("user")
+                    Text("\(self.countryCode) \(self.mobPhoneNumber)")
+                        .font(.title3)
+                        .foregroundStyle(Color.appBlue)
+                }
+                
+                Text("Is this number correct, or do you want to edit?")
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(nil)
+                HStack {
                     Button {
                         withAnimation {
-                            hideKeyboard()
-                            showPopup = true
+                            showPopup = false
                         }
                     } label: {
-                        Text("NEXT")
-                            .customButtonStyle()
+                        Text("Edit")
+                            .font(.headline)
+                            .foregroundColor(Color.appBlue)
                     }
                     
                     Spacer()
                     
-                    BottomNavigation()
-                }
-                .animation(.easeInOut(duration: 0.6), value: keyIsFocused)
-                .padding()
-                .toolbar(.hidden, for: .navigationBar)
-                .background(.appBackground)
-                .onReceive(viewModel.coordinatorState) { state in
-                    switch (state.state, state.transferable) {
-                    case (.confirm, _):
-                        navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: "\(self.mobPhoneNumber)", countryFlag: "\(self.countryFlag)")))
-                    }
-                }
-                .onTapGesture {
-                    hideKeyboard()
-                }
-                .sheet(isPresented: $presentSheet) {
-                    NavigationView {
-                        List(filteredResorts) { country in
-                            HStack {
-                                Text(country.flag)
-                                Text(country.name)
-                                    .font(.headline)
-                                Spacer()
-                                Text(country.dial_code)
-                                    .foregroundColor(.secondary)
-                            }
-                            .onTapGesture {
-                                self.countryFlag = country.flag
-                                self.countryCode = country.dial_code
-                                self.countryPattern = country.pattern
-                                self.countryLimit = country.limit
-                                presentSheet = false
-                                searchCountry = ""
-                            }
+                    Button {
+                        withAnimation {
+                            showPopup = false
+//                            viewModel.coordinatorStatePublisher.send(.with(.confirm))
                         }
-                        .listStyle(.plain)
-                        .searchable(text: $searchCountry, prompt: "Your country")
+                    } label: {
+                        Text("Ok")
+                            .font(.headline)
+                            .foregroundColor(Color.appBlue)
                     }
-                    .presentationDetents([.medium, .large])
-                }
-                .presentationDetents([.medium, .large])
-                
-                // Popup
-                if showPopup {
-                    Color.black.opacity(0.67)
-                        .edgesIgnoringSafeArea(.all) // Dimming background
-
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("You enter a phone number")
-                            .font(.title2)
-                        HStack {
-                            Image("user")
-                            Text("\(self.countryCode) \(self.mobPhoneNumber)")
-                                .font(.title3)
-                                .foregroundStyle(Color.appBlue)
-                        }
-                        
-                        Text("Is this number correct, or do you want to edit?")
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(nil)
-                        HStack {
-                            Button {
-                                withAnimation {
-                                    showPopup = false
-                                }
-                            } label: {
-                                Text("Edit")
-                                    .font(.headline)
-                                    .foregroundColor(Color.appBlue)
-                            }
-                            
-                            Spacer()
-                            
-                            Button {
-                                withAnimation {
-                                    showPopup = false
-                                    viewModel.coordinatorStatePublisher.send(.with(.confirm))
-                                }
-                            } label: {
-                                Text("Ok")
-                                    .font(.headline)
-                                    .foregroundColor(Color.appBlue)
-                            }
-                        }
-                    }
-                    .padding(.all, 15)
-                    .frame(width: 300, height: 250)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(radius: 10)
-                    .transition(.scale)
-                    .animation(.easeInOut, value: showPopup)
                 }
             }
+            .padding(.all, 15)
+            .frame(width: 300, height: 250)
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 10)
+            .transition(.scale)
+            .animation(.easeInOut, value: showPopup)
+        }
+        
+        VStack(spacing: 0) {
+            
+            ScrollView {
+                VStack {}
+            }
+            Button {
+                hideKeyboard()
+                viewModel.coordinatorStatePublisher.send(.with(.confirm))
+            } label: {
+                Text("NEXT ")
+                    .font(AppFonts.headline4)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .background(Color.appBlue)
+                    .cornerRadius(10)
+                    .foregroundColor(.white)
+            }
+            .padding()
+            BottomNavigation()
+        }
+        .onTapGesture {
+            hideKeyboard()
         }
         .ignoresSafeArea(.keyboard)
+        .toolbar(.hidden, for: .navigationBar)
+        .onReceive(viewModel.coordinatorState) { state in
+            switch (state.state, state.transferable) {
+            case (.confirm, _):
+                navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: "\(self.mobPhoneNumber)", countryFlag: "\(self.countryFlag)")))
+                break
+            }
+        }
     }
     
     var filteredResorts: [PhoneNumberModel] {

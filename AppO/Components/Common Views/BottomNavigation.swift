@@ -28,7 +28,7 @@ struct BottomNavigation: View {
             .cornerRadius(25, corners: [.allCorners])
             .padding(.horizontal)
         }
-        .frame(height: 80)
+        .frame(height: 60)
     }
 }
 
