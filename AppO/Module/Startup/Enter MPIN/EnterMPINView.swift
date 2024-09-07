@@ -69,7 +69,7 @@ struct EnterMPINView: View {
             .padding(.bottom, 10)
             
             //Number Pad
-            VStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 16) {
                 HStack(spacing: 16) {
                     numPadButton("1")
                     numPadButton("2")
@@ -100,7 +100,9 @@ struct EnterMPINView: View {
             Text("Create a new account?")
                 .foregroundStyle(Color.gray)
                 .font(AppFonts.bodyEighteenBold)
-            Button {} label: {
+            Button {
+                viewModel.coordinatorStatePublisher.send(.with(.createNewAccount))
+            } label: {
                 Text("Register Now")
                     .foregroundStyle(Color.appBlue)
                     .font(AppFonts.bodyTwentyBold)
