@@ -13,8 +13,8 @@ struct NavigationItems: Identifiable, Hashable {
 }
 
 var navigationItems: [NavigationItems] = [
-    NavigationItems(title: "", icon: "bottom_logo_visa"),
-    NavigationItems(title: "", icon: "bottom_logo_union"),
-    NavigationItems(title: "", icon: "bottom_logo_unionpay"),
-    NavigationItems(title: "", icon: "bottom_logo_quickpass")
+    NavigationItems(title: "", icon: "visa"),
+    NavigationItems(title: "", icon: "unionpay-highresolution"),
+    NavigationItems(title: "", icon: "union-pay"),
+    NavigationItems(title: "", icon: "quick-pass")
 ]

@@ -37,7 +37,7 @@ struct EnterMPINView: View {
                     .padding()
                 }
             }
-            Text("Bottom View")
+            BottomNavigation()
         }
         .edgesIgnoringSafeArea(.top)
         .toolbar(.hidden, for: .navigationBar)
@@ -144,7 +144,7 @@ struct EnterMPINView: View {
         }) {
             Text(number)
                 .font(AppFonts.headline2)
-                .frame(width: 90, height: 90)
+                .frame(width: 80, height: 80)
                 .foregroundColor(Color.appBlueForeground)
                 .background(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.appBlue, lineWidth: 3))
@@ -161,7 +161,7 @@ struct EnterMPINView: View {
         }) {
             Image(systemName: "delete.left")
                 .font(AppFonts.headline2)
-                .frame(width: 90, height: 90)
+                .frame(width: 80, height: 80)
                 .foregroundColor(Color.appBlueForeground)
                 .background(RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.appBlue, lineWidth: 3))

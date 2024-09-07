@@ -10,22 +10,25 @@ import SwiftUI
 struct BottomNavigation: View {
     
     var body: some View {
-        HStack(spacing: 20) {
-            ForEach(navigationItems, id: \.self) { item in
-                HStack {
-                    if !item.icon.isEmpty {
+        GeometryReader { geometry in
+            HStack() {
+                ForEach(navigationItems, id: \.self) { item in
+                    HStack {
                         Image(item.icon)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 40, height: 40)
+                            .frame(width: 50, height: 50)
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
                 }
-                .padding()
-                .background(.white)
-                .clipShape(Capsule())
+                .frame(maxWidth: .infinity)
             }
+            .background(Color.appBlue)
+            .cornerRadius(25, corners: [.allCorners])
+            .padding(.horizontal)
         }
-        .frame(maxWidth: .infinity, alignment: .center)
+        .frame(height: 80)
     }
 }
 
