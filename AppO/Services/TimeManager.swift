@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class TimerManager: ObservableObject {
-    @Published var timeRemaining: Int = 60
+    @Published var timeRemaining: Int = 300
     @Published var isTimerComplete: Bool = false
     private var timer: Timer?
     
@@ -20,7 +20,7 @@ class TimerManager: ObservableObject {
     }
     
     func startTimer() {
-        timeRemaining = 60 // Reset timer to 1 minute
+        timeRemaining = 300 // Reset timer to 1 minute
         isTimerComplete = false
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
             guard let self = self else { return }

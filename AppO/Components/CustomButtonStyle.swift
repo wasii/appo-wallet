@@ -10,12 +10,11 @@ import SwiftUI
 struct CustomButtonStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.title3)
-            .fontWeight(.medium)
+            .font(AppFonts.headline4)
             .frame(maxWidth: .infinity)
             .frame(height: 60)
-            .background(Color(.appBlue))
-            .clipShape(Capsule())
-            .foregroundStyle(Color.white)
+            .background(Color.appBlue)
+            .cornerRadius(10)
+            .foregroundColor(.white)
     }
 }

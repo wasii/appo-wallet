@@ -48,16 +48,13 @@ struct OTPDigitField: View {
     
     var body: some View {
         TextField("", text: $digit)
-            .font(.title3)
-            .foregroundStyle(Color.appYellow)
+            .font(AppFonts.headline4)
+            .foregroundStyle(Color.appBlue)
             .multilineTextAlignment(.center)
-            .frame(width: 45, height: 55)
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-            )
+            .frame(width: 45, height: 45)
+            .background(Color.appBlueForeground)
+            .clipShape(Circle())
+            
             .keyboardType(.numberPad)
             .textInputAutocapitalization(.never) // Prevents autocapitalization
             .disableAutocorrection(true) // Disables autocorrection

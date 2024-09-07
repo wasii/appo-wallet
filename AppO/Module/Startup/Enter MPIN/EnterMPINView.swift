@@ -125,12 +125,7 @@ struct EnterMPINView: View {
             
         } label: {
             Text("CONFIRM")
-                .font(AppFonts.headline4)
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
-                .background(Color.appBlue)
-                .cornerRadius(10)
-                .foregroundColor(.white)
+                .customButtonStyle()
         }
     }
     

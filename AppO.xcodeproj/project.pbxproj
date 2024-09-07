@@ -601,26 +601,10 @@
 		E2C3D4662C6F80220017E47C /* VerifyOTP */ = {
 			isa = PBXGroup;
 			children = (
-				E2C3D4682C6F802C0017E47C /* ViewModel */,
-				E2C3D4672C6F80290017E47C /* View */,
-			);
-			path = VerifyOTP;
-			sourceTree = "<group>";
-		};
-		E2C3D4672C6F80290017E47C /* View */ = {
-			isa = PBXGroup;
-			children = (
+				E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */,
 				E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E2C3D4682C6F802C0017E47C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */,
-			);
-			path = ViewModel;
+			path = VerifyOTP;
 			sourceTree = "<group>";
 		};
 		E2C9CB142C7860D200B47B38 /* Request */ = {
