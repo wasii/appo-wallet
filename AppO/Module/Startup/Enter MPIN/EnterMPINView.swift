@@ -9,94 +9,38 @@ import SwiftUI
 
 struct EnterMPINView: View {
     
-    @State private var otp = ""
-    @Binding var text: String
-    
-    private let otpLength = 6
+    @State private var otpDigits: [String] = []
+    private let maxDigits = 6
     
     @StateObject var viewModel: EnterMPINViewModel
     @EnvironmentObject var navigator: Navigator
     
-    let rows: [[String]] = [
-        ["1", "2", "3"],
-        ["4", "5", "6"],
-        ["7", "8", "9"],
-        ["Clear", "0", "Confirm"]
-    ]
-    
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            NavigationBarView(title: "")
-            
+        VStack(spacing: 20) {
+            NavigationBarView(title: "Sign In")
             ScrollView {
-                VStack(alignment: .leading) {
+                VStack(alignment: .center, spacing: 16) {
                     AppLogoView()
-                    
-                    Text("Sign in to Continue")
+                        .frame(width: 220)
+                    Text("Sign In to Continue")
                         .foregroundStyle(Color.appBlue)
-                        .fontWeight(.semibold)
-                        .font(.title2)
+                        .font(AppFonts.headline4)
                     
-                    HStack(alignment: .center) {
-                        Spacer()
-                        ForEach(0..<otpLength, id: \.self) { index in
-                            OTPTextField(text: self.$otp, index: index)
-                        }
-                        Spacer()
+                    OTPndNumPad()
+                        .padding()
+                    
+                    VStack(spacing: 16) {
+                        createNewAccountView()
+                        updateMPINView()
+                        confirmButtonView()
                     }
                     .padding()
-                    
-                    VStack {
-                        ForEach(rows, id: \.self) { row in
-                            HStack(spacing: 20) {
-                                ForEach(row, id: \.self) { item in
-                                    Button(action: {
-                                        self.handleAction(for: item)
-                                    }) {
-                                        Text(item)
-                                            .font(.title2)
-                                            .fontWeight(.semibold)
-                                            .foregroundStyle(Color.appBlue)
-                                            .frame(width: 90, height: 90)
-                                            .background(Color.backButton.opacity(0.5))
-                                            .cornerRadius(45)
-                                            .foregroundColor(.black)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    Spacer()
                 }
-                VStack(alignment: .center, spacing: 5) {
-                    Button {
-                        viewModel.coordinatorStatePublisher.send(.with(.createNewAccount))
-                    } label: {
-                        Text("Create new account?")
-                            .foregroundStyle(Color.gray)
-                            .font(Font.system(size: 20))
-                        Text("**Signup**")
-                            .foregroundStyle(Color.appYellow)
-                            .font(Font.system(size: 20))
-                    }
-                }
-                .padding(.top, 30)
-                
-                VStack(alignment: .center, spacing: 5) {
-                    NavigationLink {} label: {
-                        Text("Forgot MPIN")
-                            .foregroundStyle(Color.red)
-                            .fontWeight(.semibold)
-                            .font(Font.system(size: 18))
-                    }
-                }
-                .padding(.top, 8)
             }
+            Text("Bottom View")
         }
-        .padding()
+        .edgesIgnoringSafeArea(.top)
         .toolbar(.hidden, for: .navigationBar)
-        .background(.appBackground)
         .onReceive(viewModel.coordinatorState) { state in
             switch (state.state, state.transferable) {
             case (.confirm, _):
@@ -110,49 +54,121 @@ struct EnterMPINView: View {
         }
     }
     
-    private func handleAction(for item: String) {
-        switch item {
-        case "Clear":
-            self.otp = ""
-        case "Confirm":
-            print("OTP Entered: \(self.otp)")
-        default:
-            if otp.count < otpLength {
-                self.otp.append(item)
-                print("Current OTP: \(self.otp)") // Print current OTP after appending new value
+    //MARK: - OTP Circles and NumPad
+    
+    private func OTPndNumPad() -> some View {
+        VStack {
+            HStack(spacing: 16) {
+                ForEach(0..<maxDigits, id: \.self) { index in
+                    Circle()
+                        .strokeBorder(Color.appBlue, lineWidth: 3)
+                        .background(Circle().foregroundColor(otpDigits.count > index ? Color.appBlue : Color.appBlueForeground))
+                        .frame(width: 40, height: 40)
+                }
+            }
+            .padding(.bottom, 10)
+            
+            //Number Pad
+            VStack(spacing: 16) {
+                HStack(spacing: 16) {
+                    numPadButton("1")
+                    numPadButton("2")
+                    numPadButton("3")
+                }
+                HStack(spacing: 16) {
+                    numPadButton("4")
+                    numPadButton("5")
+                    numPadButton("6")
+                }
+                HStack(spacing: 16) {
+                    numPadButton("7")
+                    numPadButton("8")
+                    numPadButton("9")
+                }
+                HStack(spacing: 16) {
+                    backspaceButton()
+                    numPadButton("0")
+                    
+                }
             }
         }
     }
-}
-
-struct OTPTextField: View {
-    @Binding var text: String
-    let index: Int
     
-    var body: some View {
-        SecureField("", text: Binding(
-            get: {
-                let start = text.index(text.startIndex, offsetBy: index, limitedBy: text.endIndex) ?? text.endIndex
-                let end = text.index(start, offsetBy: 1, limitedBy: text.endIndex) ?? text.endIndex
-                return String(text[start..<end])
-            },
-            set: { newValue in
-                let start = text.index(text.startIndex, offsetBy: index, limitedBy: text.endIndex) ?? text.endIndex
-                let end = text.index(start, offsetBy: 1, limitedBy: text.endIndex) ?? text.endIndex
-                let updatedText = text.prefix(upTo: start) + newValue.prefix(1) + text.dropFirst(text.distance(from: text.startIndex, to: end))
-                text = String(updatedText)
+    //MARK: - Create New Account
+    private func createNewAccountView() -> some View {
+        HStack(spacing: 5) {
+            Text("Create a new account?")
+                .foregroundStyle(Color.gray)
+                .font(AppFonts.bodyEighteenBold)
+            Button {} label: {
+                Text("Register Now")
+                    .foregroundStyle(Color.appBlue)
+                    .font(AppFonts.bodyTwentyBold)
             }
-        ))
-        .frame(width: 40, height: 40)
-        .background(Color.gray.opacity(0.2))
-        .cornerRadius(20)
-        .multilineTextAlignment(.center)
-        .textContentType(.oneTimeCode) // Helps with numeric keyboard
+        }
+    }
+    
+    //MARK: - Update MPIN
+    private func updateMPINView() -> some View {
+        Button {} label: {
+            Text("Update MPIN")
+                .foregroundStyle(Color.appBlue)
+                .font(AppFonts.headline4)
+        }
+    }
+    
+    //MARK: - Confirm Button
+    private func confirmButtonView() -> some View {
+        Button {
+            
+        } label: {
+            Text("CONFIRM")
+                .font(AppFonts.headline4)
+                .frame(maxWidth: .infinity)
+                .frame(height: 60)
+                .background(Color.appBlue)
+                .cornerRadius(10)
+                .foregroundColor(.white)
+        }
+    }
+    
+    // MARK: - Numpad Button
+    private func numPadButton(_ number: String) -> some View {
+        Button(action: {
+            if otpDigits.count < maxDigits {
+                otpDigits.append(number)
+                print(otpDigits)
+            }
+        }) {
+            Text(number)
+                .font(AppFonts.headline2)
+                .frame(width: 90, height: 90)
+                .foregroundColor(Color.appBlueForeground)
+                .background(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.appBlue, lineWidth: 3))
+        }
+    }
+    
+    // MARK: - Backspace Button
+    private func backspaceButton() -> some View {
+        Button(action: {
+            if !otpDigits.isEmpty {
+                otpDigits.removeLast()
+                print(otpDigits)
+            }
+        }) {
+            Image(systemName: "delete.left")
+                .font(AppFonts.headline2)
+                .frame(width: 90, height: 90)
+                .foregroundColor(Color.appBlueForeground)
+                .background(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.appBlue, lineWidth: 3))
+        }
     }
 }
 
 struct EnterMPINView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterMPINView(text: .constant(""), viewModel: EnterMPINViewModel())
+        EnterMPINView(viewModel: .init())
     }
 }

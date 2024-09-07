@@ -69,7 +69,7 @@ extension Navigator {
         case .termsAndConditionView:
             TermAndConditionView()
         case .enterMPINView(let viewModel):
-            EnterMPINView(text: .constant(""), viewModel: viewModel)
+            EnterMPINView(viewModel: viewModel)
         case .phoneNumberVerification(let viewModel):
             PhoneNumberVerificationView(viewModel: viewModel)
         case .verifyOTP(let viewModel):
