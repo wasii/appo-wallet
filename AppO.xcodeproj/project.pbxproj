@@ -80,6 +80,7 @@
 		E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */; };
 		E291414B2C736D7700D054A1 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414A2C736D7700D054A1 /* TimeManager.swift */; };
 		E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414C2C736DB100D054A1 /* OTPInputView.swift */; };
+		E2A0F2FD2C8C410F00821357 /* PhoneNumberVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0F2FC2C8C410F00821357 /* PhoneNumberVerificationView.swift */; };
 		E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BD5DDE2C76239B006FB4B7 /* Environment.swift */; };
 		E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */; };
 		E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */; };
@@ -94,7 +95,6 @@
 		E2C9CB1D2C7863ED00B47B38 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB1C2C7863ED00B47B38 /* Scheduler.swift */; };
 		E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140232C6E49D70064EE6E /* AppLogoView.swift */; };
 		E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140292C6E4A390064EE6E /* EnterMPINView.swift */; };
-		E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D1402E2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift */; };
 		E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140302C6F5BCB0064EE6E /* PhoneNumberModel.swift */; };
 		E2D140332C6F5C060064EE6E /* CountryNumbers.json in Resources */ = {isa = PBXBuildFile; fileRef = E2D140322C6F5C060064EE6E /* CountryNumbers.json */; };
 		E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */; };
@@ -172,6 +172,7 @@
 		E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinViewModel.swift; sourceTree = "<group>"; };
 		E291414A2C736D7700D054A1 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		E291414C2C736DB100D054A1 /* OTPInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPInputView.swift; sourceTree = "<group>"; };
+		E2A0F2FC2C8C410F00821357 /* PhoneNumberVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationView.swift; sourceTree = "<group>"; };
 		E2BD5DDE2C76239B006FB4B7 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = AppO/Utils/Environment.swift; sourceTree = SOURCE_ROOT; };
 		E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPView.swift; sourceTree = "<group>"; };
 		E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPinInteractor.swift; sourceTree = "<group>"; };
@@ -186,7 +187,6 @@
 		E2C9CB1C2C7863ED00B47B38 /* Scheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
 		E2D140232C6E49D70064EE6E /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		E2D140292C6E4A390064EE6E /* EnterMPINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINView.swift; sourceTree = "<group>"; };
-		E2D1402E2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationView.swift; sourceTree = "<group>"; };
 		E2D140302C6F5BCB0064EE6E /* PhoneNumberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberModel.swift; sourceTree = "<group>"; };
 		E2D140322C6F5C060064EE6E /* CountryNumbers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryNumbers.json; sourceTree = "<group>"; };
 		E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoder+Extension.swift"; sourceTree = "<group>"; };
@@ -431,51 +431,19 @@
 		E25B4B3C2C6DFACA000745F9 /* InitialScreen */ = {
 			isa = PBXGroup;
 			children = (
-				E25B4B3E2C6DFAE1000745F9 /* ViewModel */,
-				E25B4B3D2C6DFADD000745F9 /* View */,
-			);
-			path = InitialScreen;
-			sourceTree = "<group>";
-		};
-		E25B4B3D2C6DFADD000745F9 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */,
 				E25B4B3F2C6DFAFB000745F9 /* InitialView.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E25B4B3E2C6DFAE1000745F9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */,
-			);
-			path = ViewModel;
+			path = InitialScreen;
 			sourceTree = "<group>";
 		};
 		E25B4B452C6E1DDC000745F9 /* TermsAndConditions */ = {
 			isa = PBXGroup;
 			children = (
-				E25B4B472C6E1DF2000745F9 /* ViewModel */,
-				E25B4B462C6E1DED000745F9 /* View */,
-			);
-			path = TermsAndConditions;
-			sourceTree = "<group>";
-		};
-		E25B4B462C6E1DED000745F9 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */,
 				E25B4B482C6E1E0D000745F9 /* TermAndConditionView.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E25B4B472C6E1DF2000745F9 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */,
-			);
-			path = ViewModel;
+			path = TermsAndConditions;
 			sourceTree = "<group>";
 		};
 		E25B903B2C7CE15100A6F871 /* Card to Card */ = {
@@ -674,51 +642,19 @@
 		E2D140252C6E4A140064EE6E /* Enter MPIN */ = {
 			isa = PBXGroup;
 			children = (
-				E2D140282C6E4A2D0064EE6E /* ViewModel */,
-				E2D140262C6E4A200064EE6E /* View */,
-			);
-			path = "Enter MPIN";
-			sourceTree = "<group>";
-		};
-		E2D140262C6E4A200064EE6E /* View */ = {
-			isa = PBXGroup;
-			children = (
+				E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */,
 				E2D140292C6E4A390064EE6E /* EnterMPINView.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E2D140282C6E4A2D0064EE6E /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */,
-			);
-			path = ViewModel;
+			path = "Enter MPIN";
 			sourceTree = "<group>";
 		};
 		E2D1402B2C6F1CF60064EE6E /* Phone Number  Verification */ = {
 			isa = PBXGroup;
 			children = (
-				E2D1402D2C6F1D0B0064EE6E /* ViewModel */,
-				E2D1402C2C6F1D070064EE6E /* View */,
+				E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */,
+				E2A0F2FC2C8C410F00821357 /* PhoneNumberVerificationView.swift */,
 			);
 			path = "Phone Number  Verification";
-			sourceTree = "<group>";
-		};
-		E2D1402C2C6F1D070064EE6E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				E2D1402E2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E2D1402D2C6F1D0B0064EE6E /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -811,6 +747,7 @@
 				E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */,
 				E25B90382C7CCC8A00A6F871 /* MainTabbedView.swift in Sources */,
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
+				E2A0F2FD2C8C410F00821357 /* PhoneNumberVerificationView.swift in Sources */,
 				E226587F2C7C9AB900DF8506 /* SideMenu.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
 				E25B90682C7D0CBB00A6F871 /* CustomTextfieldStyle.swift in Sources */,
@@ -855,7 +792,6 @@
 				E272982B2C8B2A9800B41FF8 /* Fonts+Extension.swift in Sources */,
 				E25B90612C7D064800A6F871 /* TransactionSettingsViewModel.swift in Sources */,
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
-				E2D1402F2C6F1D1F0064EE6E /* PhoneNumberVerificationView.swift in Sources */,
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
 				E25B90642C7D0A4400A6F871 /* AddOnCardViewModel.swift in Sources */,
 				E226588F2C7CADB600DF8506 /* TransactionDetailsItems.swift in Sources */,

@@ -9,39 +9,38 @@ import SwiftUI
 
 struct NavigationBarView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var isOn: Bool = false
     var title: String
+    
     var body: some View {
-        HStack {
-            Button {
-                dismiss()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 23)
-                        .fill(.backButton) // Background for the image
-                        .frame(width: 46, height: 46)
-                    
-                    Image("back")
+        ZStack(alignment: .bottom) {
+//            RoundedRectangle(cornerRadius: 30, style: .continuous)
+//                .fill(Color.appBlue)
+//                .frame(height: 100)
+            Rectangle()
+                .fill(Color.appBlue)
+                .frame(height: 100)
+                .cornerRadius(40, corners: [.bottomLeft, .bottomRight])
+            HStack {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image("back-new")
                         .resizable()
-                        .frame(width: 30, height: 30)
+                        .foregroundColor(.white)
+                        .frame(width: 18, height: 30)
                 }
+                Text(title)
+                    .foregroundColor(.white)
+                    .font(AppFonts.headline4)
+                    .bold()
+                Spacer()
             }
-            Text(title)
-                .font(.title2)
-                .foregroundStyle(Color.black)
-            Spacer()
-            
-//            HStack(spacing: 18) {
-//                Text("Enable")
-//                    .foregroundStyle(Color.gray)
-//                    .font(.title3)
-//                Toggle(isOn: $isOn) {}
-//            }
-//            .padding()
+            .padding()
         }
     }
 }
 
 #Preview {
-    NavigationBarView(title: "Sample Text")
+    NavigationBarView(title: "Terms and Condition")
 }
+
