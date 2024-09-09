@@ -15,19 +15,26 @@ struct RadioButtonField: View {
     
     var body: some View {
         Button(action: action) {
-            HStack {
-                Image(systemName: isSelected ? "circle.fill" : "circle")
-                    .foregroundColor(isSelected ? .appBlue : .gray)
-                    .font(.system(size: 25))
-                    .padding(.leading, 4)
-                
-                Text(label)
-                    .foregroundColor(.black)
-                    .font(.system(size: 17))
-                    .fontWeight(.semibold)
+            VStack {
+                HStack(spacing: 10) {
+                    Image(isSelected ? "radio-button-selected" : "radio-button")
+                        .resizable()
+                        .frame(width: 26, height: 26)
+                        .padding(.leading, 4)
+                    
+                    Text(label)
+                        .foregroundColor(Color.appBlue)
+                        .font(AppFonts.regularTwentyTwo)
+                        .fontWeight(.semibold)
+                }
             }
             .padding(.vertical, 5)
         }
         .buttonStyle(PlainButtonStyle()) // Removes the default button styling
     }
+}
+
+#Preview {
+    RadioButtonField(id: "", label: "Male", isSelected: false) {}
+    
 }

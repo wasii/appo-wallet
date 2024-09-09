@@ -24,7 +24,8 @@ enum AppFonts {
     static var headline1: Font { .customFont(style: .bold, size: 48.0) }
     static var headline2: Font { .customFont(style: .bold, size: 40.0) }
     static var headline3: Font { .customFont(style: .bold, size: 32.0) }
-    static var headline4: Font { .customFont(style: .bold, size: 24.0) }
+    static var headline4: Font { .customFont(style: .bold, size: 28.0) }
+    static var headline5: Font { .customFont(style: .bold, size: 24.0) }
     
     static var regular0: Font { .customFont(style: .regular, size: 64.0) }
     static var regular1: Font { .customFont(style: .regular, size: 48.0) }

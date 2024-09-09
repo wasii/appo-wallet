@@ -19,8 +19,8 @@ struct CurvedShape: Shape {
             
             // Draw curve for the bottom area
             path.addQuadCurve(
-                to: CGPoint(x: 0, y: rect.height * 0.35),
-                control: CGPoint(x: rect.width / 1.2, y: rect.height * 1.15)
+                to: CGPoint(x: 0, y: rect.height * 0.55),
+                control: CGPoint(x: rect.width / 1.9, y: rect.height * 1.15)
             )
             
             // Close the shape

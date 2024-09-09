@@ -210,7 +210,7 @@ struct PhoneNumberVerificationView: View {
             }
             Button {
                 hideKeyboard()
-//                viewModel.coordinatorStatePublisher.send(.with(.confirm))
+                viewModel.coordinatorStatePublisher.send(.with(.confirm))
             } label: {
                 Text("NEXT ")
                     .font(AppFonts.headline4)
