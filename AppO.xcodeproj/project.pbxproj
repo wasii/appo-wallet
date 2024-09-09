@@ -542,26 +542,10 @@
 		E29141392C7339C600D054A1 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				E291413B2C7339D300D054A1 /* View */,
-				E291413A2C7339CE00D054A1 /* ViewModel */,
-			);
-			path = Registration;
-			sourceTree = "<group>";
-		};
-		E291413A2C7339CE00D054A1 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
+				E291413C2C7339DF00D054A1 /* RegistrationView.swift */,
 				E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */,
 			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		E291413B2C7339D300D054A1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				E291413C2C7339DF00D054A1 /* RegistrationView.swift */,
-			);
-			path = View;
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		E29141412C736BF500D054A1 /* Setup Mobile Pin */ = {
