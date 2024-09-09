@@ -11,10 +11,11 @@ struct OTPInputView: View {
     @Binding var otpDigits: [String]
     @FocusState private var focusedField: Int?
     
+    var isSecure: Bool = false
     var body: some View {
         HStack(spacing: 10) {
             ForEach(0..<6, id: \.self) { index in
-                OTPDigitField(digit: $otpDigits[index])
+                OTPDigitField(digit: $otpDigits[index], isSecure: isSecure)
                     .focused($focusedField, equals: index)
                     .onChange(of: otpDigits[index]) { newValue in
                         if newValue.count > 1 {
@@ -45,24 +46,31 @@ struct OTPInputView: View {
 
 struct OTPDigitField: View {
     @Binding var digit: String
+    var isSecure: Bool = false
     
     var body: some View {
-        TextField("", text: $digit)
-            .font(AppFonts.headline4)
-            .foregroundStyle(Color.appBlue)
-            .multilineTextAlignment(.center)
-            .frame(width: 45, height: 45)
-            .background(Color.appBlueForeground)
-            .clipShape(Circle())
-            
-            .keyboardType(.numberPad)
-            .textInputAutocapitalization(.never) // Prevents autocapitalization
-            .disableAutocorrection(true) // Disables autocorrection
-            .onChange(of: digit) { newValue in
-                if newValue.count > 1 {
-                    digit = String(newValue.last ?? " ")
-                }
+        Group {
+            if isSecure {
+                SecureField("", text: $digit)
+            } else {
+                TextField("", text: $digit)
             }
+        }
+        .font(AppFonts.headline4)
+        .foregroundStyle(Color.appBlue)
+        .multilineTextAlignment(.center)
+        .frame(width: 45, height: 45)
+        .background(Color.appBlueForeground)
+        .clipShape(Circle())
+        
+        .keyboardType(.numberPad)
+        .textInputAutocapitalization(.never) // Prevents autocapitalization
+        .disableAutocorrection(true) // Disables autocorrection
+        .onChange(of: digit) { newValue in
+            if newValue.count > 1 {
+                digit = String(newValue.last ?? " ")
+            }
+        }
     }
 }
 

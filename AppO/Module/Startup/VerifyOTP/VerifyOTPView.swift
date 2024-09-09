@@ -41,7 +41,7 @@ struct VerifyOTPView: View {
                 .frame(width: 310)
                 
                 
-                OTPInputView(otpDigits: $createPIN)
+                OTPInputView(otpDigits: $createPIN, isSecure: false)
                 
                 VStack(alignment: .center, spacing: 10) {
                     Text(timerManager.formattedTime)

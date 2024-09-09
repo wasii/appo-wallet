@@ -551,26 +551,10 @@
 		E29141412C736BF500D054A1 /* Setup Mobile Pin */ = {
 			isa = PBXGroup;
 			children = (
-				E29141432C736C0000D054A1 /* ViewModel */,
-				E29141422C736BFC00D054A1 /* View */,
-			);
-			path = "Setup Mobile Pin";
-			sourceTree = "<group>";
-		};
-		E29141422C736BFC00D054A1 /* View */ = {
-			isa = PBXGroup;
-			children = (
+				E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */,
 				E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		E29141432C736C0000D054A1 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				E29141482C736C2600D054A1 /* SetupMobilePinViewModel.swift */,
-			);
-			path = ViewModel;
+			path = "Setup Mobile Pin";
 			sourceTree = "<group>";
 		};
 		E2BD5DE02C762412006FB4B7 /* Utils */ = {
