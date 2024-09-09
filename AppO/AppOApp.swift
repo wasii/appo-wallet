@@ -11,25 +11,10 @@ import SwiftUI
 struct AppOApp: App {
     @StateObject var session: AppEnvironment = AppEnvironment.shared
     
-    init() {
-        // Customize navigation bar appearance
-//        let appearance = UINavigationBarAppearance()
-//        appearance.backgroundColor = UIColor.systemBlue // Set your desired color
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-//        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-//        
-//        // Apply the appearance settings
-//        UINavigationBar.appearance().standardAppearance = appearance
-//        UINavigationBar.appearance().compactAppearance = appearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-    }
+    init() {}
     
     var body: some Scene {
         WindowGroup {
-            //            InitialView(navigator: .init())
-            //            HomeScreenView(homeNavigator: .init(), presentSideMenu: .constant(false ))
-            //            MainTabbedView()
-            
             ZStack {
                 if session.isLoggedIn {
                     MainTabbedView()
@@ -41,6 +26,5 @@ struct AppOApp: App {
             }
             .animation(.easeInOut, value: session.isLoggedIn)
         }
-        .environment(\.colorScheme, .light)
     }
 }
