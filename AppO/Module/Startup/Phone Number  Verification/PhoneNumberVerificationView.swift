@@ -34,6 +34,7 @@ struct PhoneNumberVerificationView: View {
             Rectangle()
                 .fill(Color.appBlue)
                 .frame(height: 450)
+                .edgesIgnoringSafeArea(.all)
             VStack(spacing: 20) {
                 Image("appo-cardlogo")
                     .resizable()
@@ -114,6 +115,10 @@ struct PhoneNumberVerificationView: View {
             }
             .zIndex(1)
             .offset(y: 100)
+            CurvedShape()
+                .fill(Color.appBlue)
+                .frame(height: 100)
+                .offset(y: 450)
         }
         .ignoresSafeArea(.keyboard)
         .onTapGesture {
@@ -205,7 +210,7 @@ struct PhoneNumberVerificationView: View {
             }
             Button {
                 hideKeyboard()
-                viewModel.coordinatorStatePublisher.send(.with(.confirm))
+//                viewModel.coordinatorStatePublisher.send(.with(.confirm))
             } label: {
                 Text("NEXT ")
                     .font(AppFonts.headline4)

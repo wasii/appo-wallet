@@ -21,7 +21,7 @@ struct VerifyOTPView: View {
                 .zIndex(1)
             Rectangle()
                 .fill(Color.appBlue)
-                .frame(height: 480)
+                .frame(height: 430)
             
             VStack(spacing: 20) {
                 Image("appopay-new")
@@ -67,6 +67,10 @@ struct VerifyOTPView: View {
             }
             .zIndex(1)
             .offset(y: 100)
+            CurvedShape()
+                .fill(Color.appBlue)
+                .frame(height: 100)
+                .offset(y: 430)
         }
         .edgesIgnoringSafeArea(.top)
         .ignoresSafeArea(.keyboard)
