@@ -57,55 +57,9 @@ struct HomeScreenView: View {
                             .foregroundStyle(.appBlue)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        VStack(alignment: .leading, spacing: 20) {
-                            HStack(spacing: 20) {
-                                VStack {
-                                    Image("recharge-icon")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .padding()
-                                        .background(Circle().fill(Color.appBlueForeground))
-                                    Text("Recharge")
-                                        .foregroundColor(.appBlue)
-                                        .font(.headline)
-                                }
-                                VStack {
-                                    Image("nfc-icon")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .padding()
-                                        .background(Circle().fill(Color.appBlueForeground))
-                                    Text("NFC")
-                                        .foregroundColor(.appBlue)
-                                        .font(.headline)
-                                }
-                                VStack {
-                                    Image("scan-icon")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .padding()
-                                        .background(Circle().fill(Color.appBlueForeground))
-                                    Text("Scan")
-                                        .foregroundColor(.appBlue)
-                                        .font(.headline)
-                                }
-                                VStack {
-                                    Image("c-2-c-icon")
-                                        .resizable()
-                                        .frame(width: 40, height: 40)
-                                        .padding()
-                                        .background(Circle().fill(Color.appBlueForeground))
-                                    Text("C-2-C")
-                                        .foregroundColor(.appBlue)
-                                        .font(.headline)
-                                }
-                            }
-                        }
-                        .padding(.horizontal)
-//                        .frame(maxWidth: .infinity, alignment: .leading)
+                        ServicesButtons
                     }
                     .padding()
-                    .frame(maxWidth: .infinity)
                 }
                 BottomNavigation()
             }
@@ -147,22 +101,22 @@ struct HomeScreenView: View {
 
 extension HomeScreenView {
     var WalletTypeView: some View {
-        ScrollView(.horizontal) {
-            HStack(spacing: 20) {
-                ForEach(walletTypes, id: \.self) { wallet in
-                    HStack {
-                        Text(wallet.title)
-                    }
-                    .foregroundStyle(currentWallet == wallet.title ? .white : .appBlue)
-                    .padding()
-                    .background( currentWallet == wallet.title ? .appBlue : .gray.opacity(0.08))
-                    .cornerRadius(20, corners: .allCorners)
-                    .onTapGesture {
-                        withAnimation {
-                            currentWallet = wallet.title
-                        }
+        HStack() {
+            Spacer()
+            ForEach(walletTypes, id: \.self) { wallet in
+                HStack {
+                    Text(wallet.title)
+                }
+                .foregroundStyle(currentWallet == wallet.title ? .white : .appBlue)
+                .padding()
+                .background( currentWallet == wallet.title ? .appBlue : .gray.opacity(0.08))
+                .cornerRadius(20, corners: .allCorners)
+                .onTapGesture {
+                    withAnimation {
+                        currentWallet = wallet.title
                     }
                 }
+                Spacer()
             }
         }
     }
@@ -194,6 +148,53 @@ extension HomeScreenView {
             .foregroundStyle(.white)
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+    
+    var ServicesButtons: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 15) {
+                VStack {
+                    Image("recharge-icon")
+                        .resizable()
+                        .frame(width: 35, height: 35)
+                        .padding()
+                        .background(Circle().fill(Color.appBlueForeground))
+                    Text("Recharge")
+                        .foregroundColor(.appBlue)
+                        .font(.headline)
+                }
+                VStack {
+                    Image("nfc-icon")
+                        .resizable()
+                        .frame(width: 35, height: 35)
+                        .padding()
+                        .background(Circle().fill(Color.appBlueForeground))
+                    Text("NFC")
+                        .foregroundColor(.appBlue)
+                        .font(.headline)
+                }
+                VStack {
+                    Image("scan-icon")
+                        .resizable()
+                        .frame(width: 35, height: 35)
+                        .padding()
+                        .background(Circle().fill(Color.appBlueForeground))
+                    Text("Scan")
+                        .foregroundColor(.appBlue)
+                        .font(.headline)
+                }
+                VStack {
+                    Image("c-2-c-icon")
+                        .resizable()
+                        .frame(width: 35, height: 35)
+                        .padding()
+                        .background(Circle().fill(Color.appBlueForeground))
+                    Text("C-2-C")
+                        .foregroundColor(.appBlue)
+                        .font(.headline)
+                }
+            }
         }
     }
 }

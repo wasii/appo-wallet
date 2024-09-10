@@ -15,10 +15,8 @@ struct MainTabbedView: View {
     var body: some View {
         ZStack{
             
-            TabView(selection: $selectedSideMenuTab) {
-                HomeScreenView(homeNavigator: .init(), presentSideMenu: $presentSideMenu, viewModel: viewModel)
-                    .tag(0)
-            }
+            HomeScreenView(homeNavigator: .init(), presentSideMenu: $presentSideMenu, viewModel: viewModel)
+                .tag(0)
             
             SideMenu(isShowing: $presentSideMenu, content: AnyView(SideMenuView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu) { state in
                 switch state {

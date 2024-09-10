@@ -13,9 +13,6 @@ struct NavigationBarView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-//            RoundedRectangle(cornerRadius: 30, style: .continuous)
-//                .fill(Color.appBlue)
-//                .frame(height: 100)
             Rectangle()
                 .fill(Color.appBlue)
                 .frame(height: 100)
