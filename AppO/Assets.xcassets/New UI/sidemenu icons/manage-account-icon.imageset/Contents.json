@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "manage-account-icon.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

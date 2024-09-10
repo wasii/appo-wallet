@@ -23,7 +23,29 @@ struct HomeScreenView: View {
     var body: some View {
         NavigationStack(path: $homeNavigator.navPath) {
             VStack(spacing: 0) {
-                HomeScreenNavigationBar(title: "🇮🇳 India (IN)")
+                ZStack(alignment: .bottom) {
+                    Rectangle()
+                        .fill(Color.appBlue)
+                        .frame(height: 100)
+                        .cornerRadius(40, corners: [.bottomLeft, .bottomRight])
+                    HStack(spacing: 20) {
+                        Button(action: {
+                            presentSideMenu.toggle()
+                        }) {
+                            Image("sidebar-menu")
+                                .resizable()
+                                .foregroundColor(.white)
+                                .frame(width: 30, height: 30)
+                        }
+                        Text("🇮🇳 India (IN)")
+                            .foregroundColor(.white)
+                            .font(AppFonts.headline4)
+                            .bold()
+                        Spacer()
+                    }
+                    .padding()
+                }
+                
                 ScrollView {
                     VStack(alignment: .center, spacing: 15) {
                         WalletTypeView
@@ -89,6 +111,31 @@ struct HomeScreenView: View {
             }
             .edgesIgnoringSafeArea(.top)
             .toolbar(.hidden, for: .navigationBar)
+            .onReceive(viewModel.coordinatorState) { state in
+                switch (state.state, state.transferable) {
+                case (.navigateToManageAccounts, _):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        homeNavigator.navigate(to: .manageAccounts(viewModel: .init()))
+                    }
+                case (.navigateToMyQRCode, _):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        homeNavigator.navigate(to: .myQR(viewModel: .init()))
+                    }
+                case (.navigateToCardtoCard, _):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        homeNavigator.navigate(to: .cardToCard(viewModel: .init()))
+                    }
+                case (.navigateToPayments, _):
+                    break
+                case (.navigateToSettings, _):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        homeNavigator.navigate(to: .settings(viewModel: .init()))
+                    }
+                }
+            }
+            .navigationDestination(for: HomeNavigator.Destination.self) { destination in
+                homeNavigator.view(for: destination)
+            }
         }
         .environmentObject(homeNavigator)
     }
