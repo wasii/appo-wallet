@@ -214,7 +214,7 @@ extension RegistrationView {
         .cornerRadius(10, corners: .allCorners)
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.appBlueForeground.opacity(0.5))
+                .fill(Color.appBlueForeground)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 10)
@@ -235,7 +235,7 @@ extension RegistrationView {
         .cornerRadius(10, corners: .allCorners)
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.appBlueForeground.opacity(0.5))
+                .fill(Color.appBlueForeground)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 10)
@@ -270,7 +270,7 @@ extension RegistrationView {
             .cornerRadius(10, corners: .allCorners)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.appBlueForeground.opacity(0.5))
+                    .fill(Color.appBlueForeground)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -295,7 +295,7 @@ extension RegistrationView {
                 .foregroundColor(.black)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground.opacity(0.5))
+                        .fill(Color.appBlueForeground)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -320,7 +320,7 @@ extension RegistrationView {
                 .foregroundColor(.black)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground.opacity(0.5))
+                        .fill(Color.appBlueForeground)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -345,7 +345,7 @@ extension RegistrationView {
                 .foregroundColor(.black)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground.opacity(0.5))
+                        .fill(Color.appBlueForeground)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -370,7 +370,7 @@ extension RegistrationView {
             .cornerRadius(10, corners: .allCorners)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.appBlueForeground.opacity(0.5))
+                    .fill(Color.appBlueForeground)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -395,7 +395,7 @@ extension RegistrationView {
                 .foregroundColor(.black)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground.opacity(0.5))
+                        .fill(Color.appBlueForeground)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -420,7 +420,7 @@ extension RegistrationView {
                 .foregroundColor(.black)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground.opacity(0.5))
+                        .fill(Color.appBlueForeground)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -456,7 +456,7 @@ extension RegistrationView {
             .frame(width: 200)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.appBlueForeground.opacity(0.5))
+                    .fill(Color.appBlueForeground)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -491,7 +491,7 @@ extension RegistrationView {
             .frame(width: 200)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.appBlueForeground.opacity(0.5))
+                    .fill(Color.appBlueForeground)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -527,7 +527,7 @@ extension RegistrationView {
             .frame(width: 200)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.appBlueForeground.opacity(0.5))
+                    .fill(Color.appBlueForeground)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -553,7 +553,7 @@ extension RegistrationView {
                 .keyboardType(.emailAddress)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground.opacity(0.5))
+                        .fill(Color.appBlueForeground)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -574,7 +574,7 @@ extension RegistrationView {
                 .keyboardType(.default)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground.opacity(0.5))
+                        .fill(Color.appBlueForeground)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -639,7 +639,7 @@ struct GenderPickerView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.appBlueForeground.opacity(0.5))
+                .fill(Color.appBlueForeground)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 10)
@@ -710,7 +710,7 @@ struct MaritalStatusPickerView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.appBlueForeground.opacity(0.5))
+                .fill(Color.appBlueForeground)
         )
         .overlay(
             RoundedRectangle(cornerRadius: 10)

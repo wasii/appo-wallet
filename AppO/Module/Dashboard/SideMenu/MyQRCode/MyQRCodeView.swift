@@ -11,7 +11,7 @@ struct MyQRCodeView: View {
     @EnvironmentObject var homeNavigator: HomeNavigator
     var body: some View {
         VStack(spacing: 20) {
-            NavigationBarView(title: "")
+            NavigationBarView(title: "My QR Code")
             
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
@@ -23,9 +23,21 @@ struct MyQRCodeView: View {
                     
                     Spacer()
                 }
+                .padding(.horizontal)
             }
+            
+            Button {
+            } label: {
+                Text("SUBMIT")
+                    .font(AppFonts.bodyEighteenBold)
+                    .frame(width: 190, height: 45)
+                    .background(Color.appBlue)
+                    .clipShape(Capsule())
+                    .foregroundColor(.white)
+            }
+            BottomNavigation()
         }
-        .padding()
+        .edgesIgnoringSafeArea(.top)
         .background(Color.appBackground)
         .toolbar(.hidden, for: .navigationBar)
     }
@@ -49,7 +61,8 @@ struct QRCodeImageView: View {
                 Text("Your personal AppO QR ID.")
                 Text("Show this QR to verify your identity.")
             }
-            .font(.footnote)
+            .font(AppFonts.regularFourteen)
+            .foregroundStyle(.appBlue)
             
             HStack {
                 Text("🇮🇳")
@@ -57,18 +70,20 @@ struct QRCodeImageView: View {
                 Text("India")
                 Text("+91")
             }
+            .foregroundStyle(.appBlue)
+            .font(AppFonts.regular4)
             .font(.title2)
-            .padding(.top, 10)
+            .padding(.top, 5)
             
             Spacer()
         }
         .frame(maxWidth: 300)
-        .frame(height: 390)
-        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 25))
+        .frame(height: 350)
+        .background(.appBlueForeground)
+        .clipShape(RoundedRectangle(cornerRadius: 15))
         .overlay(
-            RoundedRectangle(cornerRadius: 25)
-                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color.appBlue, lineWidth: 1)
         )
         .frame(maxWidth: .infinity, alignment: .center)
     }
@@ -76,27 +91,26 @@ struct QRCodeImageView: View {
 
 
 struct QRCodeShowBalance: View {
+    @State private var isShow: Bool = true
+    
     var body: some View {
         VStack {
             HStack {
                 Text("Available Balance")
-                    .fontWeight(.semibold)
-                    .foregroundStyle(Color.gray)
-                Text("👁️")
+                    .font(AppFonts.bodyTwentyBold)
+                    .foregroundStyle(.appBlue)
+                Toggle("", isOn: $isShow)
+                    .toggleStyle(CustomToggleStyle())
+                    .labelsHidden()
                 Spacer()
-                
-                Button {} label: {
-                    Text("Show")
-                        .foregroundStyle(Color.black)
-                }
             }
         }
         .padding()
-        .background(Color.white)
+        .background(.appBlueForeground)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                .stroke(Color.appBlue, lineWidth: 1)
         )
     }
 }
@@ -105,28 +119,30 @@ struct QRCodeProfileDetail: View {
     var body: some View {
         VStack {
             HStack {
-                Image("user_profile")
+                Image("accountant")
                     .resizable()
-                    .frame(width: 45, height: 45)
+                    .frame(width: 25, height: 25)
                 
                 Text("Profile Details")
-                    .font(.title2)
+                    .font(AppFonts.bodyTwentyBold)
                     .padding(.leading, 15)
+                    .foregroundStyle(.appBlue)
                 
                 Spacer()
                 Button {} label: {
-                    Image("forword_track")
+                    Image(systemName: "chevron.right")
                         .resizable()
-                        .frame(width: 25, height: 20)
+                        .frame(width: 13, height: 20)
+                        .foregroundStyle(.appBlue)
                 }
             }
         }
         .padding()
-        .background(Color.white)
+        .background(.appBlueForeground)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                .stroke(.appBlue, lineWidth: 1)
         )
     }
 }
