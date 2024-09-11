@@ -136,8 +136,9 @@ extension HomeScreenView {
                 }
                 .foregroundStyle(currentWallet == wallet ? .white : .appBlue)
                 .padding()
+                .frame(height: 40)
                 .background(currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
-                .cornerRadius(20)
+                .cornerRadius(60)
                 .onTapGesture {
                     withAnimation {
                         currentWallet = wallet
