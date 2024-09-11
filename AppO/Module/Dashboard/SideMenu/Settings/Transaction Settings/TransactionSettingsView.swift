@@ -84,7 +84,7 @@ struct TransactionSettingsView: View {
                     .customButtonStyle()
             }
         }
-        .padding()
+        .edgesIgnoringSafeArea(.top)
         .background(Color.appBackground)
         .toolbar(.hidden, for: .navigationBar)
     }

@@ -7,18 +7,45 @@
 
 import SwiftUI
 
+enum WalletCardType: CaseIterable {
+    case appo
+    case unionpay
+    case visa
+    
+    var imageName: String {
+        switch self {
+        case .appo:
+            return "appo-pay-card"
+        case .unionpay:
+            return "appopay-unionpay-card-visible"
+        case .visa:
+            return "appopay-visa-card"
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .appo:
+            return "AppO"
+        case .unionpay:
+            return "Union Pay"
+        case .visa:
+            return "Visa"
+        }
+    }
+}
+
 struct HomeScreenView: View {
     @StateObject var homeNavigator: HomeNavigator
     @Binding var presentSideMenu: Bool
     
     @StateObject var viewModel: HomeScreenViewModel
     
-    @State private var currentWallet = "AppO"
-    var walletTypes: [WalletTypes] = [
-        WalletTypes(title: "AppO"),
-        WalletTypes(title: "Union Pay"),
-        WalletTypes(title: "Visa")
-    ]
+    @State private var currentWallet: WalletCardType = .appo
+
+    var walletTypes: [WalletCardType] {
+        WalletCardType.allCases
+    }
     
     var body: some View {
         NavigationStack(path: $homeNavigator.navPath) {
@@ -101,19 +128,19 @@ struct HomeScreenView: View {
 
 extension HomeScreenView {
     var WalletTypeView: some View {
-        HStack() {
+        HStack {
             Spacer()
             ForEach(walletTypes, id: \.self) { wallet in
                 HStack {
                     Text(wallet.title)
                 }
-                .foregroundStyle(currentWallet == wallet.title ? .white : .appBlue)
+                .foregroundStyle(currentWallet == wallet ? .white : .appBlue)
                 .padding()
-                .background( currentWallet == wallet.title ? .appBlue : .gray.opacity(0.08))
-                .cornerRadius(20, corners: .allCorners)
+                .background(currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
+                .cornerRadius(20)
                 .onTapGesture {
                     withAnimation {
-                        currentWallet = wallet.title
+                        currentWallet = wallet
                     }
                 }
                 Spacer()
@@ -134,7 +161,7 @@ extension HomeScreenView {
     
     var CardView: some View {
         ZStack {
-            Image("appo-pay-card")
+            Image(currentWallet.imageName)
                 .resizable()
                 .frame(height: 220)
             

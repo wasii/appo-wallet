@@ -16,13 +16,14 @@ struct AppOApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                if session.isLoggedIn {
-                    MainTabbedView()
-                        .transition(.move(edge: .trailing)) // Slide in from the right
-                } else {
-                    InitialView(navigator: .init())
-                        .transition(.move(edge: .leading)) // Slide in from the left
-                }
+                MainTabbedView()
+//                if session.isLoggedIn {
+//                    MainTabbedView()
+//                        .transition(.move(edge: .trailing)) // Slide in from the right
+//                } else {
+//                    InitialView(navigator: .init())
+//                        .transition(.move(edge: .leading)) // Slide in from the left
+//                }
             }
             .animation(.easeInOut, value: session.isLoggedIn)
         }
