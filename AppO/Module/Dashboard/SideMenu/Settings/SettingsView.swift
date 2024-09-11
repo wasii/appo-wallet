@@ -12,41 +12,42 @@ struct SettingsView: View {
     @EnvironmentObject var homeNavigator: HomeNavigator
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading) {
             NavigationBarView(title: "Settings")
                 .padding(.bottom, 20)
             
-            ForEach(SettingsRowType.allCases, id: \.self){ row in
-                Button {
-                    self.navigate(index: row.rawValue)
-                } label: {
-                    VStack(alignment: .leading){
-                        HStack(spacing: 20){
-                            ZStack{
-                                Circle()
-                                    .fill(Color.appYellow)
-                                    .frame(width: 50, height: 50)
-                                Image(systemName: row.iconName)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 25, height: 25)
-                                    .foregroundColor(.white)
+            VStack {
+                ForEach(SettingsRowType.allCases, id: \.self){ row in
+                    Button {
+                        self.navigate(index: row.rawValue)
+                    } label: {
+                        VStack(alignment: .leading){
+                            HStack {
+                                HStack {
+                                    Spacer()
+                                    Image(row.iconName)
+                                        .resizable()
+                                        .frame(width: 35, height: 35)
+                                        .foregroundColor(.white)
+                                }
+                                .padding(.horizontal)
+                                .padding(.vertical, 10)
+                                .background(Color.appBlueForeground)
+                                .cornerRadius(20, corners: [.topRight, .bottomRight])
+                                .frame(width: 105, height: 55)
+                                
+                                Text(row.title)
+                                    .foregroundColor(.appBlue)
+                                    .font(AppFonts.bodyTwentyBold)
+                                Spacer()
                             }
-                            .frame(width: 40, height: 40)
-                            Text(row.title)
-                                .font(.system(size: 18, weight: .regular))
-                                .foregroundColor(.black.opacity(0.7))
-                            Spacer()
                         }
-                        .padding(.leading, 5)
-                        
-                        Divider()
                     }
                 }
             }
             Spacer()
         }
-        .padding()
+        .edgesIgnoringSafeArea(.top)
         .background(Color.appBackground)
         .toolbar(.hidden, for: .navigationBar)
     }
@@ -104,17 +105,17 @@ enum SettingsRowType: Int, CaseIterable{
     var iconName: String{
         switch self {
         case .setCardStatus:
-            return "creditcard"
+            return "set-card-status-icon"
         case .changeTransactionPin:
-            return "creditcard"
+            return "change-transaction-pin-icon"
         case .replaceCard:
-            return "creditcard"
+            return "replace-card-icon"
         case .renewCard:
-            return "creditcard"
+            return "renew-card-icon"
         case .cardSettings:
-            return "creditcard"
+            return "card-settings-icon"
         case .addOnCard:
-            return "creditcard"
+            return "add-on-card-icon"
         }
     }
 }
