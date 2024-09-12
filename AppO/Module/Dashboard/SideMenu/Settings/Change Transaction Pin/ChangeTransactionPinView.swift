@@ -24,78 +24,97 @@ struct ChangeTransactionPinView: View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title: "Change Transaction Pin")
             
-            Text("do not share your pin with anyone and keep it in a safe place.")
-                .textCase(.uppercase)
-                .foregroundStyle(Color.appOrange)
-                .font(.title3)
-                .fontWeight(.regular)
-            
-            VStack(spacing: 30) {
-                HStack {
-                    Text("Old Pin")
-                        .foregroundStyle(Color.appBlue)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    Text("Enable")
-                        .font(.system(size: 15))
-                        .fontWeight(.regular)
-                    Toggle("Enable", isOn: $oldPinSwitch)
-                        .labelsHidden() // Hides the default label of the Toggle
-                        .toggleStyle(SwitchToggleStyle(tint: .appBlue))
+            VStack(alignment: .leading, spacing: 20) {
+                Text("do not share your pin with anyone and keep it in a safe place.")
+                    .textCase(.uppercase)
+                    .foregroundStyle(.appBlue)
+                    .font(AppFonts.regularTwenty)
+                
+                VStack {
+                    OldPinView
+                    NewPinView
+                    ConfirmPinView
                 }
-                .padding(.top, 20)
-                
-                OTPInputView(otpDigits: $oldPIN)
-                    .padding(.top, -40)
+                .frame(width: 320)
+                .frame(maxWidth: .infinity, alignment: .center)
                 
                 
-                HStack {
-                    Text("New Pin")
-                        .foregroundStyle(Color.appBlue)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    Text("Enable")
-                        .font(.system(size: 15))
-                        .fontWeight(.regular)
-                    Toggle("Enable", isOn: $createPinSwitch)
-                        .labelsHidden() // Hides the default label of the Toggle
-                        .toggleStyle(SwitchToggleStyle(tint: .appBlue))
+                Button {} label: {
+                    Text("Submit")
+                        .customButtonStyle()
                 }
-                
-                OTPInputView(otpDigits: $newPIN)
-                    .padding(.top, -40)
-                
-                
-                HStack {
-                    Text("Confirm New Pin")
-                        .foregroundStyle(Color.appBlue)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    Text("Enable")
-                        .font(.system(size: 15))
-                        .fontWeight(.regular)
-                    Toggle("Enable", isOn: $confirmPinSwitch)
-                        .labelsHidden() // Hides the default label of the Toggle
-                        .toggleStyle(SwitchToggleStyle(tint: .appBlue))
-                }
-                
-                OTPInputView(otpDigits: $confirmPIN)
-                    .padding(.top, -40)
-                
             }
-            .frame(width: 300)
-            .frame(maxWidth: .infinity, alignment: .center)
+            .padding()
             
-            
-            Button {} label: {
-                Text("Submit")
-                    .customButtonStyle()
-            }
             Spacer()
         }
-        .padding()
+        .ignoresSafeArea(.keyboard)
+        .edgesIgnoringSafeArea(.top)
         .background(Color.appBackground)
         .toolbar(.hidden, for: .navigationBar)
+    }
+}
+
+extension ChangeTransactionPinView {
+    var OldPinView: some View {
+        VStack {
+            HStack {
+                Text("Old Pin")
+                    .font(AppFonts.bodyTwentyBold)
+                Spacer()
+                Text("Enable")
+                    .font(AppFonts.regularSixteen)
+                
+                Toggle("", isOn: $oldPinSwitch)
+                    .toggleStyle(CustomToggleStyle())
+                    .labelsHidden()
+            }
+            .foregroundStyle(Color.appBlue)
+            .padding(.top, 20)
+            
+            OTPInputView(otpDigits: $oldPIN)
+                .padding(.top, -10)
+        }
+    }
+    
+    var NewPinView: some View {
+        VStack {
+            HStack {
+                Text("New Pin")
+                    .font(AppFonts.bodyTwentyBold)
+                Spacer()
+                Text("Enable")
+                    .font(AppFonts.regularSixteen)
+                Toggle("Enable", isOn: $createPinSwitch)
+                    .toggleStyle(CustomToggleStyle())
+                    .labelsHidden()
+            }
+            .foregroundStyle(Color.appBlue)
+            .padding(.top, 20)
+            
+            OTPInputView(otpDigits: $newPIN)
+                .padding(.top, -10)
+        }
+    }
+    
+    var ConfirmPinView: some View {
+        VStack {
+            HStack {
+                Text("Confirm New Pin")
+                    .font(AppFonts.bodyTwentyBold)
+                Spacer()
+                Text("Enable")
+                    .font(AppFonts.regularSixteen)
+                Toggle("Enable", isOn: $confirmPinSwitch)
+                    .toggleStyle(CustomToggleStyle())
+                    .labelsHidden()
+            }
+            .foregroundStyle(Color.appBlue)
+            .padding(.top, 20)
+            
+            OTPInputView(otpDigits: $confirmPIN)
+                .padding(.top, -10)
+        }
     }
 }
 

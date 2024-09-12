@@ -123,7 +123,7 @@ struct CustomToggleStyle: ToggleStyle {
     func makeBody(configuration: Configuration) -> some View {
         HStack {
             RoundedRectangle(cornerRadius: 16)
-                .fill(configuration.isOn ? Color.gray : .appBlue)
+                .fill(configuration.isOn ? .appBlue : Color.gray)// : .appBlue)
                 .frame(width: 60, height: 30)
                 .overlay(
                     Image(systemName: "pause.circle.fill")
