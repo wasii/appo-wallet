@@ -10,22 +10,82 @@ import SwiftUI
 struct RenewCardView: View {
     @StateObject var viewModel: RenewCardViewModel
     @EnvironmentObject var homeNavigator: HomeNavigator
+    @State private var currentWallet: WalletCardType = .visa
+    var walletTypes: [WalletCardType] {
+        WalletCardType.allCases
+    }
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title: "Renew Card")
-            
-            CardButtonView(cardType: "Visa Gold Card", cardNumber: "423671******0129" ,cardExpiry: "01/30")
-            
+            ScrollView {
+                VStack(alignment: .center) {
+                    WalletTypeView
+                    HStack {
+                        Text("Card Status: ")
+                            .font(AppFonts.regularEighteen)
+                        + Text("First Use Card")
+                            .font(AppFonts.bodyEighteenBold)
+                    }
+                    .foregroundStyle(.appBlue)
+                    .padding(.top, 20)
+                    CardView
+                }
+                .padding(.horizontal)
+            }
             Spacer()
-            
             Button {} label: {
                 Text("Submit")
-                    .customButtonStyle()
+                    .customButtonStyleWithBordered()
+            }
+            .padding()
+            BottomNavigation()
+        }
+        .edgesIgnoringSafeArea(.top)
+        .toolbar(.hidden, for: .navigationBar)
+    }
+}
+
+extension RenewCardView {
+    var WalletTypeView: some View {
+        HStack {
+            Spacer()
+            ForEach(walletTypes, id: \.self) { wallet in
+                HStack {
+                    Text(wallet.title)
+                }
+                .foregroundStyle(currentWallet == wallet ? .white : .appBlue)
+                .padding()
+                .frame(height: 40)
+                .background(currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
+                .cornerRadius(60)
+                .onTapGesture {
+                    withAnimation {
+                        currentWallet = wallet
+                    }
+                }
+                Spacer()
             }
         }
-        .padding()
-        .background(Color.appBackground)
-        .toolbar(.hidden, for: .navigationBar)
+    }
+    
+    var CardView: some View {
+        ZStack {
+            Image(currentWallet.imageName)
+                .resizable()
+                .frame(height: 220)
+                .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
+            
+            VStack(alignment: .leading) {
+                Spacer()
+                Text("6262 2303 5678 9010")
+                    .font(AppFonts.regularTwenty)
+                Text("Expiry: 10/2016 JOE CHURCO")
+                    .font(AppFonts.bodyFourteenBold)
+            }
+            .foregroundStyle(.white)
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 }
 
