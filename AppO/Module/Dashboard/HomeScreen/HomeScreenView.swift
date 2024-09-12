@@ -165,6 +165,7 @@ extension HomeScreenView {
             Image(currentWallet.imageName)
                 .resizable()
                 .frame(height: 220)
+                .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
             
             VStack(alignment: .leading) {
                 Spacer()

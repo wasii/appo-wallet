@@ -12,57 +12,101 @@ struct CardStatusView: View {
     @StateObject var viewModel: CardStatusViewModel
     @EnvironmentObject var homeNavigator: HomeNavigator
     
+    @State private var isActive: Bool = true
+    @State private var isBlock:  Bool = true
+    
+    @State private var currentWallet: WalletCardType = .visa
+    var walletTypes: [WalletCardType] {
+        WalletCardType.allCases
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title: "Card Status")
-            CardButtonView(cardType: "Visa Gold Card", cardNumber: "423671******0129" ,cardExpiry: "01/30")
-            
-            Text("You can set below Status of the Card.")
-                .font(.system(size: 25, weight: .medium))
-                .foregroundStyle(Color.black.opacity(0.8))
-            
-            VStack(alignment: .leading) {
-                HStack {
-                    RadioButtonField(id: "inactive", label: "InActive", isSelected: cardStatus == "inactive") {
-                        cardStatus = "inactive"
+            ScrollView {
+                VStack(alignment: .center, spacing: 20) {
+                    WalletTypeView
+                    CardView
+                    
+                    Text("You can set below Status of the Card")
+                        .font(AppFonts.bodyEighteenBold)
+                        .foregroundStyle(.appBlue)
+                        .padding(.bottom, 30)
+                    
+                    HStack {
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("Active")
+                            Toggle("", isOn: $isActive)
+                                .toggleStyle(CustomToggleStyle())
+                                .labelsHidden()
+                        }
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 5) {
+                            Text("Block")
+                            Toggle("", isOn: $isBlock)
+                                .toggleStyle(CustomToggleStyle())
+                                .labelsHidden()
+                        }
                     }
-                    Spacer()
-                    RadioButtonField(id: "active", label: "Active", isSelected: cardStatus == "active") {
-                        cardStatus = "active"
-                    }
+                    .font(AppFonts.bodyTwentyBold)
+                    .foregroundStyle(.appBlue)
+                    .padding(.horizontal, 40)
                 }
-                HStack {
-                    RadioButtonField(id: "lost", label: "Lost", isSelected: cardStatus == "lost") {
-                        cardStatus = "lost"
-                    }
-                    Spacer()
-                    RadioButtonField(id: "stolen", label: "Stolen", isSelected: cardStatus == "stolen") {
-                        cardStatus = "stolen"
-                    }
-                }
-                HStack {
-                    RadioButtonField(id: "tempblock", label: "Temp Block", isSelected: cardStatus == "tempblock") {
-                        cardStatus = "tempblock"
-                    }
-                    Spacer()
-                    RadioButtonField(id: "close", label: "Close", isSelected: cardStatus == "close") {
-                        cardStatus = "close"
-                    }
-                }
+                .padding(.horizontal)
             }
-            .frame(maxWidth: UIScreen.main.bounds.width / 1.15)
-            
+            Spacer()
             Button {} label: {
                 Text("Submit")
-                    .customButtonStyle()
+                    .customButtonStyleWithBordered()
             }
-            .padding(.top, 20)
-            
-            Spacer()
+            .padding()
+            BottomNavigation()
         }
-        .padding()
-        .background(Color.appBackground)
+        .edgesIgnoringSafeArea(.top)
         .toolbar(.hidden, for: .navigationBar)
+    }
+    
+    var WalletTypeView: some View {
+        HStack {
+            Spacer()
+            ForEach(walletTypes, id: \.self) { wallet in
+                HStack {
+                    Text(wallet.title)
+                }
+                .foregroundStyle(currentWallet == wallet ? .white : .appBlue)
+                .padding()
+                .frame(height: 40)
+                .background(currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
+                .cornerRadius(60)
+                .onTapGesture {
+                    withAnimation {
+                        currentWallet = wallet
+                    }
+                }
+                Spacer()
+            }
+        }
+    }
+    
+    var CardView: some View {
+        ZStack {
+            Image(currentWallet.imageName)
+                .resizable()
+                .frame(height: 220)
+                .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
+            
+            VStack(alignment: .leading) {
+                Spacer()
+                Text("6262 2303 5678 9010")
+                    .font(AppFonts.regularTwenty)
+                Text("Expiry: 10/2016 JOE CHURCO")
+                    .font(AppFonts.bodyFourteenBold)
+            }
+            .foregroundStyle(.white)
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        
     }
 }
 

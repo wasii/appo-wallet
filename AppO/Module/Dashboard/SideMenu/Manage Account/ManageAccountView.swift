@@ -23,6 +23,7 @@ struct ManageAccountView: View {
                     AppoPayUnionCard
                     AppoPayVisaCard
                 }
+                .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
                 .scrollIndicators(.hidden)
                 .onTapGesture {
                     homeNavigator.navigate(to: .transactionsDetails(viewModel: .init()))

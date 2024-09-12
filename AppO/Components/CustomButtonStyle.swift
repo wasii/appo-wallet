@@ -18,3 +18,19 @@ struct CustomButtonStyle: ViewModifier {
             .foregroundColor(.white)
     }
 }
+
+struct CustomButtonStyleBordered: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(AppFonts.headline4)
+            .frame(maxWidth: .infinity)
+            .frame(height: 60)
+            .background(.white)
+            .cornerRadius(10)
+            .foregroundColor(.appBlue)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.appBlue, lineWidth: 2)
+            )
+    }
+}
