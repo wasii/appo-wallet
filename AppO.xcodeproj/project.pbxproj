@@ -75,6 +75,7 @@
 		E272982F2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E272982C2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf */; };
 		E27298302C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E272982D2C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf */; };
 		E27298352C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E27298342C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf */; };
+		E2850B282C92CADC009A77B9 /* WithdrawLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2850B272C92CADC009A77B9 /* WithdrawLimitView.swift */; };
 		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
 		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
 		E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */; };
@@ -169,6 +170,7 @@
 		E272982C2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Bold.otf"; sourceTree = "<group>"; };
 		E272982D2C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Italic.otf"; sourceTree = "<group>"; };
 		E27298342C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Regular.otf"; sourceTree = "<group>"; };
+		E2850B272C92CADC009A77B9 /* WithdrawLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawLimitView.swift; sourceTree = "<group>"; };
 		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinView.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				E25B904C2C7CF3CB00A6F871 /* RadioButtonView.swift */,
 				E2F27AE32C8EBF5700251BCE /* CurvedShape.swift */,
 				E22074AC2C9002A700B513F7 /* TransactionPinSetupView.swift */,
+				E2850B272C92CADC009A77B9 /* WithdrawLimitView.swift */,
 			);
 			path = "Common Views";
 			sourceTree = "<group>";
@@ -721,6 +724,7 @@
 				E25B90462C7CEC8200A6F871 /* SettingsViewModel.swift in Sources */,
 				E2C9CB112C785CAF00B47B38 /* SetupMobilePinInteractor.swift in Sources */,
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
+				E2850B282C92CADC009A77B9 /* WithdrawLimitView.swift in Sources */,
 				E22658782C7C703500DF8506 /* HomeScreenView.swift in Sources */,
 				E22658942C7CB5DF00DF8506 /* MyQRCodeView.swift in Sources */,
 				E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */,

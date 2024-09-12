@@ -29,6 +29,8 @@ struct ChangeTransactionPinView: View {
                     .textCase(.uppercase)
                     .foregroundStyle(.appBlue)
                     .font(AppFonts.regularTwenty)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 VStack {
                     OldPinView
@@ -45,13 +47,17 @@ struct ChangeTransactionPinView: View {
                 }
             }
             .padding()
-            
             Spacer()
+            
+            BottomNavigation()
         }
         .ignoresSafeArea(.keyboard)
         .edgesIgnoringSafeArea(.top)
         .background(Color.appBackground)
         .toolbar(.hidden, for: .navigationBar)
+        .onTapGesture {
+            hideKeyboard()
+        }
     }
 }
 
@@ -72,7 +78,7 @@ extension ChangeTransactionPinView {
             .foregroundStyle(Color.appBlue)
             .padding(.top, 20)
             
-            OTPInputView(otpDigits: $oldPIN)
+            OTPInputView(otpDigits: $oldPIN, isSecure: true)
                 .padding(.top, -10)
         }
     }
@@ -92,7 +98,7 @@ extension ChangeTransactionPinView {
             .foregroundStyle(Color.appBlue)
             .padding(.top, 20)
             
-            OTPInputView(otpDigits: $newPIN)
+            OTPInputView(otpDigits: $newPIN, isSecure: true)
                 .padding(.top, -10)
         }
     }
@@ -112,7 +118,7 @@ extension ChangeTransactionPinView {
             .foregroundStyle(Color.appBlue)
             .padding(.top, 20)
             
-            OTPInputView(otpDigits: $confirmPIN)
+            OTPInputView(otpDigits: $confirmPIN, isSecure: true)
                 .padding(.top, -10)
         }
     }

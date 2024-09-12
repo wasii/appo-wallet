@@ -24,6 +24,10 @@ struct TransactionSettingsView: View {
         WalletCardType.allCases
     }
     
+    @State private var withdrawLimit: Double = 0
+    @State private var transactionLimit: Double = 0
+    @State private var domesticWithdrawal: Bool = false
+    @State private var domesticPurchase: Bool = false
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title: "Transaction Settings")
@@ -33,18 +37,28 @@ struct TransactionSettingsView: View {
                     WalletTypeView
                     CardView
                     mobileNumberView
-                    nameOnTheCardView
-                    emailIDView
-                    addressView
+                    
+                    WithdrawLimitView(withdrawLimit: $withdrawLimit, title: "Withdrawal Limit")
+                    
+                    Rectangle()
+                        .fill(.appBlue)
+                        .frame(height: 0.3)
+                        .padding(.vertical, 9)
+                        
+                    
+                    WithdrawLimitView(withdrawLimit: $transactionLimit, title: "Transaction Limit")
+                    
+                    ToggleButtonView
+                    
+                    
                     Button {} label: {
                         Text("Submit")
                             .customButtonStyle()
                     }
-                    .padding(.vertical, 40)
+                    .padding(.vertical, 20)
                 }
                 .padding(.horizontal)
             }
-            Spacer()
             BottomNavigation()
         }
         .ignoresSafeArea(.keyboard)
@@ -133,76 +147,30 @@ extension TransactionSettingsView {
         }
     }
     
-    var nameOnTheCardView: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("Name on the Card")
-                .font(AppFonts.regularTwentyTwo)
+    var ToggleButtonView: some View {
+        VStack {
+            HStack {
+                Text("Domestic Withdrawal")
+                    .font(AppFonts.regularSixteen)
+                Spacer()
+                Toggle("", isOn: $domesticWithdrawal)
+                    .labelsHidden()
+                    .toggleStyle(CustomToggleStyle())
+            }
             
-            TextField("", text: $nameOnCard)
-                .placeholder(when: nameOnCard.isEmpty) {
-                    Text("Enter Last Name")
-                        .font(AppFonts.bodyEighteenBold)
-                        .foregroundColor(.appBlue)
-                }
-                .padding()
-                .font(AppFonts.bodyEighteenBold)
-                .foregroundColor(.black)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.appBlue, lineWidth: 1)
-                )
+            HStack {
+                Text("Domestic Purchase")
+                    .font(AppFonts.regularSixteen)
+                Spacer()
+                Toggle("", isOn: $domesticPurchase)
+                    .labelsHidden()
+                    .toggleStyle(CustomToggleStyle())
+            }
         }
-    }
-    
-    var emailIDView: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("Email ID")
-                .font(AppFonts.regularTwentyTwo)
-            
-            TextField("", text: $email)
-                .placeholder(when: email.isEmpty) {
-                    Text("Enter Email ID")
-                        .font(AppFonts.bodyEighteenBold)
-                        .foregroundColor(.appBlue)
-                }
-                .padding()
-                .font(AppFonts.bodyEighteenBold)
-                .foregroundColor(.black)
-                .keyboardType(.emailAddress)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.appBlue, lineWidth: 1)
-                )
-        }
-    }
-    
-    var addressView: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("Address")
-                .font(AppFonts.regularTwentyTwo)
-            
-            TextField("", text: $address)
-                .padding()
-                .font(AppFonts.bodyEighteenBold)
-                .foregroundColor(.black)
-                .keyboardType(.default)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.appBlueForeground)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.appBlue, lineWidth: 1)
-                )
-        }
+        .foregroundStyle(.appBlue)
+        .padding(.top, 30)
+        .frame(width: 300)
+        .frame(maxWidth: .infinity, alignment: .center)
     }
 }
 
