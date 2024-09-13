@@ -11,6 +11,7 @@ struct RegistrationView: View {
     @StateObject var viewModel: RegistrationViewModel
     @EnvironmentObject var navigator: Navigator
     
+    @State private var idType: String = ""
     @State private var firstName: String = ""
     @State private var middleName: String = ""
     @State private var lastName: String = ""
@@ -24,9 +25,14 @@ struct RegistrationView: View {
     @State private var email: String = ""
     @State private var address: String = ""
     
+    @State private var isSelectIDPickerVisible: Bool = false
     @State private var isDatePickerVisible: Bool = false
     @State private var isGenderPickerVisible: Bool = false
     @State private var isMaritalStatusPickerVisible: Bool = false
+    
+    private func showSelectIDType() {
+        isSelectIDPickerVisible.toggle()
+    }
     
     private func showDatePicker() {
         isDatePickerVisible.toggle()
@@ -48,6 +54,9 @@ struct RegistrationView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     idTypeView
                     selectIDTypeView
+                        .onTapGesture {
+                            showSelectIDType()
+                        }
                     mobileNumberView
                     firstNameView
                     middleNameView
@@ -82,6 +91,25 @@ struct RegistrationView: View {
                 .padding(.top, 100)
                 .padding(.bottom, 50)
             }
+            
+            if isSelectIDPickerVisible {
+                GeometryReader { geometry in
+                    VStack {
+                        Spacer()
+                        SelectIDTypeView(isSelectIDTypeVisible: $isSelectIDPickerVisible, selectedIDType: $idType)
+                            .padding()
+//                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                            .frame(width: geometry.size.width, height: 270)
+                            .padding(.bottom, geometry.safeAreaInsets.bottom)
+                        Spacer()
+                    }
+                    .background(Color.black.opacity(0.4).edgesIgnoringSafeArea(.all))
+                }
+                .zIndex(1.0)
+            }
+            
             if isDatePickerVisible {
                 GeometryReader { geometry in
                     VStack {
@@ -225,9 +253,15 @@ extension RegistrationView {
     var selectIDTypeView: some View {
         ZStack {
             VStack {
-                Text("Please Select ID Type")
-                    .foregroundStyle(Color.appBlue)
-                    .font(AppFonts.bodyEighteenBold)
+                if idType.isEmpty {
+                    Text("Please Select ID Type")
+                        .foregroundStyle(Color.appBlue)
+                        .font(AppFonts.bodyEighteenBold)
+                } else {
+                    Text(idType)
+                        .foregroundStyle(Color.appBlue)
+                        .font(AppFonts.bodyEighteenBold)
+                }
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -691,6 +725,69 @@ struct MaritalStatusPickerView: View {
                     
                     Button{
                         isMaritalStatusPickerVisible = false
+                    } label: {
+                        Text("Close")
+                            .font(AppFonts.bodySixteenBold)
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.appBlue)
+                            )
+                    }
+                }
+            }
+            .padding(.horizontal, 20)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.appBlueForeground)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.appBlue, lineWidth: 1)
+        )
+    }
+}
+
+struct SelectIDTypeView: View {
+    @State private var idType: String = ""
+    @Binding var isSelectIDTypeVisible: Bool
+    @Binding var selectedIDType: String
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Please Select ID Type")
+                .font(AppFonts.bodyTwentyTwoBold)
+            
+            RadioButtonField(id: "nationalId", label: "National ID", isSelected: idType == "National ID") {
+                idType = "National ID"
+            }
+            
+            RadioButtonField(id: "passport", label: "Passport", isSelected: idType == "Passport") {
+                idType = "Passport"
+            }
+            Spacer()
+            VStack(alignment: .trailing) {
+                HStack(spacing: 20) {
+                    Button{
+                        selectedIDType = idType
+                        isSelectIDTypeVisible = false
+                    } label: {
+                        Text("Confirm")
+                            .font(AppFonts.bodySixteenBold)
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.appBlue)
+                            )
+                    }
+                    
+                    Button{
+                        isSelectIDTypeVisible = false
                     } label: {
                         Text("Close")
                             .font(AppFonts.bodySixteenBold)
