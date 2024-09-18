@@ -221,6 +221,8 @@ struct PhoneNumberVerificationView: View {
                     .foregroundColor(.white)
             }
             .padding()
+            .disabled(countryCode.isEmpty || mobPhoneNumber.isEmpty)
+            .opacity((countryCode.isEmpty || mobPhoneNumber.isEmpty) ? 0.7 : 1.0)
             BottomNavigation()
         }
         .onTapGesture {

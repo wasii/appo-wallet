@@ -54,6 +54,10 @@ struct EnterMPINView: View {
         }
     }
     
+    private var isSubmitButtonEnabled: Bool {
+        return otpDigits.count == maxDigits
+    }
+    
     //MARK: - OTP Circles and NumPad
     
     private func OTPndNumPad() -> some View {
@@ -122,11 +126,13 @@ struct EnterMPINView: View {
     //MARK: - Confirm Button
     private func confirmButtonView() -> some View {
         Button {
-            
+            AppEnvironment.shared.isLoggedIn = true
         } label: {
             Text("CONFIRM")
                 .customButtonStyle()
         }
+        .disabled(!isSubmitButtonEnabled)
+        .opacity(isSubmitButtonEnabled ? 1.0 : 0.5)
     }
     
     // MARK: - Numpad Button

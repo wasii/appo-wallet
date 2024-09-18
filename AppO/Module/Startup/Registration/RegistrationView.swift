@@ -84,6 +84,8 @@ struct RegistrationView: View {
                     } label: {
                         Text("Next")
                             .customButtonStyle()
+                            .disabled(idType.isEmpty || firstName.isEmpty || nameOnCard.isEmpty || gender.isEmpty || dateOfBirth.isEmpty || maritalStatus.isEmpty || email.isEmpty || address.isEmpty)
+                            .opacity((idType.isEmpty || firstName.isEmpty || nameOnCard.isEmpty || gender.isEmpty || dateOfBirth.isEmpty || maritalStatus.isEmpty || email.isEmpty || address.isEmpty) ? 0.7 : 1.0)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

@@ -31,7 +31,7 @@ struct SetupMobilePinView: View {
                 Text("Upddate your Pin")
                     .foregroundStyle(Color.appBlueForeground)
                     .font(AppFonts.headline3)
-                 
+                
                 VStack(spacing: 0) {
                     HStack {
                         Text("Create Mobile Pin")
@@ -91,6 +91,8 @@ struct SetupMobilePinView: View {
                     .customButtonStyle()
             }
             .padding()
+            .disabled(!isSubmitButtonEnabled)
+            .opacity(isSubmitButtonEnabled ? 1.0 : 0.7)
             BottomNavigation()
         }
         .toolbar(.hidden, for: .navigationBar)
@@ -98,7 +100,8 @@ struct SetupMobilePinView: View {
     }
     
     private var isSubmitButtonEnabled: Bool {
-        let areBothPINsFilled = createPIN.allSatisfy { !$0.isEmpty } && confirmPIN.allSatisfy { !$0.isEmpty }
+        let areBothPINsFilled = createPIN.allSatisfy { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty } &&
+        confirmPIN.allSatisfy { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
         let areBothPINsIdentical = createPIN == confirmPIN
         
         return areBothPINsFilled && areBothPINsIdentical

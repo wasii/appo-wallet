@@ -112,6 +112,8 @@ struct VerifyOTPView: View {
                     .customButtonStyle()
             }
             .padding()
+            .disabled(!isSubmitButtonEnabled)
+            .opacity(isSubmitButtonEnabled ? 1.0 : 0.7)
             BottomNavigation()
         }
         .onTapGesture {
@@ -126,6 +128,10 @@ struct VerifyOTPView: View {
             return String(otpText[startIndex])
         }
         return ""
+    }
+    
+    private var isSubmitButtonEnabled: Bool {
+        return createPIN.allSatisfy { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
     }
 }
 
