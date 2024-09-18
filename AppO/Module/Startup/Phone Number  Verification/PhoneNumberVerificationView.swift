@@ -29,6 +29,11 @@ struct PhoneNumberVerificationView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
+            GeometryReader { geo in
+                LoaderView(showLoader: $viewModel.showLoader)
+                    .frame(height: UIScreen.main.bounds.height)
+            }
+            .zIndex(2)
             NavigationBarView(title: "Phone no Verification")
                 .zIndex(1)
             Rectangle()
@@ -220,14 +225,15 @@ struct PhoneNumberVerificationView: View {
                     .foregroundColor(.white)
             }
             .padding()
-            .disabled(countryCode.isEmpty || mobPhoneNumber.isEmpty || mobPhoneNumber.count != countryLimit)
-            .opacity((countryCode.isEmpty || mobPhoneNumber.isEmpty || mobPhoneNumber.count != countryLimit) ? 0.7 : 1.0)
+            .disabled(countryCode.isEmpty || mobPhoneNumber.isEmpty || mobPhoneNumber.count != countryLimit || viewModel.showLoader)
+            .opacity((countryCode.isEmpty || mobPhoneNumber.isEmpty || mobPhoneNumber.count != countryLimit || viewModel.showLoader) ? 0.7 : 1.0)
             BottomNavigation()
+                .zIndex(1)
         }
         .onTapGesture {
             hideKeyboard()
         }
-        .ignoresSafeArea(.keyboard)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .toolbar(.hidden, for: .navigationBar)
         .onReceive(viewModel.coordinatorState) { state in
             switch (state.state, state.transferable) {

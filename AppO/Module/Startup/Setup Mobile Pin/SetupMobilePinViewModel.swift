@@ -19,6 +19,6 @@ class SetupMobilePinViewModel: ObservableObject {
     }
     
     private var cancellables: [AnyCancellable] = []
-    
+    @Published var showLoader: Bool = false
     init() {}
 }

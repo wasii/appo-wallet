@@ -25,6 +25,7 @@
 		E226588F2C7CADB600DF8506 /* TransactionDetailsItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226588E2C7CADB600DF8506 /* TransactionDetailsItems.swift */; };
 		E22658922C7CB5CE00DF8506 /* MyQRCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22658912C7CB5CE00DF8506 /* MyQRCodeViewModel.swift */; };
 		E22658942C7CB5DF00DF8506 /* MyQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22658932C7CB5DF00DF8506 /* MyQRCodeView.swift */; };
+		E2344F712C9AF447005946BD /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2344F702C9AF447005946BD /* LoaderView.swift */; };
 		E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640A2C78C57D00AD4E6F /* Navigator.swift */; };
 		E239640D2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */; };
 		E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23964122C78CF8A00AD4E6F /* Coordinator.swift */; };
@@ -123,6 +124,7 @@
 		E226588E2C7CADB600DF8506 /* TransactionDetailsItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsItems.swift; sourceTree = "<group>"; };
 		E22658912C7CB5CE00DF8506 /* MyQRCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQRCodeViewModel.swift; sourceTree = "<group>"; };
 		E22658932C7CB5DF00DF8506 /* MyQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQRCodeView.swift; sourceTree = "<group>"; };
+		E2344F702C9AF447005946BD /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		E239640A2C78C57D00AD4E6F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewModel.swift; sourceTree = "<group>"; };
 		E23964122C78CF8A00AD4E6F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		E24B91732C770844009091B2 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				E2344F702C9AF447005946BD /* LoaderView.swift */,
 				E2D140232C6E49D70064EE6E /* AppLogoView.swift */,
 				E25B4B412C6E171E000745F9 /* BottomNavigation.swift */,
 				E25B4B4B2C6E254D000745F9 /* NavigationBarView.swift */,
@@ -704,6 +707,7 @@
 				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
 				E22658812C7C9B8B00DF8506 /* SideMenuView.swift in Sources */,
 				E2F27AE42C8EBF5700251BCE /* CurvedShape.swift in Sources */,
+				E2344F712C9AF447005946BD /* LoaderView.swift in Sources */,
 				E25B90662C7D0A5300A6F871 /* AddOnCardView.swift in Sources */,
 				E25B906A2C7D0D5B00A6F871 /* CustomButtonStyle.swift in Sources */,
 				E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */,

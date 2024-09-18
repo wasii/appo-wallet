@@ -23,7 +23,8 @@ class VerifyOTPViewModel: ObservableObject {
     }
     
     private var cancellables: [AnyCancellable] = []
-
+    @Published var showLoader: Bool = false
+    
     init(countryCode: String, phoneNumber: String, countryFlag: String) {
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber

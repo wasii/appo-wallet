@@ -23,6 +23,7 @@ class RegistrationViewModel: ObservableObject {
     }
     
     private var cancellables: [AnyCancellable] = []
+    @Published var showLoader: Bool = false
     
     init(countryFlag: String, countryCode: String, phoneNumber: String) {
         self.countryFlag = countryFlag

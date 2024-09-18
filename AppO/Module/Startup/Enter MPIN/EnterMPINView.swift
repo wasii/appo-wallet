@@ -16,28 +16,35 @@ struct EnterMPINView: View {
     @EnvironmentObject var navigator: Navigator
     
     var body: some View {
-        VStack(spacing: 20) {
-            NavigationBarView(title: "Sign In")
-            ScrollView {
-                VStack(alignment: .center, spacing: 16) {
-                    AppLogoView()
-                        .frame(width: 220)
-                    Text("Sign In to Continue")
-                        .foregroundStyle(Color.appBlue)
-                        .font(AppFonts.headline4)
-                    
-                    OTPndNumPad()
-//                        .padding()
-                    
-                    VStack(spacing: 16) {
-                        createNewAccountView()
-                        updateMPINView()
-                        confirmButtonView()
-                    }
-                    .padding()
-                }
+        ZStack {
+            GeometryReader { geo in
+                LoaderView(showLoader: $viewModel.showLoader)
+                    .frame(height: UIScreen.main.bounds.height)
             }
-            BottomNavigation()
+            .zIndex(2)
+            VStack(spacing: 20) {
+                NavigationBarView(title: "Sign In")
+                ScrollView {
+                    VStack(alignment: .center, spacing: 16) {
+                        AppLogoView()
+                            .frame(width: 220)
+                        Text("Sign In to Continue")
+                            .foregroundStyle(Color.appBlue)
+                            .font(AppFonts.headline4)
+                        
+                        OTPndNumPad()
+                        //                        .padding()
+                        
+                        VStack(spacing: 16) {
+                            createNewAccountView()
+                            updateMPINView()
+                            confirmButtonView()
+                        }
+                        .padding()
+                    }
+                }
+                BottomNavigation()
+            }
         }
         .edgesIgnoringSafeArea(.top)
         .toolbar(.hidden, for: .navigationBar)
@@ -126,7 +133,11 @@ struct EnterMPINView: View {
     //MARK: - Confirm Button
     private func confirmButtonView() -> some View {
         Button {
-            AppEnvironment.shared.isLoggedIn = true
+            viewModel.showLoader = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                viewModel.showLoader = false
+                AppEnvironment.shared.isLoggedIn = true
+            }
         } label: {
             Text("CONFIRM")
                 .customButtonStyle()
