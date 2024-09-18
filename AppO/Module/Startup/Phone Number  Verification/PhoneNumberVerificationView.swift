@@ -18,8 +18,8 @@ struct PhoneNumberVerificationView: View {
     @State var presentSheet = false
     @State var countryCode : String = ""
     @State var countryFlag : String = ""
-    @State var countryPattern : String = "#### #### ##"
-    @State var countryLimit : Int = 17
+    @State var countryPattern : String = ""
+    @State var countryLimit : Int = 0
     @State var mobPhoneNumber = ""
     @State private var searchCountry: String = ""
     @Environment(\.colorScheme) var colorScheme
@@ -185,7 +185,6 @@ struct PhoneNumberVerificationView: View {
                     Button {
                         withAnimation {
                             showPopup = false
-//                            viewModel.coordinatorStatePublisher.send(.with(.confirm))
                         }
                     } label: {
                         Text("Ok")
@@ -221,8 +220,8 @@ struct PhoneNumberVerificationView: View {
                     .foregroundColor(.white)
             }
             .padding()
-            .disabled(countryCode.isEmpty || mobPhoneNumber.isEmpty)
-            .opacity((countryCode.isEmpty || mobPhoneNumber.isEmpty) ? 0.7 : 1.0)
+            .disabled(countryCode.isEmpty || mobPhoneNumber.isEmpty || mobPhoneNumber.count != countryLimit)
+            .opacity((countryCode.isEmpty || mobPhoneNumber.isEmpty || mobPhoneNumber.count != countryLimit) ? 0.7 : 1.0)
             BottomNavigation()
         }
         .onTapGesture {
@@ -252,16 +251,23 @@ struct PhoneNumberVerificationView: View {
     }
     
     func applyPatternOnNumbers(_ stringvar: inout String, pattern: String, replacementCharacter: Character) {
-        var pureNumber = stringvar.replacingOccurrences( of: "[^0-9]", with: "", options: .regularExpression)
+        var pureNumber = stringvar.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         for index in 0 ..< pattern.count {
             guard index < pureNumber.count else {
                 stringvar = pureNumber
                 return
             }
-            let stringIndex = String.Index(utf16Offset: index, in: pattern)
-            let patternCharacter = pattern[stringIndex]
-            guard patternCharacter != replacementCharacter else { continue }
-            pureNumber.insert(patternCharacter, at: stringIndex)
+            
+            let patternIndex = pattern.index(pattern.startIndex, offsetBy: index)
+            let patternCharacter = pattern[patternIndex]
+            
+            if patternCharacter == replacementCharacter {
+                let numberIndex = pureNumber.index(pureNumber.startIndex, offsetBy: index)
+                let numberCharacter = pureNumber[numberIndex]
+                stringvar.insert(numberCharacter, at: numberIndex)
+            } else if patternCharacter != " " {
+                pureNumber.insert(patternCharacter, at: pureNumber.index(pureNumber.startIndex, offsetBy: index))
+            }
         }
         stringvar = pureNumber
     }

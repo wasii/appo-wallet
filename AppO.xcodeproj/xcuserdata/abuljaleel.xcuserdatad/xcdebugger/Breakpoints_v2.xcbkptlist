@@ -18,6 +18,52 @@
             endingLineNumber = "79"
             landmarkName = "view(for:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF - 8707031b5a68864a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AppO.HomeNavigator.view(for: AppO.HomeNavigator.Destination) -&gt; some"
+                  moduleName = "AppO.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Utils/HomeNavigator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80">
+               </Location>
+               <Location
+                  uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF - 8707031b5a68864a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AppO.HomeNavigator.view(for: AppO.HomeNavigator.Destination) -&gt; some"
+                  moduleName = "AppO.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Utils/HomeNavigator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89CA566E-CD91-412A-BCF8-E8629D818EF6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppO/Module/Startup/Phone Number  Verification/PhoneNumberVerificationView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "applyPatternOnNumbers(_:pattern:replacementCharacter:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
