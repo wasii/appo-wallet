@@ -6,8 +6,26 @@
 //
 
 import Foundation
+import Combine
 
+protocol VerifyOTPInteractorType {
+    func verifyOTP(number: String, otp:String) -> AnyPublisher<APIBaseResponse<VerifyOTPResponse>, NetworkError>
+}
 
-class VerifyOTPInteractor {
+class VerifyOTPInteractor: VerifyOTPInteractorType {
     
+    private var networkManager: NetworkManager<OTPAPIs>
+    
+    init(providerType: NetworkManagerProviderType<OTPAPIs> = .live) {
+        networkManager = NetworkManager<OTPAPIs>(with: providerType)
+    }
+    
+    func verifyOTP(number: String, otp:String) -> AnyPublisher<APIBaseResponse<VerifyOTPResponse>, NetworkError> {
+        let target: OTPAPIs = .validateOTP(number: number, otp: otp)
+        return networkManager
+            .request(target: target)
+            .subscribe(on: Scheduler.backgroundWorkScheduler)
+            .receive(on: Scheduler.mainScheduler)
+            .eraseToAnyPublisher()
+    }
 }

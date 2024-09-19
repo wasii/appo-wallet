@@ -23,11 +23,34 @@ class VerifyOTPViewModel: ObservableObject {
     }
     
     private var cancellables: [AnyCancellable] = []
+    private var interactor: VerifyOTPInteractorType
+    
     @Published var showLoader: Bool = false
     
-    init(countryCode: String, phoneNumber: String, countryFlag: String) {
+    init(interactor: VerifyOTPInteractorType = VerifyOTPInteractor(), countryCode: String, phoneNumber: String, countryFlag: String) {
+        self.interactor = interactor
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber
         self.countryFlag = countryFlag
+    }
+}
+
+
+extension VerifyOTPViewModel {
+    func verifyOtp(otp: String) {
+        showLoader = true
+        interactor.verifyOTP(number: self.phoneNumber, otp: otp)
+            .sink { [weak self] completion in
+                self?.showLoader = false
+                guard case let .failure(error) = completion else { return }
+            } receiveValue: { [weak self] response in
+                self?.showLoader = false
+                if response.success == "200" {}
+                else {
+                    print("ERROR")
+                }
+                self?.coordinatorStatePublisher.send(.with(.verify))
+            }
+            .store(in: &cancellables)
     }
 }

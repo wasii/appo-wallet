@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VerifyOTPView: View {
     @State private var createPIN: [String] = Array(repeating: "", count: 6)
-    @State private var otpText: String = ""
+//    @State private var otpText: String = ""
     @StateObject private var timerManager = TimerManager()
     
     @StateObject var viewModel: VerifyOTPViewModel
@@ -106,7 +106,8 @@ struct VerifyOTPView: View {
             
             Button {
                 hideKeyboard()
-                viewModel.coordinatorStatePublisher.send(.with(.verify))
+                //viewModel.coordinatorStatePublisher.send(.with(.verify))
+                viewModel.verifyOtp(otp: createPIN.joined())
             } label: {
                 Text("VERIFY")
                     .customButtonStyle()
@@ -120,14 +121,6 @@ struct VerifyOTPView: View {
             hideKeyboard()
         }
         .ignoresSafeArea(.keyboard)
-    }
-    
-    private func getDigit(at index: Int) -> String {
-        if index < otpText.count {
-            let startIndex = otpText.index(otpText.startIndex, offsetBy: index)
-            return String(otpText[startIndex])
-        }
-        return ""
     }
     
     private var isSubmitButtonEnabled: Bool {

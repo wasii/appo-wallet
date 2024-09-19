@@ -49,7 +49,7 @@ class NetworkManager<APIType: TargetType> {
                         print("Status Code: \(statusCode)")
                         if statusCode == 401 {
 //                            SessionManager.shared.logout()
-                            promise(.success(APIBaseResponse.init(success: false, message: "Kindly re-login", data: nil)))
+                            promise(.success(APIBaseResponse.init(success: "401", message: "Kindly re-login", data: nil)))
                             return
                         }
                     }

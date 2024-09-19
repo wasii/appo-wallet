@@ -94,8 +94,8 @@ struct PhoneNumberVerificationView: View {
                         }
                         .frame(width: 100, height: 60)
                         
-                        TextField("", text: $mobPhoneNumber)
-                            .placeholder(when: mobPhoneNumber.isEmpty) {
+                        TextField("", text: self.$mobPhoneNumber)
+                            .placeholder(when: self.mobPhoneNumber.isEmpty) {
                                 Text("Enter Phone Number")
                                     .font(AppFonts.bodyEighteenBold)
                                     .foregroundColor(.appBlue)
@@ -103,11 +103,11 @@ struct PhoneNumberVerificationView: View {
                             .font(AppFonts.bodyEighteenBold)
                             .focused($keyIsFocused)
                             .keyboardType(.numberPad)
-                            .onReceive(Just(mobPhoneNumber)) { _ in
-                                applyPatternOnNumbers(&mobPhoneNumber, pattern: countryPattern, replacementCharacter: "#")
+                            .onReceive(Just(self.mobPhoneNumber)) { _ in
+                                applyPatternOnNumbers(&self.mobPhoneNumber, pattern: countryPattern, replacementCharacter: "#")
                             }
-                            .onChange(of: mobPhoneNumber) { _ in
-                                if mobPhoneNumber.count >= countryLimit {
+                            .onChange(of: self.mobPhoneNumber) { _ in
+                                if self.mobPhoneNumber.count >= countryLimit {
                                     keyIsFocused = false
                                 }
                             }
@@ -156,7 +156,6 @@ struct PhoneNumberVerificationView: View {
             }
             .presentationDetents([.medium, .large])
         }
-        .presentationDetents([.medium, .large])
         if showPopup {
             Color.black.opacity(0.67)
                 .edgesIgnoringSafeArea(.all) // Dimming background
@@ -214,7 +213,8 @@ struct PhoneNumberVerificationView: View {
             }
             Button {
                 hideKeyboard()
-                viewModel.coordinatorStatePublisher.send(.with(.confirm))
+//                viewModel.coordinatorStatePublisher.send(.with(.confirm))
+                viewModel.sendOTP(mobPhoneNumber: self.mobPhoneNumber, phoneCode: self.countryCode)
             } label: {
                 Text("NEXT ")
                     .font(AppFonts.headline4)
@@ -225,8 +225,8 @@ struct PhoneNumberVerificationView: View {
                     .foregroundColor(.white)
             }
             .padding()
-            .disabled(countryCode.isEmpty || mobPhoneNumber.isEmpty || mobPhoneNumber.count != countryLimit || viewModel.showLoader)
-            .opacity((countryCode.isEmpty || mobPhoneNumber.isEmpty || mobPhoneNumber.count != countryLimit || viewModel.showLoader) ? 0.7 : 1.0)
+            .disabled(self.countryCode.isEmpty || self.mobPhoneNumber.isEmpty || self.mobPhoneNumber.count != countryLimit || viewModel.showLoader)
+            .opacity((self.countryCode.isEmpty || self.mobPhoneNumber.isEmpty || self.mobPhoneNumber.count != countryLimit || viewModel.showLoader) ? 0.7 : 1.0)
             BottomNavigation()
                 .zIndex(1)
         }

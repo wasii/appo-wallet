@@ -85,6 +85,10 @@
 		E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414C2C736DB100D054A1 /* OTPInputView.swift */; };
 		E2A0F2FD2C8C410F00821357 /* PhoneNumberVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0F2FC2C8C410F00821357 /* PhoneNumberVerificationView.swift */; };
 		E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BD5DDE2C76239B006FB4B7 /* Environment.swift */; };
+		E2BF16092C9C49F3009683D1 /* OTPAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF16082C9C49E4009683D1 /* OTPAPIs.swift */; };
+		E2BF160B2C9C4B19009683D1 /* SendOTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF160A2C9C4B0E009683D1 /* SendOTPRequest.swift */; };
+		E2BF160D2C9C4BB4009683D1 /* SendOTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF160C2C9C4BAE009683D1 /* SendOTPResponse.swift */; };
+		E2BF160F2C9C5B3A009683D1 /* VerifyOTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF160E2C9C5B34009683D1 /* VerifyOTPResponse.swift */; };
 		E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */; };
 		E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */; };
 		E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB0A2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift */; };
@@ -181,6 +185,10 @@
 		E291414C2C736DB100D054A1 /* OTPInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPInputView.swift; sourceTree = "<group>"; };
 		E2A0F2FC2C8C410F00821357 /* PhoneNumberVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationView.swift; sourceTree = "<group>"; };
 		E2BD5DDE2C76239B006FB4B7 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = AppO/Utils/Environment.swift; sourceTree = SOURCE_ROOT; };
+		E2BF16082C9C49E4009683D1 /* OTPAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPAPIs.swift; sourceTree = "<group>"; };
+		E2BF160A2C9C4B0E009683D1 /* SendOTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendOTPRequest.swift; sourceTree = "<group>"; };
+		E2BF160C2C9C4BAE009683D1 /* SendOTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendOTPResponse.swift; sourceTree = "<group>"; };
+		E2BF160E2C9C5B34009683D1 /* VerifyOTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPResponse.swift; sourceTree = "<group>"; };
 		E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPView.swift; sourceTree = "<group>"; };
 		E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPinInteractor.swift; sourceTree = "<group>"; };
 		E2C9CB0A2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationInteractor.swift; sourceTree = "<group>"; };
@@ -329,6 +337,7 @@
 		E24B918C2C771958009091B2 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				E2BF16082C9C49E4009683D1 /* OTPAPIs.swift */,
 				E2C9CB182C78616B00B47B38 /* RegistrationAPIs.swift */,
 			);
 			path = APIs;
@@ -590,6 +599,7 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E2BF160A2C9C4B0E009683D1 /* SendOTPRequest.swift */,
 				E2C9CB122C78603B00B47B38 /* RegistrationModel.swift */,
 			);
 			path = Request;
@@ -598,6 +608,8 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E2BF160E2C9C5B34009683D1 /* VerifyOTPResponse.swift */,
+				E2BF160C2C9C4BAE009683D1 /* SendOTPResponse.swift */,
 				E2C9CB162C7860E100B47B38 /* RegistrationResponse.swift */,
 			);
 			path = Response;
@@ -722,6 +734,7 @@
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */,
+				E2BF16092C9C49F3009683D1 /* OTPAPIs.swift in Sources */,
 				E239640D2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
 				E226588B2C7CACAB00DF8506 /* CardTransactionDetailsView.swift in Sources */,
@@ -742,6 +755,7 @@
 				E25B904D2C7CF3CB00A6F871 /* RadioButtonView.swift in Sources */,
 				E22658922C7CB5CE00DF8506 /* MyQRCodeViewModel.swift in Sources */,
 				E2C9CB172C7860E100B47B38 /* RegistrationResponse.swift in Sources */,
+				E2BF160B2C9C4B19009683D1 /* SendOTPRequest.swift in Sources */,
 				E25B903F2C7CE17500A6F871 /* CardToCardView.swift in Sources */,
 				E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
@@ -776,6 +790,7 @@
 				E226587C2C7C716B00DF8506 /* HomeNavigator.swift in Sources */,
 				E22074AD2C9002A700B513F7 /* TransactionPinSetupView.swift in Sources */,
 				E25B90552C7D04F700A6F871 /* ReplaceCardView.swift in Sources */,
+				E2BF160D2C9C4BB4009683D1 /* SendOTPResponse.swift in Sources */,
 				E25B90492C7CF25E00A6F871 /* CardStatusViewModel.swift in Sources */,
 				E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */,
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
@@ -784,6 +799,7 @@
 				E25B903D2C7CE16000A6F871 /* CardToCardViewModel.swift in Sources */,
 				E226588D2C7CACB900DF8506 /* CardTransactionDetailsViewModel.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
+				E2BF160F2C9C5B3A009683D1 /* VerifyOTPResponse.swift in Sources */,
 				E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */,
 				E2C9CB1D2C7863ED00B47B38 /* Scheduler.swift in Sources */,
 				E22658882C7CABD200DF8506 /* CardButtonView.swift in Sources */,
@@ -921,23 +937,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202409.19.1625;
 				DEVELOPMENT_ASSET_PATHS = "\"AppO/Preview Content\"";
 				DEVELOPMENT_TEAM = WY6HWY8U3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AppO Wallet";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appopay.wallet.AppO;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appopay.appopay.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROD_API = "https://prodapi.appopay.com/api/sms/";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -948,7 +967,7 @@
 				SWIFT_VERSION = 5.0;
 				Server_One = "http://3.13.197.45:8081/";
 				System_API = "https://system.appopay.com:9004/";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -958,23 +977,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 202409.19.1625;
 				DEVELOPMENT_ASSET_PATHS = "\"AppO/Preview Content\"";
 				DEVELOPMENT_TEAM = WY6HWY8U3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AppO/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AppO Wallet";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appopay.wallet.AppO;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appopay.appopay.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROD_API = "https://prodapi.appopay.com/api/sms/";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -985,7 +1007,7 @@
 				SWIFT_VERSION = 5.0;
 				Server_One = "http://3.13.197.45:8081/";
 				System_API = "https://system.appopay.com:9004/";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
