@@ -17,6 +17,11 @@ struct VerifyOTPView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
+            GeometryReader { geo in
+                LoaderView(showLoader: $viewModel.showLoader)
+                    .frame(height: UIScreen.main.bounds.height)
+            }
+            .zIndex(2)
             NavigationBarView(title: "OTP Verification")
                 .zIndex(1)
             Rectangle()

@@ -21,6 +21,7 @@ struct RegistrationView: View {
     @State private var dateOfBirth: String = ""
     @State private var dob: Date = Date()
     @State private var maritalStatus: String = ""
+    @State private var maritalStatusPass: String = ""
     
     @State private var email: String = ""
     @State private var address: String = ""
@@ -48,6 +49,11 @@ struct RegistrationView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
+            GeometryReader { geo in
+                LoaderView(showLoader: $viewModel.showLoader)
+                    .frame(height: UIScreen.main.bounds.height)
+            }
+            .zIndex(2)
             NavigationBarView(title: "Register Now")
                 .zIndex(1)
             ScrollView {
@@ -80,7 +86,7 @@ struct RegistrationView: View {
                     addressView
                     
                     Button {
-                        navigator.navigate(to: .setupMobilePin(viewModel: .init()))
+                        viewModel.getUserRegistered(custName: "\(firstName) \(lastName)", mobile: viewModel.phoneNumber, nameOnCard: nameOnCard, email: email, address: address, dob: dateOfBirth, nationalId: "123123123", maritalStatus: maritalStatusPass)
                     } label: {
                         Text("Next")
                             .customButtonStyle()
@@ -149,7 +155,7 @@ struct RegistrationView: View {
                 GeometryReader { geometry in
                     VStack {
                         Spacer()
-                        MaritalStatusPickerView(isMaritalStatusPickerVisible: $isMaritalStatusPickerVisible, selectStatus: $maritalStatus)
+                        MaritalStatusPickerView(isMaritalStatusPickerVisible: $isMaritalStatusPickerVisible, selectStatus: $maritalStatus, passStatus: $maritalStatusPass)
                         
                             .background(.white)
                             .cornerRadius(10)
@@ -180,8 +186,8 @@ struct RegistrationView: View {
         }
         .onReceive(viewModel.coordinatorState) { state in
             switch (state.state, state.transferable) {
-            default:
-                break
+            case(.registered, _):
+                navigator.navigate(to: .setupMobilePin(viewModel: .init()))
             }
         }
     }
@@ -224,7 +230,7 @@ struct DatePickerView: View {
     
     private func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+        formatter.dateFormat = "ddMMyyyy"
         return formatter.string(from: date)
     }
 }
@@ -688,6 +694,7 @@ struct MaritalStatusPickerView: View {
     @State private var status: String = ""
     @Binding var isMaritalStatusPickerVisible: Bool
     @Binding var selectStatus: String
+    @Binding var passStatus: String
     var body: some View {
         VStack(alignment: .leading) {
             Text("Marital Status")
@@ -695,18 +702,22 @@ struct MaritalStatusPickerView: View {
             
             RadioButtonField(id: "married", label: "Married", isSelected: status == "Married") {
                 status = "Married"
+                passStatus = "M"
             }
             
             RadioButtonField(id: "unmarried", label: "Unmarried", isSelected: status == "Unmarried") {
                 status = "Unmarried"
+                passStatus = "S"
             }
             
-            RadioButtonField(id: "divorced", label: "Divorced", isSelected: status == "Dnmarried") {
-                status = "Dnmarried"
+            RadioButtonField(id: "divorced", label: "Divorced", isSelected: status == "Divorced") {
+                status = "Divorced"
+                passStatus = "D"
             }
             
             RadioButtonField(id: "widow", label: "Widow", isSelected: status == "Widow") {
                 status = "Widow"
+                passStatus = "W"
             }
             Spacer()
             VStack(alignment: .trailing) {

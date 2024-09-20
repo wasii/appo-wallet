@@ -8,21 +8,23 @@
 import Foundation
 
 // MARK: - Main Request Structure
-struct RegistrationRequest: Codable {
+struct RegisterRequest: Codable {
     let reqHeaderInfo: ReqHeaderInfo
     let digestInfo: String
+    let deviceInfo: DeviceInfo
     let requestKey: RequestKey
     let requestData: RequestData
-    
+
     enum CodingKeys: String, CodingKey {
         case reqHeaderInfo = "req_header_info"
         case digestInfo = "digest_info"
+        case deviceInfo = "device_info"
         case requestKey = "request_key"
         case requestData = "request_data"
     }
 }
 
-// MARK: - Request Header Info
+// MARK: - ReqHeaderInfo
 struct ReqHeaderInfo: Codable {
     let apiVersion: String
     let title: String
@@ -31,7 +33,8 @@ struct ReqHeaderInfo: Codable {
     let orgDate: String
     let orgTime: String
     let echoMessage: String
-    
+    let checkSum: String
+
     enum CodingKeys: String, CodingKey {
         case apiVersion = "api_version"
         case title
@@ -40,21 +43,31 @@ struct ReqHeaderInfo: Codable {
         case orgDate = "org_date"
         case orgTime = "org_time"
         case echoMessage = "echo_message"
+        case checkSum = "check_sum"
     }
 }
 
-// MARK: - Request Key
+// MARK: - DeviceInfo
+struct DeviceInfo: Codable {
+    let name: String
+    let manufacturer: String
+    let model: String
+    let version: String
+    let os: String
+}
+
+// MARK: - RequestKey
 struct RequestKey: Codable {
-    let requestID: String
     let requestType: String
-    
+    let requestID: String
+
     enum CodingKeys: String, CodingKey {
-        case requestID = "request_id"
         case requestType = "request_type"
+        case requestID = "request_id"
     }
 }
 
-// MARK: - Request Data
+// MARK: - RequestData
 struct RequestData: Codable {
     let instID: String
     let custName: String
@@ -68,7 +81,7 @@ struct RequestData: Codable {
     let bin: String
     let subproductID: String
     let deviceNo: String
-    
+
     enum CodingKeys: String, CodingKey {
         case instID = "inst_id"
         case custName = "cust_name"

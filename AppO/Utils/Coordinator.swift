@@ -11,6 +11,10 @@ import PDFKit
 
 protocol Transferable {}
 
+protocol Mockable {
+    static var mock: Self { get }
+}
+
 extension Array: Transferable where Element: Transferable { }
 
 struct EmptyTransferable: Transferable {}
