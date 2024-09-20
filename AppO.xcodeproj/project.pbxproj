@@ -35,6 +35,7 @@
 		E23864C92C9E17A900EAD795 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864C82C9E17A900EAD795 /* AppDefaults.swift */; };
 		E23864CC2C9E183800EAD795 /* JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864CB2C9E183800EAD795 /* JSONParsing.swift */; };
 		E23864CE2C9E189C00EAD795 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864CD2C9E189C00EAD795 /* SessionManager.swift */; };
+		E23864D02C9E319800EAD795 /* SystemAPIBaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864CF2C9E319800EAD795 /* SystemAPIBaseResponse.swift */; };
 		E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640A2C78C57D00AD4E6F /* Navigator.swift */; };
 		E239640D2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */; };
 		E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23964122C78CF8A00AD4E6F /* Coordinator.swift */; };
@@ -147,6 +148,7 @@
 		E23864C82C9E17A900EAD795 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		E23864CB2C9E183800EAD795 /* JSONParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsing.swift; sourceTree = "<group>"; };
 		E23864CD2C9E189C00EAD795 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		E23864CF2C9E319800EAD795 /* SystemAPIBaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAPIBaseResponse.swift; sourceTree = "<group>"; };
 		E239640A2C78C57D00AD4E6F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewModel.swift; sourceTree = "<group>"; };
 		E23964122C78CF8A00AD4E6F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 		E25B4B372C6DFA51000745F9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				E23864CF2C9E319800EAD795 /* SystemAPIBaseResponse.swift */,
 				E2C9CB1C2C7863ED00B47B38 /* Scheduler.swift */,
 				E24B91922C771ACD009091B2 /* App Environment */,
 				E24B918C2C771958009091B2 /* APIs */,
@@ -786,6 +789,7 @@
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
 				E226588B2C7CACAB00DF8506 /* CardTransactionDetailsView.swift in Sources */,
 				E25B90462C7CEC8200A6F871 /* SettingsViewModel.swift in Sources */,
+				E23864D02C9E319800EAD795 /* SystemAPIBaseResponse.swift in Sources */,
 				E2C9CB112C785CAF00B47B38 /* SetupMobilePinInteractor.swift in Sources */,
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
 				E2850B282C92CADC009A77B9 /* WithdrawLimitView.swift in Sources */,
