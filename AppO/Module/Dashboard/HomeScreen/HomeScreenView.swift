@@ -49,76 +49,98 @@ struct HomeScreenView: View {
     
     var body: some View {
         NavigationStack(path: $homeNavigator.navPath) {
-            VStack(spacing: 0) {
-                ZStack(alignment: .bottom) {
-                    Rectangle()
-                        .fill(Color.appBlue)
-                        .frame(height: 100)
-                        .cornerRadius(40, corners: [.bottomLeft, .bottomRight])
-                    HStack(spacing: 20) {
-                        Button(action: {
-                            presentSideMenu.toggle()
-                        }) {
-                            Image("sidebar-menu")
-                                .resizable()
+            ZStack {
+                GeometryReader { geo in
+                    LoaderView(showLoader: $viewModel.showLoader)
+                        .frame(height: UIScreen.main.bounds.height)
+                }
+                .zIndex(1)
+                VStack(spacing: 0) {
+                    ZStack(alignment: .bottom) {
+                        Rectangle()
+                            .fill(Color.appBlue)
+                            .frame(height: 100)
+                            .cornerRadius(40, corners: [.bottomLeft, .bottomRight])
+                        HStack(spacing: 20) {
+                            Button(action: {
+                                presentSideMenu.toggle()
+                            }) {
+                                Image("sidebar-menu")
+                                    .resizable()
+                                    .foregroundColor(.white)
+                                    .frame(width: 30, height: 30)
+                            }
+                            Text("🇮🇳 India (IN)")
                                 .foregroundColor(.white)
-                                .frame(width: 30, height: 30)
+                                .font(AppFonts.headline4)
+                                .bold()
+                            Spacer()
                         }
-                        Text("🇮🇳 India (IN)")
-                            .foregroundColor(.white)
-                            .font(AppFonts.headline4)
-                            .bold()
-                        Spacer()
+                        .padding()
                     }
-                    .padding()
+                    ZStack {
+                        ScrollView {
+                            VStack(alignment: .center, spacing: 15) {
+                                if !viewModel.showLoader {
+                                    WalletTypeView
+                                        .transition(.opacity)
+                                    CardStatusView
+                                        .transition(.opacity)
+                                    CardView
+                                        .transition(.opacity)
+                                }
+                                
+                                Text("Services")
+                                    .font(AppFonts.regular3)
+                                    .foregroundStyle(.appBlue)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                ServicesButtons
+                            }
+                            .padding()
+                            .animation(.easeInOut(duration: 0.3), value: viewModel.showLoader)
+                        }
+                    }
+                    BottomNavigation()
                 }
-                
-                ScrollView {
-                    VStack(alignment: .center, spacing: 15) {
-                        WalletTypeView
-                        CardStatusView
-                        CardView
-                        
-                        Text("Services")
-                            .font(AppFonts.regular3)
-                            .foregroundStyle(.appBlue)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        ServicesButtons
-                    }
-                    .padding()
-                }
-                BottomNavigation()
-            }
-            .edgesIgnoringSafeArea(.top)
-            .toolbar(.hidden, for: .navigationBar)
-            .onReceive(viewModel.coordinatorState) { state in
-                switch (state.state, state.transferable) {
-                case (.navigateToManageAccounts, _):
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        homeNavigator.navigate(to: .manageAccounts(viewModel: .init()))
-                    }
-                case (.navigateToMyQRCode, _):
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        homeNavigator.navigate(to: .myQR(viewModel: .init()))
-                    }
-                case (.navigateToCardtoCard, _):
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        homeNavigator.navigate(to: .cardToCard(viewModel: .init()))
-                    }
-                case (.navigateToPayments, _):
-                    break
-                case (.navigateToSettings, _):
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        homeNavigator.navigate(to: .settings(viewModel: .init()))
+                .edgesIgnoringSafeArea(.top)
+                .toolbar(.hidden, for: .navigationBar)
+                .onReceive(viewModel.coordinatorState) { state in
+                    switch (state.state, state.transferable) {
+                    case (.navigateToManageAccounts, _):
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            homeNavigator.navigate(to: .manageAccounts(viewModel: .init()))
+                        }
+                    case (.navigateToMyQRCode, _):
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            homeNavigator.navigate(to: .myQR(viewModel: .init()))
+                        }
+                    case (.navigateToCardtoCard, _):
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            homeNavigator.navigate(to: .cardToCard(viewModel: .init()))
+                        }
+                    case (.navigateToPayments, _):
+                        break
+                    case (.navigateToSettings, _):
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            homeNavigator.navigate(to: .settings(viewModel: .init()))
+                        }
+                    case (.logout, _) :
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            SessionManager.shared.logout()
+                            homeNavigator.navigateToRoot()
+                        }
                     }
                 }
-            }
-            .navigationDestination(for: HomeNavigator.Destination.self) { destination in
-                homeNavigator.view(for: destination)
+                .navigationDestination(for: HomeNavigator.Destination.self) { destination in
+                    homeNavigator.view(for: destination)
+                }
             }
         }
         .environmentObject(homeNavigator)
+        .onAppear {
+            viewModel.getCustpmerEnquiry()
+        }
     }
 }
 
@@ -154,7 +176,7 @@ extension HomeScreenView {
         HStack {
             Text("Card Status: ")
                 .font(AppFonts.regularEighteen)
-            + Text("InActive")
+            + Text(viewModel.selected_card?.cardStatusDesc ?? "")
                 .font(AppFonts.bodyEighteenBold)
         }
         .foregroundStyle(.appBlue)
@@ -169,9 +191,9 @@ extension HomeScreenView {
             
             VStack(alignment: .leading) {
                 Spacer()
-                Text("6262 2303 5678 9010")
+                Text(viewModel.selected_card?.maskCardNum ?? "")
                     .font(AppFonts.regularTwenty)
-                Text("Expiry: 10/2016 JOE CHURCO")
+                Text("Expiry: \(viewModel.selected_card?.expDate ?? "") \(viewModel.selected_card?.cardName ?? "")")
                     .font(AppFonts.bodyFourteenBold)
             }
             .foregroundStyle(.white)

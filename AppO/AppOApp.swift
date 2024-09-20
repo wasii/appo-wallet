@@ -9,22 +9,30 @@ import SwiftUI
 
 @main
 struct AppOApp: App {
-    @StateObject var session: AppEnvironment = AppEnvironment.shared
+    
+    @State var sessionManager: SessionManager = SessionManager.shared
     
     init() {}
     
     var body: some Scene {
         WindowGroup {
             ZStack {
-                if session.isLoggedIn {
+                if AppDefaults.isLogin {
                     MainTabbedView()
                         .transition(.move(edge: .trailing)) // Slide in from the right
                 } else {
                     InitialView(navigator: .init())
                         .transition(.move(edge: .leading)) // Slide in from the left
                 }
+//                if session.isLoggedIn {
+//                    MainTabbedView()
+//                        .transition(.move(edge: .trailing)) // Slide in from the right
+//                } else {
+//                    InitialView(navigator: .init())
+//                        .transition(.move(edge: .leading)) // Slide in from the left
+//                }
             }
-            .animation(.easeInOut, value: session.isLoggedIn)
+            .animation(.easeInOut, value: AppDefaults.isLogin)
         }
     }
 }

@@ -7,15 +7,6 @@
 
 import Foundation
 
-struct CustomerEnquiryResponse: Codable {
-    let customer_enquiry_reponse: CustomerEnquiryResponseData?
-    
-    enum CodingKeys: String, CodingKey {
-        case customer_enquiry_reponse = "resp_data"
-    }
-}
-
-
 struct CustomerEnquiryResponseData: Codable {
     let addr1: String?
     let addr2: String?

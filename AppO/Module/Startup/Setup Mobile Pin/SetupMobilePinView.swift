@@ -85,7 +85,7 @@ struct SetupMobilePinView: View {
             
             Button {
                 hideKeyboard()
-                AppEnvironment.shared.isLoggedIn = true
+//                AppEnvironment.shared.isLoggedIn = true
             } label: {
                 Text("VERIFY")
                     .customButtonStyle()

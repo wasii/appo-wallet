@@ -31,6 +31,10 @@
 		E23864C02C9DE10600EAD795 /* CustomerEnquiryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864BF2C9DE0FA00EAD795 /* CustomerEnquiryResponse.swift */; };
 		E23864C22C9DE34000EAD795 /* CustomerEnquiryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864C12C9DE33500EAD795 /* CustomerEnquiryRequest.swift */; };
 		E23864C42C9DE3E000EAD795 /* PreDefinedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864C32C9DE3D600EAD795 /* PreDefinedRequest.swift */; };
+		E23864C62C9E123A00EAD795 /* ShowCardNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864C52C9E123200EAD795 /* ShowCardNumberRequest.swift */; };
+		E23864C92C9E17A900EAD795 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864C82C9E17A900EAD795 /* AppDefaults.swift */; };
+		E23864CC2C9E183800EAD795 /* JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864CB2C9E183800EAD795 /* JSONParsing.swift */; };
+		E23864CE2C9E189C00EAD795 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23864CD2C9E189C00EAD795 /* SessionManager.swift */; };
 		E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640A2C78C57D00AD4E6F /* Navigator.swift */; };
 		E239640D2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */; };
 		E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23964122C78CF8A00AD4E6F /* Coordinator.swift */; };
@@ -139,6 +143,10 @@
 		E23864BF2C9DE0FA00EAD795 /* CustomerEnquiryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEnquiryResponse.swift; sourceTree = "<group>"; };
 		E23864C12C9DE33500EAD795 /* CustomerEnquiryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerEnquiryRequest.swift; sourceTree = "<group>"; };
 		E23864C32C9DE3D600EAD795 /* PreDefinedRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreDefinedRequest.swift; sourceTree = "<group>"; };
+		E23864C52C9E123200EAD795 /* ShowCardNumberRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardNumberRequest.swift; sourceTree = "<group>"; };
+		E23864C82C9E17A900EAD795 /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
+		E23864CB2C9E183800EAD795 /* JSONParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsing.swift; sourceTree = "<group>"; };
+		E23864CD2C9E189C00EAD795 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		E239640A2C78C57D00AD4E6F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		E239640C2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionViewModel.swift; sourceTree = "<group>"; };
 		E23964122C78CF8A00AD4E6F /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -293,6 +301,22 @@
 				E22658932C7CB5DF00DF8506 /* MyQRCodeView.swift */,
 			);
 			path = MyQRCode;
+			sourceTree = "<group>";
+		};
+		E23864C72C9E179700EAD795 /* AppDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				E23864C82C9E17A900EAD795 /* AppDefaults.swift */,
+			);
+			path = AppDefaults;
+			sourceTree = "<group>";
+		};
+		E23864CA2C9E182B00EAD795 /* JSON Parsing */ = {
+			isa = PBXGroup;
+			children = (
+				E23864CB2C9E183800EAD795 /* JSONParsing.swift */,
+			);
+			path = "JSON Parsing";
 			sourceTree = "<group>";
 		};
 		E24B91712C77081D009091B2 /* Module */ = {
@@ -590,6 +614,9 @@
 		E2BD5DE02C762412006FB4B7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E23864CD2C9E189C00EAD795 /* SessionManager.swift */,
+				E23864CA2C9E182B00EAD795 /* JSON Parsing */,
+				E23864C72C9E179700EAD795 /* AppDefaults */,
 				E27298252C8B2A3B00B41FF8 /* Fonts */,
 				E2BD5DDE2C76239B006FB4B7 /* Environment.swift */,
 				E239640A2C78C57D00AD4E6F /* Navigator.swift */,
@@ -611,6 +638,7 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E23864C52C9E123200EAD795 /* ShowCardNumberRequest.swift */,
 				E23864C32C9DE3D600EAD795 /* PreDefinedRequest.swift */,
 				E23864C12C9DE33500EAD795 /* CustomerEnquiryRequest.swift */,
 				E2BF160A2C9C4B0E009683D1 /* SendOTPRequest.swift */,
@@ -734,12 +762,14 @@
 				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
 				E22658812C7C9B8B00DF8506 /* SideMenuView.swift in Sources */,
 				E2F27AE42C8EBF5700251BCE /* CurvedShape.swift in Sources */,
+				E23864C62C9E123A00EAD795 /* ShowCardNumberRequest.swift in Sources */,
 				E2344F712C9AF447005946BD /* LoaderView.swift in Sources */,
 				E25B90662C7D0A5300A6F871 /* AddOnCardView.swift in Sources */,
 				E25B906A2C7D0D5B00A6F871 /* CustomButtonStyle.swift in Sources */,
 				E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */,
 				E25B90382C7CCC8A00A6F871 /* MainTabbedView.swift in Sources */,
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
+				E23864C92C9E17A900EAD795 /* AppDefaults.swift in Sources */,
 				E2A0F2FD2C8C410F00821357 /* PhoneNumberVerificationView.swift in Sources */,
 				E226587F2C7C9AB900DF8506 /* SideMenu.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
@@ -766,6 +796,7 @@
 				E25B90442C7CEC7900A6F871 /* SettingsView.swift in Sources */,
 				E25B90502C7D006000A6F871 /* ChangeTransactionPinView.swift in Sources */,
 				E25B90522C7D006900A6F871 /* ChangeTransactionPinViewModel.swift in Sources */,
+				E23864CC2C9E183800EAD795 /* JSONParsing.swift in Sources */,
 				E25B90422C7CEAAD00A6F871 /* CardStyle.swift in Sources */,
 				E25B905A2C7D05C900A6F871 /* RenewCardViewModel.swift in Sources */,
 				E27298292C8B2A6100B41FF8 /* CustomFonts.swift in Sources */,
@@ -793,6 +824,7 @@
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
 				E25B90642C7D0A4400A6F871 /* AddOnCardViewModel.swift in Sources */,
+				E23864CE2C9E189C00EAD795 /* SessionManager.swift in Sources */,
 				E226588F2C7CADB600DF8506 /* TransactionDetailsItems.swift in Sources */,
 				E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,

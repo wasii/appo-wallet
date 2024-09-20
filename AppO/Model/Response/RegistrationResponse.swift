@@ -7,14 +7,6 @@
 
 import Foundation
 
-struct RegistrationResponse: Codable {
-    let registration_response: RegistrationResponseData?
-
-    enum CodingKeys: String, CodingKey {
-        case registration_response = "resp_data"
-    }
-}
-
 struct RegistrationResponseData: Codable {
     let availBal: String?
     let cardRefNum: String?

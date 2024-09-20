@@ -11,12 +11,14 @@ import Foundation
 struct RegisterRequest: Codable {
     let reqHeaderInfo: RequestHeaderInfo
     let digestInfo: String = "NA"
+    let deviceInfo: DeviceInfo
     let requestKey: RequestKey
     let requestData: RegisterRequestData
 
     enum CodingKeys: String, CodingKey {
         case reqHeaderInfo = "req_header_info"
         case digestInfo = "digest_info"
+        case deviceInfo = "device_info"
         case requestKey = "request_key"
         case requestData = "request_data"
     }

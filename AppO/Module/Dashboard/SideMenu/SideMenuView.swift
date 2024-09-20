@@ -13,6 +13,7 @@ enum SidemenuNavigation {
     case cardToCard
     case payments
     case settings
+    case logout
 }
 
 import SwiftUI
@@ -108,7 +109,11 @@ struct SideMenuView: View {
                             navigateToView(index: 4)
                         }
                     SidebarOption(icon: "logout-icon", title: "Logout")
-                    
+                        .onTapGesture {
+                            selectedSideMenuTab = 5
+                            presentSideMenu.toggle()
+                            navigateToView(index: 5)
+                        }
                     Spacer()
                     
                     Text("App Version: 1.0")
@@ -140,6 +145,8 @@ struct SideMenuView: View {
             closure(.payments)
         case 4:
             closure(.settings)
+        case 5:
+            closure(.logout)
         default: break
         }
     }

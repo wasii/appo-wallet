@@ -73,6 +73,9 @@ extension RegistrationViewModel {
             } receiveValue: { [weak self] response in
                 self?.showLoader = false
                 if response.respInfo?.respStatus == 200 {
+                    AppDefaults.isLogin = true
+                    AppDefaults.newUser = response.respInfo?.respData
+                    AppDefaults.mobile = mobile
                     self?.coordinatorStatePublisher.send(.with(.registered))
                 } else {
                     print("ERROR")

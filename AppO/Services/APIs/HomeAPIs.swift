@@ -16,7 +16,7 @@ enum HomeAPIs {
 
 extension HomeAPIs: TargetType {
     var baseURL: URL {
-        let urlString: String = AppEnvironment[.serverOne]
+        let urlString: String = AppEnvironment[.systemURL]
         return URL.init(string: urlString)!
     }
 

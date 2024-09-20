@@ -30,6 +30,8 @@ struct MainTabbedView: View {
                     viewModel.coordinatorStatePublisher.send(.with(.navigateToSettings))
                 case .payments:
                     break
+                case .logout:
+                    viewModel.coordinatorStatePublisher.send(.with(.logout))
                 }
                 
             }))

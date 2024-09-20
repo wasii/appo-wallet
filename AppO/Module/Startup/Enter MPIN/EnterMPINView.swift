@@ -136,7 +136,7 @@ struct EnterMPINView: View {
             viewModel.showLoader = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 viewModel.showLoader = false
-                AppEnvironment.shared.isLoggedIn = true
+                AppDefaults.isLogin = true
             }
         } label: {
             Text("CONFIRM")
