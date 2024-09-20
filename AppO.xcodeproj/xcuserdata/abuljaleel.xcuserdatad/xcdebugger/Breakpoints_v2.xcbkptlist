@@ -117,16 +117,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A0393C82-1E0F-4B0D-A97E-48292301B543"
-            shouldBeEnabled = "No"
+            uuid = "B42A4EDF-6814-4C50-B676-BEF983BB0D3D"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppO/Module/Startup/Registration/RegistrationViewModel.swift"
+            filePath = "AppO/Services/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "getUserRegistered(custName:mobile:nameOnCard:email:address:dob:nationalId:maritalStatus:)"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "systemAPIRequest(target:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D1D944D-757B-40AA-B50D-8B3F61132112"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppO/Services/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "systemAPIRequest(target:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -39,17 +39,7 @@ extension RegistrationViewModel {
     func getUserRegistered(custName: String, mobile: String, nameOnCard: String, email: String, address: String, dob: String, nationalId: String, maritalStatus: String) {
         showLoader = true
         let request: RegisterRequest = .init(
-            reqHeaderInfo: .init(
-                apiVersion: "1.1",
-                title: "sem_mapp",
-                deviceAddr: "192.168.0.100",
-                requestID: UUID().uuidString,
-                orgDate: "09202024",
-                orgTime: "150300",
-                echoMessage: "register_test",
-                checkSum: UUID().uuidString
-            ),
-            digestInfo: "NA",
+            reqHeaderInfo: .init(),
             deviceInfo: .init(
                 name: "iPhone 16 Pro Max",
                 manufacturer: "Apple",
@@ -58,8 +48,7 @@ extension RegistrationViewModel {
                 os: "iOS"
             ),
             requestKey: .init(
-                requestType: "mobile_app_cust_register",
-                requestID: "NA"
+                requestType: "mobile_app_cust_register"
             ),
             requestData: .init(
                 instID: "AP",
@@ -83,12 +72,11 @@ extension RegistrationViewModel {
                 guard case let .failure(error) = completion else { return }
             } receiveValue: { [weak self] response in
                 self?.showLoader = false
-                if response.data?.respInfo.respStatus == 200 {
-//                    self?.coordinatorStatePublisher.send(.with(.registered))
+                if response.respInfo?.respStatus == 200 {
+                    self?.coordinatorStatePublisher.send(.with(.registered))
                 } else {
                     print("ERROR")
                 }
-                self?.coordinatorStatePublisher.send(.with(.registered))
             }
             .store(in: &cancellables)
     }

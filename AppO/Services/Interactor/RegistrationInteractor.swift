@@ -10,7 +10,7 @@ import Alamofire
 import Combine
 
 protocol RegistrationInteractorType {
-    func userRegistration(request: RegisterRequest) -> AnyPublisher<APIBaseResponse<RegistrationResponse>, NetworkError>
+    func userRegistration(request: RegisterRequest) -> AnyPublisher<SystemAPIBaseResponse<RegistrationResponse>, NetworkError>
 }
 
 final class RegistrationInteractor: RegistrationInteractorType {
@@ -21,10 +21,10 @@ final class RegistrationInteractor: RegistrationInteractorType {
         networkManager = NetworkManager<RegistrationAPIs>(with: providerType)
     }
 
-    func userRegistration(request: RegisterRequest) -> AnyPublisher<APIBaseResponse<RegistrationResponse>, NetworkError> {
+    func userRegistration(request: RegisterRequest) -> AnyPublisher<SystemAPIBaseResponse<RegistrationResponse>, NetworkError> {
         let target: RegistrationAPIs = .registration(parameters: request.dictionary ?? [:])
         return networkManager
-            .request(target: target)
+            .systemAPIRequest(target: target)
             .subscribe(on: Scheduler.backgroundWorkScheduler)
             .receive(on: Scheduler.mainScheduler)
             .eraseToAnyPublisher()
