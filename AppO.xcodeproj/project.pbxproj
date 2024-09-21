@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E204E1312C9EE1720023B9FC /* ShowCardNumberResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204E1302C9EE16D0023B9FC /* ShowCardNumberResponse.swift */; };
 		E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */; };
 		E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */; };
 		E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */; };
@@ -120,6 +121,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E204E1302C9EE16D0023B9FC /* ShowCardNumberResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardNumberResponse.swift; sourceTree = "<group>"; };
 		E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPViewModel.swift; sourceTree = "<group>"; };
 		E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewModel.swift; sourceTree = "<group>"; };
 		E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINViewModel.swift; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E204E1302C9EE16D0023B9FC /* ShowCardNumberResponse.swift */,
 				E23864BF2C9DE0FA00EAD795 /* CustomerEnquiryResponse.swift */,
 				E2BF160E2C9C5B34009683D1 /* VerifyOTPResponse.swift */,
 				E2BF160C2C9C4BAE009683D1 /* SendOTPResponse.swift */,
@@ -822,6 +825,7 @@
 				E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */,
 				E25B905F2C7D063E00A6F871 /* TransactionSettingsView.swift in Sources */,
 				E2C9CB192C78616B00B47B38 /* RegistrationAPIs.swift in Sources */,
+				E204E1312C9EE1720023B9FC /* ShowCardNumberResponse.swift in Sources */,
 				E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */,
 				E272982B2C8B2A9800B41FF8 /* Fonts+Extension.swift in Sources */,
 				E25B90612C7D064800A6F871 /* TransactionSettingsViewModel.swift in Sources */,

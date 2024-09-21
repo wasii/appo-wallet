@@ -81,15 +81,9 @@ struct HomeScreenView: View {
                     ZStack {
                         ScrollView {
                             VStack(alignment: .center, spacing: 15) {
-                                if !viewModel.showLoader {
-                                    WalletTypeView
-                                        .transition(.opacity)
-                                    CardStatusView
-                                        .transition(.opacity)
-                                    CardView
-                                        .transition(.opacity)
-                                }
-                                
+                                WalletTypeView
+                                CardStatusView
+                                CardView
                                 Text("Services")
                                     .font(AppFonts.regular3)
                                     .foregroundStyle(.appBlue)
@@ -190,8 +184,14 @@ extension HomeScreenView {
                 .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
             
             VStack(alignment: .leading) {
+                Button {
+                    viewModel.showCardNumber()
+                } label: {
+                    Image(systemName: viewModel.isCardNumberVisible ? "eye.slash" : "eye")
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
                 Spacer()
-                Text(viewModel.selected_card?.maskCardNum ?? "")
+                Text(viewModel.cardNumber)
                     .font(AppFonts.regularTwenty)
                 Text("Expiry: \(viewModel.selected_card?.expDate ?? "") \(viewModel.selected_card?.cardName ?? "")")
                     .font(AppFonts.bodyFourteenBold)

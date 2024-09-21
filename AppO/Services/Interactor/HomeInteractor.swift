@@ -10,7 +10,7 @@ import Combine
 
 protocol HomeInteractorType {
     func customer_enquiry(request: CustomerEnquiryRequest) -> AnyPublisher<SystemAPIBaseResponse<CustomerEnquiryResponseData>, NetworkError>
-    func show_card_number(request: CustomerEnquiryRequest) -> AnyPublisher<SystemAPIBaseResponse<CustomerEnquiryResponseData>, NetworkError>
+    func show_card_number(request: ShowCardNumberRequest) -> AnyPublisher<SystemAPIBaseResponse<ShowCardNumberResponse>, NetworkError>
 }
 
 class HomeInteractor: HomeInteractorType {
@@ -31,7 +31,7 @@ class HomeInteractor: HomeInteractorType {
             .eraseToAnyPublisher()
     }
     //MARK: Show Card Number
-    func show_card_number(request: CustomerEnquiryRequest) -> AnyPublisher<SystemAPIBaseResponse<CustomerEnquiryResponseData>, NetworkError> {
+    func show_card_number(request: ShowCardNumberRequest) -> AnyPublisher<SystemAPIBaseResponse<ShowCardNumberResponse>, NetworkError> {
         let target: HomeAPIs = .customer_enquiry(parameters: request.dictionary ?? [:])
         
         return networkManager

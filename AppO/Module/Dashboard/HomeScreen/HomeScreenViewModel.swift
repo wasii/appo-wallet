@@ -29,6 +29,13 @@ class HomeScreenViewModel: ObservableObject {
     
     @Published var customer_enquiry: CustomerEnquiryResponseData?
     @Published var selected_card: Card?
+    @Published var cardNumber: String = ""
+    
+    @Published var isCardNumberVisible: Bool = false
+    
+    @Published private var timeRemaining = 10
+    @Published private var timerActive = false
+    private var timerCancellable: AnyCancellable?
     
     private var interactor: HomeInteractorType
     init(interactor: HomeInteractorType = HomeInteractor()) {
@@ -38,6 +45,7 @@ class HomeScreenViewModel: ObservableObject {
 
 extension HomeScreenViewModel {
     func getCustpmerEnquiry() {
+        self.showLoader = true
         let request: CustomerEnquiryRequest = .init(
             reqHeaderInfo: .init(),
             requestKey: .init(requestType: "mobile_app_cust_enq"),
@@ -57,7 +65,7 @@ extension HomeScreenViewModel {
                     AppDefaults.user = response.respInfo?.respData
                     self?.customer_enquiry = response.respInfo?.respData
                     self?.selected_card = self?.customer_enquiry?.cardList?.first
-                    
+                    self?.cardNumber = self?.formatCreditCardNumber(self?.selected_card?.maskCardNum ?? "") ?? ""
                     AppDefaults.newUser = nil
                 } else {
                     print("ERROR")
@@ -67,6 +75,7 @@ extension HomeScreenViewModel {
     }
     
     func showCardNumber() {
+        self.showLoader = true
         let request: ShowCardNumberRequest = .init(
             reqHeaderInfo: .init(),
             requestKey: .init(
@@ -79,5 +88,59 @@ extension HomeScreenViewModel {
                 mobileNum: AppDefaults.user?.primaryMobileNum ?? ""
             )
         )
+        interactor.show_card_number(request: request)
+            .sink { [weak self] completion in
+                self?.showLoader = false
+                guard case let .failure(error) = completion else { return }
+            } receiveValue: { [weak self] response in
+                self?.showLoader = false
+                if response.respInfo?.respStatus == 200 {
+                    self?.isCardNumberVisible = true
+                    self?.cardNumber = self?.formatCreditCardNumber(response.respInfo?.respData?.dCardNum ?? "") ?? ""
+                    self?.startTimer()
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    
+    fileprivate func formatCreditCardNumber(_ number: String) -> String {
+        let trimmedString = number.replacingOccurrences(of: " ", with: "")
+        var formattedString = ""
+        for (index, character) in trimmedString.enumerated() {
+            if index != 0 && index % 4 == 0 {
+                formattedString.append(" ")
+            }
+            formattedString.append(character)
+        }
+        return formattedString
+    }
+    
+    func startTimer() {
+        timeRemaining = 10
+        timerActive = true
+        
+        // Cancel the previous timer if any
+        timerCancellable?.cancel()
+        
+        // Start a new timer
+        timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                
+                if self.timeRemaining > 0 {
+                    self.timeRemaining -= 1
+                } else {
+                    self.timerActive = false
+                    self.timerCancellable?.cancel()
+                    self.performSpecificTask()
+                }
+            }
+    }
+    
+    func performSpecificTask() {
+        self.isCardNumberVisible = false
+        self.cardNumber = self.formatCreditCardNumber(self.selected_card?.maskCardNum ?? "")
     }
 }
