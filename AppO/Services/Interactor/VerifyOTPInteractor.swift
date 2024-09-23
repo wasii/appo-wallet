@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol VerifyOTPInteractorType {
-    func verifyOTP(number: String, otp:String) -> AnyPublisher<APIBaseResponse<VerifyOTPResponse>, NetworkError>
+    func verifyOTP(number: String, otp:String) -> AnyPublisher<VerifyOTPResponse, NetworkError>
 }
 
 class VerifyOTPInteractor: VerifyOTPInteractorType {
@@ -20,7 +20,7 @@ class VerifyOTPInteractor: VerifyOTPInteractorType {
         networkManager = NetworkManager<OTPAPIs>(with: providerType)
     }
     
-    func verifyOTP(number: String, otp:String) -> AnyPublisher<APIBaseResponse<VerifyOTPResponse>, NetworkError> {
+    func verifyOTP(number: String, otp:String) -> AnyPublisher<VerifyOTPResponse, NetworkError> {
         let target: OTPAPIs = .validateOTP(number: number, otp: otp)
         return networkManager
             .request(target: target)

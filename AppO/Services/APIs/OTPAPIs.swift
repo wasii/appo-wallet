@@ -11,6 +11,7 @@ import Moya
 enum OTPAPIs {
     case sendOTP(parameters: Parameters)
     case validateOTP(number:String, otp:String)
+    case updatePIN(parameters: Parameters)
 }
 
 extension OTPAPIs: TargetType {
@@ -26,12 +27,14 @@ extension OTPAPIs: TargetType {
             return "twilio/sendOTP"
         case .validateOTP(let number, let otp):
             return "twilio/validateOTP/\(number)/\(otp)"
+        case .updatePIN:
+            return "device/update-pin"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .sendOTP:
+        case .sendOTP, .updatePIN:
             return .post
         case .validateOTP(_, _):
             return .get
@@ -48,6 +51,8 @@ extension OTPAPIs: TargetType {
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .validateOTP(_, _):
             return .requestPlain
+        case .updatePIN(let parameters):
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 

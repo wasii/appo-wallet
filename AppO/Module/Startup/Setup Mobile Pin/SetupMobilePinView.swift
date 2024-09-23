@@ -14,7 +14,6 @@ struct SetupMobilePinView: View {
     
     @State private var createPIN: [String] = Array(repeating: "", count: 6)
     @State private var confirmPIN: [String] = Array(repeating: "", count: 6)
-    @FocusState private var focusedField: Int?
     
     @State private var isCreatePINSecure: Bool = true
     @State private var isConfirmPINSecure: Bool = true
@@ -46,7 +45,7 @@ struct SetupMobilePinView: View {
                     .padding(.top, 20)
                     .font(AppFonts.regularTwentyTwo)
                     .foregroundStyle(Color.white)
-                    OTPInputView(otpDigits: $createPIN, isSecure: isCreatePINSecure)
+                    OTPInputView(otpDigits: $createPIN, length: 6, isSecure: isCreatePINSecure)
                 }
                 
                 VStack(spacing: 0) {
@@ -63,7 +62,7 @@ struct SetupMobilePinView: View {
                     .padding(.top, 20)
                     .font(AppFonts.regularTwentyTwo)
                     .foregroundStyle(Color.white)
-                    OTPInputView(otpDigits: $confirmPIN, isSecure: isConfirmPINSecure)
+                    OTPInputView(otpDigits: $confirmPIN, length: 6, isSecure: isCreatePINSecure)
                 }
             }
             .zIndex(1)
@@ -86,6 +85,8 @@ struct SetupMobilePinView: View {
             Button {
                 hideKeyboard()
 //                AppEnvironment.shared.isLoggedIn = true
+                viewModel.mobilePin = createPIN.joined()
+                viewModel.updatePIN()
             } label: {
                 Text("VERIFY")
                     .customButtonStyle()
@@ -97,6 +98,21 @@ struct SetupMobilePinView: View {
         }
         .toolbar(.hidden, for: .navigationBar)
         .ignoresSafeArea(.keyboard)
+        .onReceive(viewModel.coordinatorState) { state in
+            switch (state.state, state.transferable) {
+            case (.verify, _):
+                navigator.navigate(
+                    to: .registration(
+                        viewModel: .init(
+                            countryFlag: viewModel.countryFlag,
+                            countryCode: viewModel.countryCode,
+                            phoneNumber: viewModel.phoneNumber
+                        )
+                    )
+                )
+            }
+        }
+        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
     }
     
     private var isSubmitButtonEnabled: Bool {
@@ -109,5 +125,5 @@ struct SetupMobilePinView: View {
 }
 
 #Preview {
-    SetupMobilePinView(viewModel: .init())
+    SetupMobilePinView(viewModel: .init(countryFlag: "🇮🇳", countryCode: "+91", phoneNumber: "1234123412"))
 }

@@ -10,14 +10,15 @@ import SwiftUI
 struct OTPInputView: View {
     @Binding var otpDigits: [String]
     @FocusState private var focusedField: Int?
-    
+    var length: Int = 6
     var isSecure: Bool = false
     var body: some View {
         HStack(spacing: 10) {
-            ForEach(0..<6, id: \.self) { index in
+            ForEach(0..<length, id: \.self) { index in
                 OTPDigitField(digit: $otpDigits[index], isSecure: isSecure)
                     .focused($focusedField, equals: index)
                     .onChange(of: otpDigits[index]) { newValue in
+                        lightHaptic()
                         if newValue.count > 1 {
                             otpDigits[index] = String(newValue.last ?? " ")
                         }

@@ -26,6 +26,8 @@ class VerifyOTPViewModel: ObservableObject {
     private var interactor: VerifyOTPInteractorType
     
     @Published var showLoader: Bool = false
+    @Published var apiError: String?
+    @Published var isPresentAlert: Bool = false
     
     init(interactor: VerifyOTPInteractorType = VerifyOTPInteractor(), countryCode: String, phoneNumber: String, countryFlag: String) {
         self.interactor = interactor
@@ -45,11 +47,13 @@ extension VerifyOTPViewModel {
                 guard case let .failure(error) = completion else { return }
             } receiveValue: { [weak self] response in
                 self?.showLoader = false
-                if response.success == "200" {}
-                else {
-                    print("ERROR")
+                if response.status == "200" {
+                    self?.coordinatorStatePublisher.send(.with(.verify))
                 }
-                self?.coordinatorStatePublisher.send(.with(.verify))
+                else {
+                    self?.isPresentAlert = true
+                    self?.apiError = "Something went wrong!"
+                }
             }
             .store(in: &cancellables)
     }

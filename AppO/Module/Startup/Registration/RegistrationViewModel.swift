@@ -24,6 +24,8 @@ class RegistrationViewModel: ObservableObject {
     
     private var cancellables: [AnyCancellable] = []
     @Published var showLoader: Bool = false
+    @Published var apiError: String?
+    @Published var isPresentAlert: Bool = false
     
     private var interactor: RegistrationInteractorType
     
@@ -62,7 +64,7 @@ extension RegistrationViewModel {
                 maritalStatus: maritalStatus,
                 bin: "636782",
                 subproductID: "002",
-                deviceNo: "98765"
+                deviceNo: "12345"
             )
         )
         
@@ -73,12 +75,13 @@ extension RegistrationViewModel {
             } receiveValue: { [weak self] response in
                 self?.showLoader = false
                 if response.respInfo?.respStatus == 200 {
-                    AppDefaults.isLogin = true
+                    AppEnvironment.shared.isLoggedIn = true
                     AppDefaults.newUser = response.respInfo?.respData
                     AppDefaults.mobile = mobile
                     self?.coordinatorStatePublisher.send(.with(.registered))
                 } else {
-                    print("ERROR")
+                    self?.isPresentAlert = true
+                    self?.apiError = "Something went wrong!"
                 }
             }
             .store(in: &cancellables)

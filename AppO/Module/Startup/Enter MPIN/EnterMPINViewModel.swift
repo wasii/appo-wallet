@@ -23,6 +23,8 @@ class EnterMPINViewModel: ObservableObject {
     private var cancellables: [AnyCancellable] = []
     
     @Published var showLoader: Bool = false
+    @Published var apiError: String?
+    @Published var isPresentAlert: Bool = false
     
     init() {}
 }

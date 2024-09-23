@@ -10,7 +10,7 @@ import Foundation
 
 class SessionManager: ObservableObject {
     @Published var isCreatingAccount: Bool = false
-    
+    @Published var isLogin: Bool = false
     // Singleton instance
     static let shared = SessionManager()
     

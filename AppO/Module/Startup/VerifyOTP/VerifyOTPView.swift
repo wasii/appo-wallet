@@ -60,6 +60,7 @@ struct VerifyOTPView: View {
                         .foregroundStyle(Color.black)
                     
                     Button {
+                        lightHaptic()
                         timerManager.resetTimer()
                     } label: {
                         Text("Resend Code")
@@ -93,7 +94,7 @@ struct VerifyOTPView: View {
             switch (state.state, state.transferable) {
             case (.verify, _):
                 navigator.navigate(
-                    to: .registration(
+                    to: .setupMobilePin(
                         viewModel: .init(
                             countryFlag: viewModel.countryFlag,
                             countryCode: viewModel.countryCode,
@@ -103,6 +104,7 @@ struct VerifyOTPView: View {
                 )
             }
         }
+        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
         
         VStack(spacing: 0) {
             ScrollView {
@@ -111,6 +113,7 @@ struct VerifyOTPView: View {
             
             Button {
                 hideKeyboard()
+                lightHaptic()
                 //viewModel.coordinatorStatePublisher.send(.with(.verify))
                 viewModel.verifyOtp(otp: createPIN.joined())
             } label: {

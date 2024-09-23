@@ -33,6 +33,15 @@ enum WalletCardType: CaseIterable {
             return "Visa"
         }
     }
+    
+    var isEnabled: Bool {
+        switch self {
+        case .appo:
+            return true
+        case .unionpay, .visa:
+            return false
+        }
+    }
 }
 
 struct HomeScreenView: View {
@@ -157,7 +166,9 @@ extension HomeScreenView {
                 .cornerRadius(60)
                 .onTapGesture {
                     withAnimation {
-                        currentWallet = wallet
+                        if wallet.isEnabled {
+                            currentWallet = wallet
+                        }
                     }
                 }
                 Spacer()
@@ -193,7 +204,7 @@ extension HomeScreenView {
                 Spacer()
                 Text(viewModel.cardNumber)
                     .font(AppFonts.regularTwenty)
-                Text("Expiry: \(viewModel.selected_card?.expDate ?? "") \(viewModel.selected_card?.cardName ?? "")")
+                Text("Expiry: \(viewModel.expiryDate) \(viewModel.selected_card?.cardName ?? "")")
                     .font(AppFonts.bodyFourteenBold)
             }
             .foregroundStyle(.white)

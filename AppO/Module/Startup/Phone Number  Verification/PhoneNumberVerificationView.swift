@@ -64,6 +64,7 @@ struct PhoneNumberVerificationView: View {
                         .fill(Color.appBlueForeground)
                     HStack {
                         Button {
+                            lightHaptic()
                             presentSheet = true
                             keyIsFocused = false
                         } label: {
@@ -212,6 +213,7 @@ struct PhoneNumberVerificationView: View {
                 VStack {}
             }
             Button {
+                lightHaptic()
                 hideKeyboard()
 //                viewModel.coordinatorStatePublisher.send(.with(.confirm))
                 viewModel.sendOTP(mobPhoneNumber: self.mobPhoneNumber, phoneCode: self.countryCode)
@@ -242,13 +244,14 @@ struct PhoneNumberVerificationView: View {
                 break
             }
         }
+        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
     }
     
     var filteredResorts: [PhoneNumberModel] {
         if searchCountry.isEmpty {
             return counrties
         } else {
-            return counrties.filter { $0.name.contains(searchCountry) }
+            return counrties.filter { $0.name.lowercased().contains(searchCountry.lowercased()) }
         }
     }
     

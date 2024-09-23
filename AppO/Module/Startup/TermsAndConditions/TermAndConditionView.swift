@@ -12,6 +12,11 @@ struct TermAndConditionView: View {
     @State private var isChecked: Bool = false
     @EnvironmentObject var navigator: Navigator
     
+    @State private var cameraPermissionGranted = false
+    @State private var audioPermissionGranted = false
+    @State private var faceIDPermissionGranted = false
+    let permissionsService = PermissionServiceManager()
+    
     var body: some View {
         VStack(spacing: 0) {
             NavigationBarView(title: "Terms and Conditions")
@@ -33,7 +38,9 @@ struct TermAndConditionView: View {
             VStack {
                 HStack {
                     Button(action: {
+                        mediumHaptic()
                         isChecked.toggle()
+                        requestPermissions()
                     }) {
                         Image(systemName: isChecked ? "checkmark.square.fill" : "square")
                             .foregroundColor(isChecked ? .appBlue : .gray)
@@ -45,7 +52,10 @@ struct TermAndConditionView: View {
                     Spacer()
                 }
                 Button {
-                    navigator.navigate(to: .enterMPINView(viewModel: .init()))
+                    lightHaptic()
+                    if cameraPermissionGranted && audioPermissionGranted {
+                        navigator.navigate(to: .enterMPINView(viewModel: .init()))
+                    }
                 } label: {
                     Text("Next")
                         .font(AppFonts.headline4)
@@ -63,6 +73,29 @@ struct TermAndConditionView: View {
         }
         .edgesIgnoringSafeArea(.top)
         .toolbar(.hidden, for: .navigationBar)
+    }
+    
+    private func requestPermissions() {
+        // Check Camera Permission
+        permissionsService.checkCameraPermission { granted in
+            DispatchQueue.main.async {
+                self.cameraPermissionGranted = granted
+            }
+        }
+        
+        // Check Audio Permission
+        permissionsService.checkAudioPermission { granted in
+            DispatchQueue.main.async {
+                self.audioPermissionGranted = granted
+            }
+        }
+        
+        // Check Face ID Permission
+        permissionsService.checkFaceIDPermission { granted in
+            DispatchQueue.main.async {
+                self.faceIDPermissionGranted = granted
+            }
+        }
     }
 }
 

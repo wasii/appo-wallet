@@ -11,13 +11,13 @@ import SwiftUI
 struct AppOApp: App {
     
     @State var sessionManager: SessionManager = SessionManager.shared
-    
+    @StateObject var session: AppEnvironment = AppEnvironment.shared
     init() {}
     
     var body: some Scene {
         WindowGroup {
             ZStack {
-                if AppDefaults.isLogin {
+                if session.isLoggedIn {
                     MainTabbedView()
                         .transition(.move(edge: .trailing)) // Slide in from the right
                 } else {

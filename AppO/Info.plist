@@ -26,5 +26,14 @@
 		<key>UIColorName</key>
 		<string>AppBackground</string>
 	</dict>
+    
+    <key>NSCameraUsageDescription</key>
+    <string>We need access to your camera for scanning QR.</string>
+
+    <key>NSMicrophoneUsageDescription</key>
+    <string>We need access to your microphone for audio purpose.</string>
+
+    <key>NSFaceIDUsageDescription</key>
+    <string>We need to use Face ID for authentication purposes.</string>
 </dict>
 </plist>

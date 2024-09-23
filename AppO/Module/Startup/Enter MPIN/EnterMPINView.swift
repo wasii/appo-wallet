@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 struct EnterMPINView: View {
     
@@ -33,7 +34,6 @@ struct EnterMPINView: View {
                             .font(AppFonts.headline4)
                         
                         OTPndNumPad()
-                        //                        .padding()
                         
                         VStack(spacing: 16) {
                             createNewAccountView()
@@ -51,13 +51,43 @@ struct EnterMPINView: View {
         .onReceive(viewModel.coordinatorState) { state in
             switch (state.state, state.transferable) {
             case (.confirm, _):
-                break
+                AppEnvironment.shared.isLoggedIn = true
             case (.createNewAccount, _):
                 navigator.navigate(to: .phoneNumberVerification(viewModel: .init()))
                 break
             case (.forgetPin, _):
                 break
             }
+        }
+        .onAppear {
+            if let mobile = AppDefaults.mobile {
+                print("Customer Mobile Number: \(mobile)")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    authenticate()
+                }
+            }
+        }
+    }
+    
+    private func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+        
+        // Check if the device supports Face ID or Touch ID
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "We need to unlock your data."
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                DispatchQueue.main.async {
+                    if success {
+                        viewModel.coordinatorStatePublisher.send(.with(.confirm))
+                    } else {
+                        // Handle failed authentication
+                    }
+                }
+            }
+        } else {
+            // No biometrics available
         }
     }
     
@@ -112,6 +142,7 @@ struct EnterMPINView: View {
                 .foregroundStyle(Color.gray)
                 .font(AppFonts.bodyEighteenBold)
             Button {
+                lightHaptic()
                 viewModel.coordinatorStatePublisher.send(.with(.createNewAccount))
             } label: {
                 Text("Register Now")
@@ -150,6 +181,7 @@ struct EnterMPINView: View {
     private func numPadButton(_ number: String) -> some View {
         Button(action: {
             if otpDigits.count < maxDigits {
+                lightHaptic()
                 otpDigits.append(number)
                 print(otpDigits)
             }
@@ -167,6 +199,7 @@ struct EnterMPINView: View {
     private func backspaceButton() -> some View {
         Button(action: {
             if !otpDigits.isEmpty {
+                heavyHaptic()
                 otpDigits.removeLast()
                 print(otpDigits)
             }

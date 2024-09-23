@@ -30,7 +30,7 @@ class HomeScreenViewModel: ObservableObject {
     @Published var customer_enquiry: CustomerEnquiryResponseData?
     @Published var selected_card: Card?
     @Published var cardNumber: String = ""
-    
+    @Published var expiryDate: String = ""
     @Published var isCardNumberVisible: Bool = false
     
     @Published private var timeRemaining = 10
@@ -66,6 +66,7 @@ extension HomeScreenViewModel {
                     self?.customer_enquiry = response.respInfo?.respData
                     self?.selected_card = self?.customer_enquiry?.cardList?.first
                     self?.cardNumber = self?.formatCreditCardNumber(self?.selected_card?.maskCardNum ?? "") ?? ""
+                    self?.expiryDate = self?.convertDateToMonthYear(self?.selected_card?.expDate ?? "") ?? ""
                     AppDefaults.newUser = nil
                 } else {
                     print("ERROR")
@@ -142,5 +143,19 @@ extension HomeScreenViewModel {
     func performSpecificTask() {
         self.isCardNumberVisible = false
         self.cardNumber = self.formatCreditCardNumber(self.selected_card?.maskCardNum ?? "")
+    }
+    
+    func convertDateToMonthYear(_ date: String) -> String? {
+        guard date.count == 8 else {
+            return nil
+        }
+        let startIndex = date.index(date.startIndex, offsetBy: 2)
+        let endIndex = date.index(date.startIndex, offsetBy: 4)
+        
+        let month = String(date[startIndex..<endIndex])
+        let year = String(date.suffix(4))
+        
+        
+        return "\(month)/\(year)"
     }
 }

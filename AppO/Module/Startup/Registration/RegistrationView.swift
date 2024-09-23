@@ -187,9 +187,10 @@ struct RegistrationView: View {
         .onReceive(viewModel.coordinatorState) { state in
             switch (state.state, state.transferable) {
             case(.registered, _):
-                navigator.navigate(to: .setupMobilePin(viewModel: .init()))
+                AppEnvironment.shared.isLoggedIn = true
             }
         }
+        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
     }
 }
 

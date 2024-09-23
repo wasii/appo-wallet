@@ -24,6 +24,8 @@ class PhoneNumberVerificationViewModel: ObservableObject {
     private var interactor: PhoneNumberVerificationInteractorType
     
     @Published var showLoader: Bool = false
+    @Published var apiError: String?
+    @Published var isPresentAlert: Bool = false
     
     init(interactor: PhoneNumberVerificationInteractorType = PhoneNumberVerificationInteractor()) {
         self.interactor = interactor
@@ -37,13 +39,15 @@ extension PhoneNumberVerificationViewModel {
         interactor.sendOTP(request: .init(mobileNumber: mobPhoneNumber, hashKey: "3w0pkWn2S4N", phoneCode: phoneCode))
             .sink { [weak self] completion in
                 self?.showLoader = false
+                self?.coordinatorStatePublisher.send(.with(.confirm))
                 guard case let .failure(error) = completion else { return }
             } receiveValue: { [weak self] response in
                 self?.showLoader = false
-                if response.success == "200" {
+                if response.status == "200" {
 //                    self?.coordinatorStatePublisher.send(.with(.confirm))
                 } else {
-                    print("ERROR")
+                    self?.isPresentAlert = true
+                    self?.apiError = "Something went wrong!"
                 }
                 self?.coordinatorStatePublisher.send(.with(.confirm))
             }

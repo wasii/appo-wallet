@@ -12,6 +12,7 @@ class AppEnvironment: ObservableObject {
     static let shared = AppEnvironment()
     
     var usesLocalAPIMocks = false
+    @Published var isLoggedIn: Bool = false
     private init() {}
 
     private var infoDictionary: [String: Any] {

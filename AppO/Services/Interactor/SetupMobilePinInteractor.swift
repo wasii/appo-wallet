@@ -6,8 +6,26 @@
 //
 
 import Foundation
+import Combine
 
+protocol SetupMobilePinInteractorType {
+    func updatePIN(request: SetupMobilePinRequest) -> AnyPublisher<SetupMobilePinResponse, NetworkError>
+}
 
-class SetupMobilePinInteractor {
+class SetupMobilePinInteractor: SetupMobilePinInteractorType {
     
+    private var networkManager: NetworkManager<OTPAPIs>
+    
+    init(providerType: NetworkManagerProviderType<OTPAPIs> = .live) {
+        networkManager = NetworkManager<OTPAPIs>(with: providerType)
+    }
+    
+    func updatePIN(request: SetupMobilePinRequest) -> AnyPublisher<SetupMobilePinResponse, NetworkError> {
+        let target: OTPAPIs = .updatePIN(parameters: request.dictionary ?? [:])
+        return networkManager
+            .request(target: target)
+            .subscribe(on: Scheduler.backgroundWorkScheduler)
+            .receive(on: Scheduler.mainScheduler)
+            .eraseToAnyPublisher()
+    }
 }

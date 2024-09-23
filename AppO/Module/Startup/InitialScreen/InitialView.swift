@@ -39,6 +39,7 @@ struct InitialView: View {
                         .offset(y: -20)
                     
                     Button {
+                        lightHaptic()
                         navigator.navigate(to: .termsAndConditionView)
                     } label: {
                         Text("Get Started")

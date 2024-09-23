@@ -21,8 +21,8 @@ class NetworkManager<APIType: TargetType> {
         self.provider = type.getProvider()
     }
     
-    func request<T: Codable>(target: APIType) -> AnyPublisher<APIBaseResponse<T>, NetworkError> {
-        return Future<APIBaseResponse<T>, NetworkError> { [weak self] promise in
+    func request<T: Codable>(target: APIType) -> AnyPublisher<T, NetworkError> {
+        return Future<T, NetworkError> { [weak self] promise in
             // Load stored cookies
             if let cookies = self?.cookieStorage.cookies {
                 for cookie in cookies {
@@ -49,12 +49,12 @@ class NetworkManager<APIType: TargetType> {
                         print("Status Code: \(statusCode)")
                         if statusCode == 401 {
 //                            SessionManager.shared.logout()
-                            promise(.success(APIBaseResponse.init(success: "401", message: "Kindly re-login", data: nil)))
+//                            promise(.success(APIBaseResponse.init(success: "401", message: "Kindly re-login", data: nil)))
                             return
                         }
                     }
                     do {
-                        let data = try JSONDecoder().decode(APIBaseResponse<T>.self, from: response.data)
+                        let data = try JSONDecoder().decode(T.self, from: response.data)
                         promise(.success(data))
                     } catch {
                         // Print response data if decoding fails

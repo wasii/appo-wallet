@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E204E1312C9EE1720023B9FC /* ShowCardNumberResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204E1302C9EE16D0023B9FC /* ShowCardNumberResponse.swift */; };
+		E204E1332CA1615A0023B9FC /* HapticFeedbackModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204E1322CA1615A0023B9FC /* HapticFeedbackModifier.swift */; };
+		E204E1352CA1841F0023B9FC /* SetupMobilePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204E1342CA184130023B9FC /* SetupMobilePinRequest.swift */; };
+		E204E1372CA184AB0023B9FC /* SetupMobilePinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204E1362CA184AB0023B9FC /* SetupMobilePinResponse.swift */; };
+		E204E1392CA19DAB0023B9FC /* PermissionServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204E1382CA19DA50023B9FC /* PermissionServiceManager.swift */; };
 		E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */; };
 		E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */; };
 		E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */; };
@@ -122,6 +126,10 @@
 
 /* Begin PBXFileReference section */
 		E204E1302C9EE16D0023B9FC /* ShowCardNumberResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardNumberResponse.swift; sourceTree = "<group>"; };
+		E204E1322CA1615A0023B9FC /* HapticFeedbackModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackModifier.swift; sourceTree = "<group>"; };
+		E204E1342CA184130023B9FC /* SetupMobilePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinRequest.swift; sourceTree = "<group>"; };
+		E204E1362CA184AB0023B9FC /* SetupMobilePinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinResponse.swift; sourceTree = "<group>"; };
+		E204E1382CA19DA50023B9FC /* PermissionServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionServiceManager.swift; sourceTree = "<group>"; };
 		E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPViewModel.swift; sourceTree = "<group>"; };
 		E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewModel.swift; sourceTree = "<group>"; };
 		E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINViewModel.swift; sourceTree = "<group>"; };
@@ -346,6 +354,7 @@
 		E24B91732C770844009091B2 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				E204E1322CA1615A0023B9FC /* HapticFeedbackModifier.swift */,
 				E2344F702C9AF447005946BD /* LoaderView.swift */,
 				E2D140232C6E49D70064EE6E /* AppLogoView.swift */,
 				E25B4B412C6E171E000745F9 /* BottomNavigation.swift */,
@@ -619,6 +628,7 @@
 		E2BD5DE02C762412006FB4B7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E204E1382CA19DA50023B9FC /* PermissionServiceManager.swift */,
 				E23864CD2C9E189C00EAD795 /* SessionManager.swift */,
 				E23864CA2C9E182B00EAD795 /* JSON Parsing */,
 				E23864C72C9E179700EAD795 /* AppDefaults */,
@@ -643,6 +653,7 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E204E1342CA184130023B9FC /* SetupMobilePinRequest.swift */,
 				E23864C52C9E123200EAD795 /* ShowCardNumberRequest.swift */,
 				E23864C32C9DE3D600EAD795 /* PreDefinedRequest.swift */,
 				E23864C12C9DE33500EAD795 /* CustomerEnquiryRequest.swift */,
@@ -655,6 +666,7 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E204E1362CA184AB0023B9FC /* SetupMobilePinResponse.swift */,
 				E204E1302C9EE16D0023B9FC /* ShowCardNumberResponse.swift */,
 				E23864BF2C9DE0FA00EAD795 /* CustomerEnquiryResponse.swift */,
 				E2BF160E2C9C5B34009683D1 /* VerifyOTPResponse.swift */,
@@ -791,6 +803,7 @@
 				E23864BC2C9DDF7E00EAD795 /* HomeInteractor.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
 				E226588B2C7CACAB00DF8506 /* CardTransactionDetailsView.swift in Sources */,
+				E204E1332CA1615A0023B9FC /* HapticFeedbackModifier.swift in Sources */,
 				E25B90462C7CEC8200A6F871 /* SettingsViewModel.swift in Sources */,
 				E23864D02C9E319800EAD795 /* SystemAPIBaseResponse.swift in Sources */,
 				E2C9CB112C785CAF00B47B38 /* SetupMobilePinInteractor.swift in Sources */,
@@ -798,6 +811,7 @@
 				E2850B282C92CADC009A77B9 /* WithdrawLimitView.swift in Sources */,
 				E22658782C7C703500DF8506 /* HomeScreenView.swift in Sources */,
 				E22658942C7CB5DF00DF8506 /* MyQRCodeView.swift in Sources */,
+				E204E1352CA1841F0023B9FC /* SetupMobilePinRequest.swift in Sources */,
 				E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */,
 				E24B91842C771929009091B2 /* APIHeader.swift in Sources */,
 				E25B90442C7CEC7900A6F871 /* SettingsView.swift in Sources */,
@@ -819,6 +833,7 @@
 				E24B91962C771AE2009091B2 /* PlistKey.swift in Sources */,
 				E25B905C2C7D05D800A6F871 /* RenewCardView.swift in Sources */,
 				E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */,
+				E204E1372CA184AB0023B9FC /* SetupMobilePinResponse.swift in Sources */,
 				E23864C02C9DE10600EAD795 /* CustomerEnquiryResponse.swift in Sources */,
 				E25B90572C7D04FF00A6F871 /* ReplaceCardViewModel.swift in Sources */,
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
@@ -833,6 +848,7 @@
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
 				E25B90642C7D0A4400A6F871 /* AddOnCardViewModel.swift in Sources */,
 				E23864CE2C9E189C00EAD795 /* SessionManager.swift in Sources */,
+				E204E1392CA19DAB0023B9FC /* PermissionServiceManager.swift in Sources */,
 				E226588F2C7CADB600DF8506 /* TransactionDetailsItems.swift in Sources */,
 				E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,
@@ -997,7 +1013,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202409.19.1625;
+				CURRENT_PROJECT_VERSION = 202409.23.1520;
 				DEVELOPMENT_ASSET_PATHS = "\"AppO/Preview Content\"";
 				DEVELOPMENT_TEAM = WY6HWY8U3Y;
 				ENABLE_PREVIEWS = YES;
@@ -1037,7 +1053,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202409.19.1625;
+				CURRENT_PROJECT_VERSION = 202409.23.1520;
 				DEVELOPMENT_ASSET_PATHS = "\"AppO/Preview Content\"";
 				DEVELOPMENT_TEAM = WY6HWY8U3Y;
 				ENABLE_PREVIEWS = YES;

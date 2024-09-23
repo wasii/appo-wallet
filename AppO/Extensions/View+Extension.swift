@@ -9,6 +9,12 @@ import Foundation
 import SwiftUI
 
 extension View {
+    func showError(_ error: String?,
+                   isPresenting: Binding<Bool>,
+                   onTap: (() -> ())? = nil) -> some View {
+        
+        self.modifier(AlertPresentationModifier(isPresented: isPresenting, title: "Error", message: error ?? "", dismissButtonTitle: "Dismiss", action: onTap))
+    }
     func placeholder<Content: View>(
         when shouldShow: Bool,
         alignment: Alignment = .leading,
@@ -50,6 +56,19 @@ extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
+    
+    func lightHaptic() {
+        let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+        impactFeedback.impactOccurred()
+    }
+    func mediumHaptic() {
+        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+        impactFeedback.impactOccurred()
+    }
+    func heavyHaptic() {
+        let impactFeedback = UIImpactFeedbackGenerator(style: .heavy)
+        impactFeedback.impactOccurred()
+    }
 }
 
 
@@ -62,5 +81,22 @@ struct RoundedCorner: Shape {
                                 byRoundingCorners: corners,
                                 cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
+    }
+}
+
+
+struct AlertPresentationModifier: ViewModifier {
+    @Binding var isPresented: Bool
+    let title: String
+    let message: String
+    let dismissButtonTitle: String
+    let action: (() -> Void)?
+
+    func body(content: Content) -> some View {
+        content.alert(isPresented: $isPresented) {
+            Alert(title: Text(title), message: Text(message), dismissButton: .default(Text(dismissButtonTitle)) {
+                action?()
+            })
+        }
     }
 }
