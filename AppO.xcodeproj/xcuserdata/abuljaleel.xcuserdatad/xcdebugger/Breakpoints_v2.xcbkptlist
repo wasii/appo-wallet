@@ -18,36 +18,6 @@
             endingLineNumber = "79"
             landmarkName = "view(for:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF - 8707031b5a68864a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AppO.HomeNavigator.view(for: AppO.HomeNavigator.Destination) -&gt; some"
-                  moduleName = "AppO.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Utils/HomeNavigator.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80">
-               </Location>
-               <Location
-                  uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF - 8707031b5a68864a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AppO.HomeNavigator.view(for: AppO.HomeNavigator.Destination) -&gt; some"
-                  moduleName = "AppO.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Utils/HomeNavigator.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -133,47 +103,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1EA88E56-6E27-4E15-B9DB-65B1B9041CF1"
+            uuid = "69FFD14A-4A15-4FD8-85C6-7C602B62565D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppO/Model/Request/SetupMobilePinRequest.swift"
+            filePath = "AppO/Module/Startup/Registration/RegistrationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "SetupMobilePinRequest"
-            landmarkType = "14">
-            <Locations>
-               <Location
-                  uuid = "1EA88E56-6E27-4E15-B9DB-65B1B9041CF1 - 5104fe595b9aaf2b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AppO.SetupMobilePinRequest.init(from: Swift.Decoder) throws -&gt; AppO.SetupMobilePinRequest"
-                  moduleName = "AppO.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Model/Request/SetupMobilePinRequest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "11"
-                  endingLineNumber = "11">
-               </Location>
-               <Location
-                  uuid = "1EA88E56-6E27-4E15-B9DB-65B1B9041CF1 - 4e7c11abd9e950d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AppO.SetupMobilePinRequest.init(mobilePin: Swift.String) -&gt; AppO.SetupMobilePinRequest"
-                  moduleName = "AppO.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Model/Request/SetupMobilePinRequest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "11"
-                  endingLineNumber = "11">
-               </Location>
-            </Locations>
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "getUserRegistered(custName:mobile:nameOnCard:email:address:dob:nationalId:maritalStatus:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -193,14 +193,11 @@ extension HomeScreenView {
                 .resizable()
                 .frame(height: 220)
                 .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
+            if viewModel.selected_card?.cardStatusDesc == "InActive" {
+                
+            }
             
             VStack(alignment: .leading) {
-                Button {
-                    viewModel.showCardNumber()
-                } label: {
-                    Image(systemName: viewModel.isCardNumberVisible ? "eye.slash" : "eye")
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
                 Spacer()
                 Text(viewModel.cardNumber)
                     .font(AppFonts.regularTwenty)
@@ -210,6 +207,24 @@ extension HomeScreenView {
             .foregroundStyle(.white)
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
+            
+            if viewModel.selected_card?.cardStatusDesc == "InActive" {
+                ZStack {
+                    VStack {
+                        Button {} label: {
+                            Text("Activate your Card")
+                                .font(AppFonts.regularTwenty)
+                                .foregroundStyle(Color.appBackground)
+                                .padding()
+                                .background(Color.appBlue)
+                                .cornerRadius(5, corners: .allCorners)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+                .background(Color.black.opacity(0.3))
+                .cornerRadius(15, corners: .allCorners)
+            }
         }
     }
     
