@@ -37,7 +37,11 @@ struct EnterMPINView: View {
                         
                         VStack(spacing: 16) {
                             createNewAccountView()
-                            updateMPINView()
+                            if AppDefaults.deviceId == nil {
+                                bindDeviceView()
+                            } else {
+                                updateMPINView()
+                            }
                             confirmButtonView()
                         }
                         .padding()
@@ -53,10 +57,10 @@ struct EnterMPINView: View {
             case (.confirm, _):
                 AppEnvironment.shared.isLoggedIn = true
             case (.createNewAccount, _):
-                navigator.navigate(to: .phoneNumberVerification(viewModel: .init()))
+                navigator.navigate(to: .phoneNumberVerification(viewModel: .init(bindingDevice: false)))
                 break
-            case (.forgetPin, _):
-                break
+            case (.bindDevice, _):
+                navigator.navigate(to: .phoneNumberVerification(viewModel: .init(bindingDevice: true)))
             }
         }
         .onAppear {
@@ -160,15 +164,32 @@ struct EnterMPINView: View {
                 .font(AppFonts.headline4)
         }
     }
+    //MARK: - Bind Device
+    private func bindDeviceView() -> some View {
+        HStack(spacing: 5) {
+            Text("Using a new device?")
+                .foregroundStyle(Color.gray)
+                .font(AppFonts.bodyEighteenBold)
+            Button {
+                lightHaptic()
+                viewModel.coordinatorStatePublisher.send(.with(.bindDevice))
+            } label: {
+                Text("Bind Device")
+                    .foregroundStyle(Color.appBlue)
+                    .font(AppFonts.bodyTwentyBold)
+            }
+        }
+    }
     
     //MARK: - Confirm Button
     private func confirmButtonView() -> some View {
         Button {
-            viewModel.showLoader = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                viewModel.showLoader = false
-                AppDefaults.isLogin = true
-            }
+//            viewModel.showLoader = true
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+//                viewModel.showLoader = false
+//                AppDefaults.isLogin = true
+//            }
+            viewModel.verifyPIN(mobilePin: otpDigits.joined())
         } label: {
             Text("CONFIRM")
                 .customButtonStyle()

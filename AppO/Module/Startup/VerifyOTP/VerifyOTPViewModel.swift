@@ -24,13 +24,15 @@ class VerifyOTPViewModel: ObservableObject {
     
     private var cancellables: [AnyCancellable] = []
     private var interactor: VerifyOTPInteractorType
+    private var dInteractor: DeviceBindingInteractorType
     
     @Published var showLoader: Bool = false
     @Published var apiError: String?
     @Published var isPresentAlert: Bool = false
     
-    init(interactor: VerifyOTPInteractorType = VerifyOTPInteractor(), countryCode: String, phoneNumber: String, countryFlag: String) {
+    init(interactor: VerifyOTPInteractorType = VerifyOTPInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(), countryCode: String, phoneNumber: String, countryFlag: String) {
         self.interactor = interactor
+        self.dInteractor = dInteractor
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber
         self.countryFlag = countryFlag
@@ -46,8 +48,26 @@ extension VerifyOTPViewModel {
                 self?.showLoader = false
                 guard case let .failure(error) = completion else { return }
             } receiveValue: { [weak self] response in
-                self?.showLoader = false
                 if response.status == "200" {
+                    self?.bindDevice()
+                }
+                else {
+                    self?.isPresentAlert = true
+                    self?.apiError = "Something went wrong!"
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func bindDevice() {
+        let deviceId = "\(UUID().uuidString)-\(self.phoneNumber)"
+        dInteractor.bindDevice(request: .init(mobileNo: self.phoneNumber, deviceId: deviceId))
+            .sink { [weak self] completion in
+                self?.showLoader = false
+                guard case let .failure(error) = completion else { return }
+            } receiveValue: { [weak self] response in
+                if response.status == "200" {
+                    AppDefaults.deviceId = deviceId
                     self?.coordinatorStatePublisher.send(.with(.verify))
                 }
                 else {

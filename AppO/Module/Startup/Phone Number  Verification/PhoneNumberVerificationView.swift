@@ -34,7 +34,7 @@ struct PhoneNumberVerificationView: View {
                     .frame(height: UIScreen.main.bounds.height)
             }
             .zIndex(2)
-            NavigationBarView(title: "Phone no Verification")
+            NavigationBarView(title: viewModel.isBindingNewDevice ? "Back" : "Phone no Verification")
                 .zIndex(1)
             Rectangle()
                 .fill(Color.appBlue)
@@ -46,17 +46,19 @@ struct PhoneNumberVerificationView: View {
                     .frame(width: 120, height: 100)
                 
                 VStack(spacing: 5) {
-                    Text("Verify Code")
+                    Text(viewModel.isBindingNewDevice ? "Welcome Back" : "Verify Code")
                         .foregroundStyle(Color.appBlueForeground)
                         .font(AppFonts.regularTwenty)
                     
-                    Text("Phone No Verification")
+                    Text(viewModel.isBindingNewDevice ? "Phone Number" : "Phone No Verification")
                         .foregroundStyle(Color.white)
                         .font(AppFonts.regular3)
                     
-                    Text("We will send you the OTP")
+                    Text(viewModel.isBindingNewDevice ? "You need to provide a phone number to bind new a device" : "We will send you the OTP")
                         .foregroundStyle(Color.white)
                         .font(AppFonts.regularTwentyTwo)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 40)
                 }
                 
                 ZStack {
@@ -215,16 +217,14 @@ struct PhoneNumberVerificationView: View {
             Button {
                 lightHaptic()
                 hideKeyboard()
-//                viewModel.coordinatorStatePublisher.send(.with(.confirm))
-                viewModel.sendOTP(mobPhoneNumber: self.mobPhoneNumber, phoneCode: self.countryCode)
+                if viewModel.isBindingNewDevice {
+                    viewModel.rebindDevice(mobileNo: self.mobPhoneNumber)
+                } else {
+                    viewModel.sendOTP(mobPhoneNumber: self.mobPhoneNumber, phoneCode: self.countryCode)
+                }
             } label: {
-                Text("NEXT ")
-                    .font(AppFonts.headline4)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 60)
-                    .background(Color.appBlue)
-                    .cornerRadius(10)
-                    .foregroundColor(.white)
+                Text(viewModel.isBindingNewDevice ? "BIND" : "NEXT")
+                    .customButtonStyle()
             }
             .padding()
             .disabled(self.countryCode.isEmpty || self.mobPhoneNumber.isEmpty || self.mobPhoneNumber.count != countryLimit || viewModel.showLoader)
@@ -241,6 +241,9 @@ struct PhoneNumberVerificationView: View {
             switch (state.state, state.transferable) {
             case (.confirm, _):
                 navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: "\(self.mobPhoneNumber)", countryFlag: "\(self.countryFlag)")))
+                
+            case (.rebinded, _):
+                navigator.navigateBack(to: 0)
                 break
             }
         }
@@ -283,5 +286,5 @@ struct PhoneNumberVerificationView: View {
 }
 
 #Preview {
-    PhoneNumberVerificationView(viewModel: .init())
+    PhoneNumberVerificationView(viewModel: .init(bindingDevice: true))
 }

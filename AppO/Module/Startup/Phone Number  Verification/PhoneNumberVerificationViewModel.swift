@@ -12,6 +12,7 @@ import SwiftUI
 
 enum PhoneNumberVerificationViewModelState {
     case confirm
+    case rebinded
 }
 class PhoneNumberVerificationViewModel: ObservableObject {
     let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<PhoneNumberVerificationViewModelState>, Never>()
@@ -20,15 +21,21 @@ class PhoneNumberVerificationViewModel: ObservableObject {
     }
     
     private var cancellables: [AnyCancellable] = []
+    var isBindingNewDevice: Bool
     
     private var interactor: PhoneNumberVerificationInteractorType
+    private var dInteractor: DeviceBindingInteractorType
     
     @Published var showLoader: Bool = false
     @Published var apiError: String?
     @Published var isPresentAlert: Bool = false
     
-    init(interactor: PhoneNumberVerificationInteractorType = PhoneNumberVerificationInteractor()) {
+    init(interactor: PhoneNumberVerificationInteractorType = PhoneNumberVerificationInteractor(),
+        dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(),
+        bindingDevice: Bool) {
         self.interactor = interactor
+        self.dInteractor = dInteractor
+        self.isBindingNewDevice = bindingDevice
     }
 }
 
@@ -53,5 +60,26 @@ extension PhoneNumberVerificationViewModel {
             }
             .store(in: &cancellables)
         
+    }
+    
+    func rebindDevice(mobileNo: String) {
+        showLoader = true
+        let deviceId = "\(UUID().uuidString)-\(mobileNo)"
+        dInteractor.rebindDevice(request: .init(mobileNo: mobileNo, deviceId: deviceId))
+            .sink { [weak self] completion in
+                self?.showLoader = false
+                self?.coordinatorStatePublisher.send(.with(.confirm))
+                guard case let .failure(error) = completion else { return }
+            } receiveValue: { [weak self] response in
+                self?.showLoader = false
+                if response.status == "200" {
+                    AppDefaults.deviceId = deviceId
+                    self?.coordinatorStatePublisher.send(.with(.rebinded))
+                } else {
+                    self?.isPresentAlert = true
+                    self?.apiError = "Something went wrong!"
+                }
+            }
+            .store(in: &cancellables)
     }
 }

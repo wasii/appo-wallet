@@ -99,6 +99,17 @@
 		E291414B2C736D7700D054A1 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414A2C736D7700D054A1 /* TimeManager.swift */; };
 		E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291414C2C736DB100D054A1 /* OTPInputView.swift */; };
 		E2A0F2FD2C8C410F00821357 /* PhoneNumberVerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A0F2FC2C8C410F00821357 /* PhoneNumberVerificationView.swift */; };
+		E2A5C84F2CA2A10A00F40B18 /* CryptoUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C84E2CA2A10A00F40B18 /* CryptoUtils.swift */; };
+		E2A5C8522CA2AED700F40B18 /* BindDeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C8512CA2AED300F40B18 /* BindDeviceRequest.swift */; };
+		E2A5C8542CA2CA4900F40B18 /* RebindDeviceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C8532CA2CA4300F40B18 /* RebindDeviceResponse.swift */; };
+		E2A5C8562CA2D3DC00F40B18 /* ReBindDeviceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C8552CA2D3D500F40B18 /* ReBindDeviceRequest.swift */; };
+		E2A5C8582CA2D3F500F40B18 /* BindDeviceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C8572CA2D3F100F40B18 /* BindDeviceResponse.swift */; };
+		E2A5C85A2CA2D98300F40B18 /* DeviceBindingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C8592CA2D97C00F40B18 /* DeviceBindingInteractor.swift */; };
+		E2A5C85C2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C85B2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift */; };
+		E2A5C85E2CA2E01100F40B18 /* VerifyPINRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C85D2CA2E00900F40B18 /* VerifyPINRequest.swift */; };
+		E2A5C8602CA2E01800F40B18 /* VerifyPINResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C85F2CA2E01500F40B18 /* VerifyPINResponse.swift */; };
+		E2A5C8622CA2E18400F40B18 /* VerifyPINInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C8612CA2E17C00F40B18 /* VerifyPINInteractor.swift */; };
+		E2A5C8642CA2E1DF00F40B18 /* VerifyPINAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C8632CA2E1CD00F40B18 /* VerifyPINAPIs.swift */; };
 		E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BD5DDE2C76239B006FB4B7 /* Environment.swift */; };
 		E2BF16092C9C49F3009683D1 /* OTPAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF16082C9C49E4009683D1 /* OTPAPIs.swift */; };
 		E2BF160B2C9C4B19009683D1 /* SendOTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF160A2C9C4B0E009683D1 /* SendOTPRequest.swift */; };
@@ -214,6 +225,18 @@
 		E291414A2C736D7700D054A1 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		E291414C2C736DB100D054A1 /* OTPInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPInputView.swift; sourceTree = "<group>"; };
 		E2A0F2FC2C8C410F00821357 /* PhoneNumberVerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationView.swift; sourceTree = "<group>"; };
+		E2A5C84E2CA2A10A00F40B18 /* CryptoUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUtils.swift; sourceTree = "<group>"; };
+		E2A5C8502CA2A18700F40B18 /* AppO-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppO-Bridging-Header.h"; sourceTree = "<group>"; };
+		E2A5C8512CA2AED300F40B18 /* BindDeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindDeviceRequest.swift; sourceTree = "<group>"; };
+		E2A5C8532CA2CA4300F40B18 /* RebindDeviceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebindDeviceResponse.swift; sourceTree = "<group>"; };
+		E2A5C8552CA2D3D500F40B18 /* ReBindDeviceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReBindDeviceRequest.swift; sourceTree = "<group>"; };
+		E2A5C8572CA2D3F100F40B18 /* BindDeviceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindDeviceResponse.swift; sourceTree = "<group>"; };
+		E2A5C8592CA2D97C00F40B18 /* DeviceBindingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceBindingInteractor.swift; sourceTree = "<group>"; };
+		E2A5C85B2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceBindingAPIs.swift; sourceTree = "<group>"; };
+		E2A5C85D2CA2E00900F40B18 /* VerifyPINRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINRequest.swift; sourceTree = "<group>"; };
+		E2A5C85F2CA2E01500F40B18 /* VerifyPINResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINResponse.swift; sourceTree = "<group>"; };
+		E2A5C8612CA2E17C00F40B18 /* VerifyPINInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINInteractor.swift; sourceTree = "<group>"; };
+		E2A5C8632CA2E1CD00F40B18 /* VerifyPINAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINAPIs.swift; sourceTree = "<group>"; };
 		E2BD5DDE2C76239B006FB4B7 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = AppO/Utils/Environment.swift; sourceTree = SOURCE_ROOT; };
 		E2BF16082C9C49E4009683D1 /* OTPAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPAPIs.swift; sourceTree = "<group>"; };
 		E2BF160A2C9C4B0E009683D1 /* SendOTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendOTPRequest.swift; sourceTree = "<group>"; };
@@ -372,6 +395,8 @@
 		E24B918B2C771944009091B2 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				E2A5C8612CA2E17C00F40B18 /* VerifyPINInteractor.swift */,
+				E2A5C8592CA2D97C00F40B18 /* DeviceBindingInteractor.swift */,
 				E23864BB2C9DDF7600EAD795 /* HomeInteractor.swift */,
 				E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */,
 				E2C9CB0A2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift */,
@@ -385,6 +410,8 @@
 		E24B918C2C771958009091B2 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				E2A5C8632CA2E1CD00F40B18 /* VerifyPINAPIs.swift */,
+				E2A5C85B2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift */,
 				E23864BD2C9DDFB100EAD795 /* HomeAPIs.swift */,
 				E2BF16082C9C49E4009683D1 /* OTPAPIs.swift */,
 				E2C9CB182C78616B00B47B38 /* RegistrationAPIs.swift */,
@@ -628,6 +655,7 @@
 		E2BD5DE02C762412006FB4B7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E2A5C84E2CA2A10A00F40B18 /* CryptoUtils.swift */,
 				E204E1382CA19DA50023B9FC /* PermissionServiceManager.swift */,
 				E23864CD2C9E189C00EAD795 /* SessionManager.swift */,
 				E23864CA2C9E182B00EAD795 /* JSON Parsing */,
@@ -637,6 +665,7 @@
 				E239640A2C78C57D00AD4E6F /* Navigator.swift */,
 				E23964122C78CF8A00AD4E6F /* Coordinator.swift */,
 				E226587B2C7C716B00DF8506 /* HomeNavigator.swift */,
+				E2A5C8502CA2A18700F40B18 /* AppO-Bridging-Header.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -653,6 +682,9 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E2A5C85D2CA2E00900F40B18 /* VerifyPINRequest.swift */,
+				E2A5C8552CA2D3D500F40B18 /* ReBindDeviceRequest.swift */,
+				E2A5C8512CA2AED300F40B18 /* BindDeviceRequest.swift */,
 				E204E1342CA184130023B9FC /* SetupMobilePinRequest.swift */,
 				E23864C52C9E123200EAD795 /* ShowCardNumberRequest.swift */,
 				E23864C32C9DE3D600EAD795 /* PreDefinedRequest.swift */,
@@ -666,6 +698,9 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E2A5C85F2CA2E01500F40B18 /* VerifyPINResponse.swift */,
+				E2A5C8572CA2D3F100F40B18 /* BindDeviceResponse.swift */,
+				E2A5C8532CA2CA4300F40B18 /* RebindDeviceResponse.swift */,
 				E204E1362CA184AB0023B9FC /* SetupMobilePinResponse.swift */,
 				E204E1302C9EE16D0023B9FC /* ShowCardNumberResponse.swift */,
 				E23864BF2C9DE0FA00EAD795 /* CustomerEnquiryResponse.swift */,
@@ -785,6 +820,8 @@
 				E25B90662C7D0A5300A6F871 /* AddOnCardView.swift in Sources */,
 				E25B906A2C7D0D5B00A6F871 /* CustomButtonStyle.swift in Sources */,
 				E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */,
+				E2A5C84F2CA2A10A00F40B18 /* CryptoUtils.swift in Sources */,
+				E2A5C8562CA2D3DC00F40B18 /* ReBindDeviceRequest.swift in Sources */,
 				E25B90382C7CCC8A00A6F871 /* MainTabbedView.swift in Sources */,
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
 				E23864C92C9E17A900EAD795 /* AppDefaults.swift in Sources */,
@@ -795,14 +832,18 @@
 				E25B903A2C7CD16200A6F871 /* SideMenuTopNavigator.swift in Sources */,
 				E2C9CB132C78603B00B47B38 /* RegistrationModel.swift in Sources */,
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
+				E2A5C8622CA2E18400F40B18 /* VerifyPINInteractor.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
+				E2A5C8542CA2CA4900F40B18 /* RebindDeviceResponse.swift in Sources */,
 				E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */,
 				E2BF16092C9C49F3009683D1 /* OTPAPIs.swift in Sources */,
 				E239640D2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift in Sources */,
+				E2A5C8522CA2AED700F40B18 /* BindDeviceRequest.swift in Sources */,
 				E23864BE2C9DDFB100EAD795 /* HomeAPIs.swift in Sources */,
 				E23864BC2C9DDF7E00EAD795 /* HomeInteractor.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
 				E226588B2C7CACAB00DF8506 /* CardTransactionDetailsView.swift in Sources */,
+				E2A5C8642CA2E1DF00F40B18 /* VerifyPINAPIs.swift in Sources */,
 				E204E1332CA1615A0023B9FC /* HapticFeedbackModifier.swift in Sources */,
 				E25B90462C7CEC8200A6F871 /* SettingsViewModel.swift in Sources */,
 				E23864D02C9E319800EAD795 /* SystemAPIBaseResponse.swift in Sources */,
@@ -828,6 +869,7 @@
 				E25B903F2C7CE17500A6F871 /* CardToCardView.swift in Sources */,
 				E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
+				E2A5C8582CA2D3F500F40B18 /* BindDeviceResponse.swift in Sources */,
 				E27298272C8B2A4E00B41FF8 /* AppFonts.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
 				E24B91962C771AE2009091B2 /* PlistKey.swift in Sources */,
@@ -843,6 +885,7 @@
 				E204E1312C9EE1720023B9FC /* ShowCardNumberResponse.swift in Sources */,
 				E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */,
 				E272982B2C8B2A9800B41FF8 /* Fonts+Extension.swift in Sources */,
+				E2A5C85A2CA2D98300F40B18 /* DeviceBindingInteractor.swift in Sources */,
 				E25B90612C7D064800A6F871 /* TransactionSettingsViewModel.swift in Sources */,
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
@@ -863,10 +906,13 @@
 				E2D140372C6F5D1F0064EE6E /* View+Extension.swift in Sources */,
 				E226587C2C7C716B00DF8506 /* HomeNavigator.swift in Sources */,
 				E22074AD2C9002A700B513F7 /* TransactionPinSetupView.swift in Sources */,
+				E2A5C85C2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift in Sources */,
+				E2A5C8602CA2E01800F40B18 /* VerifyPINResponse.swift in Sources */,
 				E25B90552C7D04F700A6F871 /* ReplaceCardView.swift in Sources */,
 				E2BF160D2C9C4BB4009683D1 /* SendOTPResponse.swift in Sources */,
 				E25B90492C7CF25E00A6F871 /* CardStatusViewModel.swift in Sources */,
 				E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */,
+				E2A5C85E2CA2E01100F40B18 /* VerifyPINRequest.swift in Sources */,
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
 				E22658862C7CAA3600DF8506 /* ManageAccountViewModel.swift in Sources */,
 				E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */,

@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol SetupMobilePinInteractorType {
-    func updatePIN(request: SetupMobilePinRequest) -> AnyPublisher<SetupMobilePinResponse, NetworkError>
+    func savePIN(request: SetupMobilePinRequest) -> AnyPublisher<SetupMobilePinResponse, NetworkError>
 }
 
 class SetupMobilePinInteractor: SetupMobilePinInteractorType {
@@ -20,8 +20,8 @@ class SetupMobilePinInteractor: SetupMobilePinInteractorType {
         networkManager = NetworkManager<OTPAPIs>(with: providerType)
     }
     
-    func updatePIN(request: SetupMobilePinRequest) -> AnyPublisher<SetupMobilePinResponse, NetworkError> {
-        let target: OTPAPIs = .updatePIN(parameters: request.dictionary ?? [:])
+    func savePIN(request: SetupMobilePinRequest) -> AnyPublisher<SetupMobilePinResponse, NetworkError> {
+        let target: OTPAPIs = .savePIN(parameters: request.dictionary ?? [:])
         return networkManager
             .request(target: target)
             .subscribe(on: Scheduler.backgroundWorkScheduler)

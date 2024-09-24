@@ -8,15 +8,12 @@
 import Foundation
 import Moya
 
-enum OTPAPIs {
-    case sendOTP(parameters: Parameters)
-    case validateOTP(number:String, otp:String)
-    case savePIN(parameters: Parameters)
+enum DeviceBindingAPIs {
     case bindDevice(parameters: Parameters)
     case rebindDevice(parameters: Parameters)
 }
 
-extension OTPAPIs: TargetType {
+extension DeviceBindingAPIs: TargetType {
 
     var baseURL: URL {
         let urlString: String = AppEnvironment[.serverOne]
@@ -25,12 +22,6 @@ extension OTPAPIs: TargetType {
 
     var path: String {
         switch self {
-        case .sendOTP:
-            return "twilio/sendOTP"
-        case .validateOTP(let number, let otp):
-            return "twilio/validateOTP/\(number)/\(otp)"
-        case .savePIN:
-            return "device/save-pin"
         case .rebindDevice:
             return "device/reBind"
         case .bindDevice:
@@ -40,10 +31,8 @@ extension OTPAPIs: TargetType {
 
     var method: Moya.Method {
         switch self {
-        case .sendOTP, .savePIN, .rebindDevice, .bindDevice:
+        case .rebindDevice, .bindDevice:
             return .post
-        case .validateOTP(_, _):
-            return .get
         }
     }
 
@@ -53,12 +42,6 @@ extension OTPAPIs: TargetType {
 
     var task: Task {
         switch self {
-        case .sendOTP(let parameters):
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .validateOTP(_, _):
-            return .requestPlain
-        case .savePIN(let parameters):
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .rebindDevice(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .bindDevice(let parameters):

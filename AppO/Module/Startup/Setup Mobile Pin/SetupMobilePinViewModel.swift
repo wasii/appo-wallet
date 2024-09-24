@@ -42,7 +42,7 @@ class SetupMobilePinViewModel: ObservableObject {
 extension SetupMobilePinViewModel {
     func updatePIN() {
         showLoader = true
-        interactor.updatePIN(request: .init(mobilePin: mobilePin))
+        interactor.savePIN(request: .init(mobilePin: mobilePin))
             .sink { [weak self] completion in
                 self?.showLoader = false
                 guard case let .failure(error) = completion else { return }
