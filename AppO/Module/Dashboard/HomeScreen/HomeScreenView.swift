@@ -52,13 +52,18 @@ struct HomeScreenView: View {
     
     @State private var currentWallet: WalletCardType = .appo
     @State private var isShowSetupPin: Bool = false
+    @State private var isShowChangePin: Bool = false
     
     var walletTypes: [WalletCardType] {
         WalletCardType.allCases
     }
     
-    private func showShowSetupPin() {
+    private func showSetupPin() {
         isShowSetupPin.toggle()
+    }
+    
+    private func showChangePin() {
+        isShowChangePin.toggle()
     }
     
     var body: some View {
@@ -75,12 +80,37 @@ struct HomeScreenView: View {
                         VStack {
                             Spacer()
                             SetupCardPINView(isShowSetupPin: $isShowSetupPin) { pin in
-                                print(pin)
+                                viewModel.setupPin(pin: pin) { success in
+                                    if success {
+                                        showChangePin()
+                                    }
+                                }
                             }
                             .padding()
                             .cornerRadius(10)
                             .shadow(radius: 5)
                             .frame(width: geometry.size.width, height: 470)
+                            .padding(.bottom, geometry.safeAreaInsets.bottom)
+                            Spacer()
+                        }
+                        .background(Color.black.opacity(0.7).edgesIgnoringSafeArea(.all))
+                    }
+                    .zIndex(2.0)
+                }
+                
+                if isShowChangePin {
+                    GeometryReader { geometry in
+                        VStack {
+                            Spacer()
+                            ChangePinPopupView(isShowChangePin: $isShowChangePin, closure: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                    homeNavigator.navigate(to: .changeTransactionPin(viewModel: .init()))
+                                }
+                            })
+                            .padding()
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                            .frame(width: geometry.size.width, height: 370)
                             .padding(.bottom, geometry.safeAreaInsets.bottom)
                             Spacer()
                         }
@@ -218,9 +248,6 @@ extension HomeScreenView {
                 .resizable()
                 .frame(height: 220)
                 .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
-            if viewModel.selected_card?.cardStatusDesc == "InActive" {
-                
-            }
             
             VStack(alignment: .leading) {
                 Spacer()
@@ -237,7 +264,7 @@ extension HomeScreenView {
                 ZStack {
                     VStack {
                         Button {
-                            showShowSetupPin()
+                            showSetupPin()
                         } label: {
                             Text("Activate your Card")
                                 .font(AppFonts.regularTwenty)

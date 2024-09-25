@@ -37,9 +37,16 @@ class HomeScreenViewModel: ObservableObject {
     @Published private var timerActive = false
     private var timerCancellable: AnyCancellable?
     
-    private var interactor: HomeInteractorType
-    init(interactor: HomeInteractorType = HomeInteractor()) {
-        self.interactor = interactor
+    private var hInteractor: HomeInteractorType
+    private var dInteractor: DeviceBindingInteractorType
+    private var oInteractor: VerifyOTPInteractorType
+    
+    init(hInteractor: HomeInteractorType = HomeInteractor(),
+         dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(),
+         oInteractor: VerifyOTPInteractorType = VerifyOTPInteractor()) {
+        self.hInteractor = hInteractor
+        self.dInteractor = dInteractor
+        self.oInteractor = oInteractor
     }
 }
 
@@ -55,7 +62,7 @@ extension HomeScreenViewModel {
                 deviceNo: "12345"
             )
         )
-        interactor.customer_enquiry(request: request)
+        hInteractor.customer_enquiry(request: request)
             .sink { [weak self] completion in
                 self?.showLoader = false
                 guard case let .failure(error) = completion else { return }
@@ -89,7 +96,7 @@ extension HomeScreenViewModel {
                 mobileNum: AppDefaults.user?.primaryMobileNum ?? ""
             )
         )
-        interactor.show_card_number(request: request)
+        hInteractor.show_card_number(request: request)
             .sink { [weak self] completion in
                 self?.showLoader = false
                 guard case let .failure(error) = completion else { return }
@@ -157,5 +164,41 @@ extension HomeScreenViewModel {
         
         
         return "\(month)/\(year)"
+    }
+}
+
+
+extension HomeScreenViewModel {
+    func getDataEncryptionKey() {
+        self.showLoader = true
+        let request: DataEncryptionKeyRequest = .init(
+            reqHeaderInfo: .init(),
+            requestKey: .init(requestType: "cms_mapp_get_dek"),
+            requestData: .init(
+                instId: "AP",
+                mobileNum: AppDefaults.mobile ?? ""
+            )
+        )
+        dInteractor.getDataEncryptionKey(request: request)
+            .sink { [weak self] completion in
+                self?.showLoader = false
+                guard case let .failure(error) = completion else { return }
+            } receiveValue: { [weak self] response in
+                self?.showLoader = false
+                if response.respInfo?.respStatus == 200 {
+                    
+                }
+            }
+            .store(in: &cancellables)
+    }
+}
+
+extension HomeScreenViewModel {
+    func setupPin(pin: String, completionHandler: @escaping(Bool) -> Void) {
+        self.showLoader = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.showLoader = false
+            completionHandler(true)
+        }
     }
 }

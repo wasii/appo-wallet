@@ -135,6 +135,9 @@
 		E2D140372C6F5D1F0064EE6E /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140362C6F5D1F0064EE6E /* View+Extension.swift */; };
 		E2EFF89D2CA3ED0A00D8D4BE /* DataMasterKeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF89C2CA3ECFF00D8D4BE /* DataMasterKeyRequest.swift */; };
 		E2EFF89F2CA3EE2700D8D4BE /* DataMasterKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF89E2CA3EE2100D8D4BE /* DataMasterKeyResponse.swift */; };
+		E2EFF8A12CA407F000D8D4BE /* DataEncryptionKeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF8A02CA407F000D8D4BE /* DataEncryptionKeyRequest.swift */; };
+		E2EFF8A32CA4082200D8D4BE /* DataEncryptionKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF8A22CA4082200D8D4BE /* DataEncryptionKeyResponse.swift */; };
+		E2EFF8A52CA420AD00D8D4BE /* ChangePinPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF8A42CA4209400D8D4BE /* ChangePinPopupView.swift */; };
 		E2F27AE42C8EBF5700251BCE /* CurvedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F27AE32C8EBF5700251BCE /* CurvedShape.swift */; };
 /* End PBXBuildFile section */
 
@@ -266,6 +269,9 @@
 		E2EAB8602C786C6400EACFD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E2EFF89C2CA3ECFF00D8D4BE /* DataMasterKeyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMasterKeyRequest.swift; sourceTree = "<group>"; };
 		E2EFF89E2CA3EE2100D8D4BE /* DataMasterKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMasterKeyResponse.swift; sourceTree = "<group>"; };
+		E2EFF8A02CA407F000D8D4BE /* DataEncryptionKeyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEncryptionKeyRequest.swift; sourceTree = "<group>"; };
+		E2EFF8A22CA4082200D8D4BE /* DataEncryptionKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEncryptionKeyResponse.swift; sourceTree = "<group>"; };
+		E2EFF8A42CA4209400D8D4BE /* ChangePinPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePinPopupView.swift; sourceTree = "<group>"; };
 		E2F27AE32C8EBF5700251BCE /* CurvedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -287,6 +293,7 @@
 		E22253932CA3D4F8005D9BE7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E2EFF8A42CA4209400D8D4BE /* ChangePinPopupView.swift */,
 				E22253942CA3D50D005D9BE7 /* SetupMobilePINView.swift */,
 			);
 			path = Components;
@@ -707,6 +714,7 @@
 				E23864C12C9DE33500EAD795 /* CustomerEnquiryRequest.swift */,
 				E2BF160A2C9C4B0E009683D1 /* SendOTPRequest.swift */,
 				E2C9CB122C78603B00B47B38 /* RegistrationModel.swift */,
+				E2EFF8A02CA407F000D8D4BE /* DataEncryptionKeyRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -724,6 +732,7 @@
 				E2BF160E2C9C5B34009683D1 /* VerifyOTPResponse.swift */,
 				E2BF160C2C9C4BAE009683D1 /* SendOTPResponse.swift */,
 				E2C9CB162C7860E100B47B38 /* RegistrationResponse.swift */,
+				E2EFF8A22CA4082200D8D4BE /* DataEncryptionKeyResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -873,6 +882,7 @@
 				E204E1352CA1841F0023B9FC /* SetupMobilePinRequest.swift in Sources */,
 				E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */,
 				E24B91842C771929009091B2 /* APIHeader.swift in Sources */,
+				E2EFF8A32CA4082200D8D4BE /* DataEncryptionKeyResponse.swift in Sources */,
 				E25B90442C7CEC7900A6F871 /* SettingsView.swift in Sources */,
 				E25B90502C7D006000A6F871 /* ChangeTransactionPinView.swift in Sources */,
 				E25B90522C7D006900A6F871 /* ChangeTransactionPinViewModel.swift in Sources */,
@@ -910,6 +920,7 @@
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
 				E25B90642C7D0A4400A6F871 /* AddOnCardViewModel.swift in Sources */,
 				E23864CE2C9E189C00EAD795 /* SessionManager.swift in Sources */,
+				E2EFF8A52CA420AD00D8D4BE /* ChangePinPopupView.swift in Sources */,
 				E204E1392CA19DAB0023B9FC /* PermissionServiceManager.swift in Sources */,
 				E226588F2C7CADB600DF8506 /* TransactionDetailsItems.swift in Sources */,
 				E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */,
@@ -941,6 +952,7 @@
 				E226588D2C7CACB900DF8506 /* CardTransactionDetailsViewModel.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
 				E23864C42C9DE3E000EAD795 /* PreDefinedRequest.swift in Sources */,
+				E2EFF8A12CA407F000D8D4BE /* DataEncryptionKeyRequest.swift in Sources */,
 				E2BF160F2C9C5B3A009683D1 /* VerifyOTPResponse.swift in Sources */,
 				E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */,
 				E2C9CB1D2C7863ED00B47B38 /* Scheduler.swift in Sources */,

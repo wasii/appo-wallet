@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AppO/Utils/HomeNavigator.swift"
@@ -18,36 +18,6 @@
             endingLineNumber = "79"
             landmarkName = "view(for:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF - 8707031b5a68864a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AppO.HomeNavigator.view(for: AppO.HomeNavigator.Destination) -&gt; some"
-                  moduleName = "AppO.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Utils/HomeNavigator.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80">
-               </Location>
-               <Location
-                  uuid = "8B58F9C9-7B64-4CD1-9C61-2D81DEA378CF - 8707031b5a68864a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "AppO.HomeNavigator.view(for: AppO.HomeNavigator.Destination) -&gt; some"
-                  moduleName = "AppO.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abuljaleel/Desktop/appo-wallet/AppO/Utils/HomeNavigator.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -144,22 +114,6 @@
             endingLineNumber = "73"
             landmarkName = "getUserRegistered(custName:mobile:nameOnCard:email:address:dob:nationalId:maritalStatus:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3520DCF3-915A-48F1-BE1F-2E99CACBE5A6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AppO/Module/Dashboard/HomeScreen/HomeScreenView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "body"
-            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
