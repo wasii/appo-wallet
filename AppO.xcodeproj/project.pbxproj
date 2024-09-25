@@ -17,6 +17,7 @@
 		E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */; };
 		E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */; };
 		E22074AD2C9002A700B513F7 /* TransactionPinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22074AC2C9002A700B513F7 /* TransactionPinSetupView.swift */; };
+		E22253952CA3D50D005D9BE7 /* SetupMobilePINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22253942CA3D50D005D9BE7 /* SetupMobilePINView.swift */; };
 		E22658782C7C703500DF8506 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22658772C7C703500DF8506 /* HomeScreenView.swift */; };
 		E226587A2C7C704000DF8506 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22658792C7C704000DF8506 /* HomeScreenViewModel.swift */; };
 		E226587C2C7C716B00DF8506 /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226587B2C7C716B00DF8506 /* HomeNavigator.swift */; };
@@ -146,6 +147,7 @@
 		E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINViewModel.swift; sourceTree = "<group>"; };
 		E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewModel.swift; sourceTree = "<group>"; };
 		E22074AC2C9002A700B513F7 /* TransactionPinSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPinSetupView.swift; sourceTree = "<group>"; };
+		E22253942CA3D50D005D9BE7 /* SetupMobilePINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePINView.swift; sourceTree = "<group>"; };
 		E22658772C7C703500DF8506 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		E22658792C7C704000DF8506 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		E226587B2C7C716B00DF8506 /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
@@ -278,6 +280,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E22253932CA3D4F8005D9BE7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E22253942CA3D50D005D9BE7 /* SetupMobilePINView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		E22658752C7C6ED800DF8506 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +300,7 @@
 		E22658762C7C6F2700DF8506 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
+				E22253932CA3D4F8005D9BE7 /* Components */,
 				E22658772C7C703500DF8506 /* HomeScreenView.swift */,
 				E22658792C7C704000DF8506 /* HomeScreenViewModel.swift */,
 			);
@@ -896,6 +907,7 @@
 				E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,
 				E25B904B2C7CF26F00A6F871 /* CardStatusView.swift in Sources */,
+				E22253952CA3D50D005D9BE7 /* SetupMobilePINView.swift in Sources */,
 				E2C9CB1B2C7863A200B47B38 /* Codable+Extension.swift in Sources */,
 				E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */,
 				E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */,
