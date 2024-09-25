@@ -11,13 +11,20 @@ import Moya
 enum DeviceBindingAPIs {
     case bindDevice(parameters: Parameters)
     case rebindDevice(parameters: Parameters)
+    case getDMK(parametes: Parameters)
 }
 
 extension DeviceBindingAPIs: TargetType {
 
     var baseURL: URL {
-        let urlString: String = AppEnvironment[.serverOne]
-        return URL.init(string: urlString)!
+        switch self {
+        case .getDMK:
+            let urlString: String = AppEnvironment[.systemURL]
+            return URL.init(string: urlString)!
+        case .bindDevice, .rebindDevice:
+            let urlString: String = AppEnvironment[.serverOne]
+            return URL.init(string: urlString)!
+        }
     }
 
     var path: String {
@@ -26,12 +33,14 @@ extension DeviceBindingAPIs: TargetType {
             return "device/reBind"
         case .bindDevice:
             return "device/bind"
+        case .getDMK:
+            return "sem_mapp_get_dek"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .rebindDevice, .bindDevice:
+        case .rebindDevice, .bindDevice, .getDMK:
             return .post
         }
     }
@@ -45,6 +54,8 @@ extension DeviceBindingAPIs: TargetType {
         case .rebindDevice(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         case .bindDevice(let parameters):
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .getDMK(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }

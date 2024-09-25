@@ -133,6 +133,8 @@
 		E2D140332C6F5C060064EE6E /* CountryNumbers.json in Resources */ = {isa = PBXBuildFile; fileRef = E2D140322C6F5C060064EE6E /* CountryNumbers.json */; };
 		E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */; };
 		E2D140372C6F5D1F0064EE6E /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140362C6F5D1F0064EE6E /* View+Extension.swift */; };
+		E2EFF89D2CA3ED0A00D8D4BE /* DataMasterKeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF89C2CA3ECFF00D8D4BE /* DataMasterKeyRequest.swift */; };
+		E2EFF89F2CA3EE2700D8D4BE /* DataMasterKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF89E2CA3EE2100D8D4BE /* DataMasterKeyResponse.swift */; };
 		E2F27AE42C8EBF5700251BCE /* CurvedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F27AE32C8EBF5700251BCE /* CurvedShape.swift */; };
 /* End PBXBuildFile section */
 
@@ -262,6 +264,8 @@
 		E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoder+Extension.swift"; sourceTree = "<group>"; };
 		E2D140362C6F5D1F0064EE6E /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		E2EAB8602C786C6400EACFD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E2EFF89C2CA3ECFF00D8D4BE /* DataMasterKeyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMasterKeyRequest.swift; sourceTree = "<group>"; };
+		E2EFF89E2CA3EE2100D8D4BE /* DataMasterKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMasterKeyResponse.swift; sourceTree = "<group>"; };
 		E2F27AE32C8EBF5700251BCE /* CurvedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -693,6 +697,7 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E2EFF89C2CA3ECFF00D8D4BE /* DataMasterKeyRequest.swift */,
 				E2A5C85D2CA2E00900F40B18 /* VerifyPINRequest.swift */,
 				E2A5C8552CA2D3D500F40B18 /* ReBindDeviceRequest.swift */,
 				E2A5C8512CA2AED300F40B18 /* BindDeviceRequest.swift */,
@@ -709,6 +714,7 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E2EFF89E2CA3EE2100D8D4BE /* DataMasterKeyResponse.swift */,
 				E2A5C85F2CA2E01500F40B18 /* VerifyPINResponse.swift */,
 				E2A5C8572CA2D3F100F40B18 /* BindDeviceResponse.swift */,
 				E2A5C8532CA2CA4300F40B18 /* RebindDeviceResponse.swift */,
@@ -826,6 +832,7 @@
 				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
 				E22658812C7C9B8B00DF8506 /* SideMenuView.swift in Sources */,
 				E2F27AE42C8EBF5700251BCE /* CurvedShape.swift in Sources */,
+				E2EFF89D2CA3ED0A00D8D4BE /* DataMasterKeyRequest.swift in Sources */,
 				E23864C62C9E123A00EAD795 /* ShowCardNumberRequest.swift in Sources */,
 				E2344F712C9AF447005946BD /* LoaderView.swift in Sources */,
 				E25B90662C7D0A5300A6F871 /* AddOnCardView.swift in Sources */,
@@ -877,6 +884,7 @@
 				E22658922C7CB5CE00DF8506 /* MyQRCodeViewModel.swift in Sources */,
 				E2C9CB172C7860E100B47B38 /* RegistrationResponse.swift in Sources */,
 				E2BF160B2C9C4B19009683D1 /* SendOTPRequest.swift in Sources */,
+				E2EFF89F2CA3EE2700D8D4BE /* DataMasterKeyResponse.swift in Sources */,
 				E25B903F2C7CE17500A6F871 /* CardToCardView.swift in Sources */,
 				E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,

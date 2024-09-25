@@ -64,8 +64,8 @@ struct EnterMPINView: View {
             }
         }
         .onAppear {
-            if let mobile = AppDefaults.mobile {
-                print("Customer Mobile Number: \(mobile)")
+            if let mobilePin = AppDefaults.mobilePin {
+                print("Customer Mobile Pin: \(mobilePin)")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     authenticate()
                 }
@@ -84,14 +84,22 @@ struct EnterMPINView: View {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
                 DispatchQueue.main.async {
                     if success {
-                        viewModel.coordinatorStatePublisher.send(.with(.confirm))
+                        self.setupAPICalls()
                     } else {
                         // Handle failed authentication
                     }
                 }
             }
         } else {
-            // No biometrics available
+            print("No Biometric Available")
+        }
+    }
+    
+    private func setupAPICalls() {
+        viewModel.getDMK { success in
+            if success {
+                viewModel.verifyPIN(mobilePin: AppDefaults.mobilePin ?? otpDigits.joined())
+            }
         }
     }
     
@@ -184,12 +192,7 @@ struct EnterMPINView: View {
     //MARK: - Confirm Button
     private func confirmButtonView() -> some View {
         Button {
-//            viewModel.showLoader = true
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//                viewModel.showLoader = false
-//                AppDefaults.isLogin = true
-//            }
-            viewModel.verifyPIN(mobilePin: otpDigits.joined())
+            self.setupAPICalls()
         } label: {
             Text("CONFIRM")
                 .customButtonStyle()

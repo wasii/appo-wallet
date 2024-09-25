@@ -12,8 +12,6 @@ enum OTPAPIs {
     case sendOTP(parameters: Parameters)
     case validateOTP(number:String, otp:String)
     case savePIN(parameters: Parameters)
-    case bindDevice(parameters: Parameters)
-    case rebindDevice(parameters: Parameters)
 }
 
 extension OTPAPIs: TargetType {
@@ -31,16 +29,12 @@ extension OTPAPIs: TargetType {
             return "twilio/validateOTP/\(number)/\(otp)"
         case .savePIN:
             return "device/save-pin"
-        case .rebindDevice:
-            return "device/reBind"
-        case .bindDevice:
-            return "device/bind"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .sendOTP, .savePIN, .rebindDevice, .bindDevice:
+        case .sendOTP, .savePIN:
             return .post
         case .validateOTP(_, _):
             return .get
@@ -58,10 +52,6 @@ extension OTPAPIs: TargetType {
         case .validateOTP(_, _):
             return .requestPlain
         case .savePIN(let parameters):
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .rebindDevice(let parameters):
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-        case .bindDevice(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }

@@ -11,18 +11,19 @@ import Foundation
 protocol DeviceBindingInteractorType {
     func bindDevice(request: BindDeviceRequest) -> AnyPublisher<BindDeviceResponse, NetworkError>
     func rebindDevice(request: ReBindDeviceRequest) -> AnyPublisher<RebindDeviceResponse, NetworkError>
+    func getDataMasterKey(request: DataMasterKeyRequest) -> AnyPublisher<SystemAPIBaseResponse<DataMasterKeyResponse>, NetworkError>
 }
 
 class DeviceBindingInteractor: DeviceBindingInteractorType {
     
-    private var networkManager: NetworkManager<OTPAPIs>
+    private var networkManager: NetworkManager<DeviceBindingAPIs>
     
-    init(providerType: NetworkManagerProviderType<OTPAPIs> = .live) {
-        networkManager = NetworkManager<OTPAPIs>(with: providerType)
+    init(providerType: NetworkManagerProviderType<DeviceBindingAPIs> = .live) {
+        networkManager = NetworkManager<DeviceBindingAPIs>(with: providerType)
     }
     
     func bindDevice(request: BindDeviceRequest) -> AnyPublisher<BindDeviceResponse, NetworkError> {
-        let target: OTPAPIs = .bindDevice(parameters: request.dictionary ?? [:])
+        let target: DeviceBindingAPIs = .bindDevice(parameters: request.dictionary ?? [:])
         return networkManager
             .request(target: target)
             .subscribe(on: Scheduler.backgroundWorkScheduler)
@@ -31,7 +32,16 @@ class DeviceBindingInteractor: DeviceBindingInteractorType {
     }
     
     func rebindDevice(request: ReBindDeviceRequest) -> AnyPublisher<RebindDeviceResponse, NetworkError> {
-        let target: OTPAPIs = .rebindDevice(parameters: request.dictionary ?? [:])
+        let target: DeviceBindingAPIs = .rebindDevice(parameters: request.dictionary ?? [:])
+        return networkManager
+            .request(target: target)
+            .subscribe(on: Scheduler.backgroundWorkScheduler)
+            .receive(on: Scheduler.mainScheduler)
+            .eraseToAnyPublisher()
+    }
+    
+    func getDataMasterKey(request: DataMasterKeyRequest) -> AnyPublisher<SystemAPIBaseResponse<DataMasterKeyResponse>, NetworkError> {
+        let target: DeviceBindingAPIs = .getDMK(parametes: request.dictionary ?? [:])
         return networkManager
             .request(target: target)
             .subscribe(on: Scheduler.backgroundWorkScheduler)

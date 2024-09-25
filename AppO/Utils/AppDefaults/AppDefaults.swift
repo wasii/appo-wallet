@@ -51,6 +51,20 @@ class AppDefaults: UserDefaults {
         get { AppDefaults[#function] }
         set { AppDefaults[#function] = newValue }
     }
+    
+    static var mobilePin: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    
+    static var dmk: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    static var dmk_kcv: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
 }
 
 extension AppDefaults {

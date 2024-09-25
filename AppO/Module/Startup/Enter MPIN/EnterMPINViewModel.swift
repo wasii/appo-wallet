@@ -22,13 +22,15 @@ class EnterMPINViewModel: ObservableObject {
     
     private var cancellables: [AnyCancellable] = []
     private var vInteractor: VerifyPINInteractorType
+    private var dInteractor: DeviceBindingInteractorType
     
     @Published var showLoader: Bool = false
     @Published var apiError: String?
     @Published var isPresentAlert: Bool = false
     
-    init(vInteractor: VerifyPINInteractorType = VerifyPINInteractor()) {
+    init(vInteractor: VerifyPINInteractorType = VerifyPINInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor()) {
         self.vInteractor = vInteractor
+        self.dInteractor = dInteractor
     }
 }
 
@@ -45,11 +47,40 @@ extension EnterMPINViewModel {
                 self?.showLoader = false
                 if response.status == "200" {
                     self?.coordinatorStatePublisher.send(.with(.confirm))
+                    AppDefaults.mobilePin = mobilePin
                 } else {
                     self?.isPresentAlert = true
                     self?.apiError = "Something went wrong!"
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    func getDMK(handler: @escaping(Bool) -> Void) {
+        self.showLoader = true
+        let request: DataMasterKeyRequest = .init(
+            reqHeaderInfo: .init(),
+            requestKey: .init(requestType: "cms_mapp_get_dmk"),
+            requestData: .init(
+                instId: "AP",
+                mobileNum: AppDefaults.mobile ?? ""
+            )
+        )
+        dInteractor.getDataMasterKey(request: request)
+            .sink { [weak self] completion in
+                self?.showLoader = false
+                guard case let .failure(error) = completion else { return }
+                handler(false)
+            } receiveValue: { response in
+                if response.respInfo?.respStatus == 200 {
+                    AppDefaults.dmk = response.respInfo?.respData?.dmk
+                    AppDefaults.dmk_kcv = response.respInfo?.respData?.dmkKcv
+                    handler(true)
+                } else {
+                    handler(false)
+                }
+            }
+            .store(in: &cancellables)
+
     }
 }

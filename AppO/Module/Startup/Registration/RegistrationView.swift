@@ -90,7 +90,11 @@ struct RegistrationView: View {
                     addressView
                     
                     Button {
-                        viewModel.getUserRegistered(custName: "\(firstName) \(lastName)", mobile: viewModel.phoneNumber, nameOnCard: nameOnCard, email: email, address: address, dob: dateOfBirth, nationalId: "123123123", maritalStatus: maritalStatusPass)
+                        viewModel.getDMK { success in
+                            if success {
+                                viewModel.getUserRegistered(custName: "\(firstName) \(lastName)", mobile: viewModel.phoneNumber, nameOnCard: nameOnCard, email: email, address: address, dob: dateOfBirth, nationalId: idNumber, maritalStatus: maritalStatusPass)
+                            }
+                        }
                     } label: {
                         Text("Next")
                             .customButtonStyle()
