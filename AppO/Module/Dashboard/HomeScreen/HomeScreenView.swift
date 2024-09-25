@@ -51,9 +51,14 @@ struct HomeScreenView: View {
     @StateObject var viewModel: HomeScreenViewModel
     
     @State private var currentWallet: WalletCardType = .appo
-
+    @State private var isShowSetupPin: Bool = false
+    
     var walletTypes: [WalletCardType] {
         WalletCardType.allCases
+    }
+    
+    private func showShowSetupPin() {
+        isShowSetupPin.toggle()
     }
     
     var body: some View {
@@ -64,6 +69,26 @@ struct HomeScreenView: View {
                         .frame(height: UIScreen.main.bounds.height)
                 }
                 .zIndex(1)
+                
+                if isShowSetupPin {
+                    GeometryReader { geometry in
+                        VStack {
+                            Spacer()
+                            SetupCardPINView(isShowSetupPin: $isShowSetupPin) { pin in
+                                print(pin)
+                            }
+                            .padding()
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                            .frame(width: geometry.size.width, height: 470)
+                            .padding(.bottom, geometry.safeAreaInsets.bottom)
+                            Spacer()
+                        }
+                        .background(Color.black.opacity(0.7).edgesIgnoringSafeArea(.all))
+                    }
+                    .zIndex(2.0)
+                }
+                
                 VStack(spacing: 0) {
                     ZStack(alignment: .bottom) {
                         Rectangle()
@@ -211,7 +236,9 @@ extension HomeScreenView {
             if viewModel.selected_card?.cardStatusDesc == "InActive" {
                 ZStack {
                     VStack {
-                        Button {} label: {
+                        Button {
+                            showShowSetupPin()
+                        } label: {
                             Text("Activate your Card")
                                 .font(AppFonts.regularTwenty)
                                 .foregroundStyle(Color.appBackground)
@@ -222,11 +249,12 @@ extension HomeScreenView {
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 }
-                .background(Color.black.opacity(0.3))
+                .background(Color.black.opacity(0.5))
                 .cornerRadius(15, corners: .allCorners)
             }
         }
     }
+    
     
     var ServicesButtons: some View {
         VStack(alignment: .leading, spacing: 10) {

@@ -61,6 +61,7 @@ struct RegistrationView: View {
                     idTypeView
                     selectIDTypeView
                         .onTapGesture {
+                            hideKeyboard()
                             showSelectIDType()
                         }
                     mobileNumberView
@@ -72,14 +73,17 @@ struct RegistrationView: View {
                     idNumberView
                     dobView
                         .onTapGesture {
+                            hideKeyboard()
                             showDatePicker()
                         }
                     genderView
                         .onTapGesture {
+                            hideKeyboard()
                             showGenderPicker()
                         }
                     maritalStatusView
                         .onTapGesture {
+                            hideKeyboard()
                             showMaritalStatusPicker()
                         }
                     emailIDView
@@ -106,14 +110,13 @@ struct RegistrationView: View {
                         Spacer()
                         SelectIDTypeView(isSelectIDTypeVisible: $isSelectIDPickerVisible, selectedIDType: $idType)
                             .padding()
-//                            .background(Color.white)
                             .cornerRadius(10)
                             .shadow(radius: 5)
                             .frame(width: geometry.size.width, height: 270)
                             .padding(.bottom, geometry.safeAreaInsets.bottom)
                         Spacer()
                     }
-                    .background(Color.black.opacity(0.4).edgesIgnoringSafeArea(.all))
+                    .background(Color.black.opacity(0.7).edgesIgnoringSafeArea(.all))
                 }
                 .zIndex(1.0)
             }

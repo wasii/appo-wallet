@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct OTPInputView: View {
+    var backgroundColor: Color = .appBlueForeground
+    var foregroundColor: Color = .appBlue
     @Binding var otpDigits: [String]
     @FocusState private var focusedField: Int?
     var length: Int = 6
@@ -15,7 +17,7 @@ struct OTPInputView: View {
     var body: some View {
         HStack(spacing: 10) {
             ForEach(0..<length, id: \.self) { index in
-                OTPDigitField(digit: $otpDigits[index], isSecure: isSecure)
+                OTPDigitField(backgroundColor: backgroundColor, foregroundColor: foregroundColor, digit: $otpDigits[index], isSecure: isSecure)
                     .focused($focusedField, equals: index)
                     .onChange(of: otpDigits[index]) { newValue in
                         lightHaptic()
@@ -46,6 +48,8 @@ struct OTPInputView: View {
 }
 
 struct OTPDigitField: View {
+    var backgroundColor: Color = .appBlueForeground
+    var foregroundColor: Color = .appBlue
     @Binding var digit: String
     var isSecure: Bool = false
     
@@ -58,10 +62,10 @@ struct OTPDigitField: View {
             }
         }
         .font(AppFonts.headline4)
-        .foregroundStyle(Color.appBlue)
+        .foregroundStyle(foregroundColor)
         .multilineTextAlignment(.center)
         .frame(width: 45, height: 45)
-        .background(Color.appBlueForeground)
+        .background(backgroundColor)
         .clipShape(Circle())
         
         .keyboardType(.numberPad)
