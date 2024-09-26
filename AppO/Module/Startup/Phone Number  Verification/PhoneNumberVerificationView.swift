@@ -220,7 +220,15 @@ struct PhoneNumberVerificationView: View {
                 if viewModel.isBindingNewDevice {
                     viewModel.rebindDevice(mobileNo: self.mobPhoneNumber)
                 } else {
-                    viewModel.sendOTP(mobPhoneNumber: self.mobPhoneNumber, phoneCode: self.countryCode)
+                    Task {
+                        do {
+                            viewModel.showLoader = true
+                            let status = try await viewModel.verifyPhoneNumber(mobPhoneNumber: self.mobPhoneNumber)
+                            if status == "Continue" {
+                                try await viewModel.sendOTP(mobPhoneNumber: self.mobPhoneNumber, phoneCode: self.countryCode)
+                            }
+                        }
+                    }
                 }
             } label: {
                 Text(viewModel.isBindingNewDevice ? "BIND" : "NEXT")

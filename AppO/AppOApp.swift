@@ -19,10 +19,10 @@ struct AppOApp: App {
             ZStack {
                 if session.isLoggedIn {
                     MainTabbedView()
-                        .transition(.move(edge: .trailing)) // Slide in from the right
+                        .transition(.move(edge: .bottom)) // Slide in from the right
                 } else {
                     InitialView(navigator: .init())
-                        .transition(.move(edge: .leading)) // Slide in from the left
+                        .transition(.move(edge: .top)) // Slide in from the left
                 }
 //                if session.isLoggedIn {
 //                    MainTabbedView()
@@ -32,7 +32,7 @@ struct AppOApp: App {
 //                        .transition(.move(edge: .leading)) // Slide in from the left
 //                }
             }
-            .animation(.easeInOut, value: AppDefaults.isLogin)
+            .animation(.spring, value: session.isLoggedIn)
         }
     }
 }

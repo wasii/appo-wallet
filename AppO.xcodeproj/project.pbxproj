@@ -56,6 +56,13 @@
 		E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B91832C771929009091B2 /* NetworkManager.swift */; };
 		E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B91932C771AE2009091B2 /* AppEnvironment.swift */; };
 		E24B91962C771AE2009091B2 /* PlistKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24B91942C771AE2009091B2 /* PlistKey.swift */; };
+		E24E37442CA54CF000F6AD2D /* PhoneNumberVerificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E37432CA54CE300F6AD2D /* PhoneNumberVerificationRequest.swift */; };
+		E24E37462CA54CF800F6AD2D /* PhoneNumberVerificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E37452CA54CF500F6AD2D /* PhoneNumberVerificationResponse.swift */; };
+		E24E37482CA5891C00F6AD2D /* CustomerBalanceEnquiryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E37472CA5890900F6AD2D /* CustomerBalanceEnquiryRequest.swift */; };
+		E24E374A2CA5897A00F6AD2D /* CustomerBalanceEnquiryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E37492CA5897600F6AD2D /* CustomerBalanceEnquiryResponse.swift */; };
+		E24E374D2CA58E6900F6AD2D /* ShowAvailableBalancePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E374C2CA58E6900F6AD2D /* ShowAvailableBalancePopupView.swift */; };
+		E24E374F2CA5A47A00F6AD2D /* SideMenuAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E374E2CA5A46C00F6AD2D /* SideMenuAPIs.swift */; };
+		E24E37512CA5A4E200F6AD2D /* SideMenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E37502CA5A4DB00F6AD2D /* SideMenuInteractor.swift */; };
 		E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B4B282C6DF4E5000745F9 /* AppOApp.swift */; };
 		E25B4B2D2C6DF4E7000745F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E25B4B2C2C6DF4E7000745F9 /* Assets.xcassets */; };
 		E25B4B302C6DF4E7000745F9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E25B4B2F2C6DF4E7000745F9 /* Preview Assets.xcassets */; };
@@ -187,6 +194,13 @@
 		E24B91832C771929009091B2 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E24B91932C771AE2009091B2 /* AppEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		E24B91942C771AE2009091B2 /* PlistKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistKey.swift; sourceTree = "<group>"; };
+		E24E37432CA54CE300F6AD2D /* PhoneNumberVerificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationRequest.swift; sourceTree = "<group>"; };
+		E24E37452CA54CF500F6AD2D /* PhoneNumberVerificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationResponse.swift; sourceTree = "<group>"; };
+		E24E37472CA5890900F6AD2D /* CustomerBalanceEnquiryRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBalanceEnquiryRequest.swift; sourceTree = "<group>"; };
+		E24E37492CA5897600F6AD2D /* CustomerBalanceEnquiryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBalanceEnquiryResponse.swift; sourceTree = "<group>"; };
+		E24E374C2CA58E6900F6AD2D /* ShowAvailableBalancePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAvailableBalancePopupView.swift; sourceTree = "<group>"; };
+		E24E374E2CA5A46C00F6AD2D /* SideMenuAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuAPIs.swift; sourceTree = "<group>"; };
+		E24E37502CA5A4DB00F6AD2D /* SideMenuInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuInteractor.swift; sourceTree = "<group>"; };
 		E25B4B252C6DF4E5000745F9 /* AppO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E25B4B282C6DF4E5000745F9 /* AppOApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppOApp.swift; sourceTree = "<group>"; };
 		E25B4B2C2C6DF4E7000745F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -354,6 +368,7 @@
 		E22658902C7CB5A600DF8506 /* MyQRCode */ = {
 			isa = PBXGroup;
 			children = (
+				E24E374B2CA58E4900F6AD2D /* Components */,
 				E22658912C7CB5CE00DF8506 /* MyQRCodeViewModel.swift */,
 				E22658932C7CB5DF00DF8506 /* MyQRCodeView.swift */,
 			);
@@ -417,6 +432,7 @@
 		E24B918B2C771944009091B2 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				E24E37502CA5A4DB00F6AD2D /* SideMenuInteractor.swift */,
 				E2A5C8612CA2E17C00F40B18 /* VerifyPINInteractor.swift */,
 				E2A5C8592CA2D97C00F40B18 /* DeviceBindingInteractor.swift */,
 				E23864BB2C9DDF7600EAD795 /* HomeInteractor.swift */,
@@ -432,6 +448,7 @@
 		E24B918C2C771958009091B2 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				E24E374E2CA5A46C00F6AD2D /* SideMenuAPIs.swift */,
 				E2A5C8632CA2E1CD00F40B18 /* VerifyPINAPIs.swift */,
 				E2A5C85B2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift */,
 				E23864BD2C9DDFB100EAD795 /* HomeAPIs.swift */,
@@ -448,6 +465,14 @@
 				E24B91942C771AE2009091B2 /* PlistKey.swift */,
 			);
 			path = "App Environment";
+			sourceTree = "<group>";
+		};
+		E24E374B2CA58E4900F6AD2D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E24E374C2CA58E6900F6AD2D /* ShowAvailableBalancePopupView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		E25B4B1C2C6DF4E5000745F9 = {
@@ -704,6 +729,8 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E24E37472CA5890900F6AD2D /* CustomerBalanceEnquiryRequest.swift */,
+				E24E37432CA54CE300F6AD2D /* PhoneNumberVerificationRequest.swift */,
 				E2EFF89C2CA3ECFF00D8D4BE /* DataMasterKeyRequest.swift */,
 				E2A5C85D2CA2E00900F40B18 /* VerifyPINRequest.swift */,
 				E2A5C8552CA2D3D500F40B18 /* ReBindDeviceRequest.swift */,
@@ -722,6 +749,8 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E24E37492CA5897600F6AD2D /* CustomerBalanceEnquiryResponse.swift */,
+				E24E37452CA54CF500F6AD2D /* PhoneNumberVerificationResponse.swift */,
 				E2EFF89E2CA3EE2100D8D4BE /* DataMasterKeyResponse.swift */,
 				E2A5C85F2CA2E01500F40B18 /* VerifyPINResponse.swift */,
 				E2A5C8572CA2D3F100F40B18 /* BindDeviceResponse.swift */,
@@ -852,6 +881,7 @@
 				E25B90382C7CCC8A00A6F871 /* MainTabbedView.swift in Sources */,
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
 				E23864C92C9E17A900EAD795 /* AppDefaults.swift in Sources */,
+				E24E37512CA5A4E200F6AD2D /* SideMenuInteractor.swift in Sources */,
 				E2A0F2FD2C8C410F00821357 /* PhoneNumberVerificationView.swift in Sources */,
 				E226587F2C7C9AB900DF8506 /* SideMenu.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
@@ -869,6 +899,7 @@
 				E23864BE2C9DDFB100EAD795 /* HomeAPIs.swift in Sources */,
 				E23864BC2C9DDF7E00EAD795 /* HomeInteractor.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
+				E24E374D2CA58E6900F6AD2D /* ShowAvailableBalancePopupView.swift in Sources */,
 				E226588B2C7CACAB00DF8506 /* CardTransactionDetailsView.swift in Sources */,
 				E2A5C8642CA2E1DF00F40B18 /* VerifyPINAPIs.swift in Sources */,
 				E204E1332CA1615A0023B9FC /* HapticFeedbackModifier.swift in Sources */,
@@ -893,6 +924,7 @@
 				E25B904D2C7CF3CB00A6F871 /* RadioButtonView.swift in Sources */,
 				E22658922C7CB5CE00DF8506 /* MyQRCodeViewModel.swift in Sources */,
 				E2C9CB172C7860E100B47B38 /* RegistrationResponse.swift in Sources */,
+				E24E374A2CA5897A00F6AD2D /* CustomerBalanceEnquiryResponse.swift in Sources */,
 				E2BF160B2C9C4B19009683D1 /* SendOTPRequest.swift in Sources */,
 				E2EFF89F2CA3EE2700D8D4BE /* DataMasterKeyResponse.swift in Sources */,
 				E25B903F2C7CE17500A6F871 /* CardToCardView.swift in Sources */,
@@ -902,6 +934,7 @@
 				E27298272C8B2A4E00B41FF8 /* AppFonts.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
 				E24B91962C771AE2009091B2 /* PlistKey.swift in Sources */,
+				E24E37482CA5891C00F6AD2D /* CustomerBalanceEnquiryRequest.swift in Sources */,
 				E25B905C2C7D05D800A6F871 /* RenewCardView.swift in Sources */,
 				E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */,
 				E204E1372CA184AB0023B9FC /* SetupMobilePinResponse.swift in Sources */,
@@ -919,6 +952,7 @@
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
 				E25B90642C7D0A4400A6F871 /* AddOnCardViewModel.swift in Sources */,
+				E24E374F2CA5A47A00F6AD2D /* SideMenuAPIs.swift in Sources */,
 				E23864CE2C9E189C00EAD795 /* SessionManager.swift in Sources */,
 				E2EFF8A52CA420AD00D8D4BE /* ChangePinPopupView.swift in Sources */,
 				E204E1392CA19DAB0023B9FC /* PermissionServiceManager.swift in Sources */,
@@ -943,6 +977,7 @@
 				E2BF160D2C9C4BB4009683D1 /* SendOTPResponse.swift in Sources */,
 				E25B90492C7CF25E00A6F871 /* CardStatusViewModel.swift in Sources */,
 				E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */,
+				E24E37462CA54CF800F6AD2D /* PhoneNumberVerificationResponse.swift in Sources */,
 				E2A5C85E2CA2E01100F40B18 /* VerifyPINRequest.swift in Sources */,
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
 				E22658862C7CAA3600DF8506 /* ManageAccountViewModel.swift in Sources */,
@@ -959,6 +994,7 @@
 				E22658882C7CABD200DF8506 /* CardButtonView.swift in Sources */,
 				E226587A2C7C704000DF8506 /* HomeScreenViewModel.swift in Sources */,
 				E24B91892C771929009091B2 /* APIBaseResponse.swift in Sources */,
+				E24E37442CA54CF000F6AD2D /* PhoneNumberVerificationRequest.swift in Sources */,
 				E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

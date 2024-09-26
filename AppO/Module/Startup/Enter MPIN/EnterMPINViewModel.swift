@@ -36,28 +36,37 @@ class EnterMPINViewModel: ObservableObject {
 
 
 extension EnterMPINViewModel {
-    func verifyPIN(mobilePin: String) {
-        let request: VerifyPINRequest = .init(mobilePin: mobilePin)
-        vInteractor.verifyPIN(request: request)
-            .sink { [weak self] completion in
-                self?.showLoader = false
-//                self?.coordinatorStatePublisher.send(.with(.confirm))
-                guard case let .failure(error) = completion else { return }
-            } receiveValue: { [weak self] response in
-                self?.showLoader = false
-                if response.status == "200" {
-                    self?.coordinatorStatePublisher.send(.with(.confirm))
-                    AppDefaults.mobilePin = mobilePin
-                } else {
+    func verifyPIN(mobilePin: String) async throws {
+        let request: VerifyPINRequest = .init(deviceId: AppDefaults.deviceId ?? "", mobilePin: mobilePin)
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            vInteractor.verifyPIN(request: request)
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] completion in
+                    self?.showLoader = false
+                    guard case let .failure(error) = completion else {
+                        return
+                    }
                     self?.isPresentAlert = true
-                    self?.apiError = "Something went wrong!"
+                    self?.apiError = "Invalid Mobile PIN"
+                    continuation.resume(throwing: error)
+                } receiveValue: { [weak self] response in
+                    self?.showLoader = false
+                    if response.message == "success" {
+                        AppDefaults.mobilePin = mobilePin
+                        self?.coordinatorStatePublisher.send(.with(.confirm))
+                        continuation.resume(returning: ()) // Success without value
+                    } else {
+                        self?.isPresentAlert = true
+                        self?.apiError = "Something went wrong!"
+                        continuation.resume(throwing: NSError(domain: "PINVerification", code: 1, userInfo: [NSLocalizedDescriptionKey: "PIN verification failed"]))
+                    }
                 }
-            }
-            .store(in: &cancellables)
+                .store(in: &self.cancellables)
+        }
     }
     
-    func getDMK(handler: @escaping(Bool) -> Void) {
-        self.showLoader = true
+    func getDMK() async throws -> Bool  {
         let request: DataMasterKeyRequest = .init(
             reqHeaderInfo: .init(),
             requestKey: .init(requestType: "cms_mapp_get_dmk"),
@@ -66,21 +75,23 @@ extension EnterMPINViewModel {
                 mobileNum: AppDefaults.mobile ?? ""
             )
         )
-        dInteractor.getDataMasterKey(request: request)
-            .sink { [weak self] completion in
-                self?.showLoader = false
-                guard case let .failure(error) = completion else { return }
-                handler(false)
-            } receiveValue: { response in
-                if response.respInfo?.respStatus == 200 {
-                    AppDefaults.dmk = response.respInfo?.respData?.dmk
-                    AppDefaults.dmk_kcv = response.respInfo?.respData?.dmkKcv
-                    handler(true)
-                } else {
-                    handler(false)
+        return try await withCheckedThrowingContinuation { continuation in
+            dInteractor.getDataMasterKey(request: request)
+                .receive(on: DispatchQueue.main) 
+                .sink { [weak self] completion in
+                    self?.showLoader = false
+                    guard case let .failure(error) = completion else { return }
+                    continuation.resume(throwing: error) // Propagate the error
+                } receiveValue: { response in
+                    if response.respInfo?.respStatus == 200 {
+                        AppDefaults.dmk = response.respInfo?.respData?.dmk
+                        AppDefaults.dmk_kcv = response.respInfo?.respData?.dmkKcv
+                        continuation.resume(returning: true)
+                    } else {
+                        continuation.resume(returning: false)
+                    }
                 }
-            }
-            .store(in: &cancellables)
-
+                .store(in: &self.cancellables)
+        }
     }
 }

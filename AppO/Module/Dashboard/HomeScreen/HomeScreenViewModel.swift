@@ -70,6 +70,7 @@ extension HomeScreenViewModel {
                 self?.showLoader = false
                 if response.respInfo?.respStatus == 200 {
                     AppDefaults.user = response.respInfo?.respData
+                    AppDefaults.selected_card = response.respInfo?.respData?.cardList?.first
                     self?.customer_enquiry = response.respInfo?.respData
                     self?.selected_card = self?.customer_enquiry?.cardList?.first
                     self?.cardNumber = self?.formatCreditCardNumber(self?.selected_card?.maskCardNum ?? "") ?? ""

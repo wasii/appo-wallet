@@ -42,6 +42,11 @@ class AppDefaults: UserDefaults {
         set { AppDefaults[#function] = newValue }
     }
     
+    static var selected_card: Card? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    
     static var mobile: String? {
         get { AppDefaults[#function] }
         set { AppDefaults[#function] = newValue }
@@ -62,6 +67,11 @@ class AppDefaults: UserDefaults {
         set { AppDefaults[#function] = newValue }
     }
     static var dmk_kcv: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    
+    static var isTermConditionsChecked: Bool? {
         get { AppDefaults[#function] }
         set { AppDefaults[#function] = newValue }
     }

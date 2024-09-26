@@ -9,11 +9,11 @@
 import Foundation
 
 struct VerifyPINResponse: Codable {
-    let status: String
+    let lastLoginTime: String
     let message: String
     
     enum CodingKeys: String, CodingKey {
-        case status
+        case lastLoginTime
         case message
     }
 }

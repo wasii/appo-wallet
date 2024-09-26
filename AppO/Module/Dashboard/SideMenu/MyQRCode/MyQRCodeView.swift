@@ -9,37 +9,81 @@ import SwiftUI
 struct MyQRCodeView: View {
     @StateObject var viewModel: MyQRCodeViewModel
     @EnvironmentObject var homeNavigator: HomeNavigator
+    
     var body: some View {
-        VStack(spacing: 20) {
-            NavigationBarView(title: "My QR Code")
-            
-            ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    QRCodeImageView()
-                    
-                    QRCodeShowBalance()
-                    
-                    QRCodeProfileDetail()
-                    
-                    Spacer()
+        ZStack(alignment: .top) {
+            GeometryReader { geo in
+                LoaderView(showLoader: $viewModel.showLoader)
+                    .frame(height: UIScreen.main.bounds.height)
+            }
+            .zIndex(1)
+            if viewModel.isShow {
+                GeometryReader { geometry in
+                    VStack {
+                        Spacer()
+                        ShowAvailableBalancePopupView(isShowAvailableBalancePopupView: $viewModel.isShow, balance: $viewModel.userBalance) {
+                            viewModel.isShow = false
+                            viewModel.isShowPopup = false
+                        }
+                            .padding()
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                            .frame(width: geometry.size.width, height: 270)
+                            .padding(.bottom, geometry.safeAreaInsets.bottom)
+                        Spacer()
+                    }
+                    .background(Color.black.opacity(0.7).edgesIgnoringSafeArea(.all))
                 }
-                .padding(.horizontal)
+                .zIndex(1.0)
+                
             }
-            
-            Button {
-            } label: {
-                Text("SUBMIT")
-                    .font(AppFonts.bodyEighteenBold)
-                    .frame(width: 190, height: 45)
-                    .background(Color.appBlue)
-                    .clipShape(Capsule())
-                    .foregroundColor(.white)
+            VStack(spacing: 20) {
+                NavigationBarView(title: "My QR Code")
+                ScrollView {
+                    
+                    VStack(alignment: .leading, spacing: 20) {
+                        QRCodeImageView()
+                        
+                        QRCodeShowBalance(isShowPopup: $viewModel.isShowPopup)
+                        
+                        QRCodeProfileDetail()
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                }
+                
+                Button {
+                } label: {
+                    Text("SUBMIT")
+                        .font(AppFonts.bodyEighteenBold)
+                        .frame(width: 190, height: 45)
+                        .background(Color.appBlue)
+                        .clipShape(Capsule())
+                        .foregroundColor(.white)
+                }
+                BottomNavigation()
             }
-            BottomNavigation()
+            .edgesIgnoringSafeArea(.top)
+            .background(Color.appBackground)
+            .toolbar(.hidden, for: .navigationBar)
+            .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+            .onReceive(viewModel.coordinatorState) { state in
+                switch (state.state, state.transferable) {
+                case (.showBalance, _):
+                    break
+                }
+            }
+            .onChange(of: viewModel.isShowPopup) { newValue in
+                if newValue {
+                    Task {
+                        do {
+                            try await viewModel.getCustomerAvailableBalance()
+                        }
+                    }
+                }
+            }
         }
-        .edgesIgnoringSafeArea(.top)
-        .background(Color.appBackground)
-        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
@@ -54,7 +98,8 @@ struct QRCodeImageView: View {
         VStack(alignment: .center) {
             Image("qr_code")
                 .resizable()
-                .frame(maxHeight: 250)
+                .frame(maxHeight: 200)
+                .frame(maxWidth: 150)
                 .padding()
             
             VStack {
@@ -77,8 +122,8 @@ struct QRCodeImageView: View {
             
             Spacer()
         }
-        .frame(maxWidth: 300)
-        .frame(height: 350)
+        .frame(maxWidth: 240)
+        .frame(height: 280)
         .background(.appBlueForeground)
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .overlay(
@@ -91,7 +136,7 @@ struct QRCodeImageView: View {
 
 
 struct QRCodeShowBalance: View {
-    @State private var isShow: Bool = true
+    @Binding var isShowPopup: Bool
     
     var body: some View {
         VStack {
@@ -99,7 +144,7 @@ struct QRCodeShowBalance: View {
                 Text("Available Balance")
                     .font(AppFonts.bodyTwentyBold)
                     .foregroundStyle(.appBlue)
-                Toggle("", isOn: $isShow)
+                Toggle("", isOn: $isShowPopup)
                     .toggleStyle(CustomToggleStyle())
                     .labelsHidden()
                 Spacer()

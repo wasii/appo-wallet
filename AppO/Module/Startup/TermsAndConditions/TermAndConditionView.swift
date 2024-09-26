@@ -54,6 +54,7 @@ struct TermAndConditionView: View {
                 Button {
                     lightHaptic()
                     if cameraPermissionGranted && audioPermissionGranted {
+                        AppDefaults.isTermConditionsChecked = true
                         navigator.navigate(to: .enterMPINView(viewModel: .init()))
                     }
                 } label: {

@@ -78,8 +78,8 @@
             filePath = "AppO/Module/Startup/Phone Number  Verification/PhoneNumberVerificationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "rebindDevice(mobileNo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -88,14 +88,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E7B6E401-E01A-45D2-89CA-9BBC2BF27AFF"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AppO/Module/Startup/Phone Number  Verification/PhoneNumberVerificationViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "rebindDevice(mobileNo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -103,16 +103,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "69FFD14A-4A15-4FD8-85C6-7C602B62565D"
+            uuid = "687D2AA1-BC2A-4AAC-9D3A-30983408C6E6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppO/Module/Startup/Registration/RegistrationViewModel.swift"
+            filePath = "AppO/Services/App Environment/AppEnvironment.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "getUserRegistered(custName:mobile:nameOnCard:email:address:dob:nationalId:maritalStatus:)"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "timerFinished()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B3B79606-1ACF-493D-BD77-B975CEB10025"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppO/Module/Startup/Phone Number  Verification/PhoneNumberVerificationViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "sendOTP(mobPhoneNumber:phoneCode:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "59E3B14D-570D-4F67-ADFE-3661250654CC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppO/Module/Startup/Enter MPIN/EnterMPINViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "verifyPIN(mobilePin:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -66,7 +66,7 @@ extension VerifyOTPViewModel {
                 self?.showLoader = false
                 guard case let .failure(error) = completion else { return }
             } receiveValue: { [weak self] response in
-                if response.status == "200" {
+                if response.message == "ok" {
                     AppDefaults.deviceId = deviceId
                     self?.coordinatorStatePublisher.send(.with(.verify))
                 }

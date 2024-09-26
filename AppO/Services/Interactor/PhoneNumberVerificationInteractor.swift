@@ -11,6 +11,7 @@ import Combine
 
 protocol PhoneNumberVerificationInteractorType {
     func sendOTP(request: SendOTPRequest) -> AnyPublisher<SendOTPResponse, NetworkError>
+    func phoneNumberVerification(request: PhoneNumberVerificationRequest) -> AnyPublisher<SystemAPIBaseResponse<PhoneNumberVerificationResponse>, NetworkError>
 }
 class PhoneNumberVerificationInteractor: PhoneNumberVerificationInteractorType {
     
@@ -22,6 +23,15 @@ class PhoneNumberVerificationInteractor: PhoneNumberVerificationInteractorType {
     
     func sendOTP(request: SendOTPRequest) -> AnyPublisher<SendOTPResponse, NetworkError> {
         let target: OTPAPIs = .sendOTP(parameters: request.dictionary ?? [:])
+        return networkManager
+            .request(target: target)
+            .subscribe(on: Scheduler.backgroundWorkScheduler)
+            .receive(on: Scheduler.mainScheduler)
+            .eraseToAnyPublisher()
+    }
+    
+    func phoneNumberVerification(request: PhoneNumberVerificationRequest) -> AnyPublisher<SystemAPIBaseResponse<PhoneNumberVerificationResponse>, NetworkError> {
+        let target: OTPAPIs = .phoneNumberVerification(parameters: request.dictionary ?? [:])
         return networkManager
             .request(target: target)
             .subscribe(on: Scheduler.backgroundWorkScheduler)

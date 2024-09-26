@@ -63,6 +63,7 @@ struct EnterMPINView: View {
                 navigator.navigate(to: .phoneNumberVerification(viewModel: .init(bindingDevice: true)))
             }
         }
+        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
         .onAppear {
             if let mobilePin = AppDefaults.mobilePin {
                 print("Customer Mobile Pin: \(mobilePin)")
@@ -96,9 +97,13 @@ struct EnterMPINView: View {
     }
     
     private func setupAPICalls() {
-        viewModel.getDMK { success in
-            if success {
-                viewModel.verifyPIN(mobilePin: AppDefaults.mobilePin ?? otpDigits.joined())
+        Task {
+            do {
+                viewModel.showLoader = true
+                let success = try await viewModel.getDMK()
+                if success {
+                    try await viewModel.verifyPIN(mobilePin: otpDigits.joined())
+                }
             }
         }
     }

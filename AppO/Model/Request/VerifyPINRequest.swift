@@ -8,7 +8,7 @@
 import Foundation
 
 struct VerifyPINRequest: Codable {
-    let deviceId: String = AppDefaults.deviceId ?? "23233"
+    let deviceId: String
     let mobilePin: String
     
     enum CodingKeys: String, CodingKey {

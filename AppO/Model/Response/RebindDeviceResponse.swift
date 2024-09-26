@@ -9,11 +9,11 @@
 import Foundation
 
 struct RebindDeviceResponse: Codable {
-    let status: String
+    let previousDeviceId: String
     let message: String
     
     enum CodingKeys: String, CodingKey {
-        case status
+        case previousDeviceId
         case message
     }
 }

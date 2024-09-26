@@ -40,7 +40,12 @@ struct InitialView: View {
                     
                     Button {
                         lightHaptic()
-                        navigator.navigate(to: .termsAndConditionView)
+                        if AppDefaults.isTermConditionsChecked ?? false {
+                            navigator.navigate(to: .enterMPINView(viewModel: .init()))
+                        } else {
+                            navigator.navigate(to: .termsAndConditionView)
+                        }
+                        
                     } label: {
                         Text("Get Started")
                             .font(AppFonts.bodyEighteenBold)
