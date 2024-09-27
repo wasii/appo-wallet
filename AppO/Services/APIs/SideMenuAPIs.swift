@@ -12,6 +12,7 @@ import Moya
 
 enum SideMenuAPIs {
     case balanceEnquiry(parameters: Parameters)
+    case updateCardStatus(parameters: Parameters)
     
 }
 
@@ -26,12 +27,14 @@ extension SideMenuAPIs: TargetType {
         switch self {
         case .balanceEnquiry:
             return "mobile_app_cust_bal_enq"
+        case .updateCardStatus:
+            return "sem_mapp_set_card_status"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .balanceEnquiry:
+        case .balanceEnquiry, .updateCardStatus:
             return .post
         }
     }
@@ -43,6 +46,8 @@ extension SideMenuAPIs: TargetType {
     var task: Task {
         switch self {
         case .balanceEnquiry(let parameters):
+            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
+        case .updateCardStatus(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }

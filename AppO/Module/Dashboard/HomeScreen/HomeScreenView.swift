@@ -199,6 +199,11 @@ struct HomeScreenView: View {
         .onAppear {
             viewModel.getCustpmerEnquiry()
         }
+        .onChange(of: homeNavigator.navPath) { newPath in
+            if newPath.isEmpty {
+                viewModel.getCustpmerEnquiry()
+            }
+        }
     }
 }
 

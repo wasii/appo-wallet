@@ -255,7 +255,7 @@ struct PhoneNumberVerificationView: View {
                 break
             }
         }
-        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+        .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
     }
     
     var filteredResorts: [PhoneNumberModel] {

@@ -187,7 +187,8 @@ extension HomeScreenViewModel {
             } receiveValue: { [weak self] response in
                 self?.showLoader = false
                 if response.respInfo?.respStatus == 200 {
-                    
+                    AppDefaults.dmk = response.respInfo?.respData?.dek
+                    AppDefaults.dmk_kcv = response.respInfo?.respData?.dekKcv
                 }
             }
             .store(in: &cancellables)

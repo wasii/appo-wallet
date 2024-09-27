@@ -67,7 +67,7 @@ struct MyQRCodeView: View {
             .edgesIgnoringSafeArea(.top)
             .background(Color.appBackground)
             .toolbar(.hidden, for: .navigationBar)
-            .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+            .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
             .onReceive(viewModel.coordinatorState) { state in
                 switch (state.state, state.transferable) {
                 case (.showBalance, _):

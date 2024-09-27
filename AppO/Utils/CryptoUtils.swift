@@ -1,120 +1,128 @@
-////
-////  CryptoUtils.swift
-////  AppO
-////
-////  Created by Abul Jaleel on 24/09/2024.
-////
 //
+//  CryptoUtils.swift
+//  AppO
 //
-//import Foundation
-//import CommonCrypto
+//  Created by Abul Jaleel on 24/09/2024.
 //
-//class CryptoUtils {
-//
-//    // Converts a hex string to a byte array
-//    static func hexStringToByteArray(_ hex: String) -> [UInt8] {
-//        var bytes = [UInt8]()
-//        var index = hex.startIndex
-//        while index < hex.endIndex {
-//            let byteString = hex[index..<hex.index(index, offsetBy: 2)]
-//            let byte = UInt8(byteString, radix: 16)
-//            bytes.append(byte!)
-//            index = hex.index(index, offsetBy: 2)
-//        }
-//        return bytes
-//    }
-//
-//    // Converts a byte array to a hex string
-//    static func byteArrayToHexString(_ bytes: [UInt8]) -> String {
-//        return bytes.map { String(format: "%02X", $0) }.joined()
-//    }
-//
-//    // Constructs a 24-byte (192-bit) key from a 16-byte key
-//    static func construct3DESKey(_ key: [UInt8]) -> [UInt8] {
-//        if key.count != 16 {
-//            fatalError("Key must be 16 bytes long")
-//        }
-//        var key24 = [UInt8](repeating: 0, count: 24)
-//        key24[0..<16] = key[0..<16]
-//        key24[16..<24] = key[0..<8]
-//        return key24
-//    }
-//
-//    // 3DES Encryption
-//    static func encrypt3DES(hexData: String, hexKey: String) throws -> String {
-//        let data = hexStringToByteArray(hexData)
-//        let key = construct3DESKey(hexStringToByteArray(hexKey))
-//        
-//        var cryptor: CCCryptorRef?
-//        let status = CCCryptorCreate(
-//            CCCryptorOperation(kCCEncrypt),
-//            CCAlgorithm(kCCAlgorithm3DES),
-//            CCOptions(kCCOptionECBMode),
-//            key, key.count,
-//            nil,
-//            &cryptor
-//        )
-//
-//        guard status == kCCSuccess, let cryptor = cryptor else {
-//            throw NSError(domain: "Encryption failed", code: Int(status), userInfo: nil)
-//        }
-//
-//        var encryptedData = [UInt8](repeating: 0, count: data.count + kCCBlockSize3DES)
-//        var outLength = 0
-//        
-//        let updateStatus = CCCryptorUpdate(
-//            cryptor,
-//            data, data.count,
-//            &encryptedData, encryptedData.count,
-//            &outLength
-//        )
-//        
-//        guard updateStatus == kCCSuccess else {
-//            throw NSError(domain: "Encryption failed", code: Int(updateStatus), userInfo: nil)
-//        }
-//        
-//        encryptedData = Array(encryptedData[..<outLength])
-//        CCCryptorRelease(cryptor)
-//        
-//        return byteArrayToHexString(encryptedData)
-//    }
-//
-//    // 3DES Decryption
-//    static func decrypt3DES(hexEncryptedData: String, hexKey: String) throws -> String {
-//        let encryptedData = hexStringToByteArray(hexEncryptedData)
-//        let key = construct3DESKey(hexStringToByteArray(hexKey))
-//        
-//        var cryptor: CCCryptorRef?
-//        let status = CCCryptorCreate(
-//            CCCryptorOperation(kCCDecrypt),
-//            CCAlgorithm(kCCAlgorithm3DES),
-//            CCOptions(kCCOptionECBMode),
-//            key, key.count,
-//            nil,
-//            &cryptor
-//        )
-//
-//        guard status == kCCSuccess, let cryptor = cryptor else {
-//            throw NSError(domain: "Decryption failed", code: Int(status), userInfo: nil)
-//        }
-//
-//        var decryptedData = [UInt8](repeating: 0, count: encryptedData.count + kCCBlockSize3DES)
-//        var outLength = 0
-//        
-//        let updateStatus = CCCryptorUpdate(
-//            cryptor,
-//            encryptedData, encryptedData.count,
-//            &decryptedData, decryptedData.count,
-//            &outLength
-//        )
-//        
-//        guard updateStatus == kCCSuccess else {
-//            throw NSError(domain: "Decryption failed", code: Int(updateStatus), userInfo: nil)
-//        }
-//        
-//        decryptedData = Array(decryptedData[..<outLength])
-//        CCCryptorRelease(cryptor)
-//        
-//        return byteArrayToHexString(decryptedData)
-//    }
-//}
+
+
+import Foundation
+import CommonCrypto
+
+class EncryptionProcess {
+    
+    static func hexStringToByteArray(_ hex: String) -> [UInt8] {
+        var bytes = [UInt8]()
+        var index = hex.startIndex
+        while index < hex.endIndex {
+            let byteString = hex[index..<hex.index(index, offsetBy: 2)]
+            let byte = UInt8(byteString, radix: 16)!
+            bytes.append(byte)
+            index = hex.index(index, offsetBy: 2)
+        }
+        return bytes
+    }
+    
+    static func bytesToHex(_ bytes: [UInt8]) -> String {
+        return bytes.map { String(format: "%02x", $0) }.joined()
+    }
+    
+    static func fix3DESKey(_ key: [UInt8]) -> [UInt8] {
+        if key.count == 16 {
+            return key + key[0..<8] // Extend to 24 bytes
+        } else if key.count == 24 {
+            return key
+        } else {
+            fatalError("Invalid key length. Must be 16 or 24 bytes.")
+        }
+    }
+    
+    static func encrypt3DES(key: [UInt8], data: [UInt8]) -> [UInt8]? {
+        let fixedKey = fix3DESKey(key)
+        return perform3DESCrypto(data: data, key: fixedKey, operation: CCOperation(kCCEncrypt))
+    }
+    
+    static func decrypt3DES(key: [UInt8], data: [UInt8]) -> [UInt8]? {
+        let fixedKey = fix3DESKey(key)
+        return perform3DESCrypto(data: data, key: fixedKey, operation: CCOperation(kCCDecrypt))
+    }
+    
+    static func perform3DESCrypto(data: [UInt8], key: [UInt8], operation: CCOperation) -> [UInt8]? {
+        var outLength = Int(0)
+        var output = [UInt8](repeating: 0, count: data.count + kCCBlockSize3DES)
+        
+        let status = CCCrypt(operation,
+                             CCAlgorithm(kCCAlgorithm3DES),
+                             CCOptions(kCCOptionECBMode),
+                             key, kCCKeySize3DES,
+                             nil,
+                             data, data.count,
+                             &output, output.count,
+                             &outLength)
+        
+        guard status == kCCSuccess else { return nil }
+        return Array(output.prefix(outLength))
+    }
+    
+    static func generatePinBlock(pin: String, pan: String) -> [UInt8] {
+        let pinBlock = "0\(pin.count)\(pin)" + String(repeating: "F", count: 14 - pin.count)
+        let pinBlockBytes = hexStringToByteArray(pinBlock)
+        
+        let panBlock = "0000" + pan.suffix(13).dropLast()
+        let panBlockBytes = hexStringToByteArray(String(panBlock))
+        
+        return zip(pinBlockBytes, panBlockBytes).map { $0 ^ $1 }
+    }
+    
+    static func main() {
+        // Step 1: Fetch DMK and verify the KCV
+        let dmkHex = AppDefaults.dmk ?? "ADC88EDB87AEA4EB6B38AA523A005A4E"
+        let dekHex = AppDefaults.dek ?? "523FC8E1D5E45C6CB1A5A510DBD35A8A"  // Encrypted DEK
+        let dmkKcv = AppDefaults.dmk_kcv ?? "836946C4A33C79B6"
+        let dekKcv = AppDefaults.dek_kcv ?? "0DB2E636453675E1"
+        
+        print("DMK Hex: \(dmkHex)")
+        print("DEK Hex (Encrypted): \(dekHex)")
+        print("Expected DMK KCV: \(dmkKcv)")
+        print("Expected DEK KCV: \(dekKcv)")
+        
+        let dmk = hexStringToByteArray(dmkHex)
+        let encryptedDek = hexStringToByteArray(dekHex)
+        let zeroBlock = hexStringToByteArray("0000000000000000")
+        
+        guard let encryptedDmk = encrypt3DES(key: dmk, data: zeroBlock) else { return }
+        let dmkEncryptedKcv = bytesToHex(Array(encryptedDmk.prefix(8)))
+        let isDmkValid = dmkEncryptedKcv == dmkKcv
+        
+        print("\nDMK Validation:")
+        print("Zero Block for KCV: \(bytesToHex(zeroBlock))")
+        print("Encrypted DMK KCV: \(dmkEncryptedKcv)")
+        print("DMK validation successful? \(isDmkValid)\n")
+        
+        guard let clearDek = decrypt3DES(key: dmk, data: encryptedDek) else { return }
+        guard let dekKcvData = encrypt3DES(key: clearDek, data: zeroBlock) else { return }
+        let dekEncryptedKcv = bytesToHex(Array(dekKcvData.prefix(8)))
+        let isDekValid = dekEncryptedKcv == dekKcv
+        
+        print("DEK Validation:")
+        print("Clear DEK Byte Array: \(bytesToHex(clearDek))")
+        print("Encrypted DEK KCV: \(dekEncryptedKcv)")
+        print("DEK validation successful? \(isDekValid)\n")
+        
+        let pin = AppDefaults.temp_pin ?? "7766"  // New PIN
+        let pan = AppDefaults.temp_cardnumber ?? "6367820020000712"  // PAN from which we'll extract the last 12 digits
+        
+        print("Generating ANSI PIN Block:")
+        print("PIN: \(pin)")
+        print("PAN: \(pan)")
+        
+        let pinBlock = generatePinBlock(pin: pin, pan: pan)
+        
+        print("Generated ANSI PIN Block (Clear): \(bytesToHex(pinBlock))\n")
+        
+        guard let encryptedPinBlock = encrypt3DES(key: clearDek, data: pinBlock) else { return }
+        
+        print("Encrypted ANSI PIN Block:")
+        print("Encrypted PIN Block: \(bytesToHex(encryptedPinBlock))")
+    }
+}

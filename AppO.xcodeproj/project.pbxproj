@@ -93,6 +93,8 @@
 		E25B90662C7D0A5300A6F871 /* AddOnCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90652C7D0A5300A6F871 /* AddOnCardView.swift */; };
 		E25B90682C7D0CBB00A6F871 /* CustomTextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90672C7D0CBB00A6F871 /* CustomTextfieldStyle.swift */; };
 		E25B906A2C7D0D5B00A6F871 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25B90692C7D0D5B00A6F871 /* CustomButtonStyle.swift */; };
+		E266D2A82CA66EA50016B820 /* ChangeCardStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E266D2A72CA66E9E0016B820 /* ChangeCardStatusRequest.swift */; };
+		E266D2AA2CA66F600016B820 /* ChangeCardStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E266D2A92CA66F5C0016B820 /* ChangeCardStatusResponse.swift */; };
 		E27298272C8B2A4E00B41FF8 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27298262C8B2A4E00B41FF8 /* AppFonts.swift */; };
 		E27298292C8B2A6100B41FF8 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27298282C8B2A6100B41FF8 /* CustomFonts.swift */; };
 		E272982B2C8B2A9800B41FF8 /* Fonts+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E272982A2C8B2A9800B41FF8 /* Fonts+Extension.swift */; };
@@ -232,6 +234,8 @@
 		E25B90652C7D0A5300A6F871 /* AddOnCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnCardView.swift; sourceTree = "<group>"; };
 		E25B90672C7D0CBB00A6F871 /* CustomTextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextfieldStyle.swift; sourceTree = "<group>"; };
 		E25B90692C7D0D5B00A6F871 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
+		E266D2A72CA66E9E0016B820 /* ChangeCardStatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCardStatusRequest.swift; sourceTree = "<group>"; };
+		E266D2A92CA66F5C0016B820 /* ChangeCardStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCardStatusResponse.swift; sourceTree = "<group>"; };
 		E27298262C8B2A4E00B41FF8 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		E27298282C8B2A6100B41FF8 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		E272982A2C8B2A9800B41FF8 /* Fonts+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fonts+Extension.swift"; sourceTree = "<group>"; };
@@ -729,6 +733,7 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E266D2A72CA66E9E0016B820 /* ChangeCardStatusRequest.swift */,
 				E24E37472CA5890900F6AD2D /* CustomerBalanceEnquiryRequest.swift */,
 				E24E37432CA54CE300F6AD2D /* PhoneNumberVerificationRequest.swift */,
 				E2EFF89C2CA3ECFF00D8D4BE /* DataMasterKeyRequest.swift */,
@@ -749,6 +754,7 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E266D2A92CA66F5C0016B820 /* ChangeCardStatusResponse.swift */,
 				E24E37492CA5897600F6AD2D /* CustomerBalanceEnquiryResponse.swift */,
 				E24E37452CA54CF500F6AD2D /* PhoneNumberVerificationResponse.swift */,
 				E2EFF89E2CA3EE2100D8D4BE /* DataMasterKeyResponse.swift */,
@@ -959,7 +965,9 @@
 				E226588F2C7CADB600DF8506 /* TransactionDetailsItems.swift in Sources */,
 				E2C9CB0D2C785C8F00B47B38 /* VerifyOTPInteractor.swift in Sources */,
 				E25B4B4C2C6E254D000745F9 /* NavigationBarView.swift in Sources */,
+				E266D2AA2CA66F600016B820 /* ChangeCardStatusResponse.swift in Sources */,
 				E25B904B2C7CF26F00A6F871 /* CardStatusView.swift in Sources */,
+				E266D2A82CA66EA50016B820 /* ChangeCardStatusRequest.swift in Sources */,
 				E22253952CA3D50D005D9BE7 /* SetupMobilePINView.swift in Sources */,
 				E2C9CB1B2C7863A200B47B38 /* Codable+Extension.swift in Sources */,
 				E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */,

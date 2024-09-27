@@ -104,7 +104,7 @@ struct VerifyOTPView: View {
                 )
             }
         }
-        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+        .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
         
         VStack(spacing: 0) {
             ScrollView {

@@ -9,11 +9,15 @@ import Foundation
 import SwiftUI
 
 extension View {
-    func showError(_ error: String?,
-                   isPresenting: Binding<Bool>,
-                   onTap: (() -> ())? = nil) -> some View {
+    func showError(
+        _ title: String = "Error",
+        _ error: String?,
+        isPresenting: Binding<Bool>,
+        onTap: (() -> ())? = nil) -> some View {
         
-        self.modifier(AlertPresentationModifier(isPresented: isPresenting, title: "Error", message: error ?? "", dismissButtonTitle: "Dismiss", action: onTap))
+        self.modifier(
+            AlertPresentationModifier(isPresented: isPresenting, title: title, message: error ?? "", dismissButtonTitle: "Dismiss", action: onTap)
+        )
     }
     func placeholder<Content: View>(
         when shouldShow: Bool,

@@ -65,7 +65,6 @@ extension MyQRCodeViewModel {
                     self?.showLoader = false
                     if response.respInfo?.respStatus == 200 {
                         self?.userBalance = response.respInfo?.respData?.availBal ?? ""
-//                        self?.coordinatorStatePublisher.send(.with(.showBalance))
                         self?.isShow = true
                         continuation.resume(returning: ())
                     } else {

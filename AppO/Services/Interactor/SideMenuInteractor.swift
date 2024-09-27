@@ -11,6 +11,7 @@ import Foundation
 
 protocol SideMenuInteractorType {
     func customer_balance_enquiry(request: CustomerBalanceEnquiryRequest) -> AnyPublisher<SystemAPIBaseResponse<CustomerBalanceEnquiryResponse>, NetworkError>    
+    func change_card_status(request: ChangeCardStatusRequest) -> AnyPublisher<SystemAPIBaseResponse<ChangeCardStatusResponse>, NetworkError>
 }
 
 class SideMenuInteractor: SideMenuInteractorType {
@@ -23,6 +24,15 @@ class SideMenuInteractor: SideMenuInteractorType {
     
     func customer_balance_enquiry(request: CustomerBalanceEnquiryRequest) -> AnyPublisher<SystemAPIBaseResponse<CustomerBalanceEnquiryResponse>, NetworkError> {
         let target: SideMenuAPIs = .balanceEnquiry(parameters: request.dictionary ?? [:])
+        return networkManager
+            .request(target: target)
+            .subscribe(on: Scheduler.backgroundWorkScheduler)
+            .receive(on: Scheduler.mainScheduler)
+            .eraseToAnyPublisher()
+    }
+    
+    func change_card_status(request: ChangeCardStatusRequest) -> AnyPublisher<SystemAPIBaseResponse<ChangeCardStatusResponse>, NetworkError> {
+        let target: SideMenuAPIs = .updateCardStatus(parameters: request.dictionary ?? [:])
         return networkManager
             .request(target: target)
             .subscribe(on: Scheduler.backgroundWorkScheduler)

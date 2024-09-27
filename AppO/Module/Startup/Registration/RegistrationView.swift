@@ -197,7 +197,7 @@ struct RegistrationView: View {
                 AppEnvironment.shared.isLoggedIn = true
             }
         }
-        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+        .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
     }
 }
 

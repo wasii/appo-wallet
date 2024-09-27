@@ -71,7 +71,27 @@ class AppDefaults: UserDefaults {
         set { AppDefaults[#function] = newValue }
     }
     
+    static var dek: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    
+    static var dek_kcv: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    
     static var isTermConditionsChecked: Bool? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    
+    static var temp_pin: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    
+    static var temp_cardnumber: String? {
         get { AppDefaults[#function] }
         set { AppDefaults[#function] = newValue }
     }

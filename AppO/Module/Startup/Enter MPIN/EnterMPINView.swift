@@ -63,7 +63,7 @@ struct EnterMPINView: View {
                 navigator.navigate(to: .phoneNumberVerification(viewModel: .init(bindingDevice: true)))
             }
         }
-        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+        .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
         .onAppear {
             if let mobilePin = AppDefaults.mobilePin {
                 print("Customer Mobile Pin: \(mobilePin)")

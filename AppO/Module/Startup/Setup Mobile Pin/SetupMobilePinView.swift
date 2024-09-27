@@ -112,7 +112,7 @@ struct SetupMobilePinView: View {
                 )
             }
         }
-        .showError(viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+        .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
     }
     
     private var isSubmitButtonEnabled: Bool {

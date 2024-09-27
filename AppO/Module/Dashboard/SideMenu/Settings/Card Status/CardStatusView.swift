@@ -12,58 +12,69 @@ struct CardStatusView: View {
     @StateObject var viewModel: CardStatusViewModel
     @EnvironmentObject var homeNavigator: HomeNavigator
     
-    @State private var isActive: Bool = true
-    @State private var isBlock:  Bool = true
+    @State private var isActive: Bool = false
     
-    @State private var currentWallet: WalletCardType = .visa
+    @State private var currentWallet: WalletCardType = .appo
     var walletTypes: [WalletCardType] {
         WalletCardType.allCases
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            NavigationBarView(title: "Card Status")
-            ScrollView {
-                VStack(alignment: .center, spacing: 20) {
-                    WalletTypeView
-                    CardView
-                    
-                    Text("You can set below Status of the Card")
-                        .font(AppFonts.bodyEighteenBold)
-                        .foregroundStyle(.appBlue)
-                        .padding(.bottom, 30)
-                    
-                    HStack {
-                        VStack(alignment: .leading, spacing: 5) {
+        ZStack(alignment: .top) {
+            GeometryReader { geo in
+                LoaderView(showLoader: $viewModel.showLoader)
+                    .frame(height: UIScreen.main.bounds.height)
+            }
+            .zIndex(1)
+            VStack(alignment: .leading, spacing: 20) {
+                NavigationBarView(title: "Card Status")
+                ScrollView {
+                    VStack(alignment: .center, spacing: 20) {
+                        WalletTypeView
+                        CardView
+                        
+                        Text("You can set below Status of the Card")
+                            .font(AppFonts.bodyEighteenBold)
+                            .foregroundStyle(.appBlue)
+                            .padding(.bottom, 30)
+                        
+                        HStack {
                             Text("Active")
                             Toggle("", isOn: $isActive)
                                 .toggleStyle(CustomToggleStyle())
                                 .labelsHidden()
-                        }
-                        Spacer()
-                        VStack(alignment: .leading, spacing: 5) {
                             Text("Block")
-                            Toggle("", isOn: $isBlock)
-                                .toggleStyle(CustomToggleStyle())
-                                .labelsHidden()
+                        }
+                        .font(AppFonts.bodyTwentyBold)
+                        .foregroundStyle(.appBlue)
+                        .padding(.horizontal, 40)
+                    }
+                    .padding(.horizontal)
+                }
+                Spacer()
+                Button {
+                    let cardStatus = self.isActive ? "007" : "008"
+                    Task {
+                        do {
+                            try await viewModel.changeCardStatus(cardStatus: cardStatus)
                         }
                     }
-                    .font(AppFonts.bodyTwentyBold)
-                    .foregroundStyle(.appBlue)
-                    .padding(.horizontal, 40)
+                } label: {
+                    Text("Submit")
+                        .customButtonStyleWithBordered()
                 }
-                .padding(.horizontal)
+                .padding()
+                BottomNavigation()
             }
-            Spacer()
-            Button {} label: {
-                Text("Submit")
-                    .customButtonStyleWithBordered()
+            .edgesIgnoringSafeArea(.top)
+            .toolbar(.hidden, for: .navigationBar)
+            .onAppear {
+                if AppDefaults.selected_card?.cardStatusDesc == "Active" {
+                    self.isActive = true
+                }
             }
-            .padding()
-            BottomNavigation()
+            .showError("Yayy!!", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
         }
-        .edgesIgnoringSafeArea(.top)
-        .toolbar(.hidden, for: .navigationBar)
     }
     
     var WalletTypeView: some View {
@@ -80,7 +91,9 @@ struct CardStatusView: View {
                 .cornerRadius(60)
                 .onTapGesture {
                     withAnimation {
-                        currentWallet = wallet
+                        if wallet.isEnabled {
+                            currentWallet = wallet
+                        }
                     }
                 }
                 Spacer()
@@ -97,9 +110,9 @@ struct CardStatusView: View {
             
             VStack(alignment: .leading) {
                 Spacer()
-                Text("6262 2303 5678 9010")
+                Text(AppDefaults.selected_card?.maskCardNum ?? "")
                     .font(AppFonts.regularTwenty)
-                Text("Expiry: 10/2016 JOE CHURCO")
+                Text("Expiry: \(AppDefaults.selected_card?.expDate ?? "") \(AppDefaults.selected_card?.cardName ?? "")")
                     .font(AppFonts.bodyFourteenBold)
             }
             .foregroundStyle(.white)

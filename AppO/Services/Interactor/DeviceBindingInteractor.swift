@@ -12,7 +12,7 @@ protocol DeviceBindingInteractorType {
     func bindDevice(request: BindDeviceRequest) -> AnyPublisher<BindDeviceResponse, NetworkError>
     func rebindDevice(request: ReBindDeviceRequest) -> AnyPublisher<RebindDeviceResponse, NetworkError>
     func getDataMasterKey(request: DataMasterKeyRequest) -> AnyPublisher<SystemAPIBaseResponse<DataMasterKeyResponse>, NetworkError>
-    func getDataEncryptionKey(request: DataEncryptionKeyRequest) -> AnyPublisher<SystemAPIBaseResponse<DataEncryptionKeyRequest>, NetworkError>
+    func getDataEncryptionKey(request: DataEncryptionKeyRequest) -> AnyPublisher<SystemAPIBaseResponse<DataEncryptionKeyResponse>, NetworkError>
 }
 
 class DeviceBindingInteractor: DeviceBindingInteractorType {
@@ -50,7 +50,7 @@ class DeviceBindingInteractor: DeviceBindingInteractorType {
             .eraseToAnyPublisher()
     }
     
-    func getDataEncryptionKey(request: DataEncryptionKeyRequest) -> AnyPublisher<SystemAPIBaseResponse<DataEncryptionKeyRequest>, NetworkError> {
+    func getDataEncryptionKey(request: DataEncryptionKeyRequest) -> AnyPublisher<SystemAPIBaseResponse<DataEncryptionKeyResponse>, NetworkError> {
         let target: DeviceBindingAPIs = .getDEK(parametes: request.dictionary ?? [:])
         return networkManager
             .request(target: target)
