@@ -11,7 +11,7 @@ struct SetupCardPINView: View {
     @Binding var isShowSetupPin: Bool
     @State private var createPIN: [String] = Array(repeating: "", count: 4)
     
-    var closure: ((String)->())
+    var closure: (()->())
     var body: some View {
         VStack(alignment: .center) {
             Text("Please Set Pin to Activate your Card")
@@ -44,8 +44,9 @@ struct SetupCardPINView: View {
                     }
                     
                     Button{
+                        AppDefaults.temp_pin = createPIN.joined()
                         isShowSetupPin = false
-                        closure(createPIN.joined())
+                        closure()
                     } label: {
                         Text("OK")
                             .font(AppFonts.bodySixteenBold)
@@ -75,5 +76,5 @@ struct SetupCardPINView: View {
 }
 
 #Preview {
-    SetupCardPINView(isShowSetupPin: .constant(true)) { _ in }
+    SetupCardPINView(isShowSetupPin: .constant(true)) {}
 }

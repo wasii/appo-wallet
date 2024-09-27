@@ -12,9 +12,9 @@ struct ChangeTransactionPinView: View {
     @StateObject var viewModel: ChangeTransactionPinViewModel
     @EnvironmentObject var homeNavigator: HomeNavigator
     
-    @State private var oldPIN: [String] = Array(repeating: "", count: 6)
-    @State private var newPIN: [String] = Array(repeating: "", count: 6)
-    @State private var confirmPIN: [String] = Array(repeating: "", count: 6)
+    @State private var oldPIN: [String] = Array(repeating: "", count: 4)
+    @State private var newPIN: [String] = Array(repeating: "", count: 4)
+    @State private var confirmPIN: [String] = Array(repeating: "", count: 4)
     
     
     @State private var oldPinSwitch: Bool = false
@@ -41,10 +41,32 @@ struct ChangeTransactionPinView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 
                 
-                Button {} label: {
+                Button {
+                    Task {
+                        do {
+                            if try await viewModel.getDataEncryptionKey() {
+                                AppDefaults.temp_pin = oldPIN.joined()
+                                let oldPin = CryptoUtils.main() ?? ""
+                                AppDefaults.temp_pin = newPIN.joined()
+                                let newPin = CryptoUtils.main() ?? ""
+                                
+                                if try await viewModel.setCardPin(oldPin: oldPin, newPin: newPin) {
+                                    print("SUCESS")
+                                }
+                            }
+                        }
+                    }
+                } label: {
                     Text("Submit")
-                        .customButtonStyle()
+                        .font(AppFonts.headline4)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 60)
+                        .background(isSubmitEnabled ? .appBlue : .appBlue.opacity(0.7))
+                        .cornerRadius(10)
+                        .foregroundColor(.white)
+                        
                 }
+                .disabled(!isSubmitEnabled)
             }
             .padding()
             Spacer()
@@ -58,6 +80,11 @@ struct ChangeTransactionPinView: View {
         .onTapGesture {
             hideKeyboard()
         }
+        .showError("", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+    }
+    
+    var isSubmitEnabled: Bool {
+        return !oldPIN.contains("") && !newPIN.contains("") && !confirmPIN.contains("") && newPIN == confirmPIN
     }
 }
 
@@ -78,7 +105,7 @@ extension ChangeTransactionPinView {
             .foregroundStyle(Color.appBlue)
             .padding(.top, 20)
             
-            OTPInputView(otpDigits: $oldPIN, isSecure: true)
+            OTPInputView(otpDigits: $oldPIN, length: 4, isSecure: true)
                 .padding(.top, -10)
         }
     }
@@ -98,7 +125,7 @@ extension ChangeTransactionPinView {
             .foregroundStyle(Color.appBlue)
             .padding(.top, 20)
             
-            OTPInputView(otpDigits: $newPIN, isSecure: true)
+            OTPInputView(otpDigits: $newPIN, length: 4, isSecure: true)
                 .padding(.top, -10)
         }
     }
@@ -118,7 +145,7 @@ extension ChangeTransactionPinView {
             .foregroundStyle(Color.appBlue)
             .padding(.top, 20)
             
-            OTPInputView(otpDigits: $confirmPIN, isSecure: true)
+            OTPInputView(otpDigits: $confirmPIN, length: 4, isSecure: true)
                 .padding(.top, -10)
         }
     }

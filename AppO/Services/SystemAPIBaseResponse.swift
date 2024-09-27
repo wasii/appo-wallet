@@ -40,3 +40,32 @@ struct SystemAPIResponse<ResponseData: Codable>: Codable {
         case respStatus = "resp_status"
     }
 }
+
+
+
+struct ChangePINBaseResponse<ResponseData: Codable>: Codable {
+    let respInfo: ChangePINResponse<ResponseData>?
+    
+    enum CodingKeys: String, CodingKey {
+        case respInfo = "resp_info"
+    }
+}
+struct ChangePINResponse<ResponseData: Codable>: Codable {
+    let rejectCode: String
+    let rejectShortDesc: String
+    let respCode: String
+    let respData: ResponseData
+    let respDesc: String
+    let respStatus: Int
+    let txnFlag: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case rejectCode = "reject_code"
+        case rejectShortDesc = "reject_short_desc"
+        case respCode = "resp_code"
+        case respData = "resp_data"
+        case respDesc = "resp_desc"
+        case respStatus = "resp_status"
+        case txnFlag = "txn_flag"
+    }
+}

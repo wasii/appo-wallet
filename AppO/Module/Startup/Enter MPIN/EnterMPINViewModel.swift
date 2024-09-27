@@ -21,15 +21,15 @@ class EnterMPINViewModel: ObservableObject {
     }
     
     private var cancellables: [AnyCancellable] = []
-    private var vInteractor: VerifyPINInteractorType
+    private var pInteractor: PINInteractorType
     private var dInteractor: DeviceBindingInteractorType
     
     @Published var showLoader: Bool = false
     @Published var apiError: String?
     @Published var isPresentAlert: Bool = false
     
-    init(vInteractor: VerifyPINInteractorType = VerifyPINInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor()) {
-        self.vInteractor = vInteractor
+    init(pInteractor: PINInteractorType = PINInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor()) {
+        self.pInteractor = pInteractor
         self.dInteractor = dInteractor
     }
 }
@@ -40,7 +40,7 @@ extension EnterMPINViewModel {
         let request: VerifyPINRequest = .init(deviceId: AppDefaults.deviceId ?? "", mobilePin: mobilePin)
         
         return try await withCheckedThrowingContinuation { continuation in
-            vInteractor.verifyPIN(request: request)
+            pInteractor.verifyPIN(request: request)
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] completion in
                     self?.showLoader = false

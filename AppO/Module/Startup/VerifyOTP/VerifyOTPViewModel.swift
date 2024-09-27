@@ -68,6 +68,7 @@ extension VerifyOTPViewModel {
             } receiveValue: { [weak self] response in
                 if response.message == "ok" {
                     AppDefaults.deviceId = deviceId
+                    AppDefaults.mobile = self?.phoneNumber
                     self?.coordinatorStatePublisher.send(.with(.verify))
                 }
                 else {

@@ -79,12 +79,23 @@ struct HomeScreenView: View {
                     GeometryReader { geometry in
                         VStack {
                             Spacer()
-                            SetupCardPINView(isShowSetupPin: $isShowSetupPin) { pin in
-                                viewModel.setupPin(pin: pin) { success in
-                                    if success {
-                                        showChangePin()
+                            SetupCardPINView(isShowSetupPin: $isShowSetupPin) {
+                                Task {
+                                    do {
+                                        if try await viewModel.getDataEncryptionKey() {
+                                            if try await viewModel.getCardNumber() {
+                                                if try await viewModel.setCardPin() {
+                                                    showChangePin()
+                                                }
+                                            }
+                                        }
                                     }
                                 }
+//                                viewModel.setupPin(pin: pin) { success in
+//                                    if success {
+//                                        showChangePin()
+//                                    }
+//                                }
                             }
                             .padding()
                             .cornerRadius(10)

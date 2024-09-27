@@ -12,6 +12,12 @@
 		E204E1352CA1841F0023B9FC /* SetupMobilePinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204E1342CA184130023B9FC /* SetupMobilePinRequest.swift */; };
 		E204E1372CA184AB0023B9FC /* SetupMobilePinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204E1362CA184AB0023B9FC /* SetupMobilePinResponse.swift */; };
 		E204E1392CA19DAB0023B9FC /* PermissionServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204E1382CA19DA50023B9FC /* PermissionServiceManager.swift */; };
+		E20913ED2CA688BF00A3552A /* PINInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20913EC2CA688BA00A3552A /* PINInteractor.swift */; };
+		E20913EF2CA688DF00A3552A /* PINAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20913EE2CA688DC00A3552A /* PINAPIs.swift */; };
+		E20913F12CA6918A00A3552A /* SetCardPINRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20913F02CA6918400A3552A /* SetCardPINRequest.swift */; };
+		E20913F32CA6937500A3552A /* SetCardPINResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20913F22CA6936D00A3552A /* SetCardPINResponse.swift */; };
+		E20914162CA6BE0500A3552A /* UpdateCardPINRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20914152CA6BE0500A3552A /* UpdateCardPINRequest.swift */; };
+		E209141A2CA6BE8A00A3552A /* UpdateCardPINResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20914192CA6BE8A00A3552A /* UpdateCardPINResponse.swift */; };
 		E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */; };
 		E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */; };
 		E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */; };
@@ -118,7 +124,6 @@
 		E2A5C85C2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C85B2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift */; };
 		E2A5C85E2CA2E01100F40B18 /* VerifyPINRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C85D2CA2E00900F40B18 /* VerifyPINRequest.swift */; };
 		E2A5C8602CA2E01800F40B18 /* VerifyPINResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C85F2CA2E01500F40B18 /* VerifyPINResponse.swift */; };
-		E2A5C8622CA2E18400F40B18 /* VerifyPINInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C8612CA2E17C00F40B18 /* VerifyPINInteractor.swift */; };
 		E2A5C8642CA2E1DF00F40B18 /* VerifyPINAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A5C8632CA2E1CD00F40B18 /* VerifyPINAPIs.swift */; };
 		E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BD5DDE2C76239B006FB4B7 /* Environment.swift */; };
 		E2BF16092C9C49F3009683D1 /* OTPAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF16082C9C49E4009683D1 /* OTPAPIs.swift */; };
@@ -156,6 +161,12 @@
 		E204E1342CA184130023B9FC /* SetupMobilePinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinRequest.swift; sourceTree = "<group>"; };
 		E204E1362CA184AB0023B9FC /* SetupMobilePinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinResponse.swift; sourceTree = "<group>"; };
 		E204E1382CA19DA50023B9FC /* PermissionServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionServiceManager.swift; sourceTree = "<group>"; };
+		E20913EC2CA688BA00A3552A /* PINInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINInteractor.swift; sourceTree = "<group>"; };
+		E20913EE2CA688DC00A3552A /* PINAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PINAPIs.swift; sourceTree = "<group>"; };
+		E20913F02CA6918400A3552A /* SetCardPINRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardPINRequest.swift; sourceTree = "<group>"; };
+		E20913F22CA6936D00A3552A /* SetCardPINResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardPINResponse.swift; sourceTree = "<group>"; };
+		E20914152CA6BE0500A3552A /* UpdateCardPINRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCardPINRequest.swift; sourceTree = "<group>"; };
+		E20914192CA6BE8A00A3552A /* UpdateCardPINResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCardPINResponse.swift; sourceTree = "<group>"; };
 		E20FA2632C6F911F00B7CBC6 /* VerifyOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPViewModel.swift; sourceTree = "<group>"; };
 		E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewModel.swift; sourceTree = "<group>"; };
 		E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINViewModel.swift; sourceTree = "<group>"; };
@@ -260,7 +271,6 @@
 		E2A5C85B2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceBindingAPIs.swift; sourceTree = "<group>"; };
 		E2A5C85D2CA2E00900F40B18 /* VerifyPINRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINRequest.swift; sourceTree = "<group>"; };
 		E2A5C85F2CA2E01500F40B18 /* VerifyPINResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINResponse.swift; sourceTree = "<group>"; };
-		E2A5C8612CA2E17C00F40B18 /* VerifyPINInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINInteractor.swift; sourceTree = "<group>"; };
 		E2A5C8632CA2E1CD00F40B18 /* VerifyPINAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyPINAPIs.swift; sourceTree = "<group>"; };
 		E2BD5DDE2C76239B006FB4B7 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = AppO/Utils/Environment.swift; sourceTree = SOURCE_ROOT; };
 		E2BF16082C9C49E4009683D1 /* OTPAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPAPIs.swift; sourceTree = "<group>"; };
@@ -436,8 +446,8 @@
 		E24B918B2C771944009091B2 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				E20913EC2CA688BA00A3552A /* PINInteractor.swift */,
 				E24E37502CA5A4DB00F6AD2D /* SideMenuInteractor.swift */,
-				E2A5C8612CA2E17C00F40B18 /* VerifyPINInteractor.swift */,
 				E2A5C8592CA2D97C00F40B18 /* DeviceBindingInteractor.swift */,
 				E23864BB2C9DDF7600EAD795 /* HomeInteractor.swift */,
 				E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */,
@@ -452,6 +462,7 @@
 		E24B918C2C771958009091B2 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				E20913EE2CA688DC00A3552A /* PINAPIs.swift */,
 				E24E374E2CA5A46C00F6AD2D /* SideMenuAPIs.swift */,
 				E2A5C8632CA2E1CD00F40B18 /* VerifyPINAPIs.swift */,
 				E2A5C85B2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift */,
@@ -733,6 +744,8 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E20914152CA6BE0500A3552A /* UpdateCardPINRequest.swift */,
+				E20913F02CA6918400A3552A /* SetCardPINRequest.swift */,
 				E266D2A72CA66E9E0016B820 /* ChangeCardStatusRequest.swift */,
 				E24E37472CA5890900F6AD2D /* CustomerBalanceEnquiryRequest.swift */,
 				E24E37432CA54CE300F6AD2D /* PhoneNumberVerificationRequest.swift */,
@@ -754,6 +767,8 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E20913F22CA6936D00A3552A /* SetCardPINResponse.swift */,
+				E20914192CA6BE8A00A3552A /* UpdateCardPINResponse.swift */,
 				E266D2A92CA66F5C0016B820 /* ChangeCardStatusResponse.swift */,
 				E24E37492CA5897600F6AD2D /* CustomerBalanceEnquiryResponse.swift */,
 				E24E37452CA54CF500F6AD2D /* PhoneNumberVerificationResponse.swift */,
@@ -873,6 +888,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E20913EF2CA688DF00A3552A /* PINAPIs.swift in Sources */,
+				E20913F32CA6937500A3552A /* SetCardPINResponse.swift in Sources */,
 				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
 				E22658812C7C9B8B00DF8506 /* SideMenuView.swift in Sources */,
 				E2F27AE42C8EBF5700251BCE /* CurvedShape.swift in Sources */,
@@ -890,12 +907,12 @@
 				E24E37512CA5A4E200F6AD2D /* SideMenuInteractor.swift in Sources */,
 				E2A0F2FD2C8C410F00821357 /* PhoneNumberVerificationView.swift in Sources */,
 				E226587F2C7C9AB900DF8506 /* SideMenu.swift in Sources */,
+				E209141A2CA6BE8A00A3552A /* UpdateCardPINResponse.swift in Sources */,
 				E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */,
 				E25B90682C7D0CBB00A6F871 /* CustomTextfieldStyle.swift in Sources */,
 				E25B903A2C7CD16200A6F871 /* SideMenuTopNavigator.swift in Sources */,
 				E2C9CB132C78603B00B47B38 /* RegistrationModel.swift in Sources */,
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
-				E2A5C8622CA2E18400F40B18 /* VerifyPINInteractor.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E2A5C8542CA2CA4900F40B18 /* RebindDeviceResponse.swift in Sources */,
 				E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */,
@@ -905,6 +922,7 @@
 				E23864BE2C9DDFB100EAD795 /* HomeAPIs.swift in Sources */,
 				E23864BC2C9DDF7E00EAD795 /* HomeInteractor.swift in Sources */,
 				E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */,
+				E20913ED2CA688BF00A3552A /* PINInteractor.swift in Sources */,
 				E24E374D2CA58E6900F6AD2D /* ShowAvailableBalancePopupView.swift in Sources */,
 				E226588B2C7CACAB00DF8506 /* CardTransactionDetailsView.swift in Sources */,
 				E2A5C8642CA2E1DF00F40B18 /* VerifyPINAPIs.swift in Sources */,
@@ -960,6 +978,7 @@
 				E25B90642C7D0A4400A6F871 /* AddOnCardViewModel.swift in Sources */,
 				E24E374F2CA5A47A00F6AD2D /* SideMenuAPIs.swift in Sources */,
 				E23864CE2C9E189C00EAD795 /* SessionManager.swift in Sources */,
+				E20914162CA6BE0500A3552A /* UpdateCardPINRequest.swift in Sources */,
 				E2EFF8A52CA420AD00D8D4BE /* ChangePinPopupView.swift in Sources */,
 				E204E1392CA19DAB0023B9FC /* PermissionServiceManager.swift in Sources */,
 				E226588F2C7CADB600DF8506 /* TransactionDetailsItems.swift in Sources */,
@@ -993,6 +1012,7 @@
 				E23864C22C9DE34000EAD795 /* CustomerEnquiryRequest.swift in Sources */,
 				E25B903D2C7CE16000A6F871 /* CardToCardViewModel.swift in Sources */,
 				E226588D2C7CACB900DF8506 /* CardTransactionDetailsViewModel.swift in Sources */,
+				E20913F12CA6918A00A3552A /* SetCardPINRequest.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
 				E23864C42C9DE3E000EAD795 /* PreDefinedRequest.swift in Sources */,
 				E2EFF8A12CA407F000D8D4BE /* DataEncryptionKeyRequest.swift in Sources */,

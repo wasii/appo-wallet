@@ -26,12 +26,13 @@ class HomeScreenViewModel: ObservableObject {
     
     private var cancellables: [AnyCancellable] = []
     @Published var showLoader: Bool = false
+    @Published var apiError: String?
+    @Published var isPresentAlert: Bool = false
     
     @Published var customer_enquiry: CustomerEnquiryResponseData?
     @Published var selected_card: Card?
     @Published var cardNumber: String = ""
     @Published var expiryDate: String = ""
-    @Published var isCardNumberVisible: Bool = false
     
     @Published private var timeRemaining = 10
     @Published private var timerActive = false
@@ -39,14 +40,14 @@ class HomeScreenViewModel: ObservableObject {
     
     private var hInteractor: HomeInteractorType
     private var dInteractor: DeviceBindingInteractorType
-    private var oInteractor: VerifyOTPInteractorType
+    private var pInteractor: PINInteractorType
     
     init(hInteractor: HomeInteractorType = HomeInteractor(),
          dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(),
-         oInteractor: VerifyOTPInteractorType = VerifyOTPInteractor()) {
+         pInteractor: PINInteractorType = PINInteractor()) {
         self.hInteractor = hInteractor
         self.dInteractor = dInteractor
-        self.oInteractor = oInteractor
+        self.pInteractor = pInteractor
     }
 }
 
@@ -73,7 +74,7 @@ extension HomeScreenViewModel {
                     AppDefaults.selected_card = response.respInfo?.respData?.cardList?.first
                     self?.customer_enquiry = response.respInfo?.respData
                     self?.selected_card = self?.customer_enquiry?.cardList?.first
-                    self?.cardNumber = self?.formatCreditCardNumber(self?.selected_card?.maskCardNum ?? "") ?? ""
+                    self?.cardNumber = self?.selected_card?.maskCardNum ?? ""
                     self?.expiryDate = self?.convertDateToMonthYear(self?.selected_card?.expDate ?? "") ?? ""
                     AppDefaults.newUser = nil
                 } else {
@@ -82,36 +83,6 @@ extension HomeScreenViewModel {
             }
             .store(in: &cancellables)
     }
-    
-    func showCardNumber() {
-        self.showLoader = true
-        let request: ShowCardNumberRequest = .init(
-            reqHeaderInfo: .init(),
-            requestKey: .init(
-                requestType: "decrypt_cms_card_num"
-            ),
-            requestData: .init(
-                instID: "AP",
-                cardRefNum: selected_card?.cardRefNum ?? "",
-                custId: AppDefaults.user?.custID ?? "",
-                mobileNum: AppDefaults.user?.primaryMobileNum ?? ""
-            )
-        )
-        hInteractor.show_card_number(request: request)
-            .sink { [weak self] completion in
-                self?.showLoader = false
-                guard case let .failure(error) = completion else { return }
-            } receiveValue: { [weak self] response in
-                self?.showLoader = false
-                if response.respInfo?.respStatus == 200 {
-                    self?.isCardNumberVisible = true
-                    self?.cardNumber = self?.formatCreditCardNumber(response.respInfo?.respData?.dCardNum ?? "") ?? ""
-                    self?.startTimer()
-                }
-            }
-            .store(in: &cancellables)
-    }
-    
     
     fileprivate func formatCreditCardNumber(_ number: String) -> String {
         let trimmedString = number.replacingOccurrences(of: " ", with: "")
@@ -124,35 +95,6 @@ extension HomeScreenViewModel {
         }
         return formattedString
     }
-    
-    func startTimer() {
-        timeRemaining = 10
-        timerActive = true
-        
-        // Cancel the previous timer if any
-        timerCancellable?.cancel()
-        
-        // Start a new timer
-        timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                
-                if self.timeRemaining > 0 {
-                    self.timeRemaining -= 1
-                } else {
-                    self.timerActive = false
-                    self.timerCancellable?.cancel()
-                    self.performSpecificTask()
-                }
-            }
-    }
-    
-    func performSpecificTask() {
-        self.isCardNumberVisible = false
-        self.cardNumber = self.formatCreditCardNumber(self.selected_card?.maskCardNum ?? "")
-    }
-    
     func convertDateToMonthYear(_ date: String) -> String? {
         guard date.count == 8 else {
             return nil
@@ -168,10 +110,11 @@ extension HomeScreenViewModel {
     }
 }
 
-
 extension HomeScreenViewModel {
-    func getDataEncryptionKey() {
-        self.showLoader = true
+    func getDataEncryptionKey() async throws -> Bool {
+        DispatchQueue.main.async {
+            self.showLoader = true
+        }
         let request: DataEncryptionKeyRequest = .init(
             reqHeaderInfo: .init(),
             requestKey: .init(requestType: "cms_mapp_get_dek"),
@@ -180,27 +123,116 @@ extension HomeScreenViewModel {
                 mobileNum: AppDefaults.mobile ?? ""
             )
         )
-        dInteractor.getDataEncryptionKey(request: request)
-            .sink { [weak self] completion in
-                self?.showLoader = false
-                guard case let .failure(error) = completion else { return }
-            } receiveValue: { [weak self] response in
-                self?.showLoader = false
-                if response.respInfo?.respStatus == 200 {
-                    AppDefaults.dmk = response.respInfo?.respData?.dek
-                    AppDefaults.dmk_kcv = response.respInfo?.respData?.dekKcv
+        return try await withCheckedThrowingContinuation { continuation in
+            dInteractor.getDataEncryptionKey(request: request)
+                .sink { [weak self] completion in
+                    self?.showLoader = false
+                    guard case let .failure(error) = completion else { return }
+                    continuation.resume(throwing: error)
+                } receiveValue: { [weak self] response in
+                    if response.respInfo?.respStatus == 200 {
+                        AppDefaults.dek = response.respInfo?.respData?.dek
+                        AppDefaults.dek_kcv = response.respInfo?.respData?.dekKcv
+                        continuation.resume(returning: (true))
+                    } else {
+                        continuation.resume(returning: (false))
+                    }
                 }
-            }
-            .store(in: &cancellables)
+                .store(in: &cancellables)
+        }
     }
-}
-
-extension HomeScreenViewModel {
-    func setupPin(pin: String, completionHandler: @escaping(Bool) -> Void) {
-        self.showLoader = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.showLoader = false
-            completionHandler(true)
+    
+    func getCardNumber() async throws -> Bool {
+        let request: ShowCardNumberRequest = .init(
+            reqHeaderInfo: .init(),
+            requestKey: .init(
+                requestType: "decrypt_cms_card_num"
+            ),
+            requestData: .init(
+                instID: "AP",
+                cardRefNum: selected_card?.cardRefNum ?? "",
+                custId: AppDefaults.user?.custID ?? "",
+                mobileNum: AppDefaults.user?.primaryMobileNum ?? ""
+            )
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            hInteractor.show_card_number(request: request)
+                .sink { [weak self] completion in
+                    self?.showLoader = false
+                    guard case let .failure(error) = completion else { return }
+                    self?.isPresentAlert = true
+                    self?.apiError = "Something went wrong!"
+                    continuation.resume(throwing: error)
+                } receiveValue: { [weak self] response in
+                    if response.respInfo?.respStatus == 200 {
+                        AppDefaults.temp_cardnumber = response.respInfo?.respData?.dCardNum
+                        continuation.resume(returning: (true))
+                    } else {
+                        self?.isPresentAlert = true
+                        self?.apiError = "Something went wrong!"
+                        continuation.resume(returning: (false))
+                    }
+                }
+                .store(in: &cancellables)
+        }
+    }
+    
+    func setCardPin() async throws -> Bool  {
+        guard let encryptedKey = CryptoUtils.main() else { return false }
+        print(encryptedKey)
+        let request: SetCardPINRequest = .init(
+            reqHeaderInfo: .init(),
+            deviceInfo: .init(
+                name: "iPhone 16 Pro Max",
+                manufacturer: "Apple",
+                model: "A3603",
+                version: "18",
+                os: "iOS"
+            ),
+            requestKey: .init(
+                requestType: "mapp_setpin"
+            ),
+            requestData: .init(
+                isoReqData: .init(
+                    fld11: "001118",
+                    fld12: "163756",
+                    fld13: "0817",
+                    fld14: "2708",
+                    fld18: "0601",
+                    fld19: "356",
+                    fld2: AppDefaults.temp_cardnumber ?? "",
+                    fld22: "510",
+                    fld3: "940001",
+                    fld37: "422917001118",
+                    fld41: "T0V0S101",
+                    fld42: AppDefaults.user?.custID ?? "",
+                    fld43: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    fld44: AppDefaults.mobile ?? "",
+                    fld49: "356",
+                    fld51: "356",
+                    fld52: encryptedKey,
+                    mti: AppDefaults.temp_pin ?? ""
+                )
+            )
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            pInteractor.set_card_pin(request: request)
+                .sink { [weak self] completion in
+                    self?.showLoader = false
+                    guard case let .failure(error) = completion else { return }
+                    self?.isPresentAlert = true
+                    self?.apiError = "Something went wrong!"
+                    continuation.resume(throwing: error)
+                } receiveValue: { [weak self] response in
+                    if response.respInfo?.respStatus == 200 {
+                        continuation.resume(returning: (true))
+                    } else {
+                        self?.isPresentAlert = true
+                        self?.apiError = "Something went wrong!"
+                        continuation.resume(returning: (false))
+                    }
+                }
+                .store(in: &cancellables)
         }
     }
 }

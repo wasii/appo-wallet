@@ -95,6 +95,16 @@ class AppDefaults: UserDefaults {
         get { AppDefaults[#function] }
         set { AppDefaults[#function] = newValue }
     }
+    
+    static var oldEncryptedKey: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    
+    static var newEncryptedKey: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
 }
 
 extension AppDefaults {

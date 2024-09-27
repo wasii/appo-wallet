@@ -24,13 +24,6 @@ struct AppOApp: App {
                     InitialView(navigator: .init())
                         .transition(.move(edge: .top)) // Slide in from the left
                 }
-//                if session.isLoggedIn {
-//                    MainTabbedView()
-//                        .transition(.move(edge: .trailing)) // Slide in from the right
-//                } else {
-//                    InitialView(navigator: .init())
-//                        .transition(.move(edge: .leading)) // Slide in from the left
-//                }
             }
             .animation(.spring, value: session.isLoggedIn)
         }

@@ -9,7 +9,7 @@
 import Foundation
 import CommonCrypto
 
-class EncryptionProcess {
+class CryptoUtils {
     
     static func hexStringToByteArray(_ hex: String) -> [UInt8] {
         var bytes = [UInt8]()
@@ -74,12 +74,12 @@ class EncryptionProcess {
         return zip(pinBlockBytes, panBlockBytes).map { $0 ^ $1 }
     }
     
-    static func main() {
+    static func main() -> String?{
         // Step 1: Fetch DMK and verify the KCV
-        let dmkHex = AppDefaults.dmk ?? "ADC88EDB87AEA4EB6B38AA523A005A4E"
-        let dekHex = AppDefaults.dek ?? "523FC8E1D5E45C6CB1A5A510DBD35A8A"  // Encrypted DEK
-        let dmkKcv = AppDefaults.dmk_kcv ?? "836946C4A33C79B6"
-        let dekKcv = AppDefaults.dek_kcv ?? "0DB2E636453675E1"
+        let dmkHex = AppDefaults.dmk ?? "dmkHex"
+        let dekHex = AppDefaults.dek ?? "dekHex"  // Encrypted DEK
+        let dmkKcv = AppDefaults.dmk_kcv ?? "dmkKcv"
+        let dekKcv = AppDefaults.dek_kcv ?? "dekKcv"
         
         print("DMK Hex: \(dmkHex)")
         print("DEK Hex (Encrypted): \(dekHex)")
@@ -90,7 +90,7 @@ class EncryptionProcess {
         let encryptedDek = hexStringToByteArray(dekHex)
         let zeroBlock = hexStringToByteArray("0000000000000000")
         
-        guard let encryptedDmk = encrypt3DES(key: dmk, data: zeroBlock) else { return }
+        guard let encryptedDmk = encrypt3DES(key: dmk, data: zeroBlock) else { return nil}
         let dmkEncryptedKcv = bytesToHex(Array(encryptedDmk.prefix(8)))
         let isDmkValid = dmkEncryptedKcv == dmkKcv
         
@@ -99,8 +99,8 @@ class EncryptionProcess {
         print("Encrypted DMK KCV: \(dmkEncryptedKcv)")
         print("DMK validation successful? \(isDmkValid)\n")
         
-        guard let clearDek = decrypt3DES(key: dmk, data: encryptedDek) else { return }
-        guard let dekKcvData = encrypt3DES(key: clearDek, data: zeroBlock) else { return }
+        guard let clearDek = decrypt3DES(key: dmk, data: encryptedDek) else { return nil }
+        guard let dekKcvData = encrypt3DES(key: clearDek, data: zeroBlock) else { return nil }
         let dekEncryptedKcv = bytesToHex(Array(dekKcvData.prefix(8)))
         let isDekValid = dekEncryptedKcv == dekKcv
         
@@ -120,9 +120,11 @@ class EncryptionProcess {
         
         print("Generated ANSI PIN Block (Clear): \(bytesToHex(pinBlock))\n")
         
-        guard let encryptedPinBlock = encrypt3DES(key: clearDek, data: pinBlock) else { return }
+        guard let encryptedPinBlock = encrypt3DES(key: clearDek, data: pinBlock) else { return nil }
         
         print("Encrypted ANSI PIN Block:")
         print("Encrypted PIN Block: \(bytesToHex(encryptedPinBlock))")
+        
+        return bytesToHex(encryptedPinBlock).uppercased()
     }
 }
