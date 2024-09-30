@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CustomerEnquiryResponseData: Codable {
+struct CustomerEnquiryResponseData: Codable, Hashable {
     let addr1: String?
     let addr2: String?
     let cardList: [Card]?
@@ -41,7 +41,7 @@ struct CustomerEnquiryResponseData: Codable {
     }
 }
 
-struct Card: Codable {
+struct Card: Codable, Hashable {
     let bin: String?
     let binName: String?
     let cardEncodingType: String?
@@ -87,7 +87,7 @@ struct Card: Codable {
     }
 }
 
-struct WalletInfo: Codable {
+struct WalletInfo: Codable, Hashable {
     let availBal: String?
     let ledgerBal: String?
     let walletNum: String?

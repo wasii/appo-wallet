@@ -51,6 +51,7 @@ struct ChangeTransactionPinView: View {
                                 let newPin = CryptoUtils.main() ?? ""
                                 
                                 if try await viewModel.setCardPin(oldPin: oldPin, newPin: newPin) {
+                                    AppDefaults.newPIN = newPIN.joined()
                                     print("SUCESS")
                                 }
                             }

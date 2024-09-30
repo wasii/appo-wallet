@@ -132,6 +132,9 @@
 		E2BF160F2C9C5B3A009683D1 /* VerifyOTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BF160E2C9C5B34009683D1 /* VerifyOTPResponse.swift */; };
 		E2C0756D2CAAB24B002BEFCB /* CustomerValidationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C0756C2CAAB234002BEFCB /* CustomerValidationRequest.swift */; };
 		E2C0756F2CAAB303002BEFCB /* CustomerValidationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C0756E2CAAB2FC002BEFCB /* CustomerValidationResponse.swift */; };
+		E2C075732CAAD7BE002BEFCB /* TransactionPinPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C075722CAAD7BE002BEFCB /* TransactionPinPopUpView.swift */; };
+		E2C075752CAAE85C002BEFCB /* GetMiniStatementRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C075742CAAE84E002BEFCB /* GetMiniStatementRequest.swift */; };
+		E2C075772CAAE954002BEFCB /* GetMiniStatementResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C075762CAAE94C002BEFCB /* GetMiniStatementResponse.swift */; };
 		E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */; };
 		E2C9CB092C785C7300B47B38 /* EnterMPinInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */; };
 		E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C9CB0A2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift */; };
@@ -281,6 +284,9 @@
 		E2BF160E2C9C5B34009683D1 /* VerifyOTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPResponse.swift; sourceTree = "<group>"; };
 		E2C0756C2CAAB234002BEFCB /* CustomerValidationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerValidationRequest.swift; sourceTree = "<group>"; };
 		E2C0756E2CAAB2FC002BEFCB /* CustomerValidationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerValidationResponse.swift; sourceTree = "<group>"; };
+		E2C075722CAAD7BE002BEFCB /* TransactionPinPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPinPopUpView.swift; sourceTree = "<group>"; };
+		E2C075742CAAE84E002BEFCB /* GetMiniStatementRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMiniStatementRequest.swift; sourceTree = "<group>"; };
+		E2C075762CAAE94C002BEFCB /* GetMiniStatementResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMiniStatementResponse.swift; sourceTree = "<group>"; };
 		E2C3D4692C6F80380017E47C /* VerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPView.swift; sourceTree = "<group>"; };
 		E2C9CB082C785C7300B47B38 /* EnterMPinInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPinInteractor.swift; sourceTree = "<group>"; };
 		E2C9CB0A2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationInteractor.swift; sourceTree = "<group>"; };
@@ -443,6 +449,7 @@
 				E2F27AE32C8EBF5700251BCE /* CurvedShape.swift */,
 				E22074AC2C9002A700B513F7 /* TransactionPinSetupView.swift */,
 				E2850B272C92CADC009A77B9 /* WithdrawLimitView.swift */,
+				E2C075722CAAD7BE002BEFCB /* TransactionPinPopUpView.swift */,
 			);
 			path = "Common Views";
 			sourceTree = "<group>";
@@ -748,6 +755,7 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E2C075742CAAE84E002BEFCB /* GetMiniStatementRequest.swift */,
 				E2C0756C2CAAB234002BEFCB /* CustomerValidationRequest.swift */,
 				E20914152CA6BE0500A3552A /* UpdateCardPINRequest.swift */,
 				E20913F02CA6918400A3552A /* SetCardPINRequest.swift */,
@@ -772,6 +780,7 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E2C075762CAAE94C002BEFCB /* GetMiniStatementResponse.swift */,
 				E2C0756E2CAAB2FC002BEFCB /* CustomerValidationResponse.swift */,
 				E20913F22CA6936D00A3552A /* SetCardPINResponse.swift */,
 				E20914192CA6BE8A00A3552A /* UpdateCardPINResponse.swift */,
@@ -922,6 +931,7 @@
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E2A5C8542CA2CA4900F40B18 /* RebindDeviceResponse.swift in Sources */,
 				E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */,
+				E2C075732CAAD7BE002BEFCB /* TransactionPinPopUpView.swift in Sources */,
 				E2BF16092C9C49F3009683D1 /* OTPAPIs.swift in Sources */,
 				E239640D2C78C5F900AD4E6F /* TermsAndConditionViewModel.swift in Sources */,
 				E2A5C8522CA2AED700F40B18 /* BindDeviceRequest.swift in Sources */,
@@ -1008,6 +1018,7 @@
 				E22074AD2C9002A700B513F7 /* TransactionPinSetupView.swift in Sources */,
 				E2A5C85C2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift in Sources */,
 				E2A5C8602CA2E01800F40B18 /* VerifyPINResponse.swift in Sources */,
+				E2C075752CAAE85C002BEFCB /* GetMiniStatementRequest.swift in Sources */,
 				E25B90552C7D04F700A6F871 /* ReplaceCardView.swift in Sources */,
 				E2BF160D2C9C4BB4009683D1 /* SendOTPResponse.swift in Sources */,
 				E25B90492C7CF25E00A6F871 /* CardStatusViewModel.swift in Sources */,
@@ -1029,6 +1040,7 @@
 				E2C9CB1D2C7863ED00B47B38 /* Scheduler.swift in Sources */,
 				E22658882C7CABD200DF8506 /* CardButtonView.swift in Sources */,
 				E226587A2C7C704000DF8506 /* HomeScreenViewModel.swift in Sources */,
+				E2C075772CAAE954002BEFCB /* GetMiniStatementResponse.swift in Sources */,
 				E24B91892C771929009091B2 /* APIBaseResponse.swift in Sources */,
 				E24E37442CA54CF000F6AD2D /* PhoneNumberVerificationRequest.swift in Sources */,
 				E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */,

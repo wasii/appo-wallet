@@ -12,6 +12,7 @@ protocol PINInteractorType {
     func verifyPIN(request: VerifyPINRequest) -> AnyPublisher<VerifyPINResponse, NetworkError>
     func set_card_pin(request: SetCardPINRequest) -> AnyPublisher<ChangePINBaseResponse<SetCardPINResponse>, NetworkError>
     func update_card_pin(request: UpdateCardPINRequest) -> AnyPublisher<ChangePINBaseResponse<UpdateCardPINResponse>, NetworkError>
+    func get_mini_statement(request: GetMiniStatementRequest) -> AnyPublisher<ChangePINBaseResponse<UpdateCardPINResponse>, NetworkError>
 }
 
 class PINInteractor: PINInteractorType {
@@ -41,6 +42,15 @@ class PINInteractor: PINInteractorType {
     
     func update_card_pin(request: UpdateCardPINRequest) -> AnyPublisher<ChangePINBaseResponse<UpdateCardPINResponse>, NetworkError> {
         let target: PINAPIs = .update_card_pin(parameters: request.dictionary ?? [:])
+        return networkManager
+            .SystemPINRequest(target: target)
+            .subscribe(on: Scheduler.backgroundWorkScheduler)
+            .receive(on: Scheduler.mainScheduler)
+            .eraseToAnyPublisher()
+    }
+    
+    func get_mini_statement(request: GetMiniStatementRequest) -> AnyPublisher<ChangePINBaseResponse<UpdateCardPINResponse>, NetworkError> {
+        let target: PINAPIs = .mini_statement(parameters: request.dictionary ?? [:])
         return networkManager
             .SystemPINRequest(target: target)
             .subscribe(on: Scheduler.backgroundWorkScheduler)

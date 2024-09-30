@@ -91,11 +91,6 @@ struct HomeScreenView: View {
                                         }
                                     }
                                 }
-//                                viewModel.setupPin(pin: pin) { success in
-//                                    if success {
-//                                        showChangePin()
-//                                    }
-//                                }
                             }
                             .padding()
                             .cornerRadius(10)

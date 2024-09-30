@@ -164,5 +164,153 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7D2B4672-98B0-4905-A77C-4CB59E2955E7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppO/Module/Dashboard/SideMenu/Manage Account/Card Transactions/CardTransactionDetailsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "get_mini_statement()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7D2B4672-98B0-4905-A77C-4CB59E2955E7 - 2d60f4ed71b0acec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for AppO.CardTransactionDetailsViewModel.get_mini_statement() async throws -&gt; Swift.Bool"
+                  moduleName = "AppO.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/untitled%20folder/appo-wallet/AppO/Module/Dashboard/SideMenu/Manage%20Account/Card%20Transactions/CardTransactionDetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131">
+               </Location>
+               <Location
+                  uuid = "7D2B4672-98B0-4905-A77C-4CB59E2955E7 - 6e9c45ef623948fd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for AppO.CardTransactionDetailsViewModel.get_mini_statement() async throws -&gt; Swift.Bool"
+                  moduleName = "AppO.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/untitled%20folder/appo-wallet/AppO/Module/Dashboard/SideMenu/Manage%20Account/Card%20Transactions/CardTransactionDetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131">
+               </Location>
+               <Location
+                  uuid = "7D2B4672-98B0-4905-A77C-4CB59E2955E7 - 8f0c6c8eeb6f6f6b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for AppO.CardTransactionDetailsViewModel.get_mini_statement() async throws -&gt; Swift.Bool"
+                  moduleName = "AppO.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/untitled%20folder/appo-wallet/AppO/Module/Dashboard/SideMenu/Manage%20Account/Card%20Transactions/CardTransactionDetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104">
+               </Location>
+               <Location
+                  uuid = "7D2B4672-98B0-4905-A77C-4CB59E2955E7 - 8f0c6c8eeb6f68ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for AppO.CardTransactionDetailsViewModel.get_mini_statement() async throws -&gt; Swift.Bool"
+                  moduleName = "AppO.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/untitled%20folder/appo-wallet/AppO/Module/Dashboard/SideMenu/Manage%20Account/Card%20Transactions/CardTransactionDetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131">
+               </Location>
+               <Location
+                  uuid = "7D2B4672-98B0-4905-A77C-4CB59E2955E7 - b801d0b82e7acd6c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for AppO.CardTransactionDetailsViewModel.get_mini_statement() async throws -&gt; Swift.Bool"
+                  moduleName = "AppO.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/untitled%20folder/appo-wallet/AppO/Module/Dashboard/SideMenu/Manage%20Account/Card%20Transactions/CardTransactionDetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104">
+               </Location>
+               <Location
+                  uuid = "7D2B4672-98B0-4905-A77C-4CB59E2955E7 - b801d0b82e7acae9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for AppO.CardTransactionDetailsViewModel.get_mini_statement() async throws -&gt; Swift.Bool"
+                  moduleName = "AppO.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/untitled%20folder/appo-wallet/AppO/Module/Dashboard/SideMenu/Manage%20Account/Card%20Transactions/CardTransactionDetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131">
+               </Location>
+               <Location
+                  uuid = "7D2B4672-98B0-4905-A77C-4CB59E2955E7 - e27d7ce16a4b9459"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.CheckedContinuation&lt;Swift.Bool, Swift.Error&gt;) -&gt; () in AppO.CardTransactionDetailsViewModel.get_mini_statement() async throws -&gt; Swift.Bool"
+                  moduleName = "AppO.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abuljaleel/Desktop/untitled%20folder/appo-wallet/AppO/Module/Dashboard/SideMenu/Manage%20Account/Card%20Transactions/CardTransactionDetailsViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "59E9E805-78B7-4C8C-AC75-D47D90003DB1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppO/Module/Dashboard/SideMenu/Manage Account/Card Transactions/CardTransactionDetailsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "get_mini_statement()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3DF7B4E-8332-421A-A9AF-8ABC50F5C493"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppO/Module/Dashboard/SideMenu/Manage Account/Card Transactions/CardTransactionDetailsViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "get_mini_statement()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

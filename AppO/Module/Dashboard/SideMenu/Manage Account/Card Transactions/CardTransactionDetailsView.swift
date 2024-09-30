@@ -25,22 +25,22 @@ struct CardTransactionDetailsView: View {
                 }
                 .foregroundColor(Color.black.opacity(0.7))
                 ScrollView {
-                    ForEach(transactionDetailsItems, id: \.self) { item in
-                        VStack(alignment:.leading, spacing: 10) {
-                            HStack {
-                                Text(item.dateTime)
-                                    .font(.footnote)
-                                Spacer()
-                                Text(item.price)
-                                    .foregroundStyle(Color.appOrange)
-                            }
-                            Text(item.details)
-                                .font(.footnote)
-                        }
-                        .padding()
-                        .overlay(RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.appBlue, lineWidth: 1))
-                    }
+//                    ForEach(transactionDetailsItems, id: \.self) { item in
+//                        VStack(alignment:.leading, spacing: 10) {
+//                            HStack {
+//                                Text(item.dateTime)
+//                                    .font(.footnote)
+//                                Spacer()
+//                                Text(item.price)
+//                                    .foregroundStyle(Color.appOrange)
+//                            }
+//                            Text(item.details)
+//                                .font(.footnote)
+//                        }
+//                        .padding()
+//                        .overlay(RoundedRectangle(cornerRadius: 5)
+//                            .stroke(Color.appBlue, lineWidth: 1))
+//                    }
                 }
             }
             .padding()
@@ -49,6 +49,21 @@ struct CardTransactionDetailsView: View {
         .edgesIgnoringSafeArea(.top)
         .background(Color.appBackground)
         .toolbar(.hidden, for: .navigationBar)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                Task {
+                    do {
+                        if try await viewModel.getDataEncryptionKey() {
+                            if try await viewModel.getCardNumber() {
+                                if try await viewModel.get_mini_statement() {
+//                                    showChangePin()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
