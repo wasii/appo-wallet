@@ -21,6 +21,7 @@ struct PhoneNumberVerificationView: View {
     @State var countryPattern : String = ""
     @State var countryLimit : Int = 0
     @State var mobPhoneNumber = ""
+    @State var countryName = ""
     @State private var searchCountry: String = ""
     @Environment(\.colorScheme) var colorScheme
     @FocusState private var keyIsFocused: Bool
@@ -150,6 +151,7 @@ struct PhoneNumberVerificationView: View {
                         self.countryCode = country.dial_code
                         self.countryPattern = country.pattern
                         self.countryLimit = country.limit
+                        self.countryName = country.name
                         presentSheet = false
                         searchCountry = ""
                     }
@@ -248,7 +250,7 @@ struct PhoneNumberVerificationView: View {
         .onReceive(viewModel.coordinatorState) { state in
             switch (state.state, state.transferable) {
             case (.confirm, _):
-                navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: "\(self.mobPhoneNumber)", countryFlag: "\(self.countryFlag)")))
+                navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: "\(self.mobPhoneNumber)", countryFlag: "\(self.countryFlag)", countryName: "\(self.countryName)")))
                 
             case (.rebinded, _):
                 navigator.navigateBack(to: 0)

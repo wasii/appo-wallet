@@ -16,6 +16,7 @@ class RegistrationViewModel: ObservableObject {
     var countryFlag: String
     var countryCode: String
     var phoneNumber: String
+    var countryName: String
     
     let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<RegistrationViewModelState>, Never>()
     var coordinatorState: AnyPublisher<CoordinatorState<RegistrationViewModelState>, Never> {
@@ -30,19 +31,18 @@ class RegistrationViewModel: ObservableObject {
     private var rInteractor: RegistrationInteractorType
     private var dInteractor: DeviceBindingInteractorType
     
-    init(rInteractor: RegistrationInteractorType = RegistrationInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(), countryFlag: String, countryCode: String, phoneNumber: String) {
+    init(rInteractor: RegistrationInteractorType = RegistrationInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(), countryFlag: String, countryCode: String, phoneNumber: String, countryName: String) {
         self.rInteractor = rInteractor
         self.dInteractor = dInteractor
         self.countryFlag = countryFlag
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber
+        self.countryName = countryName
     }
 }
 
 extension RegistrationViewModel {
-    func getUserRegistered(custName: String, mobile: String, nameOnCard: String, email: String, address: String, dob: String, nationalId: String, maritalStatus: String) {
-        showLoader = true
-        let request: RegisterRequest = .init(
+    func getUserRegistered(custName: String, mobile: String, nameOnCard: String, email: String, address: String, dob: String, nationalId: String, maritalStatus: String) async throws -> Bool {        let request: RegisterRequest = .init(
             reqHeaderInfo: .init(),
             deviceInfo: .init(
                 name: "iPhone 16 Pro Max",
@@ -70,27 +70,28 @@ extension RegistrationViewModel {
             )
         )
         
-        rInteractor.userRegistration(request: request)
-            .sink { [weak self] completion in
-                self?.showLoader = false
-                guard case let .failure(error) = completion else { return }
-            } receiveValue: { [weak self] response in
-                self?.showLoader = false
-                if response.respInfo?.respStatus == 200 {
-                    AppEnvironment.shared.isLoggedIn = true
-                    AppDefaults.newUser = response.respInfo?.respData
-                    AppDefaults.mobile = mobile
-                    self?.coordinatorStatePublisher.send(.with(.registered))
-                } else {
-                    self?.isPresentAlert = true
-                    self?.apiError = "Something went wrong!"
+        return try await withCheckedThrowingContinuation { continuation in
+            rInteractor.userRegistration(request: request)
+                .sink { completion in
+                    guard case let .failure(error) = completion else { return }
+                    continuation.resume(throwing: error)
+                } receiveValue: { [weak self] response in
+                    if response.respInfo?.respStatus == 200 {
+                        AppDefaults.newUser = response.respInfo?.respData
+                        AppDefaults.mobile = mobile
+                        continuation.resume(returning: (true))
+                    } else {
+                        self?.isPresentAlert = true
+                        self?.apiError = "Something went wrong!"
+                        continuation.resume(returning: (false))
+                    }
                 }
-            }
-            .store(in: &cancellables)
+                .store(in: &cancellables)
+        }
     }
+
     
-    func getDMK(handler: @escaping(Bool) -> Void) {
-        self.showLoader = true
+    func getDMK() async throws -> Bool {
         let request: DataMasterKeyRequest = .init(
             reqHeaderInfo: .init(),
             requestKey: .init(requestType: "cms_mapp_get_dmk"),
@@ -99,22 +100,50 @@ extension RegistrationViewModel {
                 mobileNum: AppDefaults.mobile ?? ""
             )
         )
-        dInteractor.getDataMasterKey(request: request)
-            .sink { [weak self] completion in
-                self?.showLoader = false
-                guard case let .failure(error) = completion else { return }
-                handler(false)
-            } receiveValue: { response in
-                if response.respInfo?.respStatus == 200 {
-                    AppDefaults.dmk = response.respInfo?.respData?.dmk
-                    AppDefaults.dmk_kcv = response.respInfo?.respData?.dmkKcv
-                    handler(true)
-                } else {
-                    handler(false)
+        return try await withCheckedThrowingContinuation { continuation in
+            dInteractor.getDataMasterKey(request: request)
+                .sink { completion in
+                    guard case let .failure(error) = completion else { return }
+                    continuation.resume(throwing: error)
+                } receiveValue: { response in
+                    if response.respInfo?.respStatus == 200 {
+                        AppDefaults.dmk = response.respInfo?.respData?.dmk
+                        AppDefaults.dmk_kcv = response.respInfo?.respData?.dmkKcv
+                        continuation.resume(returning: (true))
+                    } else {
+                        continuation.resume(returning: (false))
+                    }
                 }
-            }
-            .store(in: &cancellables)
-
+                .store(in: &cancellables)
+        }
+    }
+    
+    func validateCustomer(name: String, origin: String, id: String, identityType: String, identityNumber: String, phoneNumber: String) async throws -> Bool {
+        let request: CustomerValidationRequest = .init(
+            name: name,
+            countryOfOrigin: origin,
+            politicallyExposedPerson: true,
+            id: id,
+            identityType: identityType,
+            identityNumber: identityNumber,
+            phoneNumber: phoneNumber
+        )
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            rInteractor.customer_validation(request: request)
+                .sink { completion in
+                    guard case let .failure(error) = completion else { return }
+                    continuation.resume(throwing: error)
+                } receiveValue: { [weak self] response in
+                    if response.signupAllowed {
+                        self?.coordinatorStatePublisher.send(.with(.registered))
+                        continuation.resume(returning: (true))
+                    } else {
+                        continuation.resume(returning: (false))
+                    }
+                }
+                .store(in: &cancellables)
+        }
     }
 }
 

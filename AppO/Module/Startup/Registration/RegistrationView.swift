@@ -90,9 +90,36 @@ struct RegistrationView: View {
                     addressView
                     
                     Button {
-                        viewModel.getDMK { success in
-                            if success {
-                                viewModel.getUserRegistered(custName: "\(firstName) \(lastName)", mobile: viewModel.phoneNumber, nameOnCard: nameOnCard, email: email, address: address, dob: dateOfBirth, nationalId: idNumber, maritalStatus: maritalStatusPass)
+                        Task {
+                            viewModel.showLoader = true
+                            do {
+                                let isGETDMK = try await viewModel.getDMK()
+                                if isGETDMK {
+                                    let isUserRegistered = try await viewModel.getUserRegistered(
+                                        custName: "\(firstName) \(lastName)",
+                                        mobile: viewModel.phoneNumber,
+                                        nameOnCard: nameOnCard,
+                                        email: email,
+                                        address: address,
+                                        dob: dateOfBirth,
+                                        nationalId: idNumber,
+                                        maritalStatus: maritalStatusPass
+                                    )
+                                    if isUserRegistered {
+                                        _ = try await viewModel.validateCustomer(
+                                            name: "\(firstName) \(lastName)",
+                                            origin: viewModel.countryName,
+                                            id: AppDefaults.newUser?.custID ?? "",
+                                            identityType: idType,
+                                            identityNumber: idNumber,
+                                            phoneNumber: viewModel.phoneNumber
+                                        )
+                                    } else {
+                                        viewModel.showLoader = false
+                                    }
+                                } else {
+                                    viewModel.showLoader = false
+                                }
                             }
                         }
                     } label: {
@@ -202,7 +229,7 @@ struct RegistrationView: View {
 }
 
 #Preview {
-    RegistrationView(viewModel: .init(countryFlag: "🇮🇳", countryCode: "+91", phoneNumber: "1234123412"))
+    RegistrationView(viewModel: .init(countryFlag: "🇮🇳", countryCode: "+91", phoneNumber: "1234123412", countryName: "India"))
 }
 
 struct DatePickerView: View {

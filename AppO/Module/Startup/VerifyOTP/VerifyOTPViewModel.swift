@@ -16,6 +16,7 @@ class VerifyOTPViewModel: ObservableObject {
     var countryCode: String
     var phoneNumber: String
     var countryFlag: String
+    var countryName: String
     
     let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<VerifyOTPViewModelState>, Never>()
     var coordinatorState: AnyPublisher<CoordinatorState<VerifyOTPViewModelState>, Never> {
@@ -30,12 +31,13 @@ class VerifyOTPViewModel: ObservableObject {
     @Published var apiError: String?
     @Published var isPresentAlert: Bool = false
     
-    init(interactor: VerifyOTPInteractorType = VerifyOTPInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(), countryCode: String, phoneNumber: String, countryFlag: String) {
+    init(interactor: VerifyOTPInteractorType = VerifyOTPInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(), countryCode: String, phoneNumber: String, countryFlag: String, countryName: String) {
         self.interactor = interactor
         self.dInteractor = dInteractor
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber
         self.countryFlag = countryFlag
+        self.countryName = countryName
     }
 }
 

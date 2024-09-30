@@ -98,7 +98,8 @@ struct VerifyOTPView: View {
                         viewModel: .init(
                             countryFlag: viewModel.countryFlag,
                             countryCode: viewModel.countryCode,
-                            phoneNumber: viewModel.phoneNumber
+                            phoneNumber: viewModel.phoneNumber,
+                            countryName: viewModel.countryName
                         )
                     )
                 )
@@ -137,5 +138,5 @@ struct VerifyOTPView: View {
 }
 
 #Preview {
-    VerifyOTPView(viewModel: .init(countryCode: "+91", phoneNumber: "1234123412", countryFlag: "🇮🇳"))
+    VerifyOTPView(viewModel: .init(countryCode: "+91", phoneNumber: "1234123412", countryFlag: "🇮🇳", countryName: "India"))
 }

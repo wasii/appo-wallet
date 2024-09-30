@@ -106,7 +106,8 @@ struct SetupMobilePinView: View {
                         viewModel: .init(
                             countryFlag: viewModel.countryFlag,
                             countryCode: viewModel.countryCode,
-                            phoneNumber: viewModel.phoneNumber
+                            phoneNumber: viewModel.phoneNumber,
+                            countryName: viewModel.countryName
                         )
                     )
                 )
@@ -125,5 +126,5 @@ struct SetupMobilePinView: View {
 }
 
 #Preview {
-    SetupMobilePinView(viewModel: .init(countryFlag: "🇮🇳", countryCode: "+91", phoneNumber: "1234123412"))
+    SetupMobilePinView(viewModel: .init(countryFlag: "🇮🇳", countryCode: "+91", phoneNumber: "1234123412", countryName: "India"))
 }

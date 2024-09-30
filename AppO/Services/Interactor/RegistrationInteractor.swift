@@ -11,6 +11,7 @@ import Combine
 
 protocol RegistrationInteractorType {
     func userRegistration(request: RegisterRequest) -> AnyPublisher<SystemAPIBaseResponse<RegistrationResponseData>, NetworkError>
+    func customer_validation(request: CustomerValidationRequest) -> AnyPublisher<CustomerValidationResponse, NetworkError>
 }
 
 final class RegistrationInteractor: RegistrationInteractorType {
@@ -25,6 +26,15 @@ final class RegistrationInteractor: RegistrationInteractorType {
         let target: RegistrationAPIs = .registration(parameters: request.dictionary ?? [:])
         return networkManager
             .systemAPIRequest(target: target)
+            .subscribe(on: Scheduler.backgroundWorkScheduler)
+            .receive(on: Scheduler.mainScheduler)
+            .eraseToAnyPublisher()
+    }
+    
+    func customer_validation(request: CustomerValidationRequest) -> AnyPublisher<CustomerValidationResponse, NetworkError> {
+        let target: RegistrationAPIs = .customer_validation(parameters: request.dictionary ?? [:])
+        return networkManager
+            .request(target: target)
             .subscribe(on: Scheduler.backgroundWorkScheduler)
             .receive(on: Scheduler.mainScheduler)
             .eraseToAnyPublisher()

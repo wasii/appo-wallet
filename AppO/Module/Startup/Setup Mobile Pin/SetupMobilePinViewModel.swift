@@ -16,6 +16,7 @@ class SetupMobilePinViewModel: ObservableObject {
     var countryFlag: String
     var countryCode: String
     var phoneNumber: String
+    var countryName: String
     
     var mobilePin: String = ""
     
@@ -30,11 +31,12 @@ class SetupMobilePinViewModel: ObservableObject {
     @Published var apiError: String?
     @Published var isPresentAlert: Bool = false
     
-    init(interactor: SetupMobilePinInteractorType = SetupMobilePinInteractor(), countryFlag: String, countryCode: String, phoneNumber: String) {
+    init(interactor: SetupMobilePinInteractorType = SetupMobilePinInteractor(), countryFlag: String, countryCode: String, phoneNumber: String, countryName: String) {
         self.interactor = interactor
         self.countryFlag = countryFlag
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber
+        self.countryName = countryName
     }
 }
 
