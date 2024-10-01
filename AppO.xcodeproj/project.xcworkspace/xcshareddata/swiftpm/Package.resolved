@@ -1,5 +1,5 @@
 {
-  "originHash" : "03e94ba901c2a6c5a7cd2f66d240bd46f2a5e342aa295c22615e3915fe29ead9",
+  "originHash" : "6cb6cfb3cb7ac5340a2c6ed5002a592f6e945304ff6280813489b31c77c5aeaf",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "21fe1af9be463a359aaf8d96789ef73fc3760d09",
         "version" : "11.0.1"
+      }
+    },
+    {
+      "identity" : "blinkid-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BlinkID/blinkid-ios",
+      "state" : {
+        "revision" : "570a846d5e03495204db134eaa3105816be2aefb",
+        "version" : "6.10.1"
       }
     },
     {

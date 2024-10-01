@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseCore
 import FirebaseMessaging
-
+import BlinkID
 
 @main
 struct AppOApp: App {
@@ -38,6 +38,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        MBMicroblinkSDK.shared().setLicenseKey("sRwCABpjb20uYXBwb3BheS5hcHBvcGF5LndhbGxldAFsZXlKRGNtVmhkR1ZrVDI0aU9qRTNNamMzTmpNek9EQXhNakFzSWtOeVpXRjBaV1JHYjNJaU9pSm1abVJoT1dFMU15MDFaalZsTFRRMFl6a3RZbUV4WXkxallqYzBZemt6T0RZeE0ySWlmUT09Kd2wrLNlqOzS6LZzInkItPZSrB3QKdhUISms3WSEGGGdgG0FgGJPLThQv+V1Yr5zqU/2i+V+PYzsbM1S0Xld/YGjSuDVjWItcxkvKSKg5JeUcK6CULM2Y8juDnWgdcHzX8eYQe+dD3xvs2LTtLKb7pfeC8b+Z6yg") { error in
+            print(error)
+        }
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
         
