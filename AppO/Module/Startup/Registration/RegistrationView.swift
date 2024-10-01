@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BlinkID
 
 struct RegistrationView: View {
     @StateObject var viewModel: RegistrationViewModel
@@ -31,6 +32,11 @@ struct RegistrationView: View {
     @State private var isGenderPickerVisible: Bool = false
     @State private var isMaritalStatusPickerVisible: Bool = false
     
+    @State private var showingBlinkIdViewController = false
+    @State private var showBlinkIdResult = false
+    @State private var blinkIdMultiSideRecognizer: MBBlinkIdMultiSideRecognizer = MBBlinkIdMultiSideRecognizer()
+    
+    @State private var image: Image? = nil
     private func showSelectIDType() {
         isSelectIDPickerVisible.toggle()
     }
@@ -88,7 +94,13 @@ struct RegistrationView: View {
                         }
                     emailIDView
                     addressView
-                    
+                    if let image = image {
+                        image
+                            .resizable()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 220)
+                            .padding(.horizontal)
+                    }
                     Button {
                         Task {
                             viewModel.showLoader = true
@@ -225,6 +237,26 @@ struct RegistrationView: View {
             }
         }
         .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+        .fullScreenCover(isPresented: $showingBlinkIdViewController) {
+            BlinkIdViewController(blinkIdMultiSideRecognizer: $blinkIdMultiSideRecognizer) {
+                if let address = self.blinkIdMultiSideRecognizer.result.address?.value {
+                    self.address = address
+                }
+                if let firstName = self.blinkIdMultiSideRecognizer.result.firstName?.value {
+                    self.firstName = firstName
+                }
+                if let lastName = self.blinkIdMultiSideRecognizer.result.lastName?.value {
+                    self.lastName = lastName
+                }
+                if let idNumber = self.blinkIdMultiSideRecognizer.result.personalIdNumber?.value {
+                    self.idNumber = idNumber
+                }
+                if let image = self.blinkIdMultiSideRecognizer.result.fullDocumentFrontImage?.image {
+                    self.image = Image(uiImage: image)
+                }
+                self.showingBlinkIdViewController = false
+            }
+        }
     }
 }
 
@@ -294,7 +326,7 @@ extension RegistrationView {
     }
     
     var selectIDTypeView: some View {
-        ZStack {
+        ZStack(alignment: .trailing) {
             VStack {
                 if idType.isEmpty {
                     Text("Please Select ID Type")
@@ -308,6 +340,13 @@ extension RegistrationView {
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Button{
+                self.showingBlinkIdViewController = true
+            } label: {
+                Text("Scan")
+            }
+            .padding(.trailing, 20)
         }
         .cornerRadius(10, corners: .allCorners)
         .background(

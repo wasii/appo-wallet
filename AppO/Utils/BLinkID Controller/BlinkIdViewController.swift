@@ -12,8 +12,8 @@ import BlinkID
 
 struct BlinkIdViewController: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
-    @Binding var showAlert: Bool
     @Binding var blinkIdMultiSideRecognizer: MBBlinkIdMultiSideRecognizer
+    var closure: () -> ()
     class Coordinator: NSObject, MBBlinkIdOverlayViewControllerDelegate {
         
         var parent: BlinkIdViewController
@@ -26,7 +26,8 @@ struct BlinkIdViewController: UIViewControllerRepresentable {
             blinkIdOverlayViewController.recognizerRunnerViewController?.pauseScanning()
             
             if state == .valid {
-                parent.showAlert = true
+                parent.closure()
+                parent.presentationMode.wrappedValue.dismiss()
             }
         }
         

@@ -9,10 +9,6 @@ import SwiftUI
 import BlinkID
 
 struct InitialView: View {
-    @State private var showingBlinkIdViewController = false
-    @State private var showBlinkIdResult = false
-    @State private var blinkIdMultiSideRecognizer: MBBlinkIdMultiSideRecognizer = MBBlinkIdMultiSideRecognizer()
-    
     @StateObject var navigator: Navigator
     var body: some View {
         NavigationStack(path: $navigator.navPath) {
@@ -45,7 +41,6 @@ struct InitialView: View {
                     
                     Button {
                         lightHaptic()
-//                        self.showingBlinkIdViewController = true
                         if AppDefaults.isTermConditionsChecked ?? false {
                             navigator.navigate(to: .enterMPINView(viewModel: .init()))
                         } else {
@@ -69,18 +64,6 @@ struct InitialView: View {
             
             .navigationDestination(for: Navigator.Destination.self) { destination in
                 navigator.view(for: destination)
-            }
-            .fullScreenCover(isPresented: $showingBlinkIdViewController) {
-                BlinkIdViewController(showAlert: $showBlinkIdResult, blinkIdMultiSideRecognizer: $blinkIdMultiSideRecognizer)
-                    .alert(isPresented: $showBlinkIdResult) { () -> Alert in
-                        let alert = Alert(title: Text("BlinkId Results"),
-                                          message: Text(self.blinkIdMultiSideRecognizer.result.description),
-                                          dismissButton: .default(Text("Ok"),
-                                          action: {
-                            self.showingBlinkIdViewController.toggle()
-                        }))
-                        return alert
-                    }
             }
         }
         .environmentObject(navigator)
