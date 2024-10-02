@@ -179,6 +179,12 @@
 		E2D140332C6F5C060064EE6E /* CountryNumbers.json in Resources */ = {isa = PBXBuildFile; fileRef = E2D140322C6F5C060064EE6E /* CountryNumbers.json */; };
 		E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */; };
 		E2D140372C6F5D1F0064EE6E /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140362C6F5D1F0064EE6E /* View+Extension.swift */; };
+		E2D329022CAD96C9005F595D /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D329012CAD96C3005F595D /* SettingsInteractor.swift */; };
+		E2D329042CAD975A005F595D /* GetCardListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D329032CAD9752005F595D /* GetCardListResponse.swift */; };
+		E2D329062CAD9780005F595D /* GetCardListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D329052CAD977A005F595D /* GetCardListRequest.swift */; };
+		E2D329082CADCD19005F595D /* SettingsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D329072CADCD15005F595D /* SettingsAPI.swift */; };
+		E2D3290A2CADD786005F595D /* CreateNewCardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D329092CADD77F005F595D /* CreateNewCardResponse.swift */; };
+		E2D3290C2CADD793005F595D /* CreateNewCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D3290B2CADD78D005F595D /* CreateNewCardRequest.swift */; };
 		E2E6721E2CAD583C0021D7D7 /* CardToCardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E6721D2CAD58360021D7D7 /* CardToCardRequest.swift */; };
 		E2E672202CAD58B70021D7D7 /* TransactionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E6721F2CAD58AC0021D7D7 /* TransactionsInteractor.swift */; };
 		E2E672222CAD58CD0021D7D7 /* TransactionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E672212CAD58C90021D7D7 /* TransactionsAPI.swift */; };
@@ -338,6 +344,12 @@
 		E2D140322C6F5C060064EE6E /* CountryNumbers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryNumbers.json; sourceTree = "<group>"; };
 		E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoder+Extension.swift"; sourceTree = "<group>"; };
 		E2D140362C6F5D1F0064EE6E /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		E2D329012CAD96C3005F595D /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		E2D329032CAD9752005F595D /* GetCardListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCardListResponse.swift; sourceTree = "<group>"; };
+		E2D329052CAD977A005F595D /* GetCardListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCardListRequest.swift; sourceTree = "<group>"; };
+		E2D329072CADCD15005F595D /* SettingsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPI.swift; sourceTree = "<group>"; };
+		E2D329092CADD77F005F595D /* CreateNewCardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewCardResponse.swift; sourceTree = "<group>"; };
+		E2D3290B2CADD78D005F595D /* CreateNewCardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewCardRequest.swift; sourceTree = "<group>"; };
 		E2E6721D2CAD58360021D7D7 /* CardToCardRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToCardRequest.swift; sourceTree = "<group>"; };
 		E2E6721F2CAD58AC0021D7D7 /* TransactionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsInteractor.swift; sourceTree = "<group>"; };
 		E2E672212CAD58C90021D7D7 /* TransactionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAPI.swift; sourceTree = "<group>"; };
@@ -528,6 +540,7 @@
 		E24B918B2C771944009091B2 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				E2D329012CAD96C3005F595D /* SettingsInteractor.swift */,
 				E2E6721F2CAD58AC0021D7D7 /* TransactionsInteractor.swift */,
 				E20913EC2CA688BA00A3552A /* PINInteractor.swift */,
 				E24E37502CA5A4DB00F6AD2D /* SideMenuInteractor.swift */,
@@ -545,6 +558,7 @@
 		E24B918C2C771958009091B2 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				E2D329072CADCD15005F595D /* SettingsAPI.swift */,
 				E2E672212CAD58C90021D7D7 /* TransactionsAPI.swift */,
 				E20913EE2CA688DC00A3552A /* PINAPIs.swift */,
 				E24E374E2CA5A46C00F6AD2D /* SideMenuAPIs.swift */,
@@ -831,6 +845,8 @@
 		E2C9CB142C7860D200B47B38 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				E2D3290B2CADD78D005F595D /* CreateNewCardRequest.swift */,
+				E2D329052CAD977A005F595D /* GetCardListRequest.swift */,
 				E2E6721D2CAD58360021D7D7 /* CardToCardRequest.swift */,
 				E2C075742CAAE84E002BEFCB /* GetMiniStatementRequest.swift */,
 				E2C0756C2CAAB234002BEFCB /* CustomerValidationRequest.swift */,
@@ -857,6 +873,8 @@
 		E2C9CB152C7860D700B47B38 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				E2D329092CADD77F005F595D /* CreateNewCardResponse.swift */,
+				E2D329032CAD9752005F595D /* GetCardListResponse.swift */,
 				E2E672232CAD5EFD0021D7D7 /* CardToCardResponse.swift */,
 				E2C075762CAAE94C002BEFCB /* GetMiniStatementResponse.swift */,
 				E2C0756E2CAAB2FC002BEFCB /* CustomerValidationResponse.swift */,
@@ -983,6 +1001,7 @@
 				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
 				E22658812C7C9B8B00DF8506 /* SideMenuView.swift in Sources */,
 				E2E672222CAD58CD0021D7D7 /* TransactionsAPI.swift in Sources */,
+				E2D329042CAD975A005F595D /* GetCardListResponse.swift in Sources */,
 				E2F27AE42C8EBF5700251BCE /* CurvedShape.swift in Sources */,
 				E2EFF89D2CA3ED0A00D8D4BE /* DataMasterKeyRequest.swift in Sources */,
 				E23864C62C9E123A00EAD795 /* ShowCardNumberRequest.swift in Sources */,
@@ -1058,6 +1077,7 @@
 				E25B905C2C7D05D800A6F871 /* RenewCardView.swift in Sources */,
 				E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */,
 				E204E1372CA184AB0023B9FC /* SetupMobilePinResponse.swift in Sources */,
+				E2D329022CAD96C9005F595D /* SettingsInteractor.swift in Sources */,
 				E23864C02C9DE10600EAD795 /* CustomerEnquiryResponse.swift in Sources */,
 				E25B90572C7D04FF00A6F871 /* ReplaceCardViewModel.swift in Sources */,
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
@@ -1070,6 +1090,7 @@
 				E272982B2C8B2A9800B41FF8 /* Fonts+Extension.swift in Sources */,
 				E2A5C85A2CA2D98300F40B18 /* DeviceBindingInteractor.swift in Sources */,
 				E25B90612C7D064800A6F871 /* TransactionSettingsViewModel.swift in Sources */,
+				E2D3290C2CADD793005F595D /* CreateNewCardRequest.swift in Sources */,
 				E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */,
 				E24B918A2C771929009091B2 /* NetworkManager.swift in Sources */,
 				E25B90642C7D0A4400A6F871 /* AddOnCardViewModel.swift in Sources */,
@@ -1090,6 +1111,7 @@
 				E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */,
 				E25B4B292C6DF4E5000745F9 /* AppOApp.swift in Sources */,
 				E22658842C7CAA2700DF8506 /* ManageAccountView.swift in Sources */,
+				E2D3290A2CADD786005F595D /* CreateNewCardResponse.swift in Sources */,
 				E25B4B442C6E17E9000745F9 /* NavigationItems.swift in Sources */,
 				E291414B2C736D7700D054A1 /* TimeManager.swift in Sources */,
 				E2C3D46A2C6F80380017E47C /* VerifyOTPView.swift in Sources */,
@@ -1097,6 +1119,7 @@
 				E226587C2C7C716B00DF8506 /* HomeNavigator.swift in Sources */,
 				E22074AD2C9002A700B513F7 /* TransactionPinSetupView.swift in Sources */,
 				E2A5C85C2CA2D9BA00F40B18 /* DeviceBindingAPIs.swift in Sources */,
+				E2D329062CAD9780005F595D /* GetCardListRequest.swift in Sources */,
 				E2A5C8602CA2E01800F40B18 /* VerifyPINResponse.swift in Sources */,
 				E2C075752CAAE85C002BEFCB /* GetMiniStatementRequest.swift in Sources */,
 				E25B90552C7D04F700A6F871 /* ReplaceCardView.swift in Sources */,
@@ -1118,6 +1141,7 @@
 				E2BF160F2C9C5B3A009683D1 /* VerifyOTPResponse.swift in Sources */,
 				E29141492C736C2700D054A1 /* SetupMobilePinViewModel.swift in Sources */,
 				E2C9CB1D2C7863ED00B47B38 /* Scheduler.swift in Sources */,
+				E2D329082CADCD19005F595D /* SettingsAPI.swift in Sources */,
 				E22658882C7CABD200DF8506 /* CardButtonView.swift in Sources */,
 				E226587A2C7C704000DF8506 /* HomeScreenViewModel.swift in Sources */,
 				E2C075772CAAE954002BEFCB /* GetMiniStatementResponse.swift in Sources */,

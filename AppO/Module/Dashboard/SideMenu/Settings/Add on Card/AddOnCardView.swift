@@ -17,39 +17,58 @@ struct AddOnCardView: View {
     @State private var email: String = ""
     @State private var address: String = ""
     
-    
-    @State private var currentWallet: WalletCardType = .appo
-
     var walletTypes: [WalletCardType] {
         WalletCardType.allCases
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            NavigationBarView(title: "Transaction Settings")
-            
-            ScrollView {
-                VStack(alignment: .leading, spacing: 10) {
-                    WalletTypeView
-                    CardView
-                    mobileNumberView
-                    nameOnTheCardView
-                    emailIDView
-                    addressView
-                    Button {} label: {
-                        Text("Submit")
-                            .customButtonStyle()
-                    }
-                    .padding(.vertical, 40)
-                }
-                .padding(.horizontal)
+        ZStack {
+            GeometryReader { geo in
+                LoaderView(showLoader: $viewModel.showLoader)
+                    .frame(height: UIScreen.main.bounds.height)
             }
-            Spacer()
-            BottomNavigation()
+            .zIndex(1)
+            VStack(alignment: .leading, spacing: 20) {
+                NavigationBarView(title: "Add on Card")
+                
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 10) {
+                        WalletTypeView
+                        CardView
+                        mobileNumberView
+                        nameOnTheCardView
+                        emailIDView
+                        addressView
+                        Button {
+                            viewModel.createNewCard { bool in
+                                if bool {
+                                    homeNavigator.navigateToRoot()
+                                }
+                            }
+                        } label: {
+                            Text("Submit")
+                                .customButtonStyle()
+                        }
+                        .padding(.vertical, 40)
+                    }
+                    .padding(.horizontal)
+                }
+                Spacer()
+                BottomNavigation()
+            }
+            .ignoresSafeArea(.keyboard)
+            .edgesIgnoringSafeArea(.top)
+            .toolbar(.hidden, for: .navigationBar)
+            .showError("", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    viewModel.getCardList()
+                }
+                nameOnCard = AppDefaults.user?.custName ?? ""
+                email = AppDefaults.user?.primaryMailAddr ?? ""
+                address = AppDefaults.user?.addr1 ?? ""
+            }
         }
-        .ignoresSafeArea(.keyboard)
-        .edgesIgnoringSafeArea(.top)
-        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
@@ -61,14 +80,15 @@ extension AddOnCardView {
                 HStack {
                     Text(wallet.title)
                 }
-                .foregroundStyle(currentWallet == wallet ? .white : .appBlue)
+                .foregroundStyle(viewModel.currentWallet == wallet ? .white : .appBlue)
                 .padding()
                 .frame(height: 40)
-                .background(currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
+                .background(viewModel.currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
                 .cornerRadius(60)
                 .onTapGesture {
                     withAnimation {
-                        currentWallet = wallet
+                        viewModel.currentWallet = wallet
+                        viewModel.updateSelectedType()
                     }
                 }
                 Spacer()
@@ -78,17 +98,17 @@ extension AddOnCardView {
     
     var CardView: some View {
         ZStack {
-            Image(currentWallet.imageName)
+            Image(viewModel.currentWallet?.imageName ?? "")
                 .resizable()
                 .frame(height: 220)
                 .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
             
             VStack(alignment: .leading) {
-                Spacer()
-                Text("6262 2303 5678 9010")
-                    .font(AppFonts.regularTwenty)
-                Text("Expiry: 10/2016 JOE CHURCO")
-                    .font(AppFonts.bodyFourteenBold)
+//                Spacer()
+//                Text("6262 2303 5678 9010")
+//                    .font(AppFonts.regularTwenty)
+//                Text("Expiry: 10/2016 JOE CHURCO")
+//                    .font(AppFonts.bodyFourteenBold)
             }
             .foregroundStyle(.white)
             .padding()
@@ -114,7 +134,7 @@ extension AddOnCardView {
                     .foregroundStyle(Color.black)
                     .font(AppFonts.bodyEighteenBold)
                 
-                Text("912356948")
+                Text("\(AppDefaults.user?.primaryMobileNum ?? "")")
                     .font(AppFonts.bodyEighteenBold)
                     .foregroundStyle(Color.appBlue)
                     .offset(x: 20)
@@ -156,6 +176,7 @@ extension AddOnCardView {
                         .stroke(Color.appBlue, lineWidth: 1)
                 )
         }
+        .disabled(true)
     }
     
     var emailIDView: some View {
@@ -182,6 +203,7 @@ extension AddOnCardView {
                         .stroke(Color.appBlue, lineWidth: 1)
                 )
         }
+        .disabled(true)
     }
     
     var addressView: some View {
@@ -203,6 +225,7 @@ extension AddOnCardView {
                         .stroke(Color.appBlue, lineWidth: 1)
                 )
         }
+        .disabled(true)
     }
 }
 
