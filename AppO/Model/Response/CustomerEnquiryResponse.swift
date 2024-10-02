@@ -99,4 +99,26 @@ struct WalletInfo: Codable, Hashable {
         case walletNum = "wallet_num"
         case walletStatus = "wallet_status"
     }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        // Decode as normal string
+        let rawAvailBal = try container.decodeIfPresent(String.self, forKey: .availBal)
+        let rawLedgerBal = try container.decodeIfPresent(String.self, forKey: .ledgerBal)
+        
+        // Format the availBal to two decimal places if it's a valid number
+        if let rawAvailBal = rawAvailBal, let doubleValue = Double(rawAvailBal),
+           let rawLedgerBal = rawLedgerBal, let doubleLedgerValue = Double(rawLedgerBal){
+            self.availBal = String(format: "%.2f", doubleValue)
+            self.ledgerBal = String(format: "%.2f", doubleLedgerValue)
+        } else {
+            self.availBal = rawAvailBal
+            self.ledgerBal = rawLedgerBal
+        }
+        
+        // Decode other properties
+        self.walletNum = try container.decodeIfPresent(String.self, forKey: .walletNum)
+        self.walletStatus = try container.decodeIfPresent(String.self, forKey: .walletStatus)
+    }
 }

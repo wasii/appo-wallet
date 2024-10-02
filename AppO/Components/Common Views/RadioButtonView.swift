@@ -11,7 +11,10 @@ struct RadioButtonField: View {
     var id: String
     var label: String
     var isSelected: Bool
+    var labelColor: Color = .appBlue
+    var labelFont:  Font = AppFonts.regularTwentyTwo
     var action: () -> Void
+    
     
     var body: some View {
         Button(action: action) {
@@ -23,8 +26,8 @@ struct RadioButtonField: View {
                         .padding(.leading, 4)
                     
                     Text(label)
-                        .foregroundColor(Color.appBlue)
-                        .font(AppFonts.regularTwentyTwo)
+                        .foregroundColor(labelColor)
+                        .font(labelFont)
                         .fontWeight(.semibold)
                 }
             }
