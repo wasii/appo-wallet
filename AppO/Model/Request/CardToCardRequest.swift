@@ -13,7 +13,7 @@ struct CardToCardRequest: Codable {
     let deviceInfo: DeviceInfo
     let requestKey: RequestKey
     let requestData: CardToCardRequestData
-
+    
     enum CodingKeys: String, CodingKey {
         case reqHeaderInfo = "req_header_info"
         case digestInfo = "digest_info"
@@ -43,6 +43,7 @@ struct ISOCardToCardRequestData: Codable {
     let fld22: String
     let fld3: String
     let fld37: String
+    let fld4: String
     let fld41: String
     let fld42: String
     let fld43: String

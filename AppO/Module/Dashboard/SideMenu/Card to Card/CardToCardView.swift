@@ -53,6 +53,7 @@ struct CardToCardView: View {
                         do {
                             if try await viewModel.getDataEncryptionKey() {
                                 if try await viewModel.getCardNumber() {
+                                    viewModel.amount = self.amount
                                     if try await viewModel.tranfer_card_to_card() {
                                         print("SUCCESS")
                                     }
@@ -173,6 +174,10 @@ extension CardToCardView {
                 Text("$")
                     .font(AppFonts.bodyTwentyTwoBold)
                 TextField("", text: self.$amount)
+                    .onChange(of: amount) { newValue in
+                        formatAmountInput(newValue)
+                        print(newValue)
+                    }
                     .placeholder(when: self.amount.isEmpty) {
                         Text("0.00")
                             .font(AppFonts.bodyTwentyTwoBold)
@@ -195,6 +200,13 @@ extension CardToCardView {
         }
     }
     
+    private func formatAmountInput(_ input: String) {
+            let filtered = input.filter { $0.isNumber }
+            if let number = Double(filtered) {
+                let formattedNumber = number / 100
+                amount = String(format: "%.2f", formattedNumber)
+            }
+        }
 }
 
 #Preview {

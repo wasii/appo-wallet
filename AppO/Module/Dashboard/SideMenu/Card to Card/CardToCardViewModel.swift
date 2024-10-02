@@ -29,8 +29,10 @@ class CardToCardViewModel: ObservableObject {
     @Published var isDetailsFetched: Bool = false
     @Published var fetched_user: CustomerEnquiryResponseData? = nil
     
-    var cardRefNum: String = ""
-    var maskCardNum: String = ""
+    
+    var amount: String = "000000000000"
+    @Published var cardRefNum: String = ""
+    @Published var maskCardNum: String = ""
     var mobileNumber: String = ""
     
     private var hInteractor: HomeInteractorType
@@ -164,6 +166,7 @@ extension CardToCardViewModel {
                     fld22: "510",
                     fld3: "940000",
                     fld37: "422917001118",
+                    fld4: self.updateAmount(with: amount),
                     fld41: "T0V0S101",
                     fld42: AppDefaults.user?.custID ?? "",
                     fld43: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -189,11 +192,19 @@ extension CardToCardViewModel {
                         continuation.resume(returning: (true))
                     } else {
                         self?.isPresentAlert = true
-                        self?.apiError = "Something went wrong!"
+                        self?.apiError = "\(response.respInfo?.rejectCode ?? "")---\(response.respInfo?.rejectShortDesc ?? "") -- \(response.respInfo?.respCode ?? "")"
                         continuation.resume(returning: (false))
                     }
                 }
                 .store(in: &cancellables)
         }
+    }
+    
+    func updateAmount(with newValue: String) -> String {
+        let filtered = newValue.filter { "0123456789".contains($0) }
+        if filtered.count <= 12 {
+            return String(repeating: "0", count: 12 - filtered.count) + filtered
+        }
+        return "000000000000"
     }
 }

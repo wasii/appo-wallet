@@ -6,20 +6,19 @@
 //
 
 
-
 import Foundation
 
 struct UpdateCardPINResponse: Codable {
-    let acqInfo: AcqInfo
-    let issInfo: IssInfo
-    let cardInfo: CardInfo
-    let custInfo: CustInfo
-    let termInfo: TermInfo
-    let channelInfo: ChannelInfo
-    let acceptorInfo: AcceptorInfo
-    let txnInfo: TxnInfo
-    let securityInfo: SecurityInfo
-    let respInfo: InnerRespInfo
+    let acqInfo: AcqInfo?
+    let issInfo: IssInfo?
+    let cardInfo: CardInfo?
+    let custInfo: CustInfo?
+    let termInfo: TermInfo?
+    let channelInfo: ChannelInfo?
+    let acceptorInfo: AcceptorInfo?
+    let txnInfo: TxnInfo?
+    let securityInfo: SecurityInfo?
+    let respInfo: InnerRespInfo?
 
     enum CodingKeys: String, CodingKey {
         case acqInfo = "acq_info"
@@ -37,12 +36,12 @@ struct UpdateCardPINResponse: Codable {
 
 // MARK: - Acquirer Information
 struct AcqInfo: Codable {
-    let acquirer: String
-    let acqType: String
-    let acqSubType: String
-    let acqInst: String
-    let acqCntryCode: String
-    let acqCurrCode: String
+    let acquirer: String?
+    let acqType: String?
+    let acqSubType: String?
+    let acqInst: String?
+    let acqCntryCode: String?
+    let acqCurrCode: String?
 
     enum CodingKeys: String, CodingKey {
         case acquirer
@@ -56,14 +55,14 @@ struct AcqInfo: Codable {
 
 // MARK: - Issuer Information
 struct IssInfo: Codable {
-    let issType: String
-    let issInst: String
-    let issBin: String
-    let issCntryCode: String
-    let issCurrCode: String
-    let issuer: String
-    let issCardProduct: String
-    let issCardSubproduct: String
+    let issType: String?
+    let issInst: String?
+    let issBin: String?
+    let issCntryCode: String?
+    let issCurrCode: String?
+    let issuer: String?
+    let issCardProduct: String?
+    let issCardSubproduct: String?
 
     enum CodingKeys: String, CodingKey {
         case issType = "iss_type"
@@ -79,11 +78,11 @@ struct IssInfo: Codable {
 
 // MARK: - Card Information
 struct CardInfo: Codable {
-    let cardNum: String
-    let cardRefNum: String
-    let mCardNum: String
-    let eCardNum: String
-    let cardSeqNum: String
+    let cardNum: String?
+    let cardRefNum: String?
+    let mCardNum: String?
+    let eCardNum: String?
+    let cardSeqNum: String?
 
     enum CodingKeys: String, CodingKey {
         case cardNum = "card_num"
@@ -96,7 +95,7 @@ struct CardInfo: Codable {
 
 // MARK: - Customer Information
 struct CustInfo: Codable {
-    let custMobileNum: String
+    let custMobileNum: String?
 
     enum CodingKeys: String, CodingKey {
         case custMobileNum = "cust_mobile_num"
@@ -105,8 +104,8 @@ struct CustInfo: Codable {
 
 // MARK: - Terminal Information
 struct TermInfo: Codable {
-    let termID: String
-    let termLoc: String
+    let termID: String?
+    let termLoc: String?
 
     enum CodingKeys: String, CodingKey {
         case termID = "term_id"
@@ -116,7 +115,7 @@ struct TermInfo: Codable {
 
 // MARK: - Channel Information
 struct ChannelInfo: Codable {
-    let channelName: String
+    let channelName: String?
 
     enum CodingKeys: String, CodingKey {
         case channelName = "channel_name"
@@ -125,8 +124,8 @@ struct ChannelInfo: Codable {
 
 // MARK: - Acceptor Information
 struct AcceptorInfo: Codable {
-    let acceptorID: String
-    let mcc: String
+    let acceptorID: String?
+    let mcc: String?
 
     enum CodingKeys: String, CodingKey {
         case acceptorID = "acceptor_id"
@@ -136,25 +135,25 @@ struct AcceptorInfo: Codable {
 
 // MARK: - Transaction Information
 struct TxnInfo: Codable {
-    let reqID: String
-    let recordNum: String
-    let mti: String
-    let reqMti: String
-    let reqPcode: String
-    let pcode: String
-    let txnType: String
-    let txnCategory: String
-    let txnName: String
-    let txnAmount: String
-    let tranDate: String
-    let tranTime: String
-    let stan: String
-    let localDate: String
-    let localTime: String
-    let expiryDate: String
-    let rrn: String
-    let posEntryMode: String
-    let posCondCode: String
+    let reqID: String?
+    let recordNum: String?
+    let mti: String?
+    let reqMti: String?
+    let reqPcode: String?
+    let pcode: String?
+    let txnType: String?
+    let txnCategory: String?
+    let txnName: String?
+    let txnAmount: String?
+    let tranDate: String?
+    let tranTime: String?
+    let stan: String?
+    let localDate: String?
+    let localTime: String?
+    let expiryDate: String?
+    let rrn: String?
+    let posEntryMode: String?
+    let posCondCode: String?
 
     enum CodingKeys: String, CodingKey {
         case reqID = "req_id"
@@ -181,9 +180,9 @@ struct TxnInfo: Codable {
 
 // MARK: - Security Information
 struct SecurityInfo: Codable {
-    let pinBlock: String
-    let newPinBlock: String
-    let commKeyULmk: String
+    let pinBlock: String?
+    let newPinBlock: String?
+    let commKeyULmk: String?
 
     enum CodingKeys: String, CodingKey {
         case pinBlock = "pin_block"
@@ -194,9 +193,9 @@ struct SecurityInfo: Codable {
 
 // MARK: - Inner Response Info
 struct InnerRespInfo: Codable {
-    let respCode: String
-    let respDesc: String
-    let rejectCode: String
+    let respCode: String?
+    let respDesc: String?
+    let rejectCode: String?
 
     enum CodingKeys: String, CodingKey {
         case respCode = "resp_code"
