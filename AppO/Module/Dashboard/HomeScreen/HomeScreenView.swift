@@ -17,9 +17,9 @@ enum WalletCardType: CaseIterable {
         case .appo:
             return "appo-pay-card"
         case .unionpay:
-            return "appopay-unionpay-card-visible"
+            return "appo-unionpay"
         case .visa:
-            return "appopay-visa-card"
+            return "appo-visa"
         }
     }
     
@@ -50,9 +50,10 @@ struct HomeScreenView: View {
     
     @StateObject var viewModel: HomeScreenViewModel
     
-    @State private var currentWallet: WalletCardType = .appo
     @State private var isShowSetupPin: Bool = false
     @State private var isShowChangePin: Bool = false
+    @State private var selectedCard: Card?
+    @State private var currentIndex: Int = 0
     
     var walletTypes: [WalletCardType] {
         WalletCardType.allCases
@@ -65,6 +66,8 @@ struct HomeScreenView: View {
     private func showChangePin() {
         isShowChangePin.toggle()
     }
+    
+    var imageName = ""
     
     var body: some View {
         NavigationStack(path: $homeNavigator.navPath) {
@@ -225,15 +228,16 @@ extension HomeScreenView {
                 HStack {
                     Text(wallet.title)
                 }
-                .foregroundStyle(currentWallet == wallet ? .white : .appBlue)
+                .foregroundStyle(viewModel.currentWallet == wallet ? .white : .appBlue)
                 .padding()
                 .frame(height: 40)
-                .background(currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
+                .background(viewModel.currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
                 .cornerRadius(60)
                 .onTapGesture {
                     withAnimation {
-                        if wallet.isEnabled {
-                            currentWallet = wallet
+                        if viewModel.changeWalletType(cardType: wallet) {
+                            viewModel.currentWallet = wallet
+                            viewModel.populateCards(cardType: wallet)
                         }
                     }
                 }
@@ -241,7 +245,7 @@ extension HomeScreenView {
             }
         }
     }
-
+    
     
     var CardStatusView: some View {
         HStack {
@@ -254,41 +258,63 @@ extension HomeScreenView {
     }
     
     var CardView: some View {
-        ZStack {
-            Image(currentWallet.imageName)
-                .resizable()
-                .frame(height: 220)
-                .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
-            
-            VStack(alignment: .leading) {
-                Spacer()
-                Text(viewModel.cardNumber)
-                    .font(AppFonts.regularTwenty)
-                Text("Expiry: \(viewModel.expiryDate) \(viewModel.selected_card?.cardName ?? "")")
-                    .font(AppFonts.bodyFourteenBold)
-            }
-            .foregroundStyle(.white)
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            
-            if viewModel.selected_card?.cardStatusDesc == "InActive" {
-                ZStack {
-                    VStack {
-                        Button {
-                            showSetupPin()
-                        } label: {
-                            Text("Activate your Card")
+        VStack {
+            TabView(selection: $currentIndex) {
+                ForEach(Array((viewModel.cards ?? []).enumerated()), id: \.element) { index, card in
+                    ZStack {
+                        Image(card.cardImage ?? "")
+                            .resizable()
+                            .frame(height: 220)
+                            .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
+                            .onTapGesture {
+                                selectedCard = card
+                            }
+                        
+                        VStack(alignment: .leading) {
+                            Spacer()
+                            Text(card.maskCardNum ?? "")
                                 .font(AppFonts.regularTwenty)
-                                .foregroundStyle(Color.appBackground)
-                                .padding()
-                                .background(Color.appBlue)
-                                .cornerRadius(5, corners: .allCorners)
+                            Text("Expiry: \(card.expDate ?? "") \(card.cardName ?? "")")
+                                .font(AppFonts.bodyFourteenBold)
+                        }
+                        .foregroundStyle(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        if card.cardStatusDesc == "InActive" {
+                            ZStack {
+                                VStack {
+                                    Button {
+                                        showSetupPin()
+                                    } label: {
+                                        Text("Activate your Card")
+                                            .font(AppFonts.regularTwenty)
+                                            .foregroundStyle(Color.appBackground)
+                                            .padding()
+                                            .background(Color.appBlue)
+                                            .cornerRadius(5)
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            }
+                            .background(Color.black.opacity(0.5))
+                            .cornerRadius(15)
                         }
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .tag(index)
+                    .onChange(of: currentIndex) { newIndex in
+                        viewModel.selected_card = viewModel.cards?[newIndex]
+                        AppDefaults.selected_card = viewModel.selected_card
+                    }
                 }
-                .background(Color.black.opacity(0.5))
-                .cornerRadius(15, corners: .allCorners)
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+            .frame(height: 220)
+            .onAppear {
+                if let firstCard = viewModel.cards?.first {
+                    viewModel.selected_card = firstCard
+                    AppDefaults.selected_card = firstCard
+                }
             }
         }
     }

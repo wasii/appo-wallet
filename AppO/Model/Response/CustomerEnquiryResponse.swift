@@ -10,7 +10,7 @@ import Foundation
 struct CustomerEnquiryResponseData: Codable, Hashable {
     let addr1: String?
     let addr2: String?
-    let cardList: [Card]?
+    var cardList: [Card]?
     let custID: String?
     let custName: String?
     let custStatus: String?
@@ -55,12 +55,13 @@ struct Card: Codable, Hashable {
     let encodingName: String?
     let expDate: String?
     let hashCardNum: String?
-    let maskCardNum: String?
+    var maskCardNum: String?
     let productID: String?
     let productName: String?
     let serviceCode: String?
     let subproductID: String?
     let subproductName: String?
+    var cardImage: String?
     let walletInfo: WalletInfo?
     
     enum CodingKeys: String, CodingKey {
@@ -83,6 +84,7 @@ struct Card: Codable, Hashable {
         case serviceCode = "service_code"
         case subproductID = "subproduct_id"
         case subproductName = "subproduct_name"
+        case cardImage = "card_image"
         case walletInfo = "wallet_info"
     }
 }

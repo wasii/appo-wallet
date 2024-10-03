@@ -11,11 +11,10 @@ struct ManageAccountView: View {
     @StateObject var viewModel: ManageAccountViewModel
     @EnvironmentObject var homeNavigator: HomeNavigator
     
-    @State private var isMasked: Bool = true
-    @State private var wallet_card: [Card] = []
     
-    @State private var currentWallet: WalletCardType = .appo
-    @State private var isShowTransactionPin: Bool = false
+    @State var card: Card? = nil
+    
+    
     var walletTypes: [WalletCardType] {
         WalletCardType.allCases
     }
@@ -29,16 +28,31 @@ struct ManageAccountView: View {
             VStack(spacing: 0) {
                 NavigationBarView(title: "Manage Account")
                 VStack(spacing: 20) {
-                    maskedUnMaskedView
-                    textualView
                     WalletTypeView
+                    textualView
+                    
                     CardStatusView
                     ScrollView(.vertical) {
-                        ForEach(wallet_card, id: \.self) { card in
-                            CardView
+                        ForEach(viewModel.cards ?? [], id: \.self) { card in
+                            CardView(card: card)
                                 .onTapGesture {
                                     showTransactionPinView()
                                 }
+                                .onLongPressGesture(minimumDuration: 1.0, pressing: { bool in print(bool)}, perform: {
+                                    Task {
+                                        do {
+                                            viewModel.showLoader = true
+                                            let success = try await viewModel.getCardNumber(cardRefNum: card.cardRefNum ?? "")
+                                            if success {
+                                                viewModel.showLoader = false
+                                                self.card = card
+                                                showUnMaskedCard()
+                                            } else {
+                                                viewModel.showLoader = true
+                                            }
+                                        }
+                                    }
+                                })
                         }
                     }
                     .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
@@ -50,11 +64,11 @@ struct ManageAccountView: View {
                 
                 BottomNavigation()
             }
-            if isShowTransactionPin {
+            if viewModel.isShowTransactionPin {
                 GeometryReader { geo in
                     VStack {
                         Spacer()
-                        TransactionPinPopUpView(isShowTransactionPin: $isShowTransactionPin) {
+                        TransactionPinPopUpView(isShowTransactionPin: $viewModel.isShowTransactionPin) {
                             viewModel.showLoader = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                                 viewModel.showLoader = false
@@ -67,21 +81,41 @@ struct ManageAccountView: View {
                             }
                         }
                     }
-                    .transition(.move(edge: .bottom)) // Move from bottom
-                    .animation(.easeInOut(duration: 1.4), value: isShowTransactionPin)
+                    .transition(.move(edge: .bottom))
+                    .animation(.easeInOut(duration: 1.4), value: viewModel.isShowTransactionPin)
                 }
+            }
+            
+            if viewModel.isShowUnMaskedCard {
+                GeometryReader { geometry in
+                    VStack {
+                        Spacer()
+                        
+                        UnMaskedCardView(isUnMaskedCardViewVisible: $viewModel.isShowUnMaskedCard, card: self.card, unmaskedValue: viewModel.unmaskedCardNumber)
+                            .background(.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                            .padding()
+                            .frame(width: geometry.size.width, height: 320)
+                            .padding(.bottom, geometry.safeAreaInsets.bottom)
+                        Spacer()
+                    }
+                    .background(Color.black.opacity(0.55).edgesIgnoringSafeArea(.all))
+                }
+                .zIndex(1.0)
             }
         }
         .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
         .edgesIgnoringSafeArea(.top)
         .toolbar(.hidden, for: .navigationBar)
-        .onAppear {
-            wallet_card = AppDefaults.user?.cardList ?? []
-        }
     }
     
     func showTransactionPinView() {
-        isShowTransactionPin.toggle()
+        viewModel.isShowTransactionPin = true
+    }
+    
+    func showUnMaskedCard() {
+        viewModel.isShowUnMaskedCard = true
     }
 }
 
@@ -93,15 +127,16 @@ extension ManageAccountView {
                 HStack {
                     Text(wallet.title)
                 }
-                .foregroundStyle(currentWallet == wallet ? .white : .appBlue)
+                .foregroundStyle(viewModel.currentWallet == wallet ? .white : .appBlue)
                 .padding()
                 .frame(height: 40)
-                .background(currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
+                .background(viewModel.currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
                 .cornerRadius(60)
                 .onTapGesture {
                     withAnimation {
-                        if wallet.isEnabled {
-                            currentWallet = wallet
+                        if viewModel.changeWalletType(cardType: wallet) {
+                            viewModel.currentWallet = wallet
+                            viewModel.populateCards(cardType: wallet)
                         }
                     }
                 }
@@ -120,21 +155,6 @@ extension ManageAccountView {
         .foregroundStyle(.appBlue)
     }
     
-    var maskedUnMaskedView: some View {
-        HStack {
-            Text("Mask")
-                .foregroundColor(.appBlue)
-                .font(isMasked ? AppFonts.bodyTwentyTwoBold : AppFonts.regularTwentyTwo)
-            
-            Toggle("", isOn: $isMasked)
-                .toggleStyle(CustomToggleStyle())
-                .labelsHidden()
-            
-            Text("UnMask")
-                .foregroundColor(.appBlue)
-                .font(isMasked ? AppFonts.regularTwentyTwo : AppFonts.bodyTwentyTwoBold)
-        }
-    }
     
     var textualView: some View {
         VStack(spacing: 5) {
@@ -142,52 +162,6 @@ extension ManageAccountView {
                 .font(AppFonts.bodyTwentyBold)
         }
         .foregroundStyle(.appBlue)
-    }
-    
-    var CardView: some View {
-        ZStack(alignment: .top) {
-            Image("appo-pay-card")
-                .resizable()
-                .frame(height: 220)
-            
-            VStack(alignment: .leading) {
-                Spacer()
-                Text(isMasked ? "6262 2303 **** ****" : "6262 2303 5678 9010")
-                    .font(AppFonts.regularTwenty)
-                Text("Expiry: 10/2016 JOE CHURCO")
-                    .font(AppFonts.bodyFourteenBold)
-            }
-            .foregroundStyle(.white)
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .frame(height: 220)
-        }
-    }
-    
-    var AppoPayUnionCard: some View {
-        ZStack(alignment: .top) {
-            Image(isMasked ? "appopay-unionpay-card" : "appopay-unionpay-card-visible")
-                .resizable()
-                .frame(height: 220)
-        }
-    }
-    
-    var AppoPayVisaCard: some View {
-        ZStack(alignment: .top) {
-            Image("appopay-visa-card")
-                .resizable()
-                .frame(height: 220)
-            
-            VStack(alignment: .leading) {
-                Spacer()
-                Text(isMasked ? "**** 5679" : "5354 5679")
-                    .font(AppFonts.regularTwenty)
-            }
-            .foregroundStyle(.appBlue)
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .frame(height: 220)
-        }
     }
 }
 
@@ -216,4 +190,28 @@ struct CustomToggleStyle: ToggleStyle {
 
 #Preview {
     ManageAccountView(viewModel: .init())
+}
+
+
+struct CardView: View {
+    var card: Card
+    var body: some View {
+        ZStack(alignment: .top) {
+            Image(card.cardImage ?? "")
+                .resizable()
+                .frame(height: 220)
+            
+            VStack(alignment: .leading) {
+                Spacer()
+                Text(card.maskCardNum ?? "")
+                    .font(AppFonts.regularTwenty)
+                Text("Expiry: \(card.expDate ?? "") \(card.cardName ?? "")")
+                    .font(AppFonts.bodyFourteenBold)
+            }
+            .foregroundStyle(.white)
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(height: 220)
+        }
+    }
 }

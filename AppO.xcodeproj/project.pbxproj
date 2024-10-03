@@ -135,6 +135,8 @@
 		E27298302C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E272982D2C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf */; };
 		E27298352C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E27298342C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf */; };
 		E2850B282C92CADC009A77B9 /* WithdrawLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2850B272C92CADC009A77B9 /* WithdrawLimitView.swift */; };
+		E2875F4C2CAECACF0074F179 /* UnMaskedCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2875F4B2CAECAC60074F179 /* UnMaskedCardViewModel.swift */; };
+		E2875F4E2CAECAD90074F179 /* UnMaskedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2875F4D2CAECAD90074F179 /* UnMaskedCardView.swift */; };
 		E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413C2C7339DF00D054A1 /* RegistrationView.swift */; };
 		E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */; };
 		E29141452C736C0D00D054A1 /* SetupMobilePinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */; };
@@ -299,6 +301,8 @@
 		E272982D2C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Italic.otf"; sourceTree = "<group>"; };
 		E27298342C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Regular.otf"; sourceTree = "<group>"; };
 		E2850B272C92CADC009A77B9 /* WithdrawLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawLimitView.swift; sourceTree = "<group>"; };
+		E2875F4B2CAECAC60074F179 /* UnMaskedCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnMaskedCardViewModel.swift; sourceTree = "<group>"; };
+		E2875F4D2CAECAD90074F179 /* UnMaskedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnMaskedCardView.swift; sourceTree = "<group>"; };
 		E291413C2C7339DF00D054A1 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		E291413F2C7339EF00D054A1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		E29141442C736C0D00D054A1 /* SetupMobilePinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePinView.swift; sourceTree = "<group>"; };
@@ -448,6 +452,7 @@
 		E22658822C7CAA1400DF8506 /* Manage Account */ = {
 			isa = PBXGroup;
 			children = (
+				E2875F4A2CAECABE0074F179 /* Unmasked Card */,
 				E22658892C7CAC7B00DF8506 /* Card Transactions */,
 				E22658832C7CAA2700DF8506 /* ManageAccountView.swift */,
 				E22658852C7CAA3600DF8506 /* ManageAccountViewModel.swift */,
@@ -796,6 +801,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		E2875F4A2CAECABE0074F179 /* Unmasked Card */ = {
+			isa = PBXGroup;
+			children = (
+				E2875F4B2CAECAC60074F179 /* UnMaskedCardViewModel.swift */,
+				E2875F4D2CAECAD90074F179 /* UnMaskedCardView.swift */,
+			);
+			path = "Unmasked Card";
+			sourceTree = "<group>";
+		};
 		E29141392C7339C600D054A1 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
@@ -1128,12 +1142,14 @@
 				E239640B2C78C57D00AD4E6F /* Navigator.swift in Sources */,
 				E24E37462CA54CF800F6AD2D /* PhoneNumberVerificationResponse.swift in Sources */,
 				E2A5C85E2CA2E01100F40B18 /* VerifyPINRequest.swift in Sources */,
+				E2875F4E2CAECAD90074F179 /* UnMaskedCardView.swift in Sources */,
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
 				E22658862C7CAA3600DF8506 /* ManageAccountViewModel.swift in Sources */,
 				E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */,
 				E23864C22C9DE34000EAD795 /* CustomerEnquiryRequest.swift in Sources */,
 				E25B903D2C7CE16000A6F871 /* CardToCardViewModel.swift in Sources */,
 				E226588D2C7CACB900DF8506 /* CardTransactionDetailsViewModel.swift in Sources */,
+				E2875F4C2CAECACF0074F179 /* UnMaskedCardViewModel.swift in Sources */,
 				E20913F12CA6918A00A3552A /* SetCardPINRequest.swift in Sources */,
 				E25B4B422C6E171E000745F9 /* BottomNavigation.swift in Sources */,
 				E23864C42C9DE3E000EAD795 /* PreDefinedRequest.swift in Sources */,

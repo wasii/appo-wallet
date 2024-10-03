@@ -61,9 +61,7 @@ struct AddOnCardView: View {
             .toolbar(.hidden, for: .navigationBar)
             .showError("", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    viewModel.getCardList()
-                }
+                viewModel.getCardList()
                 nameOnCard = AppDefaults.user?.custName ?? ""
                 email = AppDefaults.user?.primaryMailAddr ?? ""
                 address = AppDefaults.user?.addr1 ?? ""

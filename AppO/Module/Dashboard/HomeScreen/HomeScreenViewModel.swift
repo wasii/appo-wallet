@@ -30,9 +30,11 @@ class HomeScreenViewModel: ObservableObject {
     @Published var isPresentAlert: Bool = false
     
     @Published var customer_enquiry: CustomerEnquiryResponseData?
+    @Published var cards: [Card]? = nil
     @Published var selected_card: Card?
     @Published var cardNumber: String = ""
     @Published var expiryDate: String = ""
+    @Published var currentWallet: WalletCardType?
     
     @Published private var timeRemaining = 10
     @Published private var timerActive = false
@@ -50,6 +52,90 @@ class HomeScreenViewModel: ObservableObject {
         self.pInteractor = pInteractor
     }
 }
+
+extension HomeScreenViewModel {
+    func populateImageName() {
+        guard var cardList = customer_enquiry?.cardList else { return }
+
+        for i in 0..<cardList.count {
+            switch cardList[i].subproductName {
+            case "APPOPAY WALLET":
+                cardList[i].cardImage = "appo-pay-card"
+            case "UPI WALLET":
+                cardList[i].cardImage = "appo-unionpay"
+            case "VISA WALLET":
+                cardList[i].cardImage = "appo-visa"
+            default:
+                break
+            }
+            cardList[i].maskCardNum = formatCreditCardNumber(cardList[i].maskCardNum ?? "")
+        }
+
+        self.customer_enquiry?.cardList = cardList
+        AppDefaults.user?.cardList = cardList
+        
+        populateCards(cardType: .appo)
+        
+    }
+    
+    func populateCards(cardType: WalletCardType) {
+        switch cardType {
+        case .appo:
+            cards = customer_enquiry?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }
+        case .unionpay:
+            cards = customer_enquiry?.cardList?.filter { $0.subproductName == "UPI WALLET" }
+        case .visa:
+            cards = customer_enquiry?.cardList?.filter { $0.subproductName == "VISA WALLET" }
+        }
+    }
+    
+    func changeWalletType(cardType: WalletCardType) -> Bool {
+        switch cardType {
+        case .appo:
+            let contains = customer_enquiry?.cardList?.contains { $0.subproductName == "APPOPAY WALLET" } ?? false
+            if contains {
+                populateCards(cardType: cardType)
+                selected_card = customer_enquiry?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }.first
+                AppDefaults.selected_card = selected_card
+            }
+            return contains
+        case .unionpay:
+            let contains = customer_enquiry?.cardList?.contains { $0.subproductName == "UPI WALLET" } ?? false
+            if contains {
+                populateCards(cardType: cardType)
+                selected_card = customer_enquiry?.cardList?.filter { $0.subproductName == "UPI WALLET" }.first
+                AppDefaults.selected_card = selected_card
+            }
+            return contains
+        case .visa:
+            let contains = customer_enquiry?.cardList?.contains { $0.subproductName == "VISA WALLET" } ?? false
+            if contains {
+                populateCards(cardType: cardType)
+                selected_card = customer_enquiry?.cardList?.filter { $0.subproductName == "VISA WALLET" }.first
+                AppDefaults.selected_card = selected_card
+            }
+            return contains
+        }
+    }
+    
+    fileprivate func selectFirstWallet() {
+        let subproductName = customer_enquiry?.cardList?.first?.subproductName
+        switch subproductName {
+        case "APPOPAY WALLET":
+            self.currentWallet = .appo
+            selected_card = customer_enquiry?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }.first
+        case "UPI WALLET":
+            self.currentWallet = .unionpay
+            selected_card = customer_enquiry?.cardList?.filter { $0.subproductName == "UPI WALLET" }.first
+        case "VISA WALLET":
+            self.currentWallet = .visa
+            selected_card = customer_enquiry?.cardList?.filter { $0.subproductName == "VISA WALLET" }.first
+        default:
+            break
+        }
+    }
+}
+
 
 extension HomeScreenViewModel {
     func getCustpmerEnquiry() {
@@ -71,11 +157,10 @@ extension HomeScreenViewModel {
                 self?.showLoader = false
                 if response.respInfo?.respStatus == 200 {
                     AppDefaults.user = response.respInfo?.respData
-                    AppDefaults.selected_card = response.respInfo?.respData?.cardList?.last
                     self?.customer_enquiry = response.respInfo?.respData
-                    self?.selected_card = self?.customer_enquiry?.cardList?.first
-                    self?.cardNumber = self?.selected_card?.maskCardNum ?? ""
-                    self?.expiryDate = self?.convertDateToMonthYear(self?.selected_card?.expDate ?? "") ?? ""
+                    self?.populateImageName()
+                    self?.selectFirstWallet()
+                    
                     AppDefaults.newUser = nil
                 } else {
                     print("ERROR")
@@ -83,7 +168,10 @@ extension HomeScreenViewModel {
             }
             .store(in: &cancellables)
     }
-    
+}
+
+//MARK: - Formatters
+extension HomeScreenViewModel {
     fileprivate func formatCreditCardNumber(_ number: String) -> String {
         let trimmedString = number.replacingOccurrences(of: " ", with: "")
         var formattedString = ""
@@ -95,7 +183,7 @@ extension HomeScreenViewModel {
         }
         return formattedString
     }
-    func convertDateToMonthYear(_ date: String) -> String? {
+    fileprivate func convertDateToMonthYear(_ date: String) -> String? {
         guard date.count == 8 else {
             return nil
         }
@@ -129,7 +217,7 @@ extension HomeScreenViewModel {
                     self?.showLoader = false
                     guard case let .failure(error) = completion else { return }
                     continuation.resume(throwing: error)
-                } receiveValue: { [weak self] response in
+                } receiveValue: { response in
                     if response.respInfo?.respStatus == 200 {
                         AppDefaults.dek = response.respInfo?.respData?.dek
                         AppDefaults.dek_kcv = response.respInfo?.respData?.dekKcv

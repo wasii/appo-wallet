@@ -15,7 +15,6 @@ struct CardToCardView: View {
     @State private var amount: String = ""
     @State var presentSheet = false
     @State var countryCode : String = ""
-    @State var countryFlag : String = ""
     @State var countryPattern : String = ""
     @State var countryLimit : Int = 0
     @State var mobPhoneNumber = ""
@@ -36,17 +35,19 @@ struct CardToCardView: View {
                     .frame(height: UIScreen.main.bounds.height)
             }
             .zIndex(1)
+            
             VStack(spacing: 0) {
                 NavigationBarView(title: "Card to Card Transfer")
-                VStack(alignment: .leading, spacing: 20) {
-                    SenderDetailsView
-                    ReceiverDetailsView
-                    if viewModel.isDetailsFetched {
-                        AmountToTransferView
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 20) {
+                        SenderDetailsView
+                        ReceiverDetailsView
+                        if viewModel.isDetailsFetched {
+                            AmountToTransferView
+                        }
                     }
+                    .padding()
                 }
-                .padding()
-                
                 Spacer()
                 Button{
                     Task {
@@ -88,7 +89,6 @@ struct CardToCardView: View {
                                 .foregroundColor(.secondary)
                         }
                         .onTapGesture {
-                            self.countryFlag = country.flag
                             self.countryCode = country.dial_code
                             self.countryPattern = country.pattern
                             self.countryLimit = country.limit
@@ -201,12 +201,12 @@ extension CardToCardView {
     }
     
     private func formatAmountInput(_ input: String) {
-            let filtered = input.filter { $0.isNumber }
-            if let number = Double(filtered) {
-                let formattedNumber = number / 100
-                amount = String(format: "%.2f", formattedNumber)
-            }
+        let filtered = input.filter { $0.isNumber }
+        if let number = Double(filtered) {
+            let formattedNumber = number / 100
+            amount = String(format: "%.2f", formattedNumber)
         }
+    }
 }
 
 #Preview {
@@ -312,7 +312,7 @@ extension CardToCardView {
     }
     
     var FetchedReceiverDetailsView: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack(spacing: 20) {
                 Image("dummy-man1")
                     .resizable()
@@ -339,5 +339,6 @@ extension CardToCardView {
                 }
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
