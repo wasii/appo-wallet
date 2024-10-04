@@ -36,11 +36,13 @@ struct ManageAccountView: View {
                         ForEach(viewModel.cards ?? [], id: \.self) { card in
                             CardView(card: card)
                                 .onTapGesture {
+                                    lightHaptic()
                                     showTransactionPinView()
                                 }
                                 .onLongPressGesture(minimumDuration: 1.0, pressing: { bool in print(bool)}, perform: {
                                     Task {
                                         do {
+                                            heavyHaptic()
                                             viewModel.showLoader = true
                                             let success = try await viewModel.getCardNumber(cardRefNum: card.cardRefNum ?? "")
                                             if success {

@@ -234,6 +234,7 @@ extension HomeScreenView {
                 .background(viewModel.currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
                 .cornerRadius(60)
                 .onTapGesture {
+                    lightHaptic()
                     withAnimation {
                         if viewModel.changeWalletType(cardType: wallet) {
                             viewModel.currentWallet = wallet
@@ -303,8 +304,11 @@ extension HomeScreenView {
                     }
                     .tag(index)
                     .onChange(of: currentIndex) { newIndex in
-                        viewModel.selected_card = viewModel.cards?[newIndex]
-                        AppDefaults.selected_card = viewModel.selected_card
+                        if let card = viewModel.cards?[newIndex] {
+                            viewModel.selected_card = card
+                            AppDefaults.selected_card = viewModel.selected_card
+                            heavyHaptic()
+                        }
                     }
                 }
             }

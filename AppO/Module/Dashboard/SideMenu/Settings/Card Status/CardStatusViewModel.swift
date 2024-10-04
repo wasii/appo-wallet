@@ -23,10 +23,75 @@ class CardStatusViewModel: ObservableObject {
     @Published var apiError: String?
     @Published var isPresentAlert: Bool = false
     
+    @Published var cards: [Card]? = nil
+    @Published var selected_card: Card?
+    @Published var currentWallet: WalletCardType?
+    
+    var cardRefNum: String = ""
+    
     private var sInteractor: SideMenuInteractorType
     
     init(sInteractor: SideMenuInteractorType = SideMenuInteractor()) {
         self.sInteractor = sInteractor
+        self.cards = AppDefaults.user?.cardList
+        populateCards(cardType: .appo)
+        selectFirstWallet()
+    }
+}
+
+extension CardStatusViewModel {
+    func populateCards(cardType: WalletCardType) {
+        switch cardType {
+        case .appo:
+            cards = AppDefaults.user?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }
+        case .unionpay:
+            cards = AppDefaults.user?.cardList?.filter { $0.subproductName == "UPI WALLET" }
+        case .visa:
+            cards = AppDefaults.user?.cardList?.filter { $0.subproductName == "VISA WALLET" }
+        }
+    }
+    
+    func changeWalletType(cardType: WalletCardType) -> Bool {
+        switch cardType {
+        case .appo:
+            let contains = AppDefaults.user?.cardList?.contains { $0.subproductName == "APPOPAY WALLET" && $0.cardStatusDesc != "InActive" } ?? false
+            if contains {
+                populateCards(cardType: cardType)
+                selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }.first
+            }
+            return contains
+        case .unionpay:
+            let contains = AppDefaults.user?.cardList?.contains { $0.subproductName == "UPI WALLET" && $0.cardStatusDesc != "InActive" } ?? false
+            if contains {
+                populateCards(cardType: cardType)
+                selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "UPI WALLET" }.first
+            }
+            return contains
+        case .visa:
+            let contains = AppDefaults.user?.cardList?.contains { $0.subproductName == "VISA WALLET" && $0.cardStatusDesc != "InActive" } ?? false
+            if contains {
+                populateCards(cardType: cardType)
+                selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "VISA WALLET" }.first
+            }
+            return contains
+        }
+    }
+    
+    fileprivate func selectFirstWallet() {
+        let subproductName = AppDefaults.user?.cardList?.first?.subproductName
+        switch subproductName {
+        case "APPOPAY WALLET":
+            self.currentWallet = .appo
+            selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }.first
+        case "UPI WALLET":
+            self.currentWallet = .unionpay
+            selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "UPI WALLET" }.first
+        case "VISA WALLET":
+            self.currentWallet = .visa
+            selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "VISA WALLET" }.first
+        default:
+            break
+        }
     }
 }
 
@@ -49,8 +114,8 @@ extension CardStatusViewModel {
                 requestType: "mobile_app_set_card_status"
             ),
             requestData: .init(
-                instId: "AP",
-                cardRefNum: AppDefaults.selected_card?.cardRefNum ?? "",
+                instId: AppDefaults.user?.instID ?? "",
+                cardRefNum: selected_card?.cardRefNum ?? "",
                 cardStatus: cardStatus,
                 mobileNo: AppDefaults.mobile ?? ""
             )

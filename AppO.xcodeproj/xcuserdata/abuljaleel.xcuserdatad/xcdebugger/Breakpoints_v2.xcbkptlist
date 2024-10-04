@@ -104,7 +104,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "687D2AA1-BC2A-4AAC-9D3A-30983408C6E6"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AppO/Services/App Environment/AppEnvironment.swift"
@@ -167,16 +167,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1E113982-9566-4205-8062-DFB8DEB901B8"
-            shouldBeEnabled = "Yes"
+            uuid = "C98CF196-E8FA-4D1B-88A6-BC4919D59974"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppO/Module/Dashboard/SideMenu/Manage Account/ManageAccountView.swift"
+            filePath = "AppO/Module/Dashboard/SideMenu/Settings/Card Status/CardStatusView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "body"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "CardView"
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>

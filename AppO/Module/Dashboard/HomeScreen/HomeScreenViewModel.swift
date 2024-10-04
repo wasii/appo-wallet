@@ -70,6 +70,19 @@ extension HomeScreenViewModel {
             }
             cardList[i].maskCardNum = formatCreditCardNumber(cardList[i].maskCardNum ?? "")
         }
+        
+        let order: [String: Int] = [
+            "APPOPAY WALLET": 0,
+            "UPI WALLET": 1,
+            "VISA WALLET": 2
+        ]
+        
+        cardList.sort { card1, card2 in
+            let card1Order = order[card1.subproductName ?? ""] ?? 3
+            let card2Order = order[card2.subproductName ?? ""] ?? 3
+            
+            return card1Order < card2Order
+        }
 
         self.customer_enquiry?.cardList = cardList
         AppDefaults.user?.cardList = cardList

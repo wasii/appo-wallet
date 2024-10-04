@@ -13,8 +13,8 @@ struct CardStatusView: View {
     @EnvironmentObject var homeNavigator: HomeNavigator
     
     @State private var isActive: Bool = false
+    @State private var currentIndex: Int = 0
     
-    @State private var currentWallet: WalletCardType = .appo
     var walletTypes: [WalletCardType] {
         WalletCardType.allCases
     }
@@ -69,14 +69,16 @@ struct CardStatusView: View {
             .edgesIgnoringSafeArea(.top)
             .toolbar(.hidden, for: .navigationBar)
             .onAppear {
-                if AppDefaults.selected_card?.cardStatusDesc == "Active" {
+                if viewModel.cards?.first?.cardStatusDesc == "Active" {
                     self.isActive = true
                 }
             }
-            .showError("Yayy!!", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
+            .showError("", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
         }
     }
-    
+}
+
+extension CardStatusView {
     var WalletTypeView: some View {
         HStack {
             Spacer()
@@ -84,15 +86,19 @@ struct CardStatusView: View {
                 HStack {
                     Text(wallet.title)
                 }
-                .foregroundStyle(currentWallet == wallet ? .white : .appBlue)
+                .foregroundStyle(viewModel.currentWallet == wallet ? .white : .appBlue)
                 .padding()
                 .frame(height: 40)
-                .background(currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
+                .background(viewModel.currentWallet == wallet ? .appBlue : .gray.opacity(0.08))
                 .cornerRadius(60)
                 .onTapGesture {
+                    lightHaptic()
                     withAnimation {
-                        if wallet.isEnabled {
-                            currentWallet = wallet
+                        if viewModel.changeWalletType(cardType: wallet) {
+                            viewModel.currentWallet = wallet
+                            viewModel.populateCards(cardType: wallet)
+                            self.isActive = viewModel.selected_card?.cardStatusDesc == "Active" ? true : false
+                            currentIndex = 0
                         }
                     }
                 }
@@ -102,24 +108,48 @@ struct CardStatusView: View {
     }
     
     var CardView: some View {
-        ZStack {
-            Image(currentWallet.imageName)
-                .resizable()
-                .frame(height: 220)
-                .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
-            
-            VStack(alignment: .leading) {
-                Spacer()
-                Text(AppDefaults.selected_card?.maskCardNum ?? "")
-                    .font(AppFonts.regularTwenty)
-                Text("Expiry: \(AppDefaults.selected_card?.expDate ?? "") \(AppDefaults.selected_card?.cardName ?? "")")
-                    .font(AppFonts.bodyFourteenBold)
+        VStack {
+            TabView(selection: $currentIndex) {
+                ForEach(Array((viewModel.cards ?? []).enumerated()), id: \.element) { index, card in
+                    ZStack {
+                        Image(card.cardImage ?? "")
+                            .resizable()
+                            .frame(height: 220)
+                            .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
+                        
+                        VStack(alignment: .leading) {
+                            Spacer()
+                            Text(card.maskCardNum ?? "")
+                                .font(AppFonts.regularTwenty)
+                            Text("Expiry: \(card.expDate ?? "") \(card.cardName ?? "")")
+                                .font(AppFonts.bodyFourteenBold)
+                        }
+                        .foregroundStyle(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .tag(index)
+                    .onChange(of: currentIndex) { newIndex in
+                        if let card = viewModel.cards?[newIndex] {
+                            heavyHaptic()
+                            viewModel.selected_card = card
+                            if card.cardStatusDesc == "Active" {
+                                self.isActive = true
+                            } else {
+                                self.isActive = false
+                            }
+                        }
+                    }
+                }
             }
-            .foregroundStyle(.white)
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+            .frame(height: 220)
+            .onAppear {
+                if let firstCard = viewModel.cards?.first {
+                    viewModel.selected_card = firstCard
+                }
+            }
         }
-        
     }
 }
 
