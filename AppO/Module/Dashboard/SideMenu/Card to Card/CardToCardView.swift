@@ -9,8 +9,6 @@ import SwiftUI
 import Combine
 
 struct CardToCardView: View {
-    let spacedText = "012368768686868".map { String($0) }.joined(separator: " ")
-
     @State private var cardUID: String = ""
     @State private var amount: String = ""
     @State var presentSheet = false
@@ -36,6 +34,21 @@ struct CardToCardView: View {
             }
             .zIndex(1)
             
+            if viewModel.isShowTransactionPin {
+                GeometryReader { geo in
+                    VStack {
+                        Spacer()
+                        TransactionPinPopUpView(isShowTransactionPin: $viewModel.isShowTransactionPin) {
+                            viewModel.showLoader = true
+                            self.handleOperations()
+                        }
+                    }
+                    .transition(.move(edge: .bottom))
+                    .animation(.easeInOut(duration: 1.4), value: viewModel.isShowTransactionPin)
+                }
+                .zIndex(1.0)
+            }
+            
             VStack(spacing: 0) {
                 NavigationBarView(title: "Card to Card Transfer")
                 ScrollView {
@@ -50,24 +63,14 @@ struct CardToCardView: View {
                 }
                 Spacer()
                 Button{
-                    Task {
-                        do {
-                            if try await viewModel.getDataEncryptionKey() {
-                                if try await viewModel.getCardNumber() {
-                                    viewModel.amount = self.amount
-                                    if try await viewModel.tranfer_card_to_card() {
-                                        print("SUCCESS")
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    lightHaptic()
+                    showTransactionPinView()
                 } label: {
                     Text("Transfer")
                         .customButtonStyle()
                 }
-                .disabled(amount.isEmpty)
-                .opacity(amount.isEmpty ? 0.7 : 1.0)
+                .disabled(amount.isEmpty || Double(viewModel.selected_card?.walletInfo?.availBal ?? "0.0") ?? 0.0 <= 0.0 || viewModel.cardRefNum.isEmpty)
+                .opacity(amount.isEmpty  || Double(viewModel.selected_card?.walletInfo?.availBal ?? "0.0") ?? 0.0 <= 0.0 || viewModel.cardRefNum.isEmpty ? 0.7 : 1.0)
                 .padding()
                 
                 BottomNavigation()
@@ -103,8 +106,46 @@ struct CardToCardView: View {
                 .presentationDetents([.medium, .large])
             }
         }
+        .onReceive(viewModel.coordinatorState) { state in
+            switch (state.state, state.transferable) {
+            case (.selectCard, _):
+                homeNavigator.navigate(to: .cardList(viewModel: .init()))
+                break
+            }
+        }
         .onTapGesture {
             hideKeyboard()
+        }
+        .onAppear {
+            if let card = AppDefaults.temp_card {
+                viewModel.selected_card = card
+            }
+        }
+    }
+    
+    func showTransactionPinView() {
+        viewModel.isShowTransactionPin = true
+    }
+    
+    private func handleOperations() {
+        Task {
+            do {
+                if try await viewModel.getDataEncryptionKey() {
+                    if try await viewModel.getCardNumber() {
+                        viewModel.amount = self.amount
+                        if try await viewModel.tranfer_card_to_card() {
+                            viewModel.showLoader = false
+                            //POPUP SHould be shown
+                        } else {
+                            viewModel.showLoader = false
+                        }
+                    } else {
+                        viewModel.showLoader = false
+                    }
+                } else {
+                    viewModel.showLoader = false
+                }
+            }
         }
     }
 }
@@ -123,9 +164,21 @@ extension CardToCardView {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("\(viewModel.user?.custName ?? "Joe")")
                         .font(AppFonts.bodyTwentyBold)
-                    Text("\(viewModel.selected_card?.maskCardNum ?? "439385******1037")")
-                        .font(AppFonts.bodyTwentyBold)
-                        .foregroundStyle(.black)
+                    HStack {
+                        Text("\(viewModel.selected_card?.maskCardNum ?? "439385******1037")")
+                            .font(AppFonts.bodyTwentyBold)
+                            .foregroundStyle(.black)
+                        Spacer()
+                        Button {
+                            viewModel.coordinatorStatePublisher.send(.with(.selectCard))
+                        } label: {
+                            Text("Change")
+                                .padding(8)
+                                .background(Color.appBlue)
+                                .cornerRadius(8)
+                                .foregroundColor(.white)
+                        }
+                    }
                     Text("Total Balance: ")
                         .font(AppFonts.regularEighteen)
                     + Text("$\(viewModel.selected_card?.walletInfo?.availBal ?? "0.0")")

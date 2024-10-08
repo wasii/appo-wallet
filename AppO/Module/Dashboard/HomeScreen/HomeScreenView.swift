@@ -275,7 +275,7 @@ extension HomeScreenView {
                             Spacer()
                             Text(card.maskCardNum ?? "")
                                 .font(AppFonts.regularTwenty)
-                            Text("Expiry: \(card.expDate ?? "") \(card.cardName ?? "")")
+                            Text("Expiry: \(String(describing: Formatters.convertDateToMonthYear(card.expDate ?? "") ?? "")) \(card.cardName ?? "")")
                                 .font(AppFonts.bodyFourteenBold)
                         }
                         .foregroundStyle(.white)

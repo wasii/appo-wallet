@@ -68,7 +68,7 @@ extension HomeScreenViewModel {
             default:
                 break
             }
-            cardList[i].maskCardNum = formatCreditCardNumber(cardList[i].maskCardNum ?? "")
+            cardList[i].maskCardNum = Formatters.formatCreditCardNumber(cardList[i].maskCardNum ?? "")
         }
         
         let order: [String: Int] = [
@@ -180,34 +180,6 @@ extension HomeScreenViewModel {
                 }
             }
             .store(in: &cancellables)
-    }
-}
-
-//MARK: - Formatters
-extension HomeScreenViewModel {
-    fileprivate func formatCreditCardNumber(_ number: String) -> String {
-        let trimmedString = number.replacingOccurrences(of: " ", with: "")
-        var formattedString = ""
-        for (index, character) in trimmedString.enumerated() {
-            if index != 0 && index % 4 == 0 {
-                formattedString.append(" ")
-            }
-            formattedString.append(character)
-        }
-        return formattedString
-    }
-    fileprivate func convertDateToMonthYear(_ date: String) -> String? {
-        guard date.count == 8 else {
-            return nil
-        }
-        let startIndex = date.index(date.startIndex, offsetBy: 2)
-        let endIndex = date.index(date.startIndex, offsetBy: 4)
-        
-        let month = String(date[startIndex..<endIndex])
-        let year = String(date.suffix(4))
-        
-        
-        return "\(month)/\(year)"
     }
 }
 

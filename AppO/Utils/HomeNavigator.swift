@@ -37,6 +37,9 @@ final class HomeNavigator: ObservableObject {
         case renewCard(viewModel: RenewCardViewModel)
         case cardSettings(viewModel: TransactionSettingsViewModel)
         case addOnCard(viewModel: AddOnCardViewModel)
+        
+        //Card List
+        case cardList(viewModel: CardListViewModel)
     }
     
     @Published var navPath = NavigationPath()
@@ -105,6 +108,10 @@ extension HomeNavigator {
             TransactionSettingsView(viewModel: viewModel)
         case .addOnCard(let viewModel):
             AddOnCardView(viewModel: viewModel)
+        
+        //Card List
+        case .cardList(let viewModel):
+            CardListView(viewModel: viewModel)
         }
     }
 }

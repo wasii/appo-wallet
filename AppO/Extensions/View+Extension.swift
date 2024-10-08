@@ -73,6 +73,10 @@ extension View {
         let impactFeedback = UIImpactFeedbackGenerator(style: .heavy)
         impactFeedback.impactOccurred()
     }
+    func errorHaptic() {
+        let impactFeedback = UIImpactFeedbackGenerator(style: .rigid)
+        impactFeedback.impactOccurred()
+    }
 }
 
 

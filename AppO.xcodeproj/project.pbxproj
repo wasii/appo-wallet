@@ -22,6 +22,9 @@
 		E20FA2662C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */; };
 		E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */; };
 		E20FA26A2C6F915800B7CBC6 /* InitialScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */; };
+		E210371F2CB51CC200F3C76C /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210371E2CB51CC200F3C76C /* CardListView.swift */; };
+		E21037212CB51CCB00F3C76C /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21037202CB51CCB00F3C76C /* CardListViewModel.swift */; };
+		E21037232CB5375F00F3C76C /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21037222CB5375B00F3C76C /* Formatters.swift */; };
 		E22074AD2C9002A700B513F7 /* TransactionPinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22074AC2C9002A700B513F7 /* TransactionPinSetupView.swift */; };
 		E22253952CA3D50D005D9BE7 /* SetupMobilePINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22253942CA3D50D005D9BE7 /* SetupMobilePINView.swift */; };
 		E223181F2CABAFD700F59D72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E223181E2CABAFD700F59D72 /* GoogleService-Info.plist */; };
@@ -215,6 +218,9 @@
 		E20FA2652C6F913300B7CBC6 /* PhoneNumberVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewModel.swift; sourceTree = "<group>"; };
 		E20FA2672C6F913E00B7CBC6 /* EnterMPINViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINViewModel.swift; sourceTree = "<group>"; };
 		E20FA2692C6F915800B7CBC6 /* InitialScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewModel.swift; sourceTree = "<group>"; };
+		E210371E2CB51CC200F3C76C /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
+		E21037202CB51CCB00F3C76C /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
+		E21037222CB5375B00F3C76C /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		E22074AC2C9002A700B513F7 /* TransactionPinSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPinSetupView.swift; sourceTree = "<group>"; };
 		E22253942CA3D50D005D9BE7 /* SetupMobilePINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePINView.swift; sourceTree = "<group>"; };
 		E223181E2CABAFD700F59D72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -407,6 +413,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E210371D2CB51CB000F3C76C /* Card List */ = {
+			isa = PBXGroup;
+			children = (
+				E210371E2CB51CC200F3C76C /* CardListView.swift */,
+				E21037202CB51CCB00F3C76C /* CardListViewModel.swift */,
+			);
+			path = "Card List";
+			sourceTree = "<group>";
+		};
 		E22253932CA3D4F8005D9BE7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -723,6 +738,7 @@
 		E25B90402C7CE9E100A6F871 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				E210371D2CB51CB000F3C76C /* Card List */,
 				E25B90622C7D0A3300A6F871 /* Add on Card */,
 				E25B905D2C7D062A00A6F871 /* Transaction Settings */,
 				E25B90582C7D05BB00A6F871 /* Renew Card */,
@@ -831,6 +847,7 @@
 		E2BD5DE02C762412006FB4B7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E21037222CB5375B00F3C76C /* Formatters.swift */,
 				E24342E82CABEBF300BFEBD3 /* BLinkID Controller */,
 				E2A5C84E2CA2A10A00F40B18 /* CryptoUtils.swift */,
 				E204E1382CA19DA50023B9FC /* PermissionServiceManager.swift */,
@@ -1029,6 +1046,7 @@
 				E24B91872C771929009091B2 /* NetworkError.swift in Sources */,
 				E23864C92C9E17A900EAD795 /* AppDefaults.swift in Sources */,
 				E24E37512CA5A4E200F6AD2D /* SideMenuInteractor.swift in Sources */,
+				E21037232CB5375F00F3C76C /* Formatters.swift in Sources */,
 				E2A0F2FD2C8C410F00821357 /* PhoneNumberVerificationView.swift in Sources */,
 				E226587F2C7C9AB900DF8506 /* SideMenu.swift in Sources */,
 				E209141A2CA6BE8A00A3552A /* UpdateCardPINResponse.swift in Sources */,
@@ -1062,6 +1080,7 @@
 				E29141402C7339EF00D054A1 /* RegistrationViewModel.swift in Sources */,
 				E2850B282C92CADC009A77B9 /* WithdrawLimitView.swift in Sources */,
 				E22658782C7C703500DF8506 /* HomeScreenView.swift in Sources */,
+				E21037212CB51CCB00F3C76C /* CardListViewModel.swift in Sources */,
 				E22658942C7CB5DF00DF8506 /* MyQRCodeView.swift in Sources */,
 				E204E1352CA1841F0023B9FC /* SetupMobilePinRequest.swift in Sources */,
 				E2C9CB0B2C785C8400B47B38 /* PhoneNumberVerificationInteractor.swift in Sources */,
@@ -1097,6 +1116,7 @@
 				E25B4B402C6DFAFB000745F9 /* InitialView.swift in Sources */,
 				E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */,
 				E2C0756F2CAAB303002BEFCB /* CustomerValidationResponse.swift in Sources */,
+				E210371F2CB51CC200F3C76C /* CardListView.swift in Sources */,
 				E25B905F2C7D063E00A6F871 /* TransactionSettingsView.swift in Sources */,
 				E2C9CB192C78616B00B47B38 /* RegistrationAPIs.swift in Sources */,
 				E204E1312C9EE1720023B9FC /* ShowCardNumberResponse.swift in Sources */,

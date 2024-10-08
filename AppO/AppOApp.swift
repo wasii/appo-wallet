@@ -16,7 +16,15 @@ struct AppOApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State var sessionManager: SessionManager = SessionManager.shared
     @StateObject var session: AppEnvironment = AppEnvironment.shared
-    init() {}
+    init() {
+        AppDefaults.temp_card = nil
+        AppDefaults.dek = nil
+        AppDefaults.dek_kcv = nil
+        AppDefaults.dmk = nil
+        AppDefaults.dmk_kcv = nil
+        AppDefaults.user = nil
+        AppDefaults.newUser = nil
+    }
     
     var body: some Scene {
         WindowGroup {

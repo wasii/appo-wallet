@@ -110,6 +110,11 @@ class AppDefaults: UserDefaults {
         get { AppDefaults[#function] }
         set { AppDefaults[#function] = newValue }
     }
+    
+    static var temp_card: Card? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
 }
 
 extension AppDefaults {

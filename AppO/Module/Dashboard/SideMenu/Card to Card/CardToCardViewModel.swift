@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 enum CardToCardViewModelState {
-    case none
+    case selectCard
 }
 
 class CardToCardViewModel: ObservableObject {
@@ -29,6 +29,7 @@ class CardToCardViewModel: ObservableObject {
     @Published var isDetailsFetched: Bool = false
     @Published var fetched_user: CustomerEnquiryResponseData? = nil
     
+    @Published var isShowTransactionPin: Bool = false
     
     var amount: String = "000000000000"
     @Published var cardRefNum: String = ""
@@ -164,7 +165,7 @@ extension CardToCardViewModel {
                     fld19: "356",
                     fld2: AppDefaults.temp_cardnumber ?? "",
                     fld22: "510",
-                    fld3: "940000",
+                    fld3: "400000",
                     fld37: "422917001118",
                     fld4: self.updateAmount(with: amount),
                     fld41: "T0V0S101",
