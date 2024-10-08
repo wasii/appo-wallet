@@ -25,6 +25,10 @@
 		E210371F2CB51CC200F3C76C /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210371E2CB51CC200F3C76C /* CardListView.swift */; };
 		E21037212CB51CCB00F3C76C /* CardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21037202CB51CCB00F3C76C /* CardListViewModel.swift */; };
 		E21037232CB5375F00F3C76C /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21037222CB5375B00F3C76C /* Formatters.swift */; };
+		E21037272CB5577500F3C76C /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21037262CB5577500F3C76C /* ScanView.swift */; };
+		E21037292CB5578000F3C76C /* ScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21037282CB5578000F3C76C /* ScanViewModel.swift */; };
+		E210372C2CB55F4500F3C76C /* PayToMerchantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210372B2CB55F4500F3C76C /* PayToMerchantView.swift */; };
+		E210372E2CB55F4E00F3C76C /* PayToMerchantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E210372D2CB55F4E00F3C76C /* PayToMerchantViewModel.swift */; };
 		E22074AD2C9002A700B513F7 /* TransactionPinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22074AC2C9002A700B513F7 /* TransactionPinSetupView.swift */; };
 		E22253952CA3D50D005D9BE7 /* SetupMobilePINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22253942CA3D50D005D9BE7 /* SetupMobilePINView.swift */; };
 		E223181F2CABAFD700F59D72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E223181E2CABAFD700F59D72 /* GoogleService-Info.plist */; };
@@ -221,6 +225,10 @@
 		E210371E2CB51CC200F3C76C /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		E21037202CB51CCB00F3C76C /* CardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListViewModel.swift; sourceTree = "<group>"; };
 		E21037222CB5375B00F3C76C /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		E21037262CB5577500F3C76C /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
+		E21037282CB5578000F3C76C /* ScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewModel.swift; sourceTree = "<group>"; };
+		E210372B2CB55F4500F3C76C /* PayToMerchantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayToMerchantView.swift; sourceTree = "<group>"; };
+		E210372D2CB55F4E00F3C76C /* PayToMerchantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayToMerchantViewModel.swift; sourceTree = "<group>"; };
 		E22074AC2C9002A700B513F7 /* TransactionPinSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPinSetupView.swift; sourceTree = "<group>"; };
 		E22253942CA3D50D005D9BE7 /* SetupMobilePINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMobilePINView.swift; sourceTree = "<group>"; };
 		E223181E2CABAFD700F59D72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -422,6 +430,33 @@
 			path = "Card List";
 			sourceTree = "<group>";
 		};
+		E21037242CB5575E00F3C76C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E21037252CB5576400F3C76C /* Scan */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E21037252CB5576400F3C76C /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				E210372A2CB55F2C00F3C76C /* Components */,
+				E21037262CB5577500F3C76C /* ScanView.swift */,
+				E21037282CB5578000F3C76C /* ScanViewModel.swift */,
+			);
+			path = Scan;
+			sourceTree = "<group>";
+		};
+		E210372A2CB55F2C00F3C76C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E210372B2CB55F4500F3C76C /* PayToMerchantView.swift */,
+				E210372D2CB55F4E00F3C76C /* PayToMerchantViewModel.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		E22253932CA3D4F8005D9BE7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +469,7 @@
 		E22658752C7C6ED800DF8506 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				E21037242CB5575E00F3C76C /* Services */,
 				E226587D2C7C9AA200DF8506 /* SideMenu */,
 				E22658762C7C6F2700DF8506 /* HomeScreen */,
 			);
@@ -1058,6 +1094,7 @@
 				E2BD5DDF2C76239B006FB4B7 /* Environment.swift in Sources */,
 				E20FA2682C6F913E00B7CBC6 /* EnterMPINViewModel.swift in Sources */,
 				E2A5C8542CA2CA4900F40B18 /* RebindDeviceResponse.swift in Sources */,
+				E21037292CB5578000F3C76C /* ScanViewModel.swift in Sources */,
 				E24B91952C771AE2009091B2 /* AppEnvironment.swift in Sources */,
 				E2E6721E2CAD583C0021D7D7 /* CardToCardRequest.swift in Sources */,
 				E2C075732CAAD7BE002BEFCB /* TransactionPinPopUpView.swift in Sources */,
@@ -1102,6 +1139,7 @@
 				E25B903F2C7CE17500A6F871 /* CardToCardView.swift in Sources */,
 				E2C9CB0F2C785C9A00B47B38 /* RegistrationInteractor.swift in Sources */,
 				E291413D2C7339DF00D054A1 /* RegistrationView.swift in Sources */,
+				E210372C2CB55F4500F3C76C /* PayToMerchantView.swift in Sources */,
 				E2A5C8582CA2D3F500F40B18 /* BindDeviceResponse.swift in Sources */,
 				E27298272C8B2A4E00B41FF8 /* AppFonts.swift in Sources */,
 				E25B4B492C6E1E0D000745F9 /* TermAndConditionView.swift in Sources */,
@@ -1166,6 +1204,7 @@
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
 				E22658862C7CAA3600DF8506 /* ManageAccountViewModel.swift in Sources */,
 				E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */,
+				E21037272CB5577500F3C76C /* ScanView.swift in Sources */,
 				E23864C22C9DE34000EAD795 /* CustomerEnquiryRequest.swift in Sources */,
 				E25B903D2C7CE16000A6F871 /* CardToCardViewModel.swift in Sources */,
 				E226588D2C7CACB900DF8506 /* CardTransactionDetailsViewModel.swift in Sources */,
@@ -1184,6 +1223,7 @@
 				E24B91892C771929009091B2 /* APIBaseResponse.swift in Sources */,
 				E24E37442CA54CF000F6AD2D /* PhoneNumberVerificationRequest.swift in Sources */,
 				E20FA2642C6F911F00B7CBC6 /* VerifyOTPViewModel.swift in Sources */,
+				E210372E2CB55F4E00F3C76C /* PayToMerchantViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1316,7 +1356,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppO/AppO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202410.07.1715;
+				CURRENT_PROJECT_VERSION = 202410.08.1815;
 				DEVELOPMENT_ASSET_PATHS = "\"AppO/Preview Content\"";
 				DEVELOPMENT_TEAM = WY6HWY8U3Y;
 				ENABLE_PREVIEWS = YES;
@@ -1357,7 +1397,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppO/AppO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202410.07.1715;
+				CURRENT_PROJECT_VERSION = 202410.08.1815;
 				DEVELOPMENT_ASSET_PATHS = "\"AppO/Preview Content\"";
 				DEVELOPMENT_TEAM = WY6HWY8U3Y;
 				ENABLE_PREVIEWS = YES;

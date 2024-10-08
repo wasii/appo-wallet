@@ -40,6 +40,9 @@ final class HomeNavigator: ObservableObject {
         
         //Card List
         case cardList(viewModel: CardListViewModel)
+        
+        //Services
+        case scanQRCode(viewModel: ScanViewModel)
     }
     
     @Published var navPath = NavigationPath()
@@ -112,6 +115,11 @@ extension HomeNavigator {
         //Card List
         case .cardList(let viewModel):
             CardListView(viewModel: viewModel)
+            
+        //Services
+        case .scanQRCode(let viewModel):
+            ScanView(viewModel: viewModel)
         }
+        
     }
 }

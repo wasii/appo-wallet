@@ -121,6 +121,9 @@ struct CardToCardView: View {
                 viewModel.selected_card = card
             }
         }
+        .onDisappear {
+            AppDefaults.temp_card = nil
+        }
     }
     
     func showTransactionPinView() {
@@ -228,7 +231,7 @@ extension CardToCardView {
                     .font(AppFonts.bodyTwentyTwoBold)
                 TextField("", text: self.$amount)
                     .onChange(of: amount) { newValue in
-                        formatAmountInput(newValue)
+                        amount = Formatters.formatAmountInput(newValue)
                         print(newValue)
                     }
                     .placeholder(when: self.amount.isEmpty) {
@@ -250,14 +253,6 @@ extension CardToCardView {
         .overlay {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.appBlue, lineWidth: 1)
-        }
-    }
-    
-    private func formatAmountInput(_ input: String) {
-        let filtered = input.filter { $0.isNumber }
-        if let number = Double(filtered) {
-            let formattedNumber = number / 100
-            amount = String(format: "%.2f", formattedNumber)
         }
     }
 }

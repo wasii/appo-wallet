@@ -35,4 +35,13 @@ class Formatters {
         
         return "\(month)/\(year)"
     }
+    
+    static func formatAmountInput(_ input: String) -> String {
+        let filtered = input.filter { $0.isNumber }
+        if let number = Double(filtered) {
+            let formattedNumber = number / 100
+            return String(format: "%.2f", formattedNumber)
+        }
+        return ""
+    }
 }

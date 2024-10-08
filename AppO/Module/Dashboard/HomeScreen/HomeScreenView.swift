@@ -319,6 +319,9 @@ extension HomeScreenView {
                     viewModel.selected_card = firstCard
                     AppDefaults.selected_card = firstCard
                 }
+                if let scanCode = AppDefaults.temp_scan_code {
+//                    homeNavigator.
+                }
             }
         }
     }
@@ -356,6 +359,10 @@ extension HomeScreenView {
                     Text("Scan")
                         .foregroundColor(.appBlue)
                         .font(.headline)
+                }
+                .onTapGesture {
+//                    homeNavigator.presentFullScreen(destination: .scanQRCode(viewModel: .init()))
+                    homeNavigator.navigate(to: .scanQRCode(viewModel: .init()))
                 }
                 VStack {
                     Image("c-2-c-icon")

@@ -24,6 +24,7 @@ struct AppOApp: App {
         AppDefaults.dmk_kcv = nil
         AppDefaults.user = nil
         AppDefaults.newUser = nil
+        AppDefaults.temp_scan_code = nil
     }
     
     var body: some Scene {
