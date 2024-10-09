@@ -17,6 +17,8 @@ struct RegistrationView: View {
     @State private var middleName: String = ""
     @State private var lastName: String = ""
     @State private var nameOnCard: String = ""
+    @State private var cardBin: String = ""
+    @State private var cardProductId: String = ""
     @State private var idNumber: String = ""
     @State private var gender: String = ""
     @State private var dateOfBirth: String = ""
@@ -28,6 +30,7 @@ struct RegistrationView: View {
     @State private var address: String = ""
     
     @State private var isSelectIDPickerVisible: Bool = false
+    @State private var isSelectWalletPickerVisible: Bool = false
     @State private var isDatePickerVisible: Bool = false
     @State private var isGenderPickerVisible: Bool = false
     @State private var isMaritalStatusPickerVisible: Bool = false
@@ -39,6 +42,10 @@ struct RegistrationView: View {
     @State private var image: Image? = nil
     private func showSelectIDType() {
         isSelectIDPickerVisible.toggle()
+    }
+    
+    private func showSelectWalletType() {
+        isSelectWalletPickerVisible.toggle()
     }
     
     private func showDatePicker() {
@@ -75,6 +82,10 @@ struct RegistrationView: View {
                     middleNameView
                     lastNameView
                     walletTypeView
+                        .onTapGesture {
+                            hideKeyboard()
+                            showSelectWalletType()
+                        }
                     nameOnTheCardView
                     idNumberView
                     dobView
@@ -115,7 +126,9 @@ struct RegistrationView: View {
                                         address: address,
                                         dob: dateOfBirth,
                                         nationalId: idNumber,
-                                        maritalStatus: maritalStatusPass
+                                        maritalStatus: maritalStatusPass,
+                                        bin: cardBin,
+                                        subProductId: cardProductId
                                     )
                                     if isUserRegistered {
                                         _ = try await viewModel.validateCustomer(
@@ -135,10 +148,10 @@ struct RegistrationView: View {
                             }
                         }
                     } label: {
-                        Text("Next")
+                        Text("NEXT")
                             .customButtonStyle()
-                            .disabled(idType.isEmpty || firstName.isEmpty || nameOnCard.isEmpty || gender.isEmpty || dateOfBirth.isEmpty || maritalStatus.isEmpty || email.isEmpty || address.isEmpty)
-                            .opacity((idType.isEmpty || firstName.isEmpty || nameOnCard.isEmpty || gender.isEmpty || dateOfBirth.isEmpty || maritalStatus.isEmpty || email.isEmpty || address.isEmpty) ? 0.7 : 1.0)
+                            .disabled(idType.isEmpty || firstName.isEmpty || nameOnCard.isEmpty || gender.isEmpty || dateOfBirth.isEmpty || maritalStatus.isEmpty || email.isEmpty || address.isEmpty || cardBin.isEmpty || cardProductId.isEmpty)
+                            .opacity((idType.isEmpty || firstName.isEmpty || nameOnCard.isEmpty || gender.isEmpty || dateOfBirth.isEmpty || maritalStatus.isEmpty || email.isEmpty || address.isEmpty || cardBin.isEmpty || cardProductId.isEmpty) ? 0.7 : 1.0)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -157,6 +170,29 @@ struct RegistrationView: View {
                             .shadow(radius: 5)
                             .frame(width: geometry.size.width, height: 270)
                             .padding(.bottom, geometry.safeAreaInsets.bottom)
+                        Spacer()
+                    }
+                    .background(Color.black.opacity(0.7).edgesIgnoringSafeArea(.all))
+                }
+                .zIndex(1.0)
+            }
+            
+            if isSelectWalletPickerVisible {
+                GeometryReader { geometry in
+                    VStack {
+                        Spacer()
+                        SelectWalletTypeView(
+                            isSelectWalletTypeVisible: $isSelectWalletPickerVisible,
+                            cards: viewModel.card_list ?? [],
+                            selected_bin: $cardBin,
+                            subproductId: $cardProductId
+                        )
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                        .padding()
+                        .frame(width: geometry.size.width, height: 320)
+                        .padding(.bottom, geometry.safeAreaInsets.bottom)
                         Spacer()
                     }
                     .background(Color.black.opacity(0.7).edgesIgnoringSafeArea(.all))
@@ -256,6 +292,9 @@ struct RegistrationView: View {
                 }
                 self.showingBlinkIdViewController = false
             }
+        }
+        .onAppear {
+            viewModel.getCardList()
         }
     }
 }
@@ -875,6 +914,72 @@ struct SelectIDTypeView: View {
                     
                     Button{
                         isSelectIDTypeVisible = false
+                    } label: {
+                        Text("Close")
+                            .font(AppFonts.bodySixteenBold)
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.appBlue)
+                            )
+                    }
+                }
+            }
+            .padding(.horizontal, 20)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.appBlueForeground)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.appBlue, lineWidth: 1)
+        )
+    }
+}
+
+struct SelectWalletTypeView: View {
+    @Binding var isSelectWalletTypeVisible: Bool
+    var cards: [GetCardListResponse]
+    @State private var bin: String = ""
+    @State private var selectedProductId: String = ""
+    @Binding var selected_bin: String
+    @Binding var subproductId: String
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Please Select Wallet Type")
+                .font(AppFonts.bodyTwentyTwoBold)
+            
+            ForEach(cards, id: \.self) { card in
+                RadioButtonField(id: card.bin ?? "", label: card.subproductName ?? "", isSelected: bin == card.bin ?? "", imageName: card.imageName ?? "") {
+                    bin = card.bin ?? ""
+                    selectedProductId = card.subproductId ?? ""
+                }
+            }
+            Spacer()
+            VStack(alignment: .trailing) {
+                HStack(spacing: 20) {
+                    Button{
+                        selected_bin = bin
+                        subproductId = selectedProductId
+                        isSelectWalletTypeVisible = false
+                    } label: {
+                        Text("Confirm")
+                            .font(AppFonts.bodySixteenBold)
+                            .foregroundStyle(.white)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.appBlue)
+                            )
+                    }
+                    
+                    Button{
+                        isSelectWalletTypeVisible = false
                     } label: {
                         Text("Close")
                             .font(AppFonts.bodySixteenBold)

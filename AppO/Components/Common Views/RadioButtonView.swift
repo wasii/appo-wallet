@@ -13,6 +13,7 @@ struct RadioButtonField: View {
     var isSelected: Bool
     var labelColor: Color = .appBlue
     var labelFont:  Font = AppFonts.regularTwentyTwo
+    var imageName: String = ""
     var action: () -> Void
     
     
@@ -29,6 +30,14 @@ struct RadioButtonField: View {
                         .foregroundColor(labelColor)
                         .font(labelFont)
                         .fontWeight(.semibold)
+                    if !imageName.isEmpty {
+                        Spacer()
+                        Image(imageName)
+                            .resizable()
+                            .frame(width: 60)
+                            .frame(height: 30)
+                            .scaledToFit()
+                    }
                 }
             }
             .padding(.vertical, 5)

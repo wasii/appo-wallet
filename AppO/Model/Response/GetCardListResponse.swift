@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: - GetCardListResponse
-struct GetCardListResponse: Codable {
+struct GetCardListResponse: Codable, Hashable {
     let authAction: String?
     let authBy: String?
     let authDate: String?
@@ -45,6 +45,7 @@ struct GetCardListResponse: Codable {
     let updatedBy: String?
     let updatedDate: String?
     let updatedTime: String?
+    var imageName: String?
 
     enum CodingKeys: String, CodingKey {
         case authAction = "auth_action"
@@ -82,5 +83,6 @@ struct GetCardListResponse: Codable {
         case updatedBy = "updated_by"
         case updatedDate = "updated_date"
         case updatedTime = "updated_time"
+        case imageName
     }
 }

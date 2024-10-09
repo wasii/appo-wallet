@@ -28,12 +28,16 @@ class RegistrationViewModel: ObservableObject {
     @Published var apiError: String?
     @Published var isPresentAlert: Bool = false
     
+    var card_list: [GetCardListResponse]?
+    
     private var rInteractor: RegistrationInteractorType
     private var dInteractor: DeviceBindingInteractorType
+    private var sInteractor: SettingsInteractorType
     
-    init(rInteractor: RegistrationInteractorType = RegistrationInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(), countryFlag: String, countryCode: String, phoneNumber: String, countryName: String) {
+    init(rInteractor: RegistrationInteractorType = RegistrationInteractor(), dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor(), sInteractor: SettingsInteractorType = SettingsInteractor(), countryFlag: String, countryCode: String, phoneNumber: String, countryName: String) {
         self.rInteractor = rInteractor
         self.dInteractor = dInteractor
+        self.sInteractor = sInteractor
         self.countryFlag = countryFlag
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber
@@ -42,7 +46,7 @@ class RegistrationViewModel: ObservableObject {
 }
 
 extension RegistrationViewModel {
-    func getUserRegistered(custName: String, mobile: String, nameOnCard: String, email: String, address: String, dob: String, nationalId: String, maritalStatus: String) async throws -> Bool {        let request: RegisterRequest = .init(
+    func getUserRegistered(custName: String, mobile: String, nameOnCard: String, email: String, address: String, dob: String, nationalId: String, maritalStatus: String, bin: String, subProductId: String) async throws -> Bool {        let request: RegisterRequest = .init(
             reqHeaderInfo: .init(),
             deviceInfo: .init(
                 name: "iPhone 16 Pro Max",
@@ -64,8 +68,8 @@ extension RegistrationViewModel {
                 dob: dob,
                 nationalID: nationalId,
                 maritalStatus: maritalStatus,
-                bin: "636782",
-                subproductID: "002",
+                bin: bin,
+                subproductID: subProductId,
                 deviceNo: "12345"
             )
         )
@@ -144,6 +148,53 @@ extension RegistrationViewModel {
                 }
                 .store(in: &cancellables)
         }
+    }
+    
+    func getCardList() {
+        self.showLoader = true
+        let request: GetCardListRequest = .init(
+            reqHeaderInfo: .init(),
+            requestKey: .init(
+                requestType: "mobile_app_card_product_type"
+            ),
+            requestData: .init(
+                instId: "AP"
+            )
+        )
+        sInteractor.get_card_list(request: request)
+            .sink { [weak self] completion in
+                self?.showLoader = false
+                guard case let .failure(error) = completion else { return }
+            } receiveValue: { [weak self] response in
+                self?.showLoader = false
+                if response.respInfo?.respStatus == 200 {
+                    self?.card_list = response.respInfo?.respData ?? nil
+                    self?.addImageName()
+                } else {
+                    print("ERROR")
+                }
+            }
+            .store(in: &cancellables)
+        
+    }
+    
+    private func addImageName() {
+        guard var cardList = card_list else { return }
+
+        for i in 0..<cardList.count {
+            switch cardList[i].subproductName {
+            case "APPOPAY WALLET":
+                cardList[i].imageName = "app_logo"
+            case "UPI WALLET":
+                cardList[i].imageName = "unionpay-highresolution"
+            case "VISA WALLET":
+                cardList[i].imageName = "visa"
+            default:
+                break
+            }
+        }
+        
+        self.card_list = cardList
     }
 }
 
