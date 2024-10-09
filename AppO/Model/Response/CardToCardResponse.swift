@@ -134,8 +134,6 @@ struct TerminalInfo: Codable {
 // Store Information
 struct StoreInfo: Codable {}
 
-// Additional Information
-struct AdditionalInfo: Codable {}
 
 // Transaction Information
 struct TransactionInfo: Codable {

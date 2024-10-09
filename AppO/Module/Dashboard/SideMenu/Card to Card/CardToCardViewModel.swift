@@ -30,6 +30,7 @@ class CardToCardViewModel: ObservableObject {
     @Published var fetched_user: CustomerEnquiryResponseData? = nil
     
     @Published var isShowTransactionPin: Bool = false
+    @Published var isShowTransactionSuccess: Bool = false
     @Published var response: CardToCardResponse?
     
     var amount: String = "000000000000"

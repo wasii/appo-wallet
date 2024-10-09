@@ -37,6 +37,9 @@ class SetupMobilePinViewModel: ObservableObject {
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber
         self.countryName = countryName
+        
+        
+        print(phoneNumber)
     }
 }
 

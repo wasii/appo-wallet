@@ -49,6 +49,29 @@ struct CardToCardView: View {
                 .zIndex(1.0)
             }
             
+            if viewModel.isShowTransactionSuccess {
+                GeometryReader { geometry in
+                    VStack {
+                        Spacer()
+                        TransactionSuccessPopupView(paidTo: "MOHAMED HASAN ALHARAZIcvzx") {
+                            viewModel.isShowTransactionSuccess = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                homeNavigator.navigateToRoot()
+                            }
+                        }
+                            .background(.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                            .padding()
+                            .frame(width: geometry.size.width, height: 370)
+                            .padding(.bottom, geometry.safeAreaInsets.bottom)
+                        Spacer()
+                    }
+                    .background(Color.black.opacity(0.55).edgesIgnoringSafeArea(.all))
+                }
+                .zIndex(1.0)
+            }
+            
             VStack(spacing: 0) {
                 NavigationBarView(title: "Card to Card Transfer")
                 ScrollView {
@@ -130,6 +153,10 @@ struct CardToCardView: View {
         viewModel.isShowTransactionPin = true
     }
     
+    func showSuccessPopupView() {
+        viewModel.isShowTransactionSuccess = true
+    }
+    
     private func handleOperations() {
         Task {
             do {
@@ -138,7 +165,7 @@ struct CardToCardView: View {
                         viewModel.amount = self.amount
                         if try await viewModel.tranfer_card_to_card() {
                             viewModel.showLoader = false
-                            //POPUP SHould be shown
+                            showSuccessPopupView()
                         } else {
                             viewModel.showLoader = false
                         }

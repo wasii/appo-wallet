@@ -14,11 +14,11 @@ extension View {
         _ error: String?,
         isPresenting: Binding<Bool>,
         onTap: (() -> ())? = nil) -> some View {
-        
-        self.modifier(
-            AlertPresentationModifier(isPresented: isPresenting, title: title, message: error ?? "", dismissButtonTitle: "Dismiss", action: onTap)
-        )
-    }
+            
+            self.modifier(
+                AlertPresentationModifier(isPresented: isPresenting, title: title, message: error ?? "", dismissButtonTitle: "Dismiss", action: onTap)
+            )
+        }
     func placeholder<Content: View>(
         when shouldShow: Bool,
         alignment: Alignment = .leading,
@@ -79,11 +79,20 @@ extension View {
     }
 }
 
+extension UIView {
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}
+
 
 struct RoundedCorner: Shape {
     var radius: CGFloat
     var corners: UIRectCorner
-
+    
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect,
                                 byRoundingCorners: corners,
@@ -99,7 +108,7 @@ struct AlertPresentationModifier: ViewModifier {
     let message: String
     let dismissButtonTitle: String
     let action: (() -> Void)?
-
+    
     func body(content: Content) -> some View {
         content.alert(isPresented: $isPresented) {
             Alert(title: Text(title), message: Text(message), dismissButton: .default(Text(dismissButtonTitle)) {

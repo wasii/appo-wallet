@@ -37,6 +37,7 @@ struct ManageAccountView: View {
                             CardView(card: card)
                                 .onTapGesture {
                                     lightHaptic()
+                                    self.card = card
                                     showTransactionPinView()
                                 }
                                 .onLongPressGesture(minimumDuration: 1.0, pressing: { bool in print(bool)}, perform: {
@@ -71,16 +72,26 @@ struct ManageAccountView: View {
                     VStack {
                         Spacer()
                         TransactionPinPopUpView(isShowTransactionPin: $viewModel.isShowTransactionPin) {
-                            viewModel.showLoader = true
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                                viewModel.showLoader = false
-                                if AppDefaults.temp_pin == AppDefaults.newPIN {
-                                    homeNavigator.navigate(to: .transactionsDetails(viewModel: .init()))
-                                } else {
-                                    viewModel.apiError = "PIN Not Matched"
-                                    viewModel.isPresentAlert = true
+                            Task {
+                                viewModel.showLoader = true
+                                do {
+                                    if try await viewModel.getDataEncryptionKey() {
+                                        if try await viewModel.getCardNumber(cardRefNum: self.card?.cardRefNum ?? "") {
+                                            if try await viewModel.get_mini_statement() {
+                                                viewModel.showLoader = false
+                                                
+                                            } else {
+                                                viewModel.showLoader = false
+                                            }
+                                        } else {
+                                            viewModel.showLoader = false
+                                        }
+                                    } else {
+                                        viewModel.showLoader = false
+                                    }
                                 }
                             }
+                            
                         }
                     }
                     .transition(.move(edge: .bottom))

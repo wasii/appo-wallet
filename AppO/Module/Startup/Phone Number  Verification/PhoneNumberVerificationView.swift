@@ -27,7 +27,7 @@ struct PhoneNumberVerificationView: View {
     @FocusState private var keyIsFocused: Bool
     
     let counrties: [PhoneNumberModel] = Bundle.main.decode("CountryNumbers.json")
-    
+    @State var cleanedNumber: String = ""
     var body: some View {
         ZStack(alignment: .top) {
             GeometryReader { geo in
@@ -220,14 +220,24 @@ struct PhoneNumberVerificationView: View {
                 lightHaptic()
                 hideKeyboard()
                 if viewModel.isBindingNewDevice {
-                    viewModel.rebindDevice(mobileNo: self.mobPhoneNumber)
+                    cleanedNumber = self.mobPhoneNumber
+                        .replacingOccurrences(of: "(", with: "")
+                        .replacingOccurrences(of: ")", with: "")
+                        .replacingOccurrences(of: " ", with: "")
+                        .replacingOccurrences(of: "-", with: "")
+                    viewModel.rebindDevice(mobileNo: self.cleanedNumber)
                 } else {
                     Task {
                         do {
                             viewModel.showLoader = true
-                            let status = try await viewModel.verifyPhoneNumber(mobPhoneNumber: self.mobPhoneNumber)
+                            cleanedNumber = self.mobPhoneNumber
+                                .replacingOccurrences(of: "(", with: "")
+                                .replacingOccurrences(of: ")", with: "")
+                                .replacingOccurrences(of: " ", with: "")
+                                .replacingOccurrences(of: "-", with: "")
+                            let status = try await viewModel.verifyPhoneNumber(mobPhoneNumber: self.cleanedNumber)
                             if status == "Continue" {
-                                try await viewModel.sendOTP(mobPhoneNumber: self.mobPhoneNumber, phoneCode: self.countryCode)
+                                try await viewModel.sendOTP(mobPhoneNumber: self.cleanedNumber, phoneCode: self.countryCode)
                             }
                         }
                     }
@@ -250,7 +260,7 @@ struct PhoneNumberVerificationView: View {
         .onReceive(viewModel.coordinatorState) { state in
             switch (state.state, state.transferable) {
             case (.confirm, _):
-                navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: "\(self.mobPhoneNumber)", countryFlag: "\(self.countryFlag)", countryName: "\(self.countryName)")))
+                navigator.navigate(to: .verifyOTP(viewModel: .init(countryCode: self.countryCode, phoneNumber: cleanedNumber, countryFlag: "\(self.countryFlag)", countryName: "\(self.countryName)")))
                 
             case (.rebinded, _):
                 navigator.navigateBack(to: 0)
@@ -274,24 +284,33 @@ struct PhoneNumberVerificationView: View {
     
     func applyPatternOnNumbers(_ stringvar: inout String, pattern: String, replacementCharacter: Character) {
         var pureNumber = stringvar.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        for index in 0 ..< pattern.count {
-            guard index < pureNumber.count else {
-                stringvar = pureNumber
-                return
-            }
-            
-            let patternIndex = pattern.index(pattern.startIndex, offsetBy: index)
+        var result = ""
+        var patternIndex = pattern.startIndex
+        var numberIndex = pureNumber.startIndex
+        
+        while patternIndex < pattern.endIndex && numberIndex < pureNumber.endIndex {
             let patternCharacter = pattern[patternIndex]
             
             if patternCharacter == replacementCharacter {
-                let numberIndex = pureNumber.index(pureNumber.startIndex, offsetBy: index)
-                let numberCharacter = pureNumber[numberIndex]
-                stringvar.insert(numberCharacter, at: numberIndex)
-            } else if patternCharacter != " " {
-                pureNumber.insert(patternCharacter, at: pureNumber.index(pureNumber.startIndex, offsetBy: index))
+                // If it's a replacement character, add the next number
+                result.append(pureNumber[numberIndex])
+                numberIndex = pureNumber.index(after: numberIndex)
+            } else {
+                // If it's not a replacement character, add the pattern character (space or other)
+                result.append(patternCharacter)
             }
+            
+            patternIndex = pattern.index(after: patternIndex)
         }
-        stringvar = pureNumber
+        
+        // Append any remaining numbers if the pattern ends but there are still numbers left
+        while numberIndex < pureNumber.endIndex {
+            result.append(pureNumber[numberIndex])
+            numberIndex = pureNumber.index(after: numberIndex)
+        }
+        
+        // Update the string variable
+        stringvar = result
     }
 }
 

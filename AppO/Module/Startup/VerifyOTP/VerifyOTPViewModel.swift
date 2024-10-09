@@ -38,6 +38,8 @@ class VerifyOTPViewModel: ObservableObject {
         self.phoneNumber = phoneNumber
         self.countryFlag = countryFlag
         self.countryName = countryName
+        
+        print(phoneNumber)
     }
 }
 

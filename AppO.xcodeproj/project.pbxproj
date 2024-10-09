@@ -141,6 +141,7 @@
 		E272982F2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E272982C2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf */; };
 		E27298302C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E272982D2C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf */; };
 		E27298352C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = E27298342C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf */; };
+		E284D2F72CB6B3430088003D /* CountryNumbers.json in Resources */ = {isa = PBXBuildFile; fileRef = E284D2F62CB6B3430088003D /* CountryNumbers.json */; };
 		E2850B282C92CADC009A77B9 /* WithdrawLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2850B272C92CADC009A77B9 /* WithdrawLimitView.swift */; };
 		E2875F4C2CAECACF0074F179 /* UnMaskedCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2875F4B2CAECAC60074F179 /* UnMaskedCardViewModel.swift */; };
 		E2875F4E2CAECAD90074F179 /* UnMaskedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2875F4D2CAECAD90074F179 /* UnMaskedCardView.swift */; };
@@ -185,7 +186,6 @@
 		E2D140242C6E49D70064EE6E /* AppLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140232C6E49D70064EE6E /* AppLogoView.swift */; };
 		E2D1402A2C6E4A390064EE6E /* EnterMPINView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140292C6E4A390064EE6E /* EnterMPINView.swift */; };
 		E2D140312C6F5BCB0064EE6E /* PhoneNumberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140302C6F5BCB0064EE6E /* PhoneNumberModel.swift */; };
-		E2D140332C6F5C060064EE6E /* CountryNumbers.json in Resources */ = {isa = PBXBuildFile; fileRef = E2D140322C6F5C060064EE6E /* CountryNumbers.json */; };
 		E2D140352C6F5C2D0064EE6E /* Decoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */; };
 		E2D140372C6F5D1F0064EE6E /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D140362C6F5D1F0064EE6E /* View+Extension.swift */; };
 		E2D329022CAD96C9005F595D /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D329012CAD96C3005F595D /* SettingsInteractor.swift */; };
@@ -316,6 +316,7 @@
 		E272982C2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Bold.otf"; sourceTree = "<group>"; };
 		E272982D2C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Italic.otf"; sourceTree = "<group>"; };
 		E27298342C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GlacialIndifference-Regular.otf"; sourceTree = "<group>"; };
+		E284D2F62CB6B3430088003D /* CountryNumbers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryNumbers.json; sourceTree = "<group>"; };
 		E2850B272C92CADC009A77B9 /* WithdrawLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawLimitView.swift; sourceTree = "<group>"; };
 		E2875F4B2CAECAC60074F179 /* UnMaskedCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnMaskedCardViewModel.swift; sourceTree = "<group>"; };
 		E2875F4D2CAECAD90074F179 /* UnMaskedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnMaskedCardView.swift; sourceTree = "<group>"; };
@@ -361,7 +362,6 @@
 		E2D140232C6E49D70064EE6E /* AppLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogoView.swift; sourceTree = "<group>"; };
 		E2D140292C6E4A390064EE6E /* EnterMPINView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterMPINView.swift; sourceTree = "<group>"; };
 		E2D140302C6F5BCB0064EE6E /* PhoneNumberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberModel.swift; sourceTree = "<group>"; };
-		E2D140322C6F5C060064EE6E /* CountryNumbers.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryNumbers.json; sourceTree = "<group>"; };
 		E2D140342C6F5C2D0064EE6E /* Decoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decoder+Extension.swift"; sourceTree = "<group>"; };
 		E2D140362C6F5D1F0064EE6E /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		E2D329012CAD96C3005F595D /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
@@ -667,6 +667,7 @@
 		E25B4B272C6DF4E5000745F9 /* AppO */ = {
 			isa = PBXGroup;
 			children = (
+				E284D2F62CB6B3430088003D /* CountryNumbers.json */,
 				E22318402CABB37F00F59D72 /* AppO.entitlements */,
 				E223181E2CABAFD700F59D72 /* GoogleService-Info.plist */,
 				E2EAB8602C786C6400EACFD7 /* Info.plist */,
@@ -679,7 +680,6 @@
 				E25B4B282C6DF4E5000745F9 /* AppOApp.swift */,
 				E25B4B2C2C6DF4E7000745F9 /* Assets.xcassets */,
 				E25B4B2E2C6DF4E7000745F9 /* Preview Content */,
-				E2D140322C6F5C060064EE6E /* CountryNumbers.json */,
 			);
 			path = AppO;
 			sourceTree = "<group>";
@@ -1061,8 +1061,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E272982F2C8B2B1E00B41FF8 /* GlacialIndifference-Bold.otf in Resources */,
-				E2D140332C6F5C060064EE6E /* CountryNumbers.json in Resources */,
 				E27298302C8B2B1E00B41FF8 /* GlacialIndifference-Italic.otf in Resources */,
+				E284D2F72CB6B3430088003D /* CountryNumbers.json in Resources */,
 				E25B4B302C6DF4E7000745F9 /* Preview Assets.xcassets in Resources */,
 				E27298352C8B2B4800B41FF8 /* GlacialIndifference-Regular.otf in Resources */,
 				E25B4B2D2C6DF4E7000745F9 /* Assets.xcassets in Resources */,
