@@ -30,6 +30,7 @@ class CardToCardViewModel: ObservableObject {
     @Published var fetched_user: CustomerEnquiryResponseData? = nil
     
     @Published var isShowTransactionPin: Bool = false
+    @Published var response: CardToCardResponse?
     
     var amount: String = "000000000000"
     @Published var cardRefNum: String = ""
@@ -190,6 +191,7 @@ extension CardToCardViewModel {
                     continuation.resume(throwing: error)
                 } receiveValue: { [weak self] response in
                     if response.respInfo?.respStatus == 200 {
+                        self?.response = response.respInfo?.respData
                         continuation.resume(returning: (true))
                     } else {
                         self?.isPresentAlert = true

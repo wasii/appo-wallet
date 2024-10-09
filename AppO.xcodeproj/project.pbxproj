@@ -198,6 +198,8 @@
 		E2E672202CAD58B70021D7D7 /* TransactionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E6721F2CAD58AC0021D7D7 /* TransactionsInteractor.swift */; };
 		E2E672222CAD58CD0021D7D7 /* TransactionsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E672212CAD58C90021D7D7 /* TransactionsAPI.swift */; };
 		E2E672242CAD5F010021D7D7 /* CardToCardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E672232CAD5EFD0021D7D7 /* CardToCardResponse.swift */; };
+		E2EA48722CB65C3C005065E4 /* TransactionSuccessPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EA48712CB65C3C005065E4 /* TransactionSuccessPopupViewModel.swift */; };
+		E2EA48742CB65C46005065E4 /* TransactionSuccessPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EA48732CB65C46005065E4 /* TransactionSuccessPopupView.swift */; };
 		E2EFF89D2CA3ED0A00D8D4BE /* DataMasterKeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF89C2CA3ECFF00D8D4BE /* DataMasterKeyRequest.swift */; };
 		E2EFF89F2CA3EE2700D8D4BE /* DataMasterKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF89E2CA3EE2100D8D4BE /* DataMasterKeyResponse.swift */; };
 		E2EFF8A12CA407F000D8D4BE /* DataEncryptionKeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EFF8A02CA407F000D8D4BE /* DataEncryptionKeyRequest.swift */; };
@@ -372,6 +374,8 @@
 		E2E6721F2CAD58AC0021D7D7 /* TransactionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsInteractor.swift; sourceTree = "<group>"; };
 		E2E672212CAD58C90021D7D7 /* TransactionsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAPI.swift; sourceTree = "<group>"; };
 		E2E672232CAD5EFD0021D7D7 /* CardToCardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToCardResponse.swift; sourceTree = "<group>"; };
+		E2EA48712CB65C3C005065E4 /* TransactionSuccessPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSuccessPopupViewModel.swift; sourceTree = "<group>"; };
+		E2EA48732CB65C46005065E4 /* TransactionSuccessPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSuccessPopupView.swift; sourceTree = "<group>"; };
 		E2EAB8602C786C6400EACFD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E2EFF89C2CA3ECFF00D8D4BE /* DataMasterKeyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMasterKeyRequest.swift; sourceTree = "<group>"; };
 		E2EFF89E2CA3EE2100D8D4BE /* DataMasterKeyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMasterKeyResponse.swift; sourceTree = "<group>"; };
@@ -765,6 +769,7 @@
 		E25B903B2C7CE15100A6F871 /* Card to Card */ = {
 			isa = PBXGroup;
 			children = (
+				E2EA48702CB65C12005065E4 /* Components */,
 				E25B903C2C7CE16000A6F871 /* CardToCardViewModel.swift */,
 				E25B903E2C7CE17500A6F871 /* CardToCardView.swift */,
 			);
@@ -983,6 +988,15 @@
 			path = "Phone Number  Verification";
 			sourceTree = "<group>";
 		};
+		E2EA48702CB65C12005065E4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E2EA48712CB65C3C005065E4 /* TransactionSuccessPopupViewModel.swift */,
+				E2EA48732CB65C46005065E4 /* TransactionSuccessPopupView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1063,6 +1077,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2EA48742CB65C46005065E4 /* TransactionSuccessPopupView.swift in Sources */,
 				E20913EF2CA688DF00A3552A /* PINAPIs.swift in Sources */,
 				E20913F32CA6937500A3552A /* SetCardPINResponse.swift in Sources */,
 				E24B91862C771929009091B2 /* NetworkManagerProviders.swift in Sources */,
@@ -1201,6 +1216,7 @@
 				E24E37462CA54CF800F6AD2D /* PhoneNumberVerificationResponse.swift in Sources */,
 				E2A5C85E2CA2E01100F40B18 /* VerifyPINRequest.swift in Sources */,
 				E2875F4E2CAECAD90074F179 /* UnMaskedCardView.swift in Sources */,
+				E2EA48722CB65C3C005065E4 /* TransactionSuccessPopupViewModel.swift in Sources */,
 				E291414D2C736DB100D054A1 /* OTPInputView.swift in Sources */,
 				E22658862C7CAA3600DF8506 /* ManageAccountViewModel.swift in Sources */,
 				E23964132C78CF8A00AD4E6F /* Coordinator.swift in Sources */,

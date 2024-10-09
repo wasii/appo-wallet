@@ -361,7 +361,6 @@ extension HomeScreenView {
                         .font(.headline)
                 }
                 .onTapGesture {
-//                    homeNavigator.presentFullScreen(destination: .scanQRCode(viewModel: .init()))
                     homeNavigator.navigate(to: .scanQRCode(viewModel: .init()))
                 }
                 VStack {
@@ -373,6 +372,9 @@ extension HomeScreenView {
                     Text("C-2-C")
                         .foregroundColor(.appBlue)
                         .font(.headline)
+                }
+                .onTapGesture {
+                    homeNavigator.navigate(to: .cardToCard(viewModel: .init()))
                 }
             }
         }

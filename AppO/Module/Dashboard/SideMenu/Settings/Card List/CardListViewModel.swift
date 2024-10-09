@@ -80,12 +80,15 @@ extension CardListViewModel {
         let subproductName = customer_enquiry?.cardList?.first?.subproductName
         switch subproductName {
         case "APPOPAY WALLET":
+            populateCards(cardType: .appo)
             self.currentWallet = .appo
             selected_card = customer_enquiry?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }.first
         case "UPI WALLET":
+            populateCards(cardType: .unionpay)
             self.currentWallet = .unionpay
             selected_card = customer_enquiry?.cardList?.filter { $0.subproductName == "UPI WALLET" }.first
         case "VISA WALLET":
+            populateCards(cardType: .visa)
             self.currentWallet = .visa
             selected_card = customer_enquiry?.cardList?.filter { $0.subproductName == "VISA WALLET" }.first
         default:
@@ -156,6 +159,5 @@ extension CardListViewModel {
         }
 
         self.customer_enquiry?.cardList = cardList
-        populateCards(cardType: .appo)
     }
 }
