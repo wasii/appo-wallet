@@ -119,17 +119,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8F96B647-B5B0-4590-BA40-6344B8265BB8"
-            shouldBeEnabled = "No"
+            uuid = "C36150EF-A86C-4C4B-866F-01D5E7F0CA4D"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppO/Module/Dashboard/SideMenu/Manage Account/ManageAccountViewModel.swift"
+            filePath = "AppO/Module/Dashboard/SideMenu/Manage Account/ManageAccountView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "get_mini_statement()"
-            landmarkType = "7">
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

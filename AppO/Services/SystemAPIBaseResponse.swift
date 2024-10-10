@@ -51,16 +51,18 @@ struct ChangePINBaseResponse<ResponseData: Codable>: Codable {
     }
 }
 struct ChangePINResponse<ResponseData: Codable>: Codable {
-    let rejectCode: String
-    let rejectShortDesc: String
-    let respCode: String
-    let respData: ResponseData
-    let respDesc: String
-    let respStatus: Int
-    let txnFlag: Bool
+    let rejectCode: String?
+    let rejectLongDesc: String?
+    let rejectShortDesc: String?
+    let respCode: String?
+    let respData: ResponseData?
+    let respDesc: String?
+    let respStatus: Int?
+    let txnFlag: Bool?
     
     enum CodingKeys: String, CodingKey {
         case rejectCode = "reject_code"
+        case rejectLongDesc = "reject_long_desc"
         case rejectShortDesc = "reject_short_desc"
         case respCode = "resp_code"
         case respData = "resp_data"

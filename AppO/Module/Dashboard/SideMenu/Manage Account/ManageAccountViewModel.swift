@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 enum ManageAccountViewModelState {
-    case showTransactions
+    case showTransactions(GetMiniStatementResponse?)
 }
 class ManageAccountViewModel: ObservableObject {
     let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<ManageAccountViewModelState>, Never>()
@@ -72,7 +72,7 @@ extension ManageAccountViewModel {
             let contains = AppDefaults.user?.cardList?.contains { $0.subproductName == "APPOPAY WALLET" } ?? false
             if contains {
                 populateCards(cardType: cardType)
-                selected_card = cards?.filter { $0.subproductName == "APPOPAY WALLET" }.first
+                selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }.first
             }
             return contains
         case .unionpay:
@@ -97,10 +97,13 @@ extension ManageAccountViewModel {
         switch subproductName {
         case "APPOPAY WALLET":
             self.currentWallet = .appo
+            selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }.first
         case "UPI WALLET":
             self.currentWallet = .unionpay
+            selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "UPI WALLET" }.first
         case "VISA WALLET":
             self.currentWallet = .visa
+            selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "VISA WALLET" }.first
         default:
             break
         }
@@ -127,7 +130,7 @@ extension ManageAccountViewModel {
                     self?.showLoader = false
                     guard case let .failure(error) = completion else { return }
                     continuation.resume(throwing: error)
-                } receiveValue: { [weak self] response in
+                } receiveValue: { response in
                     if response.respInfo?.respStatus == 200 {
                         AppDefaults.dek = response.respInfo?.respData?.dek
                         AppDefaults.dek_kcv = response.respInfo?.respData?.dekKcv
@@ -187,7 +190,7 @@ extension ManageAccountViewModel {
                     fld14: "2708",
                     fld18: "0601",
                     fld19: "356",
-                    fld2: AppDefaults.temp_cardnumber ?? "",
+                    fld2: self.unmaskedCardNumber,
                     fld22: "510",
                     fld3: "940001",
                     fld37: "422917001118",
@@ -198,7 +201,7 @@ extension ManageAccountViewModel {
                     fld49: "356",
                     fld51: "356",
                     fld52: encryptedKey,
-                    mti: AppDefaults.newPIN ?? ""
+                    mti: "0100"
                 )
             )
         )
@@ -213,10 +216,14 @@ extension ManageAccountViewModel {
                 } receiveValue: { [weak self] response in
                     if response.respInfo?.respStatus == 200 {
                         self?.miniStatement = response.respInfo?.respData
+                        if let additionalInfo = self?.miniStatement?.additionalInfo.addInfo1 {
+                            let transaction = additionalInfo.parseTransactions()
+                            self?.miniStatement?.additionalInfo.transaction = transaction
+                        }
                         continuation.resume(returning: (true))
                     } else {
                         self?.isPresentAlert = true
-                        self?.apiError = "Something went wrong!"
+                        self?.apiError = response.respInfo?.rejectLongDesc ?? "Something went wrong!"
                         continuation.resume(returning: (false))
                     }
                 }

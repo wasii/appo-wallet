@@ -303,24 +303,33 @@ extension CardToCardView {
     
     func applyPatternOnNumbers(_ stringvar: inout String, pattern: String, replacementCharacter: Character) {
         var pureNumber = stringvar.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        for index in 0 ..< pattern.count {
-            guard index < pureNumber.count else {
-                stringvar = pureNumber
-                return
-            }
-            
-            let patternIndex = pattern.index(pattern.startIndex, offsetBy: index)
+        var result = ""
+        var patternIndex = pattern.startIndex
+        var numberIndex = pureNumber.startIndex
+        
+        while patternIndex < pattern.endIndex && numberIndex < pureNumber.endIndex {
             let patternCharacter = pattern[patternIndex]
             
             if patternCharacter == replacementCharacter {
-                let numberIndex = pureNumber.index(pureNumber.startIndex, offsetBy: index)
-                let numberCharacter = pureNumber[numberIndex]
-                stringvar.insert(numberCharacter, at: numberIndex)
-            } else if patternCharacter != " " {
-                pureNumber.insert(patternCharacter, at: pureNumber.index(pureNumber.startIndex, offsetBy: index))
+                // If it's a replacement character, add the next number
+                result.append(pureNumber[numberIndex])
+                numberIndex = pureNumber.index(after: numberIndex)
+            } else {
+                // If it's not a replacement character, add the pattern character (space or other)
+                result.append(patternCharacter)
             }
+            
+            patternIndex = pattern.index(after: patternIndex)
         }
-        stringvar = pureNumber
+        
+        // Append any remaining numbers if the pattern ends but there are still numbers left
+        while numberIndex < pureNumber.endIndex {
+            result.append(pureNumber[numberIndex])
+            numberIndex = pureNumber.index(after: numberIndex)
+        }
+        
+        // Update the string variable
+        stringvar = result
     }
 }
 extension CardToCardView {
@@ -373,7 +382,12 @@ extension CardToCardView {
                 }
             
             Button {
-                viewModel.getCustomerEnquiry(mobile: self.mobPhoneNumber)
+                let mobile = self.mobPhoneNumber
+                    .replacingOccurrences(of: "(", with: "")
+                    .replacingOccurrences(of: ")", with: "")
+                    .replacingOccurrences(of: " ", with: "")
+                    .replacingOccurrences(of: "-", with: "")
+                viewModel.getCustomerEnquiry(mobile: mobile)
             } label: {
                 Text("Search")
                     .padding()

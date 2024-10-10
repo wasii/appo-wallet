@@ -20,9 +20,9 @@ struct UnMaskedCardView: View {
                 
                 VStack(alignment: .leading) {
                     Spacer()
-                    Text(unmaskedValue)
+                    Text(Formatters.formatCreditCardNumber(unmaskedValue))
                         .font(AppFonts.regularTwenty)
-                    Text("Expiry: \(card?.expDate ?? "") \(card?.cardName ?? "")")
+                    Text("Expiry: \(Formatters.convertDateToMonthYear(card?.expDate ?? "") ?? "") \(card?.cardName ?? "")")
                         .font(AppFonts.bodyFourteenBold)
                 }
                 .foregroundStyle(.white)

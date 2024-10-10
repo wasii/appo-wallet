@@ -27,7 +27,7 @@ struct SetupMobilePinView: View {
                 .frame(height: 430)
             
             VStack(spacing: 20) {
-                Text("Upddate your Pin")
+                Text("Update your Pin")
                     .foregroundStyle(Color.appBlueForeground)
                     .font(AppFonts.headline3)
                 

@@ -21,26 +21,26 @@ struct CardTransactionDetailsView: View {
                     .fontWeight(.semibold)
                 HStack {
                     Text("Available Balance:")
-                    Text("$123.45")
+                    Text("\(viewModel.mini_statement?.acctInfo.availBal ?? "")")
                 }
                 .foregroundColor(Color.black.opacity(0.7))
                 ScrollView {
-//                    ForEach(transactionDetailsItems, id: \.self) { item in
-//                        VStack(alignment:.leading, spacing: 10) {
-//                            HStack {
-//                                Text(item.dateTime)
-//                                    .font(.footnote)
-//                                Spacer()
-//                                Text(item.price)
-//                                    .foregroundStyle(Color.appOrange)
-//                            }
-//                            Text(item.details)
-//                                .font(.footnote)
-//                        }
-//                        .padding()
-//                        .overlay(RoundedRectangle(cornerRadius: 5)
-//                            .stroke(Color.appBlue, lineWidth: 1))
-//                    }
+                    ForEach(viewModel.mini_statement?.additionalInfo.transaction ?? [], id: \.self) { transaction in
+                        VStack(alignment:.leading, spacing: 10) {
+                            HStack {
+                                Text("\(transaction.date ?? "") \(transaction.time ?? "")")
+                                    .font(.footnote)
+                                Spacer()
+                                Text("\(transaction.amount ?? "")")
+                                    .foregroundStyle(Color.appOrange)
+                            }
+                            Text("\(transaction.detail ?? "")")
+                                .font(.footnote)
+                        }
+                        .padding()
+                        .overlay(RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.appBlue, lineWidth: 1))
+                    }
                 }
             }
             .padding()
@@ -49,24 +49,9 @@ struct CardTransactionDetailsView: View {
         .edgesIgnoringSafeArea(.top)
         .background(Color.appBackground)
         .toolbar(.hidden, for: .navigationBar)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                Task {
-                    do {
-                        if try await viewModel.getDataEncryptionKey() {
-                            if try await viewModel.getCardNumber() {
-                                if try await viewModel.get_mini_statement() {
-//                                    showChangePin()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 
 #Preview {
-    CardTransactionDetailsView(viewModel: .init())
+    CardTransactionDetailsView(viewModel: .init(mini_statement: nil))
 }

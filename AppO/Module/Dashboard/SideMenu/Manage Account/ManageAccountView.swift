@@ -37,7 +37,7 @@ struct ManageAccountView: View {
                             CardView(card: card)
                                 .onTapGesture {
                                     lightHaptic()
-                                    self.card = card
+                                    viewModel.selected_card = card
                                     showTransactionPinView()
                                 }
                                 .onLongPressGesture(minimumDuration: 1.0, pressing: { bool in print(bool)}, perform: {
@@ -48,7 +48,7 @@ struct ManageAccountView: View {
                                             let success = try await viewModel.getCardNumber(cardRefNum: card.cardRefNum ?? "")
                                             if success {
                                                 viewModel.showLoader = false
-                                                self.card = card
+                                                viewModel.selected_card = card
                                                 showUnMaskedCard()
                                             } else {
                                                 viewModel.showLoader = true
@@ -76,10 +76,10 @@ struct ManageAccountView: View {
                                 viewModel.showLoader = true
                                 do {
                                     if try await viewModel.getDataEncryptionKey() {
-                                        if try await viewModel.getCardNumber(cardRefNum: self.card?.cardRefNum ?? "") {
+                                        if try await viewModel.getCardNumber(cardRefNum: viewModel.selected_card?.cardRefNum ?? "") {
                                             if try await viewModel.get_mini_statement() {
                                                 viewModel.showLoader = false
-                                                
+                                                viewModel.coordinatorStatePublisher.send(.with(.showTransactions(viewModel.miniStatement)))
                                             } else {
                                                 viewModel.showLoader = false
                                             }
@@ -104,7 +104,7 @@ struct ManageAccountView: View {
                     VStack {
                         Spacer()
                         
-                        UnMaskedCardView(isUnMaskedCardViewVisible: $viewModel.isShowUnMaskedCard, card: self.card, unmaskedValue: viewModel.unmaskedCardNumber)
+                        UnMaskedCardView(isUnMaskedCardViewVisible: $viewModel.isShowUnMaskedCard, card: viewModel.selected_card, unmaskedValue: viewModel.unmaskedCardNumber)
                             .background(.white)
                             .cornerRadius(10)
                             .shadow(radius: 5)
@@ -121,6 +121,12 @@ struct ManageAccountView: View {
         .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert)
         .edgesIgnoringSafeArea(.top)
         .toolbar(.hidden, for: .navigationBar)
+        .onReceive(viewModel.coordinatorState) { state in
+            switch state.state {
+            case .showTransactions(let miniResponse):
+                homeNavigator.navigate(to: .transactionsDetails(viewModel: .init(mini_statement: miniResponse)))
+            }
+        }
     }
     
     func showTransactionPinView() {
@@ -162,7 +168,7 @@ extension ManageAccountView {
         HStack {
             Text("Card Status: ")
                 .font(AppFonts.regularEighteen)
-            + Text(AppDefaults.selected_card?.cardStatusDesc ?? "")
+            + Text(viewModel.selected_card?.cardStatusDesc ?? "")
                 .font(AppFonts.bodyEighteenBold)
         }
         .foregroundStyle(.appBlue)

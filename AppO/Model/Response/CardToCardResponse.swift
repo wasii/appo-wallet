@@ -23,7 +23,7 @@ struct CardToCardResponse: Codable {
     let channelInfo: ChannelInfo?
     let acceptorInfo: AcceptorInfo?
     let storeInfo: StoreInfo?
-    let additionalInfo: AdditionalInfo?
+    let additionalInfo: MiniStatmentAdditionalInfo?
     let txnInfo: TransactionInfo?
     let securityInfo: SecurityInfo?
     let respInfo: ResponseInfo?

@@ -361,7 +361,7 @@ extension HomeScreenView {
                         .font(.headline)
                 }
                 .onTapGesture {
-//                    homeNavigator.navigate(to: .scanQRCode(viewModel: .init()))
+                    homeNavigator.navigate(to: .scanQRCode(viewModel: .init()))
                 }
                 VStack {
                     Image("c-2-c-icon")
