@@ -54,7 +54,7 @@ extension AddOnCardViewModel {
                 if response.respInfo?.respStatus == 200 {
                     self?.card_list = response.respInfo?.respData ?? []
                     self?.currentWallet = .appo
-                    self?.selectedWallet = response.respInfo?.respData?.first ?? nil
+                    self?.updateSelectedType()
                 } else {
                     print("ERROR")
                 }

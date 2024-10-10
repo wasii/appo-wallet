@@ -168,7 +168,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2D815150-F3C2-49F0-9DBA-2A068AAAA1A5"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AppO/Module/Dashboard/SideMenu/Settings/Add on Card/AddOnCardViewModel.swift"
