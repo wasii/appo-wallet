@@ -22,16 +22,85 @@ class ChangeTransactionPinViewModel: ObservableObject {
     @Published var showLoader: Bool = false
     @Published var apiError: String?
     @Published var isPresentAlert: Bool = false
+    
+    @Published var cards: [Card]? = nil
+    @Published var selected_card: Card?
+    @Published var currentWallet: WalletCardType?
+    
+    private var hInteractor: HomeInteractorType
     private var pInteractor: PINInteractorType
     private var dInteractor: DeviceBindingInteractorType
     
-    init(pInteractor: PINInteractorType = PINInteractor(),
+    var unmaskedCardNumber: String = ""
+    
+    init(hInteractor: HomeInteractorType = HomeInteractor(),
+         pInteractor: PINInteractorType = PINInteractor(),
          dInteractor: DeviceBindingInteractorType = DeviceBindingInteractor()) {
+        self.hInteractor = hInteractor
         self.pInteractor = pInteractor
         self.dInteractor = dInteractor
+        
+        self.cards = AppDefaults.user?.cardList
+        populateCards(cardType: .appo)
+        selectFirstWallet()
     }
 }
 
+extension ChangeTransactionPinViewModel {
+    func populateCards(cardType: WalletCardType) {
+        switch cardType {
+        case .appo:
+            cards = AppDefaults.user?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }
+        case .unionpay:
+            cards = AppDefaults.user?.cardList?.filter { $0.subproductName == "UPI WALLET" }
+        case .visa:
+            cards = AppDefaults.user?.cardList?.filter { $0.subproductName == "VISA WALLET" }
+        }
+    }
+    
+    func changeWalletType(cardType: WalletCardType) -> Bool {
+        switch cardType {
+        case .appo:
+            let contains = AppDefaults.user?.cardList?.contains { $0.subproductName == "APPOPAY WALLET" } ?? false
+            if contains {
+                populateCards(cardType: cardType)
+                selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }.first
+            }
+            return contains
+        case .unionpay:
+            let contains = AppDefaults.user?.cardList?.contains { $0.subproductName == "UPI WALLET" } ?? false
+            if contains {
+                populateCards(cardType: cardType)
+                selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "UPI WALLET" }.first
+            }
+            return contains
+        case .visa:
+            let contains = AppDefaults.user?.cardList?.contains { $0.subproductName == "VISA WALLET" } ?? false
+            if contains {
+                populateCards(cardType: cardType)
+                selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "VISA WALLET" }.first
+            }
+            return contains
+        }
+    }
+    
+    fileprivate func selectFirstWallet() {
+        let subproductName = AppDefaults.user?.cardList?.first?.subproductName
+        switch subproductName {
+        case "APPOPAY WALLET":
+            self.currentWallet = .appo
+            selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "APPOPAY WALLET" }.first
+        case "UPI WALLET":
+            self.currentWallet = .unionpay
+            selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "UPI WALLET" }.first
+        case "VISA WALLET":
+            self.currentWallet = .visa
+            selected_card = AppDefaults.user?.cardList?.filter { $0.subproductName == "VISA WALLET" }.first
+        default:
+            break
+        }
+    }
+}
 
 extension ChangeTransactionPinViewModel {
     func getDataEncryptionKey() async throws -> Bool {
@@ -65,6 +134,40 @@ extension ChangeTransactionPinViewModel {
         }
     }
     
+    func getCardNumber(cardRefNum: String) async throws -> Bool {
+        let request: ShowCardNumberRequest = .init(
+            reqHeaderInfo: .init(),
+            requestKey: .init(
+                requestType: "decrypt_cms_card_num"
+            ),
+            requestData: .init(
+                instID: AppDefaults.user?.instID ?? "AP",
+                cardRefNum: cardRefNum,
+                custId: AppDefaults.user?.custID ?? "",
+                mobileNum: AppDefaults.user?.primaryMobileNum ?? ""
+            )
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            hInteractor.show_card_number(request: request)
+                .sink { [weak self] completion in
+                    guard case let .failure(error) = completion else { return }
+                    self?.isPresentAlert = true
+                    self?.apiError = "Something went wrong!"
+                    continuation.resume(throwing: error)
+                } receiveValue: { [weak self] response in
+                    if response.respInfo?.respStatus == 200 {
+                        self?.unmaskedCardNumber = response.respInfo?.respData?.dCardNum ?? ""
+                        continuation.resume(returning: (true))
+                    } else {
+                        self?.isPresentAlert = true
+                        self?.apiError = "Something went wrong!"
+                        continuation.resume(returning: (false))
+                    }
+                }
+                .store(in: &cancellables)
+        }
+    }
+    
     func setCardPin(oldPin: String, newPin: String) async throws -> Bool  {
         let request: UpdateCardPINRequest = .init(
             reqHeaderInfo: .init(),
@@ -86,7 +189,7 @@ extension ChangeTransactionPinViewModel {
                     fld14: "2708",
                     fld18: "0601",
                     fld19: "356",
-                    fld2: AppDefaults.temp_cardnumber ?? "",
+                    fld2: self.unmaskedCardNumber,
                     fld22: "510",
                     fld3: "940000",
                     fld37: "422917001118",
@@ -98,7 +201,7 @@ extension ChangeTransactionPinViewModel {
                     fld51: "356",
                     fld52: oldPin,
                     fld53: newPin,
-                    mti: AppDefaults.temp_pin ?? ""
+                    mti: "0100"
                 )
             )
         )
