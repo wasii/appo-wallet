@@ -255,13 +255,7 @@ extension HomeScreenViewModel {
         print(encryptedKey)
         let request: SetCardPINRequest = .init(
             reqHeaderInfo: .init(),
-            deviceInfo: .init(
-                name: "iPhone 16 Pro Max",
-                manufacturer: "Apple",
-                model: "A3603",
-                version: "18",
-                os: "iOS"
-            ),
+            deviceInfo: .init(),
             requestKey: .init(
                 requestType: "mapp_setpin"
             ),

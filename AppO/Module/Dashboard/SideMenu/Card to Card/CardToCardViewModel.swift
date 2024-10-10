@@ -149,13 +149,7 @@ extension CardToCardViewModel {
         guard let encryptedKey = CryptoUtils.main() else { return false }
         let request: CardToCardRequest = .init(
             reqHeaderInfo: .init(),
-            deviceInfo: .init(
-                name: "iPhone 16 Pro Max",
-                manufacturer: "Apple",
-                model: "A3603",
-                version: "18",
-                os: "iOS"
-            ),
+            deviceInfo: .init(),
             requestKey: .init(requestType: "mapp_card_cardtocard"),
             requestData: .init(
                 isoReqData: .init(

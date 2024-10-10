@@ -44,13 +44,7 @@ extension PhoneNumberVerificationViewModel {
     func verifyPhoneNumber(mobPhoneNumber: String) async throws -> String {
         let request: PhoneNumberVerificationRequest = .init(
             reqHeaderInfo: .init(),
-            deviceInfo: .init(
-                name: "iPhone 16 Pro Max",
-                manufacturer: "Apple",
-                model: "A3603",
-                version: "18",
-                os: "iOS"
-            ),
+            deviceInfo: .init(),
             requestKey: .init(
                 requestType: "mobile_app_cust_validation"
             ),

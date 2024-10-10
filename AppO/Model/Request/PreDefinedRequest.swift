@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 struct RequestHeaderInfo: Codable {
     let apiVersion: String = "1.1"
@@ -48,4 +48,25 @@ struct DeviceInfo: Codable {
     let model: String
     let version: String
     let os: String
+
+    // Custom initializer to populate the values
+    init() {
+        self.name = UIDevice.current.name
+        self.model = DeviceInfo.getDeviceIdentifier()
+        self.manufacturer = "Apple"
+        self.version = UIDevice.current.systemVersion
+        self.os = UIDevice.current.systemName
+    }
+
+    // Function to get the device model identifier
+    static func getDeviceIdentifier() -> String {
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
+        }
+        return identifier
+    }
 }

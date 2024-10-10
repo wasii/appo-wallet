@@ -67,13 +67,7 @@ extension AddOnCardViewModel {
         showLoader = true
         let request: CreateNewCardRequest = .init(
             reqHeaderInfo: .init(),
-            deviceInfo: .init(
-                name: "iPhone 16 Pro Max",
-                manufacturer: "Apple",
-                model: "A3603",
-                version: "18",
-                os: "iOS"
-            ),
+            deviceInfo: .init(),
             requestKey: .init(requestType: "mobile_app_handle_cms_card_data_addon"),
             requestData: .init(
                 instID: AppDefaults.user?.instID ?? "",

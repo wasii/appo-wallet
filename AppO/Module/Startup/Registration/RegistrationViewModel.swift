@@ -50,13 +50,7 @@ class RegistrationViewModel: ObservableObject {
 extension RegistrationViewModel {
     func getUserRegistered(custName: String, mobile: String, nameOnCard: String, email: String, address: String, dob: String, nationalId: String, maritalStatus: String, bin: String, subProductId: String) async throws -> Bool {        let request: RegisterRequest = .init(
             reqHeaderInfo: .init(),
-            deviceInfo: .init(
-                name: "iPhone 16 Pro Max",
-                manufacturer: "Apple",
-                model: "A3603",
-                version: "18",
-                os: "iOS"
-            ),
+            deviceInfo: .init(),
             requestKey: .init(
                 requestType: "mobile_app_cust_register"
             ),

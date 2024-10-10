@@ -7,6 +7,7 @@
 
 import SwiftUI
 import BlinkID
+import UIKit
 
 struct InitialView: View {
     @StateObject var navigator: Navigator
