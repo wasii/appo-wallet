@@ -132,7 +132,7 @@ struct CardToCardView: View {
         .onReceive(viewModel.coordinatorState) { state in
             switch (state.state, state.transferable) {
             case (.selectCard, _):
-                homeNavigator.navigate(to: .cardList(viewModel: .init()))
+                homeNavigator.navigate(to: .cardList(viewModel: .init(showQRDetails: false)))
                 break
             }
         }

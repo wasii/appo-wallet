@@ -17,51 +17,50 @@ struct MyQRCodeView: View {
                     .frame(height: UIScreen.main.bounds.height)
             }
             .zIndex(1)
-            if viewModel.isShow {
-                GeometryReader { geometry in
-                    VStack {
-                        Spacer()
-                        ShowAvailableBalancePopupView(isShowAvailableBalancePopupView: $viewModel.isShow, balance: $viewModel.userBalance) {
-                            viewModel.isShow = false
-                            viewModel.isShowPopup = false
-                        }
-                            .padding()
-                            .cornerRadius(10)
-                            .shadow(radius: 5)
-                            .frame(width: geometry.size.width, height: 270)
-                            .padding(.bottom, geometry.safeAreaInsets.bottom)
-                        Spacer()
-                    }
-                    .background(Color.black.opacity(0.7).edgesIgnoringSafeArea(.all))
-                }
-                .zIndex(1.0)
-                
-            }
             VStack(spacing: 20) {
                 NavigationBarView(title: "My QR Code")
                 ScrollView {
-                    
-                    VStack(alignment: .leading, spacing: 20) {
-                        QRCodeImageView()
-                        
-                        QRCodeShowBalance(isShowPopup: $viewModel.isShowPopup)
-                        
-                        QRCodeProfileDetail()
-                        
-                        Spacer()
+                    ForEach(AppDefaults.user?.cardList ?? [], id: \.self) { card in
+                        VStack(spacing: 0) {
+                            HStack {
+                                Text("Card Status: ")
+                                    .font(AppFonts.regularEighteen)
+                                + Text(card.cardStatusDesc ?? "")
+                                    .font(AppFonts.bodyEighteenBold)
+                            }
+                            .foregroundStyle(.appBlue)
+                            ZStack {
+                                Image(card.cardImage ?? "")
+                                    .resizable()
+                                    .frame(height: 220)
+                                    .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
+                                    .onTapGesture {
+                                        homeNavigator.navigate(to: .cardList(viewModel: .init(showQRDetails: true)))
+                                    }
+                                
+                                VStack(alignment: .leading) {
+                                    Spacer()
+                                    Text(card.maskCardNum ?? "")
+                                        .font(AppFonts.regularTwenty)
+                                    Text("Expiry: \(String(describing: Formatters.convertDateToMonthYear(card.expDate ?? "") ?? "10/2027")) \(card.cardName ?? "ABCDEDF")")
+                                        .font(AppFonts.bodyFourteenBold)
+                                }
+                                .foregroundStyle(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .padding()
+                        }
                     }
-                    .padding(.horizontal)
                 }
+                Spacer()
+                VStack(spacing: 10) {
+                    QRCodeShowBalance(isShowPopup: $viewModel.isShowPopup)
+                    QRCodeProfileDetail()
+                    
+                }
+                .padding()
                 
-                Button {
-                } label: {
-                    Text("SUBMIT")
-                        .font(AppFonts.bodyEighteenBold)
-                        .frame(width: 190, height: 45)
-                        .background(Color.appBlue)
-                        .clipShape(Capsule())
-                        .foregroundColor(.white)
-                }
                 BottomNavigation()
             }
             .edgesIgnoringSafeArea(.top)
@@ -84,6 +83,16 @@ struct MyQRCodeView: View {
                 }
             }
         }
+    }
+    
+    var CardStatusView: some View {
+        HStack {
+            Text("Card Status: ")
+                .font(AppFonts.regularEighteen)
+            + Text("InActive")
+                .font(AppFonts.bodyEighteenBold)
+        }
+        .foregroundStyle(.appBlue)
     }
 }
 

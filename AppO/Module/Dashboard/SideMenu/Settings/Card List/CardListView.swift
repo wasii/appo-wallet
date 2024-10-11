@@ -20,25 +20,53 @@ struct CardListView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             NavigationBarView(title: "Card List")
-            VStack(alignment: .center, spacing: 20) {
-                WalletTypeView
-                CardView
-                
-                HStack {
-                    Text("Available Balance")
-                        .foregroundStyle(Color.appBlue)
-                        .font(AppFonts.bodyTwentyBold)
-                    Text("USD : \(viewModel.selected_card?.walletInfo?.availBal ?? "0.00")")
-                        .foregroundStyle(Color.black.opacity(0.8))
-                        .font(AppFonts.bodyTwentyBold)
+            ScrollView {
+                VStack(alignment: .center, spacing: 20) {
+                    WalletTypeView
+                    CardView
+                    
+                    HStack {
+                        Text("Available Balance")
+                            .foregroundStyle(Color.appBlue)
+                            .font(AppFonts.bodyTwentyBold)
+                        Text("USD : \(viewModel.selected_card?.walletInfo?.availBal ?? "0.00")")
+                            .foregroundStyle(Color.black.opacity(0.8))
+                            .font(AppFonts.bodyTwentyBold)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if viewModel.showQRDetails {
+                        Image("appopay_barcode")
+                            .resizable()
+                            .frame(height: 90)
+                            .frame(maxWidth: .infinity)
+                        
+                        Image("appopay_qr")
+                            .resizable()
+                            .frame(width: 120, height: 120)
+                        
+                        Image("appopay_nfc")
+                            .resizable()
+                            .frame(width: 180, height: 120)
+                        
+                        Button {} label: {
+                            Text("Generate Dynamic QR-Code")
+                                .font(AppFonts.regularTwenty)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 60)
+                                .background(Color.appBlue)
+                                .cornerRadius(10)
+                                .foregroundColor(.white)
+                        }
+                    }
                 }
                 .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .padding()
-            
             Spacer()
-            BottomNavigation()
+            if !viewModel.showQRDetails {
+                BottomNavigation()
+            }
         }
         .ignoresSafeArea(.keyboard)
         .edgesIgnoringSafeArea(.top)
@@ -58,7 +86,7 @@ struct CardListView: View {
 }
 
 #Preview {
-    CardListView(viewModel: .init())
+    CardListView(viewModel: .init(showQRDetails: false))
 }
 
 
@@ -100,7 +128,9 @@ extension CardListView {
                             handleCardChange(newIndex: newIndex)
                         }
                         .onTapGesture {
-                            handleCardTap()
+                            if !viewModel.showQRDetails {
+                                handleCardTap()
+                            }
                         }
                 }
             }

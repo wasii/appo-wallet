@@ -28,7 +28,7 @@ struct MainTabbedView: View {
                     viewModel.coordinatorStatePublisher.send(.with(.navigateToCardtoCard))
                 case .settings:
                     viewModel.coordinatorStatePublisher.send(.with(.navigateToSettings))
-                case .payments:
+                case .changeLanguage:
                     break
                 case .logout:
                     viewModel.coordinatorStatePublisher.send(.with(.logout))

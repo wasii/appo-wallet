@@ -32,8 +32,11 @@ class CardListViewModel: ObservableObject {
     
     private var hInteractor: HomeInteractorType
     
-    init(hInteractor: HomeInteractorType = HomeInteractor()) {
+    @Published var showQRDetails: Bool
+    
+    init(hInteractor: HomeInteractorType = HomeInteractor(), showQRDetails: Bool = false) {
         self.hInteractor = hInteractor
+        self.showQRDetails = showQRDetails
     }
 }
 

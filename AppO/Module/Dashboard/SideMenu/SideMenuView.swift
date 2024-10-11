@@ -11,8 +11,8 @@ enum SidemenuNavigation {
     case manageAccount
     case myQrCode
     case cardToCard
-    case payments
     case settings
+    case changeLanguage
     case logout
 }
 
@@ -96,18 +96,20 @@ struct SideMenuView: View {
                             presentSideMenu.toggle()
                             navigateToView(index: 2)
                         }
-                    SidebarOption(icon: "payment-icon", title: "Payments")
+                    SidebarOption(icon: "settings-icon", title: "Settings")
                         .onTapGesture {
                             selectedSideMenuTab = 3
                             presentSideMenu.toggle()
                             navigateToView(index: 3)
-                        }
-                    SidebarOption(icon: "settings-icon", title: "Settings")
+                    }
+                    
+                    SidebarOption(icon: "payment-icon", title: "Change Language")
                         .onTapGesture {
                             selectedSideMenuTab = 4
                             presentSideMenu.toggle()
-                            navigateToView(index: 4)
+                            navigateToView(index: 5)
                         }
+                    
                     SidebarOption(icon: "logout-icon", title: "Logout")
                         .onTapGesture {
                             selectedSideMenuTab = 5
@@ -142,9 +144,9 @@ struct SideMenuView: View {
         case 2:
             closure(.cardToCard)
         case 3:
-            closure(.payments)
-        case 4:
             closure(.settings)
+        case 4:
+            closure(.changeLanguage)
         case 5:
             closure(.logout)
         default: break
