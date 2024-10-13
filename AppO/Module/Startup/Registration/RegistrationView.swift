@@ -18,6 +18,7 @@ struct RegistrationView: View {
     @State private var lastName: String = ""
     @State private var nameOnCard: String = ""
     @State private var cardBin: String = ""
+    @State private var walletType: String = ""
     @State private var cardProductId: String = ""
     @State private var idNumber: String = ""
     @State private var gender: String = ""
@@ -164,7 +165,7 @@ struct RegistrationView: View {
                 GeometryReader { geometry in
                     VStack {
                         Spacer()
-                        SelectIDTypeView(isSelectIDTypeVisible: $isSelectIDPickerVisible, selectedIDType: $idType)
+                        SelectIDTypeView(countryCode: viewModel.countryCode, isSelectIDTypeVisible: $isSelectIDPickerVisible, selectedIDType: $idType)
                             .padding()
                             .cornerRadius(10)
                             .shadow(radius: 5)
@@ -186,7 +187,9 @@ struct RegistrationView: View {
                             cards: viewModel.card_list ?? [],
                             selected_bin: $cardBin,
                             subproductId: $cardProductId
-                        )
+                        ) { wallet in
+                            walletType = wallet
+                        }
                         .background(Color.white)
                         .cornerRadius(10)
                         .shadow(radius: 5)
@@ -512,13 +515,23 @@ extension RegistrationView {
     var walletTypeView: some View {
         VStack() {
             HStack {
-                Text("Please Select Wallet Type")
-                    .font(AppFonts.bodyEighteenBold)
-                    .foregroundStyle(Color.appBlue)
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .foregroundStyle(Color.black)
-                    .font(AppFonts.bodyEighteenBold)
+                if walletType.isEmpty {
+                    Text("Please Select Wallet Type")
+                        .font(AppFonts.bodyEighteenBold)
+                        .foregroundStyle(Color.appBlue)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundStyle(Color.black)
+                        .font(AppFonts.bodyEighteenBold)
+                } else {
+                    Text(walletType)
+                        .font(AppFonts.bodyEighteenBold)
+                        .foregroundStyle(Color.appBlue)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundStyle(Color.black)
+                        .font(AppFonts.bodyEighteenBold)
+                }
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -880,6 +893,7 @@ struct MaritalStatusPickerView: View {
 }
 
 struct SelectIDTypeView: View {
+    var countryCode: String = ""
     @State private var idType: String = ""
     @Binding var isSelectIDTypeVisible: Bool
     @Binding var selectedIDType: String
@@ -887,11 +901,11 @@ struct SelectIDTypeView: View {
         VStack(alignment: .leading) {
             Text("Please Select ID Type")
                 .font(AppFonts.bodyTwentyTwoBold)
-            
-            RadioButtonField(id: "nationalId", label: "National ID", isSelected: idType == "National ID") {
-                idType = "National ID"
+            if countryCode == "+507" {
+                RadioButtonField(id: "nationalId", label: "National ID", isSelected: idType == "National ID") {
+                    idType = "National ID"
+                }
             }
-            
             RadioButtonField(id: "passport", label: "Passport", isSelected: idType == "Passport") {
                 idType = "Passport"
             }
@@ -947,8 +961,11 @@ struct SelectWalletTypeView: View {
     var cards: [GetCardListResponse]
     @State private var bin: String = ""
     @State private var selectedProductId: String = ""
+    @State private var selectedSubProductName: String = ""
     @Binding var selected_bin: String
     @Binding var subproductId: String
+    
+    var closure: (String) -> ()
     var body: some View {
         VStack(alignment: .leading) {
             Text("Please Select Wallet Type")
@@ -958,6 +975,7 @@ struct SelectWalletTypeView: View {
                 RadioButtonField(id: card.bin ?? "", label: card.subproductName ?? "", isSelected: bin == card.bin ?? "", imageName: card.imageName ?? "") {
                     bin = card.bin ?? ""
                     selectedProductId = card.subproductId ?? ""
+                    selectedSubProductName = card.subproductName ?? ""
                 }
             }
             Spacer()
@@ -966,6 +984,7 @@ struct SelectWalletTypeView: View {
                     Button{
                         selected_bin = bin
                         subproductId = selectedProductId
+                        closure(selectedSubProductName)
                         isSelectWalletTypeVisible = false
                     } label: {
                         Text("Confirm")

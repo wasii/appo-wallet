@@ -80,10 +80,10 @@ extension PhoneNumberVerificationViewModel {
                 .sink { [weak self] completion in
                     self?.showLoader = false
                     guard case let .failure(error) = completion else { return }
-                    self?.isPresentAlert = true
-                    self?.apiError = error.localizedDescription
-                    continuation.resume(throwing: error)
-//                    self?.coordinatorStatePublisher.send(.with(.confirm))
+//                    self?.isPresentAlert = true
+//                    self?.apiError = error.localizedDescription
+//                    continuation.resume(throwing: error)
+                    self?.coordinatorStatePublisher.send(.with(.confirm))
                 } receiveValue: { [weak self] response in
                     self?.showLoader = false
                     if response.status == "200" {

@@ -46,11 +46,11 @@ struct SideMenuView: View {
                             .frame(width: 40, height: 40)
                             .foregroundColor(.white)
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Joe")
+                            Text(AppDefaults.user?.custName ?? "")
                                 .font(AppFonts.bodyTwentyTwoBold)
                                 .bold()
                                 .foregroundColor(.white)
-                            Text("0987654321")
+                            Text(AppDefaults.user?.primaryMobileNum ?? "")
                                 .foregroundColor(.white)
                                 .font(AppFonts.regularEighteen)
                         }
