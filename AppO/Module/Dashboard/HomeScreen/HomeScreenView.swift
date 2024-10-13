@@ -17,9 +17,9 @@ enum WalletCardType: CaseIterable {
         case .appo:
             return "appo-pay-card"
         case .unionpay:
-            return "appo-unionpay"
+            return "appo-pay-unionpay"
         case .visa:
-            return "appo-visa"
+            return "appo-pay-visa"
         }
     }
     

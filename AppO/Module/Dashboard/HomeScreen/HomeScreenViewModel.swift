@@ -62,9 +62,9 @@ extension HomeScreenViewModel {
             case "APPOPAY WALLET":
                 cardList[i].cardImage = "appo-pay-card"
             case "UPI WALLET":
-                cardList[i].cardImage = "appo-unionpay"
+                cardList[i].cardImage = "appo-pay-unionpay"
             case "VISA WALLET":
-                cardList[i].cardImage = "appo-visa"
+                cardList[i].cardImage = "appo-pay-visa"
             default:
                 break
             }

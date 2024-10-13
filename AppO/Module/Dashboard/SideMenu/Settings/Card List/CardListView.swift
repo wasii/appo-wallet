@@ -37,7 +37,7 @@ struct CardListView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     if viewModel.showQRDetails {
-                        Image("appopay_barcode")
+                        Image("appo-pay-barcode")
                             .resizable()
                             .frame(height: 90)
                             .frame(maxWidth: .infinity)
@@ -46,7 +46,7 @@ struct CardListView: View {
                             .resizable()
                             .frame(width: 120, height: 120)
                         
-                        Image("appopay_nfc")
+                        Image("appo-pay-nfc")
                             .resizable()
                             .frame(width: 180, height: 120)
                         

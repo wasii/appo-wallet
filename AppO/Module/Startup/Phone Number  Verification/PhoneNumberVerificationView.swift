@@ -96,7 +96,7 @@ struct PhoneNumberVerificationView: View {
                                 }
                             }
                         }
-                        .frame(width: 100, height: 60)
+                        .frame(width: 120, height: 60)
                         
                         TextField("", text: self.$mobPhoneNumber)
                             .placeholder(when: self.mobPhoneNumber.isEmpty) {
