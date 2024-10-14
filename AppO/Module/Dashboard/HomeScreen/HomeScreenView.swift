@@ -143,7 +143,7 @@ struct HomeScreenView: View {
                                     .foregroundColor(.white)
                                     .frame(width: 30, height: 30)
                             }
-                            Text("🇮🇳 India (IN)")
+                            Text("\(AppDefaults.countryFlag ?? "🇮🇳") \(AppDefaults.countryName ?? "India") (\(AppDefaults.countryShortName ?? "IN"))")
                                 .foregroundColor(.white)
                                 .font(AppFonts.headline4)
                                 .bold()
@@ -340,16 +340,16 @@ extension HomeScreenView {
                         .foregroundColor(.appBlue)
                         .font(.headline)
                 }
-                VStack {
-                    Image("nfc-icon")
-                        .resizable()
-                        .frame(width: 35, height: 35)
-                        .padding()
-                        .background(Circle().fill(Color.appBlueForeground))
-                    Text("NFC")
-                        .foregroundColor(.appBlue)
-                        .font(.headline)
-                }
+//                VStack {
+//                    Image("nfc-icon")
+//                        .resizable()
+//                        .frame(width: 35, height: 35)
+//                        .padding()
+//                        .background(Circle().fill(Color.appBlueForeground))
+//                    Text("Tap to Pay")
+//                        .foregroundColor(.appBlue)
+//                        .font(.headline)
+//                }
                 VStack {
                     Image("scan-icon")
                         .resizable()

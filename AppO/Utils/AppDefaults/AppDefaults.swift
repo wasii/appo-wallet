@@ -120,6 +120,20 @@ class AppDefaults: UserDefaults {
         get { AppDefaults[#function] }
         set { AppDefaults[#function] = newValue }
     }
+    
+    
+    static var countryFlag: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    static var countryName: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
+    static var countryShortName: String? {
+        get { AppDefaults[#function] }
+        set { AppDefaults[#function] = newValue }
+    }
 }
 
 extension AppDefaults {

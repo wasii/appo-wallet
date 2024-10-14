@@ -18,7 +18,7 @@ class APIHeader {
         return [
             "Accept": "application/json",
             "x-api-lang": "en/US",
-            "x-api-channel": "web",
+            "x-api-channel": "mob",
             "x-api-version": "1.0.0",
             
         ]

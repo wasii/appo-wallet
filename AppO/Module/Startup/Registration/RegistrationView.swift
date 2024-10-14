@@ -293,6 +293,22 @@ struct RegistrationView: View {
                 if let image = self.blinkIdMultiSideRecognizer.result.fullDocumentFrontImage?.image {
                     self.image = Image(uiImage: image)
                 }
+                if let gender = self.blinkIdMultiSideRecognizer.result.sex?.value {
+                    if gender == "M" || gender == "m" {
+                        self.gender = "Male"
+                    } else if gender == "F" || gender == "f" {
+                        self.gender = "Female"
+                    }
+                }
+                if let pDate = self.blinkIdMultiSideRecognizer.result.dateOfBirth?.date {
+                    let outputFormatter = DateFormatter()
+                    outputFormatter.dateFormat = "ddMMyyyy"
+                    
+                    // Convert Date to desired string format
+                    let formattedDate = outputFormatter.string(from: pDate)
+                    print(formattedDate)  // Output: 19021994
+                    self.dateOfBirth = formattedDate
+                }
                 self.showingBlinkIdViewController = false
             }
         }

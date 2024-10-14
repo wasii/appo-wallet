@@ -62,7 +62,7 @@ struct SetupMobilePinView: View {
                     .padding(.top, 20)
                     .font(AppFonts.regularTwentyTwo)
                     .foregroundStyle(Color.white)
-                    OTPInputView(otpDigits: $confirmPIN, length: 6, isSecure: isCreatePINSecure)
+                    OTPInputView(otpDigits: $confirmPIN, length: 6, isSecure: isConfirmPINSecure)
                 }
             }
             .zIndex(1)

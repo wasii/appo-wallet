@@ -17,6 +17,7 @@ class RegistrationViewModel: ObservableObject {
     var countryCode: String
     var phoneNumber: String
     var countryName: String
+    var countryShortName: String = ""
     
     let coordinatorStatePublisher = PassthroughSubject<CoordinatorState<RegistrationViewModelState>, Never>()
     var coordinatorState: AnyPublisher<CoordinatorState<RegistrationViewModelState>, Never> {
@@ -42,7 +43,10 @@ class RegistrationViewModel: ObservableObject {
         self.countryCode = countryCode
         self.phoneNumber = phoneNumber
         self.countryName = countryName
-        
+        let countries: [PhoneNumberModel] = Bundle.main.decode("CountryNumbers.json")
+        self.countryShortName = countries.filter({ model in
+            model.name == self.countryName
+        }).first?.code ?? ""
         print(phoneNumber)
     }
 }
@@ -136,6 +140,9 @@ extension RegistrationViewModel {
                     continuation.resume(throwing: error)
                 } receiveValue: { [weak self] response in
                     if response.signupAllowed {
+                        AppDefaults.countryFlag = self?.countryFlag
+                        AppDefaults.countryName = self?.countryName
+                        AppDefaults.countryShortName = self?.countryShortName
                         self?.coordinatorStatePublisher.send(.with(.registered))
                         continuation.resume(returning: (true))
                     } else {
