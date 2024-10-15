@@ -72,7 +72,7 @@ struct RegistrationView: View {
                 .zIndex(1)
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    idTypeView
+//                    idTypeView
                     selectIDTypeView
                         .onTapGesture {
                             hideKeyboard()
@@ -194,7 +194,7 @@ struct RegistrationView: View {
                         .cornerRadius(10)
                         .shadow(radius: 5)
                         .padding()
-                        .frame(width: geometry.size.width, height: 320)
+                        .frame(width: geometry.size.width, height: 270)
                         .padding(.bottom, geometry.safeAreaInsets.bottom)
                         Spacer()
                     }
@@ -987,32 +987,47 @@ struct SelectWalletTypeView: View {
             Text("Please Select Wallet Type")
                 .font(AppFonts.bodyTwentyTwoBold)
             
-            ForEach(cards, id: \.self) { card in
-                RadioButtonField(id: card.bin ?? "", label: card.subproductName ?? "", isSelected: bin == card.bin ?? "", imageName: card.imageName ?? "") {
-                    bin = card.bin ?? ""
-                    selectedProductId = card.subproductId ?? ""
-                    selectedSubProductName = card.subproductName ?? ""
+            Text("Tap to select wallet type")
+                .font(AppFonts.regularEighteen)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, 10)
+            TabView {
+                ForEach(cards, id: \.self) { card in
+                    ZStack {
+                        Image(card.imageName ?? "")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 230)
+                            .cornerRadius(10)
+                        Text(card.subproductName ?? "Default Name")
+                            .font(.headline)
+                            .foregroundColor(.white) // You can change the text color
+                            .padding()
+                            .background(
+                                Color.black.opacity(0.7) // Add background to make text more readable
+                                    .cornerRadius(5)
+                            )
+                    }
+                    .frame(height: 230)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        selected_bin = card.bin ?? ""
+                        subproductId = card.subproductId ?? ""
+                        selectedSubProductName = card.subproductName ?? ""
+                        closure(selectedSubProductName)
+                        
+                        print("Selected Bin: \(selected_bin)")
+                        print("Selected SubProductId: \(subproductId)")
+                        print("Selected SubProductName: \(selectedSubProductName)")
+                        isSelectWalletTypeVisible = false
+                    }
                 }
             }
+            .tabViewStyle(PageTabViewStyle())
+            .frame(height: 250)
             Spacer()
             VStack(alignment: .trailing) {
                 HStack(spacing: 20) {
-                    Button{
-                        selected_bin = bin
-                        subproductId = selectedProductId
-                        closure(selectedSubProductName)
-                        isSelectWalletTypeVisible = false
-                    } label: {
-                        Text("Confirm")
-                            .font(AppFonts.bodySixteenBold)
-                            .foregroundStyle(.white)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.appBlue)
-                            )
-                    }
-                    
                     Button{
                         isSelectWalletTypeVisible = false
                     } label: {

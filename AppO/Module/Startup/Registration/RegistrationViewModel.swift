@@ -187,14 +187,26 @@ extension RegistrationViewModel {
         for i in 0..<cardList.count {
             switch cardList[i].subproductName {
             case "APPOPAY WALLET":
-                cardList[i].imageName = "app_logo"
+                cardList[i].imageName = "appo-pay-card"
             case "UPI WALLET":
-                cardList[i].imageName = "unionpay-highresolution"
+                cardList[i].imageName = "appo-pay-unionpay"
             case "VISA WALLET":
-                cardList[i].imageName = "visa"
+                cardList[i].imageName = "appo-pay-visa"
             default:
                 break
             }
+        }
+        let order: [String: Int] = [
+            "APPOPAY WALLET": 0,
+            "UPI WALLET": 1,
+            "VISA WALLET": 2
+        ]
+        
+        cardList.sort { card1, card2 in
+            let card1Order = order[card1.subproductName ?? ""] ?? 3
+            let card2Order = order[card2.subproductName ?? ""] ?? 3
+            
+            return card1Order < card2Order
         }
         
         self.card_list = cardList
