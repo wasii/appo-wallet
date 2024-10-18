@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TransactionSuccessPopupView: View {
     var paidTo: String
+    var transactionInfo: TransactionInfo?
     @State private var isSharing = false
     @State private var snapshotImage: UIImage? = nil
     
@@ -34,12 +35,12 @@ struct TransactionSuccessPopupView: View {
                 .multilineTextAlignment(.center)
             
             VStack(spacing: 10) {
-                TransactionSuccessPopupDetailView(title: "Transaction No", description: "000000000786")
-                TransactionSuccessPopupDetailView(title: "Transaction Time", description: "01:32:51")
-                TransactionSuccessPopupDetailView(title: "Transaction Date", description: "27-Sep-2024")
+                TransactionSuccessPopupDetailView(title: "Transaction No", description: transactionInfo?.reqId ?? "000000000786")
+                TransactionSuccessPopupDetailView(title: "Transaction Time", description: Formatters.formatTime(transactionInfo?.localTime ?? "00:00:00") ?? "")
+                TransactionSuccessPopupDetailView(title: "Transaction Date", description: Formatters.formatDateTime(transactionInfo?.localDate ?? "00-00-0000") ?? "")
                 TransactionSuccessPopupDetailView(title: "Currency", description: "USD")
-                TransactionSuccessPopupDetailView(title: "Sender Name", description: "Md Wasim")
-                TransactionSuccessPopupDetailView(title: "Amount", description: "10.00")
+                TransactionSuccessPopupDetailView(title: "Sender Name", description: AppDefaults.user?.custName ?? "--")
+                TransactionSuccessPopupDetailView(title: "Amount", description: transactionInfo?.txnAmount ?? "00.00")
             }
             
             VStack {

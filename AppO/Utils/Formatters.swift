@@ -36,6 +36,32 @@ class Formatters {
         return "\(month)/\(year)"
     }
     
+    static func formatDateTime(_ date: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddMMyyyy"
+        
+        if let date = dateFormatter.date(from: date) {
+            dateFormatter.dateFormat = "dd-MMM-yyyy"
+            let formattedDateString = dateFormatter.string(from: date)
+            return formattedDateString
+        }
+        return nil
+    }
+    
+    static func formatTime(_ time: String) -> String? {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HHmmss"
+        timeFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        if let time = timeFormatter.date(from: time) {
+            timeFormatter.dateFormat = "hh:mm:ss a"
+            let formattedTimeString = timeFormatter.string(from: time)
+            
+            return formattedTimeString
+        }
+        return nil
+    }
+    
     static func formatAmountInput(_ input: String) -> String {
         let filtered = input.filter { $0.isNumber }
         if let number = Double(filtered) {

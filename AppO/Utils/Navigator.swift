@@ -68,16 +68,22 @@ extension Navigator {
         switch destination {
         case .termsAndConditionView:
             TermAndConditionView()
+                .environment(\.sizeCategory, .extraSmall)
         case .enterMPINView(let viewModel):
             EnterMPINView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .phoneNumberVerification(let viewModel):
             PhoneNumberVerificationView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .verifyOTP(let viewModel):
             VerifyOTPView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .registration(let viewModel):
             RegistrationView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .setupMobilePin(let viewModel):
             SetupMobilePinView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         }
     }
 }

@@ -85,40 +85,52 @@ extension HomeNavigator {
         switch destination {
         case .manageAccounts(let viewModel):
             ManageAccountView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .myQR(let viewModel):
             MyQRCodeView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .cardToCard(let viewModel):
             CardToCardView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
 //        case .payments: break
         case .settings(let viewModel):
             SettingsView(viewModel: viewModel)
-            
+                .environment(\.sizeCategory, .extraSmall)
         //Manage Accounts -> Card Transactions
         case .transactionsDetails(let viewModel):
             CardTransactionDetailsView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
             
         
         //Settings -> Sub Views
         case .cardStatus(let viewModel):
             CardStatusView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .changeTransactionPin(let viewModel):
             ChangeTransactionPinView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .replaceCard(let viewModel):
             ReplaceCardView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .renewCard(let viewModel):
             RenewCardView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .cardSettings(let viewModel):
             TransactionSettingsView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         case .addOnCard(let viewModel):
             AddOnCardView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         
         //Card List
         case .cardList(let viewModel):
             CardListView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
             
         //Services
         case .scanQRCode(let viewModel):
             ScanView(viewModel: viewModel)
+                .environment(\.sizeCategory, .extraSmall)
         }
         
     }

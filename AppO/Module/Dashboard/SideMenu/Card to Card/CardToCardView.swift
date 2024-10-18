@@ -53,12 +53,14 @@ struct CardToCardView: View {
                 GeometryReader { geometry in
                     VStack {
                         Spacer()
-                        TransactionSuccessPopupView(paidTo: "MOHAMED HASAN ALHARAZIcvzx") {
-                            viewModel.isShowTransactionSuccess = false
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                homeNavigator.navigateToRoot()
+                        TransactionSuccessPopupView(
+                            paidTo: viewModel.fetched_user?.custName ?? "",
+                            transactionInfo: viewModel.response?.txnInfo) {
+                                viewModel.isShowTransactionSuccess = false
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    homeNavigator.navigateToRoot()
+                                }
                             }
-                        }
                             .background(.white)
                             .cornerRadius(10)
                             .shadow(radius: 5)
