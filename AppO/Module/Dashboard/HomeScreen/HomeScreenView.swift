@@ -213,6 +213,10 @@ struct HomeScreenView: View {
                 viewModel.getCustpmerEnquiry()
             }
         }
+        
+        .showError("Error", viewModel.apiError, isPresenting: $viewModel.isPresentAlert) {
+            AppEnvironment.shared.isLoggedIn = false
+        }
     }
 }
 

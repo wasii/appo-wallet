@@ -175,6 +175,11 @@ extension HomeScreenViewModel {
                     self?.selectFirstWallet()
                     
                     AppDefaults.newUser = nil
+                } else if response.respInfo?.respStatus == 500 {
+                    self?.apiError = response.respInfo?.appErrDesc ?? ""
+                    self?.isPresentAlert = true
+                    AppDefaults.mobile = nil
+                    AppDefaults.deviceId = nil
                 } else {
                     print("ERROR")
                 }

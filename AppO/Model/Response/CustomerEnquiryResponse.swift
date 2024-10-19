@@ -101,6 +101,13 @@ struct WalletInfo: Codable, Hashable {
         case walletNum = "wallet_num"
         case walletStatus = "wallet_status"
     }
+    // Custom init for manual creation
+    init(availBal: String?, ledgerBal: String?, walletNum: String?, walletStatus: String?) {
+        self.availBal = availBal
+        self.ledgerBal = ledgerBal
+        self.walletNum = walletNum
+        self.walletStatus = walletStatus
+    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -122,5 +129,66 @@ struct WalletInfo: Codable, Hashable {
         // Decode other properties
         self.walletNum = try container.decodeIfPresent(String.self, forKey: .walletNum)
         self.walletStatus = try container.decodeIfPresent(String.self, forKey: .walletStatus)
+    }
+}
+
+
+extension CustomerEnquiryResponseData {
+    static var mock: CustomerEnquiryResponseData {
+        .init(
+            addr1: "addresss 12 adreesss banana",
+            addr2: "addresss 12 adreesss banana",
+            cardList: [Card.mock],
+            custID: "000000000000139",
+            custName: "new user new user",
+            custStatus: "1",
+            dob: "08101972",
+            instID: "AP",
+            maritalStatus: "M",
+            nationalID: "1232112321",
+            primaryMailAddr: "aaa@g.com",
+            primaryMobileNum: "222333444",
+            secondaryMailAddr: "aaa@g.com",
+            secondaryMobileNum: "222333444"
+        )
+    }
+}
+
+extension Card {
+    static var mock: Card {
+        .init(
+            bin: "636782",
+            binName: "APPOPAY PROPRIETORY BIN",
+            cardEncodingType: "INSTANT",
+            cardEntityType: "@CUSTOMER",
+            cardIssuanceType: "VIRTUAL",
+            cardName: "new user new user",
+            cardRefNum: "636782000000000000000170",
+            cardStatus: "007",
+            cardStatusDesc: "Active",
+            cardType: "PREPAID",
+            encodingName: "new user new user",
+            expDate: "10102027",
+            hashCardNum: "be7187f33b7e42482c712aa5c1e286e2ba15b4f56e3420025f6e7785da4a72d317fad8a521feb9968ab291538d0432721046cb96f05c5940360e757e7bb8262a",
+            maskCardNum: "1234 567* **** 0987",
+            productID: "03",
+            productName: "APPOPAY PROPRIETORY PRODUCT",
+            serviceCode: "220",
+            subproductID: "002",
+            subproductName: "APPOPAY WALLET",
+            cardImage: "appo-pay-card",
+            walletInfo: WalletInfo.mock
+        )
+    }
+}
+
+extension WalletInfo {
+    static var mock: WalletInfo {
+        .init(
+            availBal: "25.00",
+            ledgerBal: "25.00",
+            walletNum: "000000000000000000000219",
+            walletStatus: "1"
+        )
     }
 }

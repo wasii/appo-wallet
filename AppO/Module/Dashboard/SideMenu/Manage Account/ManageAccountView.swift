@@ -33,29 +33,31 @@ struct ManageAccountView: View {
                     
                     CardStatusView
                     ScrollView(.vertical) {
-                        ForEach(viewModel.cards ?? [], id: \.self) { card in
-                            CardView(card: card)
-                                .onTapGesture {
-                                    lightHaptic()
-                                    viewModel.selected_card = card
-                                    showTransactionPinView()
-                                }
-                                .onLongPressGesture(minimumDuration: 1.0, pressing: { bool in print(bool)}, perform: {
-                                    Task {
-                                        do {
-                                            heavyHaptic()
-                                            viewModel.showLoader = true
-                                            let success = try await viewModel.getCardNumber(cardRefNum: card.cardRefNum ?? "")
-                                            if success {
-                                                viewModel.showLoader = false
-                                                viewModel.selected_card = card
-                                                showUnMaskedCard()
-                                            } else {
+                        VStack(spacing: 40) {
+                            ForEach(viewModel.cards ?? [], id: \.self) { card in
+                                CardView(card: card)
+                                    .onTapGesture {
+                                        lightHaptic()
+                                        viewModel.selected_card = card
+                                        showTransactionPinView()
+                                    }
+                                    .onLongPressGesture(minimumDuration: 1.0, pressing: { bool in print(bool)}, perform: {
+                                        Task {
+                                            do {
+                                                heavyHaptic()
                                                 viewModel.showLoader = true
+                                                let success = try await viewModel.getCardNumber(cardRefNum: card.cardRefNum ?? "")
+                                                if success {
+                                                    viewModel.showLoader = false
+                                                    viewModel.selected_card = card
+                                                    showUnMaskedCard()
+                                                } else {
+                                                    viewModel.showLoader = true
+                                                }
                                             }
                                         }
-                                    }
-                                })
+                                    })
+                            }
                         }
                     }
                     .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
@@ -208,7 +210,8 @@ struct CustomToggleStyle: ToggleStyle {
 
 
 #Preview {
-    ManageAccountView(viewModel: .init())
+//    ManageAccountView(viewModel: .init())
+    CardView(card: .mock)
 }
 
 
@@ -219,6 +222,7 @@ struct CardView: View {
             Image(card.cardImage ?? "")
                 .resizable()
                 .frame(height: 220)
+                .shadow(color: .black.opacity(0.5), radius: 10, x: 0, y: 10)
             
             VStack(alignment: .leading) {
                 Spacer()
